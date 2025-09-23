@@ -23,8 +23,8 @@ const PowerfulHero = () => {
       <ParticleBackground />
       <MotivationalBackground />
       
-      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 10 }}>
-        <Box sx={{ textAlign: 'center' }}>
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 10, px: { xs: 2, md: 3 }, pt: { xs: 8, md: 10 } }}>
+        <Box sx={{ textAlign: 'center', maxWidth: '1000px', mx: 'auto' }}>
           
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
@@ -33,21 +33,14 @@ const PowerfulHero = () => {
           >
             <Typography
               sx={{
-                fontSize: { xs: '2rem', md: '3.5rem' },
+                fontFamily: '"Spectral SC", serif',
+                fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem', lg: '3.5rem' },
                 fontWeight: 700,
-                mb: 2,
-                background: 'linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #feca57)',
-                backgroundSize: '400% 400%',
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                animation: 'powerGradient 4s ease infinite',
-                textShadow: '0 0 30px rgba(255,107,107,0.5)',
-                '@keyframes powerGradient': {
-                  '0%': { backgroundPosition: '0% 50%' },
-                  '50%': { backgroundPosition: '100% 50%' },
-                  '100%': { backgroundPosition: '0% 50%' },
-                },
+                mb: { xs: 2, md: 3 },
+                color: isDark ? '#ffffff' : '#1a1a1a',
+                lineHeight: 1.1,
+                letterSpacing: '0.02em',
+                textAlign: 'center'
               }}
             >
               YOUR FUTURE IS OUR MISSION
@@ -62,10 +55,15 @@ const PowerfulHero = () => {
             <Typography
               variant="h6"
               sx={{
-                mb: 4,
-                color: isDark ? '#ffffff' : '#2c1810',
+                fontFamily: '"Lora", serif',
+                mb: { xs: 3, md: 5 },
+                color: isDark ? 'rgba(255,255,255,0.9)' : 'rgba(26,26,26,0.8)',
                 fontWeight: 500,
-                textShadow: '0 0 20px rgba(255,255,255,0.3)',
+                fontSize: { xs: '0.95rem', md: '1.1rem' },
+                maxWidth: '700px',
+                mx: 'auto',
+                lineHeight: 1.5,
+                px: { xs: 2, md: 0 }
               }}
             >
               Empowering Your Journey with Cutting-Edge AI and Expert Mentorship
@@ -76,50 +74,64 @@ const PowerfulHero = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, delay: 1 }}
-            style={{ display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '3rem' }}
+            style={{ 
+              display: 'flex', 
+              gap: '1.5rem', 
+              justifyContent: 'center', 
+              flexWrap: 'wrap', 
+              marginBottom: '4rem',
+              alignItems: 'center'
+            }}
           >
             <AnimatedButton
               size="large"
               sx={{
-                px: 4,
-                py: 2,
-                fontSize: '1.1rem',
+                px: { xs: 3, md: 5 },
+                py: { xs: 1.5, md: 2 },
+                fontSize: { xs: '1rem', md: '1.2rem' },
                 background: 'linear-gradient(45deg, #d4a574, #8b4513)',
-                boxShadow: '0 0 30px rgba(255,107,107,0.4)',
+                color: isDark ? '#f5f5dc' : '#2c2c2c',
+                fontWeight: 600,
                 '&:hover': {
                   background: 'linear-gradient(45deg, #c19660, #7a3f0f)',
-                  boxShadow: '0 0 50px rgba(255,107,107,0.6)',
-                  transform: 'scale(1.05)',
+                  transform: 'translateY(-2px)',
                 },
               }}
             >
-              🔥 START NOW
+              START NOW
             </AnimatedButton>
             
             <AnimatedButton
               variant="outlined"
               size="large"
               sx={{
-                px: 4,
-                py: 2,
-                fontSize: '1.1rem',
-                borderColor: '#8b4513',
-                color: '#8b4513',
+                px: { xs: 3, md: 5 },
+                py: { xs: 1.5, md: 2 },
+                fontSize: { xs: '1rem', md: '1.2rem' },
+                borderColor: isDark ? '#f5f5dc' : '#555555',
+                color: isDark ? '#f5f5dc' : '#555555',
                 borderWidth: 2,
-                boxShadow: '0 0 20px rgba(78,205,196,0.3)',
+                fontWeight: 600,
                 '&:hover': {
-                  borderColor: '#7a3f0f',
-                  color: '#7a3f0f',
-                  boxShadow: '0 0 40px rgba(78,205,196,0.5)',
-                  background: 'rgba(139,69,19,0.1)',
+                  borderColor: isDark ? '#e6e6d4' : '#333333',
+                  color: isDark ? '#e6e6d4' : '#333333',
+                  background: isDark ? 'rgba(245,245,220,0.1)' : 'rgba(85,85,85,0.1)',
+                  transform: 'translateY(-2px)',
                 },
               }}
             >
-              ⚡ EXPLORE SOURCES
+              EXPLORE COURSES
             </AnimatedButton>
           </motion.div>
 
-          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 4, flexWrap: 'wrap' }}>
+          <Box sx={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            gap: { xs: 2, md: 4 }, 
+            flexWrap: 'wrap',
+            maxWidth: '800px',
+            mx: 'auto'
+          }}>
             {[
               { icon: <Rocket />, number: '50K+', label: 'Success Stories', color: '#ff6b6b' },
               { icon: <Star />, number: '98%', label: 'Job Placement', color: '#feca57' },
@@ -135,22 +147,41 @@ const PowerfulHero = () => {
                 <Box
                   sx={{
                     textAlign: 'center',
-                    p: 2,
-                    background: 'rgba(255,255,255,0.05)',
+                    p: { xs: 2, md: 3 },
+                    background: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)',
                     backdropFilter: 'blur(20px)',
                     borderRadius: 3,
-                    border: `1px solid ${stat.color}`,
-                    boxShadow: `0 0 15px ${stat.color}30`,
-                    minWidth: 120,
+                    border: isDark ? '1px solid rgba(255,255,255,0.2)' : '1px solid rgba(0,0,0,0.1)',
+                    minWidth: { xs: 100, md: 140 },
+                    transition: 'transform 0.2s ease-in-out',
                   }}
                 >
-                  <Box sx={{ fontSize: '1.5rem', color: stat.color, mb: 1 }}>
+                  <Box sx={{ 
+                    fontSize: { xs: '1.2rem', md: '1.5rem' }, 
+                    color: isDark ? '#ffffff' : '#1976d2', 
+                    mb: 1 
+                  }}>
                     {stat.icon}
                   </Box>
-                  <Typography variant="h5" sx={{ fontWeight: 600, color: stat.color, mb: 1 }}>
+                  <Typography 
+                    variant="h5" 
+                    sx={{ 
+                      fontWeight: 700, 
+                      color: isDark ? '#ffffff' : '#1976d2', 
+                      mb: 1,
+                      fontSize: { xs: '1.2rem', md: '1.5rem' }
+                    }}
+                  >
                     {stat.number}
                   </Typography>
-                  <Typography variant="body2" sx={{ color: 'white', fontWeight: 500 }}>
+                  <Typography 
+                    variant="body2" 
+                    sx={{ 
+                      color: isDark ? 'rgba(255,255,255,0.8)' : 'rgba(26,26,26,0.7)', 
+                      fontWeight: 500,
+                      fontSize: { xs: '0.8rem', md: '0.9rem' }
+                    }}
+                  >
                     {stat.label}
                   </Typography>
                 </Box>
