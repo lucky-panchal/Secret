@@ -11,7 +11,7 @@ const plans = [
     price: '$0',
     period: 'forever',
     icon: <Star />,
-    color: '#4caf50',
+    color: 'var(--success)',
     features: [
       '3 Free Courses',
       'Basic Learning Path',
@@ -30,7 +30,7 @@ const plans = [
     price: '$29',
     period: 'per month',
     icon: <Rocket />,
-    color: '#ffd700',
+    color: 'var(--accent)',
     popular: true,
     features: [
       'All 200+ Courses',
@@ -48,7 +48,7 @@ const plans = [
     price: '$99',
     period: 'per month',
     icon: <Diamond />,
-    color: '#9c27b0',
+    color: 'var(--secondary)',
     features: [
       'Everything in Pro',
       '1-on-1 Expert Mentorship',
@@ -66,21 +66,21 @@ export default function PricingPage() {
   const { isDark } = useTheme();
 
   return (
-    <>
+    <div data-theme={isDark ? 'dark' : 'light'}>
       <Navigation />
       <Box sx={{ 
         pt: 12, 
         pb: 4, 
-        background: isDark ? '#0f0f0f' : '#f8f4f0', 
+        background: 'var(--background)', 
         minHeight: '100vh' 
       }}>
         <Container maxWidth="xl">
           {/* Header */}
           <Box sx={{ textAlign: 'center', mb: 6 }}>
-            <Typography variant="h3" sx={{ fontWeight: 800, mb: 2, color: isDark ? 'white' : '#2c1810' }}>
+            <Typography variant="h3" sx={{ fontWeight: 800, mb: 2, color: 'var(--text-primary)' }}>
               Choose Your Learning Plan
             </Typography>
-            <Typography variant="h6" sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(44,24,16,0.7)', maxWidth: 600, mx: 'auto' }}>
+            <Typography variant="h6" sx={{ color: 'var(--text-secondary)', maxWidth: 600, mx: 'auto' }}>
               Start free and upgrade as you grow. All plans include our core learning platform.
             </Typography>
           </Box>
@@ -93,14 +93,18 @@ export default function PricingPage() {
                   p: 4,
                   height: '100%',
                   position: 'relative',
-                  background: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.9)',
-                  backdropFilter: 'blur(20px)',
+                  background: 'var(--surface)',
                   border: plan.popular 
                     ? `2px solid ${plan.color}` 
-                    : isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(44,24,16,0.1)',
+                    : '1px solid var(--border)',
                   borderRadius: 2,
                   transform: plan.popular ? 'scale(1.05)' : 'scale(1)',
-                  boxShadow: plan.popular ? `0 20px 40px ${plan.color}30` : 'none',
+                  boxShadow: plan.popular ? '0 20px 40px rgba(0,0,0,0.15)' : '0 4px 6px rgba(0,0,0,0.1)',
+                  transition: 'all 0.3s ease-in-out',
+                  '&:hover': {
+                    transform: plan.popular ? 'scale(1.07)' : 'scale(1.02)',
+                    boxShadow: '0 8px 15px rgba(0, 0, 0, 0.15)',
+                  }
                 }}>
                   {plan.popular && (
                     <Chip 
@@ -122,14 +126,14 @@ export default function PricingPage() {
                     <Box sx={{ color: plan.color, mb: 2, fontSize: '3rem' }}>
                       {plan.icon}
                     </Box>
-                    <Typography variant="h5" sx={{ fontWeight: 700, mb: 1, color: isDark ? 'white' : '#2c1810' }}>
+                    <Typography variant="h5" sx={{ fontWeight: 700, mb: 1, color: 'var(--text-primary)' }}>
                       {plan.name}
                     </Typography>
                     <Box sx={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', mb: 2 }}>
                       <Typography variant="h3" sx={{ fontWeight: 800, color: plan.color }}>
                         {plan.price}
                       </Typography>
-                      <Typography variant="body1" sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(44,24,16,0.7)', ml: 1 }}>
+                      <Typography variant="body1" sx={{ color: 'var(--text-secondary)', ml: 1 }}>
                         {plan.period}
                       </Typography>
                     </Box>
@@ -146,7 +150,7 @@ export default function PricingPage() {
                           primary={feature}
                           primaryTypographyProps={{
                             fontSize: '0.9rem',
-                            color: isDark ? 'rgba(255,255,255,0.8)' : 'rgba(44,24,16,0.8)'
+                            color: 'var(--text-secondary)'
                           }}
                         />
                       </ListItem>
@@ -165,9 +169,15 @@ export default function PricingPage() {
                         background: plan.popular ? plan.color : 'transparent',
                         color: plan.popular ? '#000' : plan.color,
                         borderColor: plan.color,
+                        borderRadius: 2,
+                        minHeight: 44,
+                        transition: 'all 0.3s ease-in-out',
                         '&:hover': {
-                          background: plan.popular ? plan.color : `${plan.color}20`,
+                          background: plan.popular ? 'var(--primary)' : plan.color,
+                          color: plan.popular ? 'white' : '#000',
                           borderColor: plan.color,
+                          transform: 'scale(1.02)',
+                          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.15)',
                         },
                       }}
                     >
@@ -181,10 +191,10 @@ export default function PricingPage() {
 
           {/* FAQ Section */}
           <Box sx={{ textAlign: 'center', mt: 8 }}>
-            <Typography variant="h5" sx={{ fontWeight: 700, mb: 2, color: isDark ? 'white' : '#2c1810' }}>
+            <Typography variant="h5" sx={{ fontWeight: 700, mb: 2, color: 'var(--text-primary)' }}>
               Questions? We're here to help.
             </Typography>
-            <Typography variant="body1" sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(44,24,16,0.7)', mb: 3 }}>
+            <Typography variant="body1" sx={{ color: 'var(--text-secondary)', mb: 3 }}>
               Contact our support team for personalized assistance with your learning journey.
             </Typography>
             <Link href="/contact" passHref>
@@ -192,11 +202,18 @@ export default function PricingPage() {
                 variant="outlined"
                 size="large"
                 sx={{
-                  color: '#ffd700',
-                  borderColor: '#ffd700',
+                  color: 'var(--accent)',
+                  borderColor: 'var(--accent)',
+                  borderRadius: 2,
+                  minHeight: 44,
+                  px: 3,
+                  transition: 'all 0.3s ease-in-out',
                   '&:hover': {
-                    background: 'rgba(255,215,0,0.1)',
-                    borderColor: '#ffd700',
+                    background: 'var(--accent)',
+                    color: '#000',
+                    borderColor: 'var(--accent)',
+                    transform: 'scale(1.02)',
+                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.15)',
                   },
                 }}
               >
@@ -206,6 +223,6 @@ export default function PricingPage() {
           </Box>
         </Container>
       </Box>
-    </>
+    </div>
   );
 }

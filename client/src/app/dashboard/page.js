@@ -1,16 +1,16 @@
 'use client';
 import { Box, Container, Typography, Grid, Paper, LinearProgress, Avatar, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Chip, IconButton } from '@mui/material';
 import { motion } from 'framer-motion';
-import { School, Timer, TrendingUp, Star, PlayArrow, MoreVert, EmojiEvents, Assignment, Group } from '@mui/icons-material';
+import { School, Timer, TrendingUp, Star, PlayArrow, MoreVert } from '@mui/icons-material';
 import { useTheme } from '@/contexts/ThemeContext';
 import Navigation from '@/components/ui/Navigation';
 import ProtectedRoute from '@/components/ProtectedRoute';
 
 const stats = [
-  { icon: <School />, label: 'Courses Enrolled', value: '12', color: '#ffd700', change: '+2 this month' },
-  { icon: <Timer />, label: 'Learning Hours', value: '156', color: '#ffd700', change: '+24 this week' },
-  { icon: <TrendingUp />, label: 'Skill Progress', value: '85%', color: '#ffd700', change: '+15% this month' },
-  { icon: <Star />, label: 'Certificates', value: '8', color: '#ffd700', change: '+3 completed' },
+  { icon: <School />, label: 'Courses Enrolled', value: '12', change: '+2 this month' },
+  { icon: <Timer />, label: 'Learning Hours', value: '156', change: '+24 this week' },
+  { icon: <TrendingUp />, label: 'Skill Progress', value: '85%', change: '+15% this month' },
+  { icon: <Star />, label: 'Certificates', value: '8', change: '+3 completed' },
 ];
 
 const learningData = [
@@ -36,19 +36,19 @@ const upcomingTasks = [
 
 const getStatusColor = (status) => {
   switch (status) {
-    case 'Completed': return '#4caf50';
-    case 'In Progress': return '#2196f3';
-    case 'Started': return '#ff9800';
-    default: return '#757575';
+    case 'Completed': return 'var(--success)';
+    case 'In Progress': return 'var(--info)';
+    case 'Started': return 'var(--warning)';
+    default: return 'var(--text-secondary)';
   }
 };
 
 const getPriorityColor = (priority) => {
   switch (priority) {
-    case 'High': return '#f44336';
-    case 'Medium': return '#ff9800';
-    case 'Low': return '#4caf50';
-    default: return '#757575';
+    case 'High': return 'var(--error)';
+    case 'Medium': return 'var(--warning)';
+    case 'Low': return 'var(--success)';
+    default: return 'var(--text-secondary)';
   }
 };
 
@@ -56,288 +56,314 @@ export default function DashboardPage() {
   const { isDark } = useTheme();
 
   return (
-    <ProtectedRoute>
-      <Navigation />
-      <Box sx={{ 
-        pt: 12, 
-        pb: 4, 
-        background: isDark ? '#0f0f0f' : '#f8f4f0', 
-        minHeight: '100vh' 
-      }}>
-        <Container maxWidth="xl">
-          {/* Header */}
-          <Box sx={{ mb: 4 }}>
-            <Typography variant="h4" sx={{ fontWeight: 800, color: isDark ? 'white' : '#2c1810', mb: 1 }}>
-              Learning Dashboard
-            </Typography>
-            <Typography variant="body1" sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(44,24,16,0.7)' }}>
-              Welcome back, Alex! Track your progress and continue learning.
-            </Typography>
-          </Box>
+    <div data-theme={isDark ? 'dark' : 'light'}>
+      <ProtectedRoute>
+        <Navigation />
+        <Box sx={{ 
+          pt: 12, 
+          pb: 4, 
+          background: 'var(--background)', 
+          minHeight: '100vh' 
+        }}>
+          <Container maxWidth="xl">
+            {/* Header */}
+            <Box sx={{ mb: 4 }}>
+              <Typography variant="h4" sx={{ fontWeight: 800, color: 'var(--text-primary)', mb: 1 }}>
+                Learning Dashboard
+              </Typography>
+              <Typography variant="body1" sx={{ color: 'var(--text-secondary)' }}>
+                Welcome back, Alex! Track your progress and continue learning.
+              </Typography>
+            </Box>
 
-          {/* Stats Cards */}
-          <Grid container spacing={3} sx={{ mb: 4 }}>
-            {stats.map((stat, index) => (
-              <Grid item xs={12} sm={6} md={3} key={index}>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <Paper
-                    sx={{
-                      p: 3,
-                      background: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.9)',
-                      backdropFilter: 'blur(20px)',
-                      border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(44,24,16,0.1)',
-                      borderRadius: 2,
-                      height: '100%',
-                    }}
+            {/* Stats Cards */}
+            <Grid container spacing={3} sx={{ mb: 4 }}>
+              {stats.map((stat, index) => (
+                <Grid item xs={12} sm={6} md={3} key={index}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                      <Box
-                        sx={{
-                          width: 48,
-                          height: 48,
-                          borderRadius: 2,
-                          background: stat.color,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          color: '#000',
-                          mr: 2,
-                        }}
-                      >
-                        {stat.icon}
-                      </Box>
-                      <Box>
-                        <Typography variant="h4" sx={{ fontWeight: 700, color: isDark ? 'white' : '#2c1810', lineHeight: 1 }}>
-                          {stat.value}
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(44,24,16,0.7)' }}>
-                          {stat.label}
-                        </Typography>
-                      </Box>
-                    </Box>
-                    <Typography variant="caption" sx={{ color: '#4caf50', fontWeight: 600 }}>
-                      {stat.change}
-                    </Typography>
-                  </Paper>
-                </motion.div>
-              </Grid>
-            ))}
-          </Grid>
-
-          <Grid container spacing={3}>
-            {/* Main Content */}
-            <Grid item xs={12} lg={8}>
-              {/* Learning Journey */}
-              <Paper
-                sx={{
-                  background: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.9)',
-                  backdropFilter: 'blur(20px)',
-                  border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(44,24,16,0.1)',
-                  borderRadius: 2,
-                  overflow: 'hidden',
-                  mb: 3,
-                }}
-              >
-                <Box sx={{ p: 3, borderBottom: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(44,24,16,0.1)' }}>
-                  <Typography variant="h6" sx={{ fontWeight: 600, color: isDark ? 'white' : '#2c1810' }}>
-                    My Learning Journey
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(44,24,16,0.7)' }}>
-                    {learningData.length} active courses
-                  </Typography>
-                </Box>
-
-                <TableContainer>
-                  <Table>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(44,24,16,0.7)', fontWeight: 600, py: 2 }}>Course</TableCell>
-                        <TableCell sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(44,24,16,0.7)', fontWeight: 600 }}>Instructor</TableCell>
-                        <TableCell sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(44,24,16,0.7)', fontWeight: 600 }}>Start Date</TableCell>
-                        <TableCell sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(44,24,16,0.7)', fontWeight: 600 }}>Progress</TableCell>
-                        <TableCell sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(44,24,16,0.7)', fontWeight: 600 }}>Status</TableCell>
-                        <TableCell sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(44,24,16,0.7)', fontWeight: 600 }}>Actions</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {learningData.map((row, index) => (
-                        <TableRow
-                          key={row.id}
-                          sx={{ 
-                            '&:hover': { 
-                              background: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(44,24,16,0.02)' 
-                            } 
+                    <Paper
+                      sx={{
+                        p: 3,
+                        background: 'var(--surface)',
+                        border: '1px solid var(--border)',
+                        borderRadius: 2,
+                        height: '100%',
+                        transition: 'all 0.3s ease-in-out',
+                        '&:hover': {
+                          transform: 'scale(1.02)',
+                          boxShadow: '0 8px 15px rgba(0, 0, 0, 0.15)',
+                        }
+                      }}
+                    >
+                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                        <Box
+                          sx={{
+                            width: 48,
+                            height: 48,
+                            borderRadius: 2,
+                            background: 'var(--accent)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: '#000',
+                            mr: 2,
                           }}
                         >
-                          <TableCell sx={{ py: 2 }}>
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                              <Avatar sx={{ width: 40, height: 40, background: '#ffd700', color: '#000', fontSize: '0.8rem', fontWeight: 600 }}>
-                                {row.avatar}
-                              </Avatar>
-                              <Box>
-                                <Typography sx={{ fontWeight: 600, color: isDark ? 'white' : '#2c1810' }}>
-                                  {row.course}
-                                </Typography>
-                                <Typography variant="caption" sx={{ color: isDark ? 'rgba(255,255,255,0.5)' : 'rgba(44,24,16,0.5)' }}>
-                                  {row.id}
-                                </Typography>
-                              </Box>
-                            </Box>
-                          </TableCell>
-                          <TableCell sx={{ color: isDark ? 'rgba(255,255,255,0.8)' : 'rgba(44,24,16,0.8)' }}>
-                            {row.instructor}
-                          </TableCell>
-                          <TableCell sx={{ color: isDark ? 'rgba(255,255,255,0.8)' : 'rgba(44,24,16,0.8)' }}>
-                            {row.startDate}
-                          </TableCell>
-                          <TableCell>
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, minWidth: 120 }}>
-                              <LinearProgress
-                                variant="determinate"
-                                value={row.progress}
-                                sx={{
-                                  flex: 1,
-                                  height: 6,
-                                  borderRadius: 3,
-                                  background: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(44,24,16,0.1)',
-                                  '& .MuiLinearProgress-bar': {
-                                    background: '#ffd700',
-                                    borderRadius: 3,
-                                  },
-                                }}
-                              />
-                              <Typography variant="body2" sx={{ color: isDark ? 'white' : '#2c1810', minWidth: 35, fontSize: '0.8rem' }}>
-                                {row.progress}%
-                              </Typography>
-                            </Box>
-                          </TableCell>
-                          <TableCell>
-                            <Chip
-                              label={row.status}
-                              size="small"
-                              sx={{
-                                background: getStatusColor(row.status),
-                                color: 'white',
-                                fontWeight: 600,
-                                fontSize: '0.7rem',
-                              }}
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <Box sx={{ display: 'flex', gap: 0.5 }}>
-                              <IconButton size="small" sx={{ color: '#ffd700' }}>
-                                <PlayArrow fontSize="small" />
-                              </IconButton>
-                              <IconButton size="small" sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(44,24,16,0.7)' }}>
-                                <MoreVert fontSize="small" />
-                              </IconButton>
-                            </Box>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </Paper>
+                          {stat.icon}
+                        </Box>
+                        <Box>
+                          <Typography variant="h4" sx={{ fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1 }}>
+                            {stat.value}
+                          </Typography>
+                          <Typography variant="body2" sx={{ color: 'var(--text-secondary)' }}>
+                            {stat.label}
+                          </Typography>
+                        </Box>
+                      </Box>
+                      <Typography variant="caption" sx={{ color: 'var(--success)', fontWeight: 600 }}>
+                        {stat.change}
+                      </Typography>
+                    </Paper>
+                  </motion.div>
+                </Grid>
+              ))}
             </Grid>
 
-            {/* Sidebar */}
-            <Grid item xs={12} lg={4}>
-              {/* Recent Activity */}
-              <Paper
-                sx={{
-                  p: 3,
-                  mb: 3,
-                  background: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.9)',
-                  backdropFilter: 'blur(20px)',
-                  border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(44,24,16,0.1)',
-                  borderRadius: 2,
-                }}
-              >
-                <Typography variant="h6" sx={{ mb: 3, fontWeight: 600, color: isDark ? 'white' : '#2c1810' }}>
-                  Recent Activity
-                </Typography>
-                {recentActivity.map((activity, index) => (
-                  <Box key={index} sx={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    gap: 2, 
-                    mb: 2,
-                    p: 2,
+            <Grid container spacing={3}>
+              {/* Main Content */}
+              <Grid item xs={12} lg={8}>
+                {/* Learning Journey */}
+                <Paper
+                  sx={{
+                    background: 'var(--surface)',
+                    border: '1px solid var(--border)',
                     borderRadius: 2,
-                    background: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(44,24,16,0.03)',
-                  }}>
-                    <Box
-                      sx={{
-                        width: 8,
-                        height: 8,
-                        borderRadius: '50%',
-                        background: '#ffd700',
-                        flexShrink: 0,
-                      }}
-                    />
-                    <Box sx={{ flex: 1 }}>
-                      <Typography variant="body2" sx={{ color: isDark ? 'white' : '#2c1810', fontWeight: 500 }}>
-                        <span style={{ color: '#ffd700' }}>{activity.action}</span> {activity.item}
-                      </Typography>
-                      <Typography variant="caption" sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'rgba(44,24,16,0.6)' }}>
-                        {activity.time}
-                      </Typography>
-                    </Box>
-                  </Box>
-                ))}
-              </Paper>
-
-              {/* Upcoming Tasks */}
-              <Paper
-                sx={{
-                  p: 3,
-                  background: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.9)',
-                  backdropFilter: 'blur(20px)',
-                  border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(44,24,16,0.1)',
-                  borderRadius: 2,
-                }}
-              >
-                <Typography variant="h6" sx={{ mb: 3, fontWeight: 600, color: isDark ? 'white' : '#2c1810' }}>
-                  Upcoming Tasks
-                </Typography>
-                {upcomingTasks.map((task, index) => (
-                  <Box key={index} sx={{ 
-                    p: 2, 
-                    mb: 2, 
-                    borderRadius: 2, 
-                    background: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(44,24,16,0.03)',
-                    border: `1px solid ${getPriorityColor(task.priority)}30`,
-                  }}>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
-                      <Typography variant="body2" sx={{ fontWeight: 600, color: isDark ? 'white' : '#2c1810' }}>
-                        {task.task}
-                      </Typography>
-                      <Chip
-                        label={task.priority}
-                        size="small"
-                        sx={{
-                          background: getPriorityColor(task.priority),
-                          color: 'white',
-                          fontSize: '0.7rem',
-                          height: 20,
-                        }}
-                      />
-                    </Box>
-                    <Typography variant="caption" sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(44,24,16,0.7)' }}>
-                      {task.course} • Due in {task.due}
+                    overflow: 'hidden',
+                    mb: 3,
+                  }}
+                >
+                  <Box sx={{ p: 3, borderBottom: '1px solid var(--border)' }}>
+                    <Typography variant="h6" sx={{ fontWeight: 600, color: 'var(--text-primary)' }}>
+                      My Learning Journey
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'var(--text-secondary)' }}>
+                      {learningData.length} active courses
                     </Typography>
                   </Box>
-                ))}
-              </Paper>
+
+                  <TableContainer>
+                    <Table>
+                      <TableHead>
+                        <TableRow>
+                          <TableCell sx={{ color: 'var(--text-secondary)', fontWeight: 600, py: 2 }}>Course</TableCell>
+                          <TableCell sx={{ color: 'var(--text-secondary)', fontWeight: 600 }}>Instructor</TableCell>
+                          <TableCell sx={{ color: 'var(--text-secondary)', fontWeight: 600 }}>Start Date</TableCell>
+                          <TableCell sx={{ color: 'var(--text-secondary)', fontWeight: 600 }}>Progress</TableCell>
+                          <TableCell sx={{ color: 'var(--text-secondary)', fontWeight: 600 }}>Status</TableCell>
+                          <TableCell sx={{ color: 'var(--text-secondary)', fontWeight: 600 }}>Actions</TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {learningData.map((row, index) => (
+                          <TableRow
+                            key={row.id}
+                            sx={{ 
+                              '&:hover': { 
+                                background: 'rgba(0,0,0,0.02)' 
+                              } 
+                            }}
+                          >
+                            <TableCell sx={{ py: 2 }}>
+                              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                                <Avatar sx={{ 
+                                  width: 40, 
+                                  height: 40, 
+                                  background: 'var(--accent)', 
+                                  color: '#000', 
+                                  fontSize: '0.8rem', 
+                                  fontWeight: 600 
+                                }}>
+                                  {row.avatar}
+                                </Avatar>
+                                <Box>
+                                  <Typography variant="body2" sx={{ fontWeight: 600, color: 'var(--text-primary)' }}>
+                                    {row.course}
+                                  </Typography>
+                                  <Typography variant="caption" sx={{ color: 'var(--text-secondary)' }}>
+                                    {row.id}
+                                  </Typography>
+                                </Box>
+                              </Box>
+                            </TableCell>
+                            <TableCell>
+                              <Typography variant="body2" sx={{ color: 'var(--text-primary)' }}>
+                                {row.instructor}
+                              </Typography>
+                            </TableCell>
+                            <TableCell>
+                              <Typography variant="body2" sx={{ color: 'var(--text-secondary)' }}>
+                                {row.startDate}
+                              </Typography>
+                            </TableCell>
+                            <TableCell>
+                              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                <LinearProgress
+                                  variant="determinate"
+                                  value={row.progress}
+                                  sx={{
+                                    width: 60,
+                                    height: 6,
+                                    borderRadius: 3,
+                                    backgroundColor: 'var(--border)',
+                                    '& .MuiLinearProgress-bar': {
+                                      backgroundColor: 'var(--primary)',
+                                      borderRadius: 3,
+                                    },
+                                  }}
+                                />
+                                <Typography variant="caption" sx={{ color: 'var(--text-secondary)', minWidth: 35 }}>
+                                  {row.progress}%
+                                </Typography>
+                              </Box>
+                            </TableCell>
+                            <TableCell>
+                              <Chip
+                                label={row.status}
+                                size="small"
+                                sx={{
+                                  backgroundColor: getStatusColor(row.status),
+                                  color: 'white',
+                                  fontWeight: 600,
+                                }}
+                              />
+                            </TableCell>
+                            <TableCell>
+                              <Box sx={{ display: 'flex', gap: 1 }}>
+                                <IconButton 
+                                  size="small" 
+                                  sx={{ 
+                                    color: 'var(--primary)',
+                                    '&:hover': {
+                                      background: 'var(--primary)',
+                                      color: 'white',
+                                    }
+                                  }}
+                                >
+                                  <PlayArrow />
+                                </IconButton>
+                                <IconButton 
+                                  size="small" 
+                                  sx={{ 
+                                    color: 'var(--text-secondary)',
+                                    '&:hover': {
+                                      background: 'var(--surface)',
+                                      color: 'var(--text-primary)',
+                                    }
+                                  }}
+                                >
+                                  <MoreVert />
+                                </IconButton>
+                              </Box>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                </Paper>
+              </Grid>
+
+              {/* Sidebar */}
+              <Grid item xs={12} lg={4}>
+                {/* Recent Activity */}
+                <Paper
+                  sx={{
+                    background: 'var(--surface)',
+                    border: '1px solid var(--border)',
+                    borderRadius: 2,
+                    mb: 3,
+                  }}
+                >
+                  <Box sx={{ p: 3, borderBottom: '1px solid var(--border)' }}>
+                    <Typography variant="h6" sx={{ fontWeight: 600, color: 'var(--text-primary)' }}>
+                      Recent Activity
+                    </Typography>
+                  </Box>
+                  <Box sx={{ p: 3 }}>
+                    {recentActivity.map((activity, index) => (
+                      <Box key={index} sx={{ display: 'flex', alignItems: 'center', mb: 2, '&:last-child': { mb: 0 } }}>
+                        <Box
+                          sx={{
+                            width: 8,
+                            height: 8,
+                            borderRadius: '50%',
+                            background: 'var(--accent)',
+                            mr: 2,
+                            flexShrink: 0,
+                          }}
+                        />
+                        <Box sx={{ flex: 1 }}>
+                          <Typography variant="body2" sx={{ color: 'var(--text-primary)', fontWeight: 500 }}>
+                            {activity.action} {activity.item}
+                          </Typography>
+                          <Typography variant="caption" sx={{ color: 'var(--text-secondary)' }}>
+                            {activity.time}
+                          </Typography>
+                        </Box>
+                      </Box>
+                    ))}
+                  </Box>
+                </Paper>
+
+                {/* Upcoming Tasks */}
+                <Paper
+                  sx={{
+                    background: 'var(--surface)',
+                    border: '1px solid var(--border)',
+                    borderRadius: 2,
+                  }}
+                >
+                  <Box sx={{ p: 3, borderBottom: '1px solid var(--border)' }}>
+                    <Typography variant="h6" sx={{ fontWeight: 600, color: 'var(--text-primary)' }}>
+                      Upcoming Tasks
+                    </Typography>
+                  </Box>
+                  <Box sx={{ p: 3 }}>
+                    {upcomingTasks.map((task, index) => (
+                      <Box key={index} sx={{ mb: 3, '&:last-child': { mb: 0 } }}>
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
+                          <Typography variant="body2" sx={{ fontWeight: 600, color: 'var(--text-primary)' }}>
+                            {task.task}
+                          </Typography>
+                          <Chip
+                            label={task.priority}
+                            size="small"
+                            sx={{
+                              backgroundColor: getPriorityColor(task.priority),
+                              color: 'white',
+                              fontWeight: 600,
+                            }}
+                          />
+                        </Box>
+                        <Typography variant="caption" sx={{ color: 'var(--text-secondary)', display: 'block', mb: 0.5 }}>
+                          {task.course}
+                        </Typography>
+                        <Typography variant="caption" sx={{ color: 'var(--accent)', fontWeight: 600 }}>
+                          Due: {task.due}
+                        </Typography>
+                      </Box>
+                    ))}
+                  </Box>
+                </Paper>
+              </Grid>
             </Grid>
-          </Grid>
-        </Container>
-      </Box>
-    </ProtectedRoute>
+          </Container>
+        </Box>
+      </ProtectedRoute>
+    </div>
   );
 }

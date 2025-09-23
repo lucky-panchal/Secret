@@ -22,21 +22,21 @@ export default function AboutPage() {
   const { isDark } = useTheme();
 
   return (
-    <>
+    <div data-theme={isDark ? 'dark' : 'light'}>
       <Navigation />
       <Box sx={{ 
         pt: 12, 
         pb: 4, 
-        background: isDark ? '#0f0f0f' : '#f8f4f0', 
+        background: 'var(--background)', 
         minHeight: '100vh' 
       }}>
         <Container maxWidth="xl">
           {/* Header */}
           <Box sx={{ textAlign: 'center', mb: 6 }}>
-            <Typography variant="h3" sx={{ fontWeight: 800, mb: 2, color: isDark ? 'white' : '#2c1810' }}>
+            <Typography variant="h3" sx={{ fontWeight: 800, mb: 2, color: 'var(--text-primary)' }}>
               About KauShalX
             </Typography>
-            <Typography variant="h6" sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(44,24,16,0.7)', maxWidth: 600, mx: 'auto' }}>
+            <Typography variant="h6" sx={{ color: 'var(--text-secondary)', maxWidth: 600, mx: 'auto' }}>
               Empowering careers through AI-powered learning and expert mentorship
             </Typography>
           </Box>
@@ -45,18 +45,22 @@ export default function AboutPage() {
           <Paper sx={{ 
             p: 4, 
             mb: 6, 
-            background: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.9)',
-            backdropFilter: 'blur(20px)',
-            border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(44,24,16,0.1)',
+            background: 'var(--surface)',
+            border: '1px solid var(--border)',
             borderRadius: 2,
+            transition: 'all 0.3s ease-in-out',
+            '&:hover': {
+              transform: 'scale(1.02)',
+              boxShadow: '0 8px 15px rgba(0, 0, 0, 0.15)',
+            }
           }}>
-            <Typography variant="h4" sx={{ fontWeight: 700, mb: 3, color: isDark ? 'white' : '#2c1810', textAlign: 'center' }}>
+            <Typography variant="h4" sx={{ fontWeight: 700, mb: 3, color: 'var(--text-primary)', textAlign: 'center' }}>
               Our Mission
             </Typography>
             <Typography variant="body1" sx={{ 
               fontSize: '1.2rem',
               lineHeight: 1.8,
-              color: isDark ? 'rgba(255,255,255,0.8)' : 'rgba(44,24,16,0.8)',
+              color: 'var(--text-secondary)',
               textAlign: 'center',
               maxWidth: 800,
               mx: 'auto'
@@ -74,18 +78,22 @@ export default function AboutPage() {
                 <Paper sx={{
                   p: 3,
                   textAlign: 'center',
-                  background: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.9)',
-                  backdropFilter: 'blur(20px)',
-                  border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(44,24,16,0.1)',
+                  background: 'var(--surface)',
+                  border: '1px solid var(--border)',
                   borderRadius: 2,
+                  transition: 'all 0.3s ease-in-out',
+                  '&:hover': {
+                    transform: 'scale(1.02)',
+                    boxShadow: '0 8px 15px rgba(0, 0, 0, 0.15)',
+                  }
                 }}>
-                  <Box sx={{ color: '#ffd700', mb: 2, fontSize: '3rem' }}>
+                  <Box sx={{ color: 'var(--accent)', mb: 2, fontSize: '3rem' }}>
                     {stat.icon}
                   </Box>
-                  <Typography variant="h4" sx={{ fontWeight: 700, color: '#ffd700', mb: 1 }}>
+                  <Typography variant="h4" sx={{ fontWeight: 700, color: 'var(--accent)', mb: 1 }}>
                     {stat.value}
                   </Typography>
-                  <Typography variant="body1" sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(44,24,16,0.7)' }}>
+                  <Typography variant="body1" sx={{ color: 'var(--text-secondary)' }}>
                     {stat.label}
                   </Typography>
                 </Paper>
@@ -95,10 +103,10 @@ export default function AboutPage() {
 
           {/* Team */}
           <Box sx={{ textAlign: 'center', mb: 4 }}>
-            <Typography variant="h4" sx={{ fontWeight: 700, mb: 2, color: isDark ? 'white' : '#2c1810' }}>
+            <Typography variant="h4" sx={{ fontWeight: 700, mb: 2, color: 'var(--text-primary)' }}>
               Meet Our Expert Team
             </Typography>
-            <Typography variant="body1" sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(44,24,16,0.7)' }}>
+            <Typography variant="body1" sx={{ color: 'var(--text-secondary)' }}>
               Industry professionals dedicated to your success
             </Typography>
           </Box>
@@ -109,30 +117,34 @@ export default function AboutPage() {
                 <Paper sx={{
                   p: 3,
                   textAlign: 'center',
-                  background: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.9)',
-                  backdropFilter: 'blur(20px)',
-                  border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(44,24,16,0.1)',
+                  background: 'var(--surface)',
+                  border: '1px solid var(--border)',
                   borderRadius: 2,
+                  transition: 'all 0.3s ease-in-out',
+                  '&:hover': {
+                    transform: 'scale(1.02)',
+                    boxShadow: '0 8px 15px rgba(0, 0, 0, 0.15)',
+                  }
                 }}>
                   <Avatar sx={{ 
                     width: 80, 
                     height: 80, 
                     mx: 'auto', 
                     mb: 2,
-                    background: '#ffd700',
+                    background: 'var(--accent)',
                     color: '#000',
                     fontSize: '2rem',
                     fontWeight: 'bold'
                   }}>
                     {member.name.split(' ').map(n => n[0]).join('')}
                   </Avatar>
-                  <Typography variant="h6" sx={{ fontWeight: 600, mb: 1, color: isDark ? 'white' : '#2c1810' }}>
+                  <Typography variant="h6" sx={{ fontWeight: 600, mb: 1, color: 'var(--text-primary)' }}>
                     {member.name}
                   </Typography>
-                  <Typography variant="body2" sx={{ color: '#ffd700', mb: 1, fontWeight: 600 }}>
+                  <Typography variant="body2" sx={{ color: 'var(--accent)', mb: 1, fontWeight: 600 }}>
                     {member.role}
                   </Typography>
-                  <Typography variant="body2" sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(44,24,16,0.7)' }}>
+                  <Typography variant="body2" sx={{ color: 'var(--text-secondary)' }}>
                     {member.expertise}
                   </Typography>
                 </Paper>
@@ -141,6 +153,6 @@ export default function AboutPage() {
           </Grid>
         </Container>
       </Box>
-    </>
+    </div>
   );
 }

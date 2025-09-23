@@ -1,10 +1,9 @@
 'use client';
-import { Box, Container, Typography, Grid, Paper, Button, Card, CardContent, Avatar, Divider } from '@mui/material';
+import { Box, Container, Typography, Grid, Paper, Button, Card, CardContent, Avatar } from '@mui/material';
 import { motion, useReducedMotion } from 'framer-motion';
-import { TrendingUp, Psychology, EmojiObjects, Rocket, Star, FlashOn, School, Group, WorkOutline, Support, CheckCircle, ArrowForward } from '@mui/icons-material';
+import { Psychology, Group, WorkOutline, Support, Rocket, Star, FlashOn, School } from '@mui/icons-material';
 import Navigation from '@/components/ui/Navigation';
 import PowerfulHero from '@/components/ui/PowerfulHero';
-import TestimonialCarousel from '@/components/ui/TestimonialCarousel';
 import { useTheme } from '@/contexts/ThemeContext';
 import { motionConfig, viewportConfig, performanceConfig } from '@/utils/motionConfig';
 import Link from 'next/link';
@@ -39,29 +38,27 @@ const stats = [
   { number: '200+', label: 'Expert Courses', icon: <School /> }
 ];
 
-
-
 export default function Home() {
   const { isDark } = useTheme();
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <>
+    <div data-theme={isDark ? 'dark' : 'light'}>
       <Navigation />
       <PowerfulHero />
       
-      {/* About Section */}
-      <Box sx={{ py: { xs: 6, md: 10 }, background: isDark ? '#1a1a1a' : '#ffffff' }}>
+      {/* About Section - Professional Excellence in Skills Development */}
+      <Box sx={{ py: { xs: 6, md: 10 }, background: 'var(--surface)' }}>
         <Container maxWidth="lg" sx={{ px: { xs: 2, md: 3 } }}>
           <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 8 }, mx: 'auto', maxWidth: '900px' }}>
             <Typography 
               variant="h2" 
               sx={{ 
-                fontFamily: '"Lora", serif',
+                fontFamily: '"Merriweather", serif',
                 fontWeight: 700, 
                 mb: { xs: 2, md: 4 }, 
-                fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
-                color: isDark ? 'white' : '#1a1a1a',
+                fontSize: 'clamp(2rem, 5vw, 3rem)',
+                color: 'var(--text-primary)',
                 lineHeight: 1.2
               }}
             >
@@ -70,13 +67,13 @@ export default function Home() {
             <Typography 
               variant="h6" 
               sx={{ 
-                fontFamily: '"Lora", serif',
+                fontFamily: '"Inter", sans-serif',
                 maxWidth: '800px', 
                 mx: 'auto', 
                 mb: { xs: 3, md: 4 }, 
                 px: { xs: 1, md: 0 },
-                fontSize: { xs: '1rem', md: '1.25rem' },
-                color: isDark ? 'rgba(255,255,255,0.9)' : 'rgba(26,26,26,0.9)', 
+                fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
+                color: 'var(--text-secondary)', 
                 fontWeight: 500,
                 lineHeight: 1.6
               }}
@@ -90,28 +87,29 @@ export default function Home() {
                 <Paper sx={{
                   p: { xs: 2, md: 4 },
                   textAlign: 'center',
-                  background: isDark ? '#2a2a2a' : '#f8f9fa',
-                  border: isDark ? '1px solid #333' : '1px solid #e0e0e0',
+                  background: 'var(--background)',
+                  border: '1px solid var(--border)',
                   borderRadius: 2,
                   height: '100%',
                   minHeight: { xs: '140px', md: '180px' },
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'center',
-                  transition: 'transform 0.2s ease-in-out',
+                  transition: 'all 0.3s ease-in-out',
                   '&:hover': {
-                    transform: 'translateY(-4px)'
+                    transform: 'scale(1.02)',
+                    boxShadow: '0 8px 15px rgba(0, 0, 0, 0.15)',
                   }
                 }}>
-                  <Box sx={{ color: isDark ? '#4a90e2' : '#1976d2', mb: { xs: 1, md: 2 }, fontSize: { xs: '1.5rem', md: '2rem' } }}>
+                  <Box sx={{ color: 'var(--primary)', mb: { xs: 1, md: 2 }, fontSize: { xs: '1.5rem', md: '2rem' } }}>
                     {stat.icon}
                   </Box>
                   <Typography 
                     variant="h3" 
                     sx={{ 
-                      fontFamily: '"Lora", serif',
+                      fontFamily: '"Merriweather", serif',
                       fontWeight: 700, 
-                      color: isDark ? '#4a90e2' : '#1976d2', 
+                      color: 'var(--primary)', 
                       mb: 1,
                       fontSize: { xs: '1.5rem', md: '2rem' }
                     }}
@@ -121,8 +119,8 @@ export default function Home() {
                   <Typography 
                     variant="body1" 
                     sx={{ 
-                      fontFamily: '"Lora", serif',
-                      color: isDark ? 'rgba(255,255,255,0.8)' : 'rgba(26,26,26,0.8)', 
+                      fontFamily: '"Inter", sans-serif',
+                      color: 'var(--text-secondary)', 
                       fontWeight: 500,
                       fontSize: { xs: '0.875rem', md: '1rem' }
                     }}
@@ -136,18 +134,18 @@ export default function Home() {
         </Container>
       </Box>
 
-      {/* Features Section */}
-      <Box sx={{ py: { xs: 6, md: 10 }, background: isDark ? '#0f0f0f' : '#f5f5f5' }}>
+      {/* Features Section - Core Capabilities */}
+      <Box sx={{ py: { xs: 6, md: 10 }, background: 'var(--background)' }}>
         <Container maxWidth="lg" sx={{ px: { xs: 2, md: 3 } }}>
           <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 8 }, mx: 'auto', maxWidth: '800px' }}>
             <Typography 
               variant="h2" 
               sx={{ 
-                fontFamily: '"Lora", serif',
+                fontFamily: '"Merriweather", serif',
                 fontWeight: 700, 
                 mb: { xs: 2, md: 3 }, 
-                fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
-                color: isDark ? 'white' : '#1a1a1a',
+                fontSize: 'clamp(2rem, 5vw, 3rem)',
+                color: 'var(--text-primary)',
                 lineHeight: 1.2
               }}
             >
@@ -156,12 +154,12 @@ export default function Home() {
             <Typography 
               variant="h6" 
               sx={{ 
-                fontFamily: '"Lora", serif',
-                color: isDark ? 'rgba(255,255,255,0.9)' : 'rgba(26,26,26,0.9)', 
+                fontFamily: '"Inter", sans-serif',
+                color: 'var(--text-secondary)', 
                 maxWidth: '600px', 
                 mx: 'auto', 
                 fontWeight: 500,
-                fontSize: { xs: '1rem', md: '1.25rem' },
+                fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
                 px: { xs: 1, md: 0 },
                 lineHeight: 1.6
               }}
@@ -175,14 +173,14 @@ export default function Home() {
                 <Card sx={{
                   height: { xs: 'auto', md: '320px' },
                   minHeight: { xs: '250px', md: '320px' },
-                  background: isDark ? '#2a2a2a' : '#ffffff',
-                  border: isDark ? '1px solid #333' : '1px solid #e0e0e0',
+                  background: 'var(--surface)',
+                  border: '1px solid var(--border)',
                   borderRadius: 2,
-                  boxShadow: isDark ? 'none' : '0 2px 8px rgba(0,0,0,0.1)',
-                  transition: 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
+                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                  transition: 'all 0.3s ease-in-out',
                   '&:hover': {
-                    transform: 'translateY(-8px)',
-                    boxShadow: isDark ? '0 8px 25px rgba(74,144,226,0.2)' : '0 8px 25px rgba(0,0,0,0.15)'
+                    transform: 'translateY(-8px) scale(1.02)',
+                    boxShadow: '0 8px 25px rgba(0,0,0,0.15)'
                   }
                 }}>
                   <CardContent sx={{ 
@@ -195,7 +193,7 @@ export default function Home() {
                     alignItems: 'center'
                   }}>
                     <Box sx={{ 
-                      color: isDark ? '#4a90e2' : '#1976d2', 
+                      color: 'var(--primary)', 
                       mb: { xs: 2, md: 3 }, 
                       fontSize: { xs: '2.5rem', md: '3rem' }
                     }}>
@@ -204,10 +202,10 @@ export default function Home() {
                     <Typography 
                       variant="h6" 
                       sx={{ 
-                        fontFamily: '"Lora", serif',
+                        fontFamily: '"Merriweather", serif',
                         fontWeight: 600, 
                         mb: { xs: 1.5, md: 2 }, 
-                        color: isDark ? 'white' : '#1a1a1a',
+                        color: 'var(--text-primary)',
                         fontSize: { xs: '1.1rem', md: '1.25rem' },
                         textAlign: 'center'
                       }}
@@ -217,8 +215,8 @@ export default function Home() {
                     <Typography 
                       variant="body2" 
                       sx={{ 
-                        fontFamily: '"Lora", serif',
-                        color: isDark ? 'rgba(255,255,255,0.8)' : 'rgba(26,26,26,0.8)', 
+                        fontFamily: '"Inter", sans-serif',
+                        color: 'var(--text-secondary)', 
                         lineHeight: 1.6, 
                         fontWeight: 400,
                         fontSize: { xs: '0.875rem', md: '0.95rem' },
@@ -236,27 +234,32 @@ export default function Home() {
         </Container>
       </Box>
 
-      {/* Mission Section */}
-      <Box sx={{ py: { xs: 6, md: 10 }, background: isDark ? '#1a1a1a' : '#ffffff' }}>
+      {/* Mission Section - Our Mission */}
+      <Box sx={{ py: { xs: 6, md: 10 }, background: 'var(--surface)' }}>
         <Container maxWidth="lg" sx={{ px: { xs: 2, md: 3 } }}>
           <Paper sx={{
             p: { xs: 4, md: 8 },
             textAlign: 'center',
-            background: isDark ? '#2a2a2a' : '#f8f9fa',
-            border: isDark ? '1px solid #333' : '1px solid #e0e0e0',
+            background: 'var(--background)',
+            border: '1px solid var(--border)',
             borderRadius: 3,
-            boxShadow: isDark ? 'none' : '0 4px 16px rgba(0,0,0,0.1)',
+            boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
             maxWidth: '900px',
-            mx: 'auto'
+            mx: 'auto',
+            transition: 'all 0.3s ease-in-out',
+            '&:hover': {
+              transform: 'scale(1.02)',
+              boxShadow: '0 8px 25px rgba(0,0,0,0.15)',
+            }
           }}>
             <Typography 
               variant="h2" 
               sx={{ 
-                fontFamily: '"Lora", serif',
+                fontFamily: '"Merriweather", serif',
                 fontWeight: 700, 
                 mb: { xs: 3, md: 4 }, 
-                color: isDark ? 'white' : '#1a1a1a',
-                fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+                color: 'var(--text-primary)',
+                fontSize: 'clamp(2rem, 5vw, 3rem)',
                 lineHeight: 1.2
               }}
             >
@@ -265,13 +268,13 @@ export default function Home() {
             <Typography 
               variant="h5" 
               sx={{ 
-                fontFamily: '"Lora", serif',
+                fontFamily: '"Inter", sans-serif',
                 fontWeight: 500, 
                 lineHeight: 1.6, 
-                color: isDark ? 'rgba(255,255,255,0.9)' : 'rgba(26,26,26,0.9)',
+                color: 'var(--text-secondary)',
                 maxWidth: '700px',
                 mx: 'auto',
-                fontSize: { xs: '1.1rem', md: '1.5rem' },
+                fontSize: 'clamp(1.1rem, 3vw, 1.5rem)',
                 px: { xs: 1, md: 0 }
               }}
             >
@@ -284,16 +287,17 @@ export default function Home() {
       </Box>
 
       {/* Success Stories Section */}
-      <Box sx={{ py: { xs: 6, md: 10 }, background: isDark ? '#0f0f0f' : '#f5f5f5' }}>
+      <Box sx={{ py: { xs: 6, md: 10 }, background: 'var(--background)' }}>
         <Container maxWidth="lg" sx={{ px: { xs: 2, md: 3 } }}>
           <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 8 }, mx: 'auto', maxWidth: '800px' }}>
             <Typography 
               variant="h2" 
               sx={{ 
-                fontWeight: 900, 
+                fontFamily: '"Merriweather", serif',
+                fontWeight: 700, 
                 mb: { xs: 2, md: 3 }, 
-                color: isDark ? 'white' : '#1a1a1a',
-                fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+                color: 'var(--text-primary)',
+                fontSize: 'clamp(2rem, 5vw, 3rem)',
                 lineHeight: 1.2
               }}
             >
@@ -302,9 +306,9 @@ export default function Home() {
             <Typography 
               variant="h6" 
               sx={{ 
-                color: isDark ? 'rgba(255,255,255,0.9)' : 'rgba(26,26,26,0.9)', 
-                fontWeight: 600,
-                fontSize: { xs: '1rem', md: '1.25rem' },
+                color: 'var(--text-secondary)', 
+                fontWeight: 500,
+                fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
                 px: { xs: 1, md: 0 }
               }}
             >
@@ -337,13 +341,14 @@ export default function Home() {
                 <Card sx={{
                   height: '100%',
                   minHeight: { xs: '220px', md: '280px' },
-                  background: isDark ? '#2a2a2a' : '#ffffff',
-                  border: isDark ? '1px solid #333' : '1px solid #e0e0e0',
+                  background: 'var(--surface)',
+                  border: '1px solid var(--border)',
                   borderRadius: 2,
-                  boxShadow: isDark ? 'none' : '0 2px 8px rgba(0,0,0,0.1)',
-                  transition: 'transform 0.2s ease-in-out',
+                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                  transition: 'all 0.3s ease-in-out',
                   '&:hover': {
-                    transform: 'translateY(-4px)'
+                    transform: 'translateY(-4px) scale(1.02)',
+                    boxShadow: '0 8px 15px rgba(0, 0, 0, 0.15)',
                   }
                 }}>
                   <CardContent sx={{ p: { xs: 3, md: 4 }, height: '100%', display: 'flex', flexDirection: 'column' }}>
@@ -351,7 +356,7 @@ export default function Home() {
                       <Avatar sx={{ 
                         width: { xs: 45, md: 50 }, 
                         height: { xs: 45, md: 50 }, 
-                        background: isDark ? '#4a90e2' : '#1976d2', 
+                        background: 'var(--primary)', 
                         color: 'white', 
                         fontWeight: 'bold', 
                         mr: 2 
@@ -362,8 +367,8 @@ export default function Home() {
                         <Typography 
                           variant="h6" 
                           sx={{ 
-                            fontWeight: 800, 
-                            color: isDark ? 'white' : '#1a1a1a',
+                            fontWeight: 700, 
+                            color: 'var(--text-primary)',
                             fontSize: { xs: '1rem', md: '1.25rem' }
                           }}
                         >
@@ -372,7 +377,7 @@ export default function Home() {
                         <Typography 
                           variant="body2" 
                           sx={{ 
-                            color: isDark ? '#4a90e2' : '#1976d2', 
+                            color: 'var(--primary)', 
                             fontWeight: 600,
                             fontSize: { xs: '0.8rem', md: '0.875rem' }
                           }}
@@ -384,9 +389,9 @@ export default function Home() {
                     <Typography 
                       variant="body1" 
                       sx={{ 
-                        color: isDark ? 'rgba(255,255,255,0.9)' : 'rgba(26,26,26,0.9)', 
+                        color: 'var(--text-secondary)', 
                         lineHeight: 1.6, 
-                        fontWeight: 500,
+                        fontWeight: 400,
                         fontSize: { xs: '0.9rem', md: '1rem' },
                         flex: 1
                       }}
@@ -401,12 +406,10 @@ export default function Home() {
         </Container>
       </Box>
 
-      {/* CTA Section */}
+      {/* CTA Section - Ready to Transform Your Career? */}
       <Box sx={{ 
         py: { xs: 8, md: 12 }, 
-        background: isDark 
-          ? 'radial-gradient(ellipse at center, rgba(255,215,0,0.1) 0%, #0f0f0f 70%)'
-          : 'radial-gradient(ellipse at center, rgba(255,107,107,0.1) 0%, #f8f4f0 70%)'
+        background: 'var(--gradient-primary)'
       }}>
         <Container maxWidth="lg" sx={{ px: { xs: 2, md: 3 } }}>
           <motion.div
@@ -420,44 +423,27 @@ export default function Home() {
               textAlign: 'center',
               maxWidth: '900px',
               mx: 'auto',
-              background: isDark 
-                ? 'linear-gradient(135deg, rgba(255,107,107,0.2) 0%, rgba(78,205,196,0.2) 50%, rgba(255,215,0,0.1) 100%)'
-                : 'linear-gradient(135deg, rgba(255,215,0,0.15) 0%, rgba(255,107,107,0.15) 50%, rgba(78,205,196,0.1) 100%)',
+              background: 'rgba(255,255,255,0.1)',
               backdropFilter: 'blur(30px)',
-              border: isDark 
-                ? '2px solid rgba(255,107,107,0.4)' 
-                : '2px solid rgba(255,215,0,0.4)',
-              borderRadius: 6,
-              boxShadow: isDark 
-                ? '0 40px 80px rgba(255,107,107,0.3), 0 0 50px rgba(78,205,196,0.2)'
-                : '0 40px 80px rgba(255,215,0,0.3), 0 0 50px rgba(255,107,107,0.2)',
+              border: '2px solid rgba(255,255,255,0.2)',
+              borderRadius: 3,
+              boxShadow: '0 25px 50px rgba(0,0,0,0.25)',
               position: 'relative',
               overflow: 'hidden',
-              '&::before': {
-                content: '""',
-                position: 'absolute',
-                top: '-50%',
-                left: '-50%',
-                width: '200%',
-                height: '200%',
-                background: isDark 
-                  ? 'conic-gradient(from 0deg, transparent, rgba(255,215,0,0.1), transparent, rgba(78,205,196,0.1), transparent)'
-                  : 'conic-gradient(from 0deg, transparent, rgba(255,107,107,0.1), transparent, rgba(255,215,0,0.1), transparent)',
-                animation: 'rotate 20s linear infinite',
-                pointerEvents: 'none',
-              },
-              '@keyframes rotate': {
-                '0%': { transform: 'rotate(0deg)' },
-                '100%': { transform: 'rotate(360deg)' },
-              },
+              transition: 'all 0.3s ease-in-out',
+              '&:hover': {
+                transform: 'scale(1.02)',
+                boxShadow: '0 30px 60px rgba(0,0,0,0.3)',
+              }
             }}>
               <Typography 
                 variant="h3" 
                 sx={{ 
-                  fontWeight: 800, 
+                  fontFamily: '"Merriweather", serif',
+                  fontWeight: 700, 
                   mb: { xs: 2, md: 3 }, 
-                  color: isDark ? 'white' : '#2c1810',
-                  fontSize: { xs: '1.75rem', sm: '2.25rem', md: '3rem' },
+                  color: 'white',
+                  fontSize: 'clamp(1.75rem, 5vw, 3rem)',
                   lineHeight: 1.2
                 }}
               >
@@ -467,10 +453,10 @@ export default function Home() {
                 variant="h6" 
                 sx={{ 
                   mb: { xs: 3, md: 4 }, 
-                  color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(44,24,16,0.7)',
+                  color: 'rgba(255,255,255,0.9)',
                   maxWidth: '600px',
                   mx: 'auto',
-                  fontSize: { xs: '1rem', md: '1.25rem' },
+                  fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
                   px: { xs: 1, md: 0 },
                   lineHeight: 1.6
                 }}
@@ -492,11 +478,16 @@ export default function Home() {
                       px: { xs: 4, md: 6 },
                       py: { xs: 1.5, md: 2 },
                       fontSize: { xs: '1rem', md: '1.1rem' },
-                      background: 'linear-gradient(45deg, #ff6b6b, #4ecdc4)',
-                      boxShadow: '0 8px 25px rgba(255, 107, 107, 0.3)',
+                      background: 'var(--accent)',
+                      color: '#000',
+                      fontWeight: 600,
+                      borderRadius: 2,
+                      minHeight: 48,
+                      transition: 'all 0.3s ease-in-out',
                       '&:hover': {
-                        background: 'linear-gradient(45deg, #ff5252, #26a69a)',
-                        transform: 'translateY(-2px)',
+                        background: 'var(--warning)',
+                        transform: 'translateY(-2px) scale(1.02)',
+                        boxShadow: '0 8px 25px rgba(0,0,0,0.3)',
                       },
                     }}
                   >
@@ -511,11 +502,17 @@ export default function Home() {
                       px: { xs: 4, md: 6 },
                       py: { xs: 1.5, md: 2 },
                       fontSize: { xs: '1rem', md: '1.1rem' },
-                      borderColor: '#ffd700',
-                      color: '#ffd700',
+                      borderColor: 'white',
+                      color: 'white',
+                      borderWidth: 2,
+                      borderRadius: 2,
+                      minHeight: 48,
+                      transition: 'all 0.3s ease-in-out',
                       '&:hover': {
-                        background: 'rgba(255,215,0,0.1)',
-                        borderColor: '#ffd700',
+                        background: 'white',
+                        color: 'var(--primary)',
+                        borderColor: 'white',
+                        transform: 'translateY(-2px)',
                       },
                     }}
                   >
@@ -527,6 +524,6 @@ export default function Home() {
           </motion.div>
         </Container>
       </Box>
-    </>
+    </div>
   );
 }

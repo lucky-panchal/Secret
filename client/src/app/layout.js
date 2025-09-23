@@ -1,28 +1,33 @@
-import { Inter, Lora } from 'next/font/google';
+'use client';
 import { CustomThemeProvider } from '@/contexts/ThemeContext';
 import { AuthProvider } from '@/contexts/AuthContext';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { createMuiTheme } from '@/theme/muiTheme';
+import { useTheme } from '@/contexts/ThemeContext';
 import "./globals.css";
-import "@/styles/performance.css";
 
-const inter = Inter({ subsets: ['latin'] });
-const lora = Lora({ 
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic']
-});
-
-export const metadata = {
-  title: "KauShalX - Transform Your Career",
-  description: "Your Future is Our Mission - AI-Powered Learning Platform",
-};
+function MuiThemeWrapper({ children }) {
+  const { isDark } = useTheme();
+  const theme = createMuiTheme(isDark);
+  
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {children}
+    </ThemeProvider>
+  );
+}
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={lora.className}>
+      <body>
         <AuthProvider>
           <CustomThemeProvider>
-            {children}
+            <MuiThemeWrapper>
+              {children}
+            </MuiThemeWrapper>
           </CustomThemeProvider>
         </AuthProvider>
       </body>

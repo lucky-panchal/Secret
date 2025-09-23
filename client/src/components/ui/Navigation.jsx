@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { AppBar, Toolbar, Typography, Button, Drawer, List, ListItem, ListItemText, IconButton, Box } from '@mui/material';
-import { Menu, Close, School, Dashboard, Person, Login, PersonAdd, Home, Info, AttachMoney, ContactMail } from '@mui/icons-material';
+import { Menu, Close, School, Dashboard, Person, Login, PersonAdd, Home } from '@mui/icons-material';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useTheme } from '@/contexts/ThemeContext';
@@ -31,14 +31,14 @@ const Navigation = () => {
   const menuItems = isAuthenticated ? protectedMenuItems : [...publicMenuItems, ...authMenuItems];
 
   return (
-    <>
+    <div data-theme={isDark ? 'dark' : 'light'}>
       <AppBar 
         position="fixed" 
         sx={{ 
-          background: isDark ? 'rgba(10,10,10,0.9)' : 'rgba(250,246,242,0.9)',
+          background: 'var(--surface)',
           backdropFilter: 'blur(20px)',
-          borderBottom: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(44,24,16,0.1)',
-          boxShadow: isDark ? '0 8px 32px rgba(0,0,0,0.3)' : '0 8px 32px rgba(44,24,16,0.1)',
+          borderBottom: '1px solid var(--border)',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
         }}
       >
         <Toolbar>
@@ -53,28 +53,15 @@ const Navigation = () => {
               <Typography 
                 variant="h5" 
                 sx={{ 
-                  fontFamily: '"Orbitron", "Exo 2", "Rajdhani", sans-serif',
-                  fontWeight: 900,
+                  fontFamily: '"Merriweather", serif',
+                  fontWeight: 700,
                   fontSize: { xs: '1.6rem', md: '2rem' },
-                  color: isDark ? '#ffffff' : '#2c1810',
-                  textRendering: 'optimizeLegibility',
-                  WebkitFontSmoothing: 'antialiased',
-                  MozOsxFontSmoothing: 'grayscale',
-                  fontFeatureSettings: '"kern" 1, "liga" 1, "calt" 1',
-
-                  filter: 'contrast(1.2) saturate(1.3) brightness(1.1)',
+                  color: 'var(--text-primary)',
                   letterSpacing: '1px',
-                  transform: 'perspective(800px) rotateX(12deg) translateZ(20px)',
-                  transformStyle: 'preserve-3d',
-                  position: 'relative',
-                  imageRendering: 'crisp-edges',
-
+                  transition: 'all 0.3s ease-in-out',
                   '&:hover': {
-                    transform: 'perspective(800px) rotateX(8deg) translateY(-3px) translateZ(25px)',
-
-                    filter: 'contrast(1.3) saturate(1.4) brightness(1.2)',
+                    color: 'var(--primary)',
                   },
-                  transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                 }}
               >
                 KauShalX
@@ -95,10 +82,17 @@ const Navigation = () => {
                 <Link href={item.href} passHref>
                   <Button
                     startIcon={item.icon}
+                    className="btn btn-secondary"
                     sx={{
-                      color: isDark ? 'white' : '#2c1810',
+                      color: 'var(--text-primary)',
+                      borderRadius: 2,
+                      px: 2,
+                      py: 1,
+                      transition: 'all 0.3s ease-in-out',
                       '&:hover': {
-                        background: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(44,24,16,0.1)',
+                        background: 'var(--primary)',
+                        color: 'white',
+                        transform: 'translateY(-2px)',
                       },
                     }}
                   >
@@ -111,9 +105,14 @@ const Navigation = () => {
               <Button
                 onClick={logout}
                 sx={{
-                  color: '#ff6b6b',
+                  color: 'var(--error)',
+                  borderRadius: 2,
+                  px: 2,
+                  py: 1,
+                  transition: 'all 0.3s ease-in-out',
                   '&:hover': {
-                    background: 'rgba(255,107,107,0.1)',
+                    background: 'var(--error)',
+                    color: 'white',
                   },
                 }}
               >
@@ -125,7 +124,11 @@ const Navigation = () => {
           <ThemeToggle />
           
           <IconButton
-            sx={{ display: { xs: 'flex', md: 'none' }, ml: 1 }}
+            sx={{ 
+              display: { xs: 'flex', md: 'none' }, 
+              ml: 1,
+              color: 'var(--text-primary)',
+            }}
             onClick={() => setDrawerOpen(true)}
           >
             <Menu />
@@ -141,9 +144,10 @@ const Navigation = () => {
             onClose={() => setDrawerOpen(false)}
             PaperProps={{
               sx: {
-                background: isDark ? 'rgba(26,26,26,0.95)' : 'rgba(255,255,255,0.95)',
+                background: 'var(--surface)',
                 backdropFilter: 'blur(20px)',
                 width: 280,
+                border: '1px solid var(--border)',
               },
             }}
           >
@@ -154,8 +158,8 @@ const Navigation = () => {
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             >
               <Box sx={{ p: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Typography variant="h6">Menu</Typography>
-                <IconButton onClick={() => setDrawerOpen(false)}>
+                <Typography variant="h6" sx={{ color: 'var(--text-primary)' }}>Menu</Typography>
+                <IconButton onClick={() => setDrawerOpen(false)} sx={{ color: 'var(--text-primary)' }}>
                   <Close />
                 </IconButton>
               </Box>
@@ -168,7 +172,21 @@ const Navigation = () => {
                     transition={{ delay: index * 0.1 }}
                   >
                     <Link href={item.href} passHref>
-                      <ListItem button onClick={() => setDrawerOpen(false)}>
+                      <ListItem 
+                        button 
+                        onClick={() => setDrawerOpen(false)}
+                        sx={{
+                          color: 'var(--text-primary)',
+                          borderRadius: 2,
+                          mx: 1,
+                          mb: 1,
+                          transition: 'all 0.3s ease-in-out',
+                          '&:hover': {
+                            background: 'var(--primary)',
+                            color: 'white',
+                          },
+                        }}
+                      >
                         {item.icon}
                         <ListItemText primary={item.text} sx={{ ml: 2 }} />
                       </ListItem>
@@ -180,7 +198,7 @@ const Navigation = () => {
           </Drawer>
         )}
       </AnimatePresence>
-    </>
+    </div>
   );
 };
 
