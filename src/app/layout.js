@@ -1,10 +1,15 @@
-import { Inter } from 'next/font/google';
+import { Inter, Lora } from 'next/font/google';
 import { CustomThemeProvider } from '@/contexts/ThemeContext';
 import { AuthProvider } from '@/contexts/AuthContext';
 import "./globals.css";
 import "@/styles/performance.css";
 
 const inter = Inter({ subsets: ['latin'] });
+const lora = Lora({ 
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic']
+});
 
 export const metadata = {
   title: "KauShalX - Transform Your Career",
@@ -14,7 +19,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={lora.className}>
         <AuthProvider>
           <CustomThemeProvider>
             {children}
