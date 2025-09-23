@@ -1,8 +1,10 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import { Box } from '@mui/material';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const ParticleBackground = () => {
+  const { isDark } = useTheme();
   const canvasRef = useRef();
 
   useEffect(() => {
@@ -24,8 +26,8 @@ const ParticleBackground = () => {
         vx: (Math.random() - 0.5) * 0.5,
         vy: (Math.random() - 0.5) * 0.5,
         size: Math.random() * 6 + 2,
-        opacity: Math.random() * 0.3 + 0.1,
-        color: '#ffd700'
+        opacity: Math.random() * 0.6 + 0.3,
+        color: isDark ? '#ffffff' : '#000000'
       });
     }
 
@@ -59,8 +61,8 @@ const ParticleBackground = () => {
               ctx.beginPath();
               ctx.moveTo(particle.x, particle.y);
               ctx.lineTo(otherParticle.x, otherParticle.y);
-              ctx.strokeStyle = '#ffd700';
-              ctx.globalAlpha = (150 - distance) / 150 * 0.15;
+              ctx.strokeStyle = isDark ? '#ffffff' : '#000000';
+              ctx.globalAlpha = (150 - distance) / 150 * 0.3;
               ctx.lineWidth = 1;
               ctx.stroke();
             }
@@ -80,7 +82,7 @@ const ParticleBackground = () => {
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [isDark]);
 
   return (
     <canvas
