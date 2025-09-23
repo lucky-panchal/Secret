@@ -50,8 +50,6 @@ const PowerfulHero = () => {
                 },
               }}
             >
-              KauShalX
-              <br />
               YOUR FUTURE IS OUR MISSION
             </Typography>
           </motion.div>

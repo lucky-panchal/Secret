@@ -1,21 +1,34 @@
 'use client';
 import { useState } from 'react';
 import { AppBar, Toolbar, Typography, Button, Drawer, List, ListItem, ListItemText, IconButton, Box } from '@mui/material';
-import { Menu, Close, School, Dashboard, Person } from '@mui/icons-material';
+import { Menu, Close, School, Dashboard, Person, Login, PersonAdd, Home, Info, AttachMoney, ContactMail } from '@mui/icons-material';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useAuth } from '@/contexts/AuthContext';
 import ThemeToggle from './ThemeToggle';
 
 const Navigation = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { isDark } = useTheme();
+  const { isAuthenticated, logout } = useAuth();
 
-  const menuItems = [
+  const publicMenuItems = [
+    { text: 'Home', icon: <Home />, href: '/' },
+  ];
+
+  const authMenuItems = [
+    { text: 'Login', icon: <Login />, href: '/login' },
+    { text: 'Signup', icon: <PersonAdd />, href: '/signup' },
+  ];
+
+  const protectedMenuItems = [
     { text: 'Dashboard', icon: <Dashboard />, href: '/dashboard' },
     { text: 'Courses', icon: <School />, href: '/courses' },
     { text: 'Profile', icon: <Person />, href: '/profile' },
   ];
+
+  const menuItems = isAuthenticated ? protectedMenuItems : [...publicMenuItems, ...authMenuItems];
 
   return (
     <>
@@ -29,15 +42,45 @@ const Navigation = () => {
         }}
       >
         <Toolbar>
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Typography variant="h6" sx={{ fontFamily: 'Georgia, serif', fontWeight: 700 }}>
-              ReskillingPro
-            </Typography>
-          </motion.div>
+          <Link href="/" passHref>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              whileHover={{ scale: 1.05 }}
+              style={{ cursor: 'pointer' }}
+            >
+              <Typography 
+                variant="h5" 
+                sx={{ 
+                  fontFamily: '"Orbitron", "Exo 2", "Rajdhani", sans-serif',
+                  fontWeight: 900,
+                  fontSize: { xs: '1.6rem', md: '2rem' },
+                  color: isDark ? '#ffffff' : '#2c1810',
+                  textRendering: 'optimizeLegibility',
+                  WebkitFontSmoothing: 'antialiased',
+                  MozOsxFontSmoothing: 'grayscale',
+                  fontFeatureSettings: '"kern" 1, "liga" 1, "calt" 1',
+
+                  filter: 'contrast(1.2) saturate(1.3) brightness(1.1)',
+                  letterSpacing: '1px',
+                  transform: 'perspective(800px) rotateX(12deg) translateZ(20px)',
+                  transformStyle: 'preserve-3d',
+                  position: 'relative',
+                  imageRendering: 'crisp-edges',
+
+                  '&:hover': {
+                    transform: 'perspective(800px) rotateX(8deg) translateY(-3px) translateZ(25px)',
+
+                    filter: 'contrast(1.3) saturate(1.4) brightness(1.2)',
+                  },
+                  transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                }}
+              >
+                KauShalX
+              </Typography>
+            </motion.div>
+          </Link>
           
           <Box sx={{ flexGrow: 1 }} />
           
@@ -64,6 +107,19 @@ const Navigation = () => {
                 </Link>
               </motion.div>
             ))}
+            {isAuthenticated && (
+              <Button
+                onClick={logout}
+                sx={{
+                  color: '#ff6b6b',
+                  '&:hover': {
+                    background: 'rgba(255,107,107,0.1)',
+                  },
+                }}
+              >
+                Logout
+              </Button>
+            )}
           </Box>
           
           <ThemeToggle />

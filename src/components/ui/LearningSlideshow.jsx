@@ -1,7 +1,7 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Box, Typography, IconButton } from '@mui/material';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { ArrowBack, ArrowForward, Code, DataObject, Cloud, Security } from '@mui/icons-material';
 
 const slides = [
@@ -41,16 +41,57 @@ const slides = [
 
 const LearningSlideshow = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const shouldReduceMotion = useReducedMotion();
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 4000);
-    return () => clearInterval(timer);
+  // Memoized animation variants for performance
+  const slideVariants = useMemo(() => ({
+    enter: {
+      opacity: 0,
+      scale: shouldReduceMotion ? 1 : 0.9,
+      y: shouldReduceMotion ? 0 : 20
+    },
+    center: {
+      opacity: 1,
+      scale: 1,
+      y: 0
+    },
+    exit: {
+      opacity: 0,
+      scale: shouldReduceMotion ? 1 : 1.1,
+      y: shouldReduceMotion ? 0 : -20
+    }
+  }), [shouldReduceMotion]);
+
+  const iconVariants = useMemo(() => ({
+    initial: { y: shouldReduceMotion ? 0 : -30, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+    transition: { delay: 0.1, duration: shouldReduceMotion ? 0.2 : 0.4, ease: "easeOut" }
+  }), [shouldReduceMotion]);
+
+  const textVariants = useMemo(() => ({
+    initial: { y: shouldReduceMotion ? 0 : 30, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+    transition: { delay: 0.2, duration: shouldReduceMotion ? 0.2 : 0.5, ease: "easeOut" }
+  }), [shouldReduceMotion]);
+
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
   }, []);
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  }, []);
+
+  const goToSlide = useCallback((index) => {
+    setCurrentSlide(index);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(nextSlide, 5000);
+    return () => clearInterval(timer);
+  }, [nextSlide]);
+
+  const currentSlideData = slides[currentSlide];
 
   return (
     <Box
@@ -59,84 +100,138 @@ const LearningSlideshow = () => {
         height: 400,
         borderRadius: 4,
         overflow: 'hidden',
-        background: slides[currentSlide].bgGradient,
+        background: currentSlideData.bgGradient,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        willChange: 'background',
+        transform: 'translateZ(0)', // Hardware acceleration
       }}
     >
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={currentSlide}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 1.2 }}
-          transition={{ duration: 0.6 }}
+          variants={slideVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{
+            duration: shouldReduceMotion ? 0.2 : 0.5,
+            ease: "easeInOut"
+          }}
           style={{
             textAlign: 'center',
             padding: '2rem',
             color: 'white',
+            willChange: 'transform, opacity',
+            transform: 'translateZ(0)'
           }}
         >
           <motion.div
-            initial={{ y: -50 }}
-            animate={{ y: 0 }}
-            transition={{ delay: 0.2 }}
+            variants={iconVariants}
+            initial="initial"
+            animate="animate"
           >
             <Box
               sx={{
                 fontSize: '4rem',
                 mb: 2,
                 filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))',
+                willChange: 'transform'
               }}
             >
-              {slides[currentSlide].icon}
+              {currentSlideData.icon}
             </Box>
           </motion.div>
 
           <motion.div
-            initial={{ y: 50 }}
-            animate={{ y: 0 }}
-            transition={{ delay: 0.3 }}
+            variants={textVariants}
+            initial="initial"
+            animate="animate"
           >
-            <Typography variant="h3" sx={{ fontWeight: 800, mb: 1, textShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>
-              {slides[currentSlide].title}
+            <Typography 
+              variant="h3" 
+              sx={{ 
+                fontWeight: 800, 
+                mb: 1, 
+                textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+                willChange: 'transform'
+              }}
+            >
+              {currentSlideData.title}
             </Typography>
-            <Typography variant="h6" sx={{ mb: 2, opacity: 0.9 }}>
-              {slides[currentSlide].subtitle}
+            <Typography 
+              variant="h6" 
+              sx={{ 
+                mb: 2, 
+                opacity: 0.9,
+                willChange: 'transform'
+              }}
+            >
+              {currentSlideData.subtitle}
             </Typography>
-            <Typography variant="body1" sx={{ maxWidth: 500, mx: 'auto', lineHeight: 1.6 }}>
-              {slides[currentSlide].description}
+            <Typography 
+              variant="body1" 
+              sx={{ 
+                maxWidth: 500, 
+                mx: 'auto', 
+                lineHeight: 1.6,
+                willChange: 'transform'
+              }}
+            >
+              {currentSlideData.description}
             </Typography>
           </motion.div>
         </motion.div>
       </AnimatePresence>
 
-      <IconButton
-        onClick={prevSlide}
-        sx={{
-          position: 'absolute',
-          left: 16,
-          background: 'rgba(255,255,255,0.2)',
-          color: 'white',
-          '&:hover': { background: 'rgba(255,255,255,0.3)' },
-        }}
+      <motion.div
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ duration: 0.2 }}
       >
-        <ArrowBack />
-      </IconButton>
+        <IconButton
+          onClick={prevSlide}
+          sx={{
+            position: 'absolute',
+            left: 16,
+            background: 'rgba(255,255,255,0.2)',
+            color: 'white',
+            backdropFilter: 'blur(10px)',
+            '&:hover': { 
+              background: 'rgba(255,255,255,0.3)',
+              transform: 'translateY(-1px)'
+            },
+            transition: 'all 0.2s ease'
+          }}
+        >
+          <ArrowBack />
+        </IconButton>
+      </motion.div>
 
-      <IconButton
-        onClick={nextSlide}
-        sx={{
-          position: 'absolute',
-          right: 16,
-          background: 'rgba(255,255,255,0.2)',
-          color: 'white',
-          '&:hover': { background: 'rgba(255,255,255,0.3)' },
-        }}
+      <motion.div
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ duration: 0.2 }}
       >
-        <ArrowForward />
-      </IconButton>
+        <IconButton
+          onClick={nextSlide}
+          sx={{
+            position: 'absolute',
+            right: 16,
+            background: 'rgba(255,255,255,0.2)',
+            color: 'white',
+            backdropFilter: 'blur(10px)',
+            '&:hover': { 
+              background: 'rgba(255,255,255,0.3)',
+              transform: 'translateY(-1px)'
+            },
+            transition: 'all 0.2s ease'
+          }}
+        >
+          <ArrowForward />
+        </IconButton>
+      </motion.div>
 
       <Box
         sx={{
@@ -149,18 +244,27 @@ const LearningSlideshow = () => {
         }}
       >
         {slides.map((_, index) => (
-          <Box
+          <motion.div
             key={index}
-            onClick={() => setCurrentSlide(index)}
-            sx={{
-              width: 12,
-              height: 12,
-              borderRadius: '50%',
-              background: index === currentSlide ? 'white' : 'rgba(255,255,255,0.5)',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-            }}
-          />
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Box
+              onClick={() => goToSlide(index)}
+              sx={{
+                width: 12,
+                height: 12,
+                borderRadius: '50%',
+                background: index === currentSlide ? 'white' : 'rgba(255,255,255,0.5)',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  background: 'rgba(255,255,255,0.8)'
+                }
+              }}
+            />
+          </motion.div>
         ))}
       </Box>
     </Box>

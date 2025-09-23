@@ -5,6 +5,7 @@ import { Search, FilterList, PlayArrow, Schedule, Star, Person, TrendingUp } fro
 import { useState } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 import Navigation from '@/components/ui/Navigation';
+import ProtectedRoute from '@/components/ProtectedRoute';
 
 const courses = [
   {
@@ -116,9 +117,9 @@ export default function CoursesPage() {
   });
 
   return (
-    <>
+    <ProtectedRoute>
       <Navigation />
-      <Box sx={{ pt: 12, pb: 4, background: isDark ? '#0a0a0a' : '#faf6f2', minHeight: '100vh' }}>
+      <Box sx={{ pt: 12, pb: 4, background: isDark ? '#0f0f0f' : '#f8f4f0', minHeight: '100vh' }}>
         <Container maxWidth="xl">
           {/* Header */}
           <Box sx={{ mb: 4 }}>
@@ -338,6 +339,6 @@ export default function CoursesPage() {
           </Grid>
         </Container>
       </Box>
-    </>
+    </ProtectedRoute>
   );
 }

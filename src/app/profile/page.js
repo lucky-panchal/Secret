@@ -5,6 +5,7 @@ import { Edit, LinkedIn, GitHub, Email, School, WorkOutline, EmojiEvents, Trendi
 import { useTheme } from '@/contexts/ThemeContext';
 import Navigation from '@/components/ui/Navigation';
 import SkillChip from '@/components/ui/SkillChip';
+import ProtectedRoute from '@/components/ProtectedRoute';
 import { useState } from 'react';
 
 const skills = ['JavaScript', 'React', 'Python', 'AWS', 'Docker', 'Machine Learning', 'Node.js', 'MongoDB'];
@@ -48,12 +49,12 @@ export default function ProfilePage() {
   };
 
   return (
-    <>
+    <ProtectedRoute>
       <Navigation />
       <Box sx={{ 
         pt: 12, 
         pb: 4, 
-        background: isDark ? '#0a0a0a' : '#faf6f2', 
+        background: isDark ? '#0f0f0f' : '#f8f4f0', 
         minHeight: '100vh' 
       }}>
         <Container maxWidth="xl">
@@ -336,6 +337,6 @@ export default function ProfilePage() {
           </Grid>
         </Container>
       </Box>
-    </>
+    </ProtectedRoute>
   );
 }
