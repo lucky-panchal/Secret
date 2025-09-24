@@ -6,6 +6,7 @@ import { useTheme } from '@/contexts/ThemeContext';
 import MotivationalBackground from '../3d/MotivationalBackground';
 import ParticleBackground from './ParticleBackground';
 import AnimatedButton from './AnimatedButton';
+import Link from 'next/link';
 
 const PowerfulHero = () => {
   const { isDark } = useTheme();
@@ -33,8 +34,11 @@ const PowerfulHero = () => {
           >
             <Typography
               sx={{
-                fontSize: { xs: '2rem', md: '3.5rem' },
-                fontWeight: 700,
+                fontSize: { xs: '2.5rem', md: '4rem' },
+                fontWeight: 800,
+                fontFamily: 'Poppins, Inter, sans-serif',
+                letterSpacing: '-0.02em',
+                lineHeight: 1.1,
                 mb: 2,
                 background: 'linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #feca57)',
                 backgroundSize: '400% 400%',
@@ -67,6 +71,10 @@ const PowerfulHero = () => {
                 mb: 4,
                 color: isDark ? '#ffffff' : '#2c1810',
                 fontWeight: 500,
+                fontFamily: 'Inter, sans-serif',
+                fontSize: { xs: '1.1rem', md: '1.3rem' },
+                letterSpacing: '-0.01em',
+                lineHeight: 1.5,
                 textShadow: '0 0 20px rgba(255,255,255,0.3)',
               }}
             >
@@ -80,23 +88,25 @@ const PowerfulHero = () => {
             transition={{ duration: 1.5, delay: 1 }}
             style={{ display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '3rem' }}
           >
-            <AnimatedButton
-              size="large"
-              sx={{
-                px: 4,
-                py: 2,
-                fontSize: '1.1rem',
-                background: 'linear-gradient(45deg, #d4a574, #8b4513)',
-                boxShadow: '0 0 30px rgba(255,107,107,0.4)',
-                '&:hover': {
-                  background: 'linear-gradient(45deg, #c19660, #7a3f0f)',
-                  boxShadow: '0 0 50px rgba(255,107,107,0.6)',
-                  transform: 'scale(1.05)',
-                },
-              }}
-            >
-              🔥 START NOW
-            </AnimatedButton>
+            <Link href="/dashboard" passHref>
+              <AnimatedButton
+                size="large"
+                sx={{
+                  px: 4,
+                  py: 2,
+                  fontSize: '1.1rem',
+                  background: 'linear-gradient(45deg, #d4a574, #8b4513)',
+                  boxShadow: '0 0 30px rgba(255,107,107,0.4)',
+                  '&:hover': {
+                    background: 'linear-gradient(45deg, #c19660, #7a3f0f)',
+                    boxShadow: '0 0 50px rgba(255,107,107,0.6)',
+                    transform: 'scale(1.05)',
+                  },
+                }}
+              >
+                🔥 START NOW
+              </AnimatedButton>
+            </Link>
             
             <AnimatedButton
               variant="outlined"
@@ -149,10 +159,22 @@ const PowerfulHero = () => {
                   <Box sx={{ fontSize: '1.5rem', color: stat.color, mb: 1 }}>
                     {stat.icon}
                   </Box>
-                  <Typography variant="h5" sx={{ fontWeight: 600, color: stat.color, mb: 1 }}>
+                  <Typography variant="h5" sx={{ 
+                    fontWeight: 700, 
+                    color: stat.color, 
+                    mb: 1,
+                    fontFamily: 'Poppins, sans-serif',
+                    letterSpacing: '-0.01em'
+                  }}>
                     {stat.number}
                   </Typography>
-                  <Typography variant="body2" sx={{ color: 'white', fontWeight: 500 }}>
+                  <Typography variant="body2" sx={{ 
+                    color: 'white', 
+                    fontWeight: 500,
+                    fontFamily: 'Inter, sans-serif',
+                    fontSize: '0.9rem',
+                    letterSpacing: '0.01em'
+                  }}>
                     {stat.label}
                   </Typography>
                 </Box>
