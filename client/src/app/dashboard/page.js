@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { School, Timer, TrendingUp, Star, PlayArrow, MoreVert } from '@mui/icons-material';
 import { useTheme } from '@/contexts/ThemeContext';
 import Navigation from '@/components/ui/Navigation';
-import ProtectedRoute from '@/components/ProtectedRoute';
+
 
 const stats = [
   { icon: <School />, label: 'Courses Enrolled', value: '12', change: '+2 this month' },
@@ -57,7 +57,6 @@ export default function DashboardPage() {
 
   return (
     <div data-theme={isDark ? 'dark' : 'light'}>
-      <ProtectedRoute>
         <Navigation />
         <Box sx={{ 
           pt: 12, 
@@ -363,7 +362,6 @@ export default function DashboardPage() {
             </Grid>
           </Container>
         </Box>
-      </ProtectedRoute>
     </div>
   );
 }

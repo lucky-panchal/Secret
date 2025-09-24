@@ -43,31 +43,62 @@ export const createMuiTheme = (isDark) => {
       fontFamily: '"Inter", "Roboto", "Helvetica", sans-serif',
       h1: {
         fontFamily: '"Merriweather", "Lora", serif',
-        fontSize: 'clamp(24px, 5vw, 32px)',
+        fontSize: 'clamp(2rem, 5vw, 3.5rem)',
         fontWeight: 700,
         lineHeight: 1.2,
       },
       h2: {
         fontFamily: '"Merriweather", "Lora", serif',
-        fontSize: 'clamp(20px, 4vw, 28px)',
+        fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
         fontWeight: 700,
         lineHeight: 1.2,
       },
       h3: {
         fontFamily: '"Merriweather", "Lora", serif',
-        fontSize: 'clamp(18px, 3.5vw, 24px)',
+        fontSize: 'clamp(1.5rem, 3.5vw, 2rem)',
         fontWeight: 600,
         lineHeight: 1.2,
       },
+      h4: {
+        fontFamily: '"Merriweather", "Lora", serif',
+        fontSize: 'clamp(1.25rem, 3vw, 1.5rem)',
+        fontWeight: 600,
+        lineHeight: 1.3,
+      },
+      h6: {
+        fontFamily: '"Merriweather", "Lora", serif',
+        fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
+        fontWeight: 600,
+        lineHeight: 1.3,
+      },
       body1: {
-        fontSize: 'clamp(14px, 2vw, 16px)',
+        fontSize: 'clamp(0.875rem, 2vw, 1rem)',
         lineHeight: 1.6,
       },
+      body2: {
+        fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)',
+        lineHeight: 1.5,
+      },
     },
+    spacing: 8,
     shape: {
       borderRadius: 8,
     },
     components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+          '*': {
+            boxSizing: 'border-box',
+          },
+          html: {
+            scrollBehavior: 'smooth',
+          },
+          body: {
+            WebkitFontSmoothing: 'antialiased',
+            MozOsxFontSmoothing: 'grayscale',
+          },
+        },
+      },
       MuiButton: {
         styleOverrides: {
           root: {
@@ -86,14 +117,6 @@ export const createMuiTheme = (isDark) => {
           },
         },
       },
-      MuiPaper: {
-        styleOverrides: {
-          root: {
-            borderRadius: 8,
-            transition: 'all 0.3s ease-in-out',
-          },
-        },
-      },
       MuiCard: {
         styleOverrides: {
           root: {
@@ -101,37 +124,17 @@ export const createMuiTheme = (isDark) => {
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
             transition: 'all 0.3s ease-in-out',
             '&:hover': {
-              transform: 'scale(1.02)',
+              transform: 'translateY(-4px) scale(1.02)',
               boxShadow: '0 8px 15px rgba(0, 0, 0, 0.15)',
             },
           },
         },
       },
-      MuiTextField: {
-        styleOverrides: {
-          root: {
-            '& .MuiOutlinedInput-root': {
-              borderRadius: 8,
-              minHeight: 44,
-              transition: 'all 0.3s ease-in-out',
-              '&:hover fieldset': {
-                borderWidth: 2,
-              },
-              '&.Mui-focused fieldset': {
-                borderWidth: 2,
-              },
-            },
-          },
-        },
-      },
-      MuiChip: {
+      MuiPaper: {
         styleOverrides: {
           root: {
             borderRadius: 8,
             transition: 'all 0.3s ease-in-out',
-            '&:hover': {
-              transform: 'scale(1.02)',
-            },
           },
         },
       },
