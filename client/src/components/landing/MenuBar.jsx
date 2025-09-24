@@ -91,7 +91,7 @@ const MenuBar = () => {
               fontSize: '1rem',
             }}
           >
-            Get Started
+            Login
           </Button>
         </ListItem>
       </List>
@@ -212,7 +212,7 @@ const MenuBar = () => {
                 },
               }}
             >
-              Get Started
+              Login
             </Button>
           )}
 
