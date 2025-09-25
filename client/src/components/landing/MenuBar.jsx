@@ -19,6 +19,11 @@ import {
   Close as CloseIcon,
   LightMode,
   DarkMode,
+  Home,
+  Star,
+  TrendingUp,
+  Business,
+  ContactMail,
 } from '@mui/icons-material';
 import { useTheme } from '@/contexts/ThemeContext';
 
@@ -29,11 +34,11 @@ const MenuBar = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const navigationItems = [
-    { label: 'Home', href: 'home' },
-    { label: 'Features', href: 'features' },
-    { label: 'Success Stories', href: 'stories' },
-    { label: 'Business Model', href: 'business' },
-    { label: 'Contact', href: 'contact' },
+    { label: 'Home', href: 'home', icon: Home },
+    { label: 'Features', href: 'features', icon: Star },
+    { label: 'Success Stories', href: 'stories', icon: TrendingUp },
+    { label: 'Business Model', href: 'business', icon: Business },
+    { label: 'Contact', href: 'contact', icon: ContactMail },
   ];
 
   const handleDrawerToggle = () => {
@@ -84,6 +89,7 @@ const MenuBar = () => {
           <Button
             variant="contained"
             fullWidth
+            href="/register"
             sx={{
               py: 1.5,
               borderRadius: 2,
@@ -91,7 +97,7 @@ const MenuBar = () => {
               fontSize: '1rem',
             }}
           >
-            Login
+            Register
           </Button>
         </ListItem>
       </List>
@@ -157,27 +163,88 @@ const MenuBar = () => {
           </Box>
 
           {!isMobile && (
-            <Box sx={{ display: 'flex', ml: 'auto', mr: 4, gap: 1 }}>
-              {navigationItems.map((item) => (
-                <Button
-                  key={item.label}
-                  onClick={() => handleNavClick(item.href)}
-                  sx={{
-                    color: 'text.primary',
-                    fontWeight: 500,
-                    px: 2,
-                    py: 1,
-                    borderRadius: 2,
-                    '&:hover': {
-                      bgcolor: 'action.hover',
-                      transform: 'translateY(-2px)',
-                    },
-                    transition: 'all 0.3s ease',
-                  }}
-                >
-                  {item.label}
-                </Button>
-              ))}
+            <Box 
+              sx={{ 
+                display: 'flex', 
+                ml: 'auto', 
+                mr: 4, 
+                gap: 1,
+                overflow: 'hidden',
+                position: 'relative',
+                '&::before': {
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: '-100%',
+                  width: '100%',
+                  height: '100%',
+                  background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)',
+                  animation: 'infinitySlide 3s infinite',
+                },
+                '@keyframes infinitySlide': {
+                  '0%': { left: '-100%' },
+                  '100%': { left: '100%' },
+                }
+              }}
+            >
+              {navigationItems.map((item, index) => {
+                const IconComponent = item.icon;
+                return (
+                  <Button
+                    key={item.label}
+                    onClick={() => handleNavClick(item.href)}
+                    sx={{
+                      color: 'text.primary',
+                      fontWeight: 500,
+                      px: 2,
+                      py: 1,
+                      borderRadius: 2,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1,
+                      '&:hover': {
+                        bgcolor: 'action.hover',
+                        transform: 'translateY(-2px) scale(1.05)',
+                        '& .nav-icon': {
+                          transform: 'rotateY(360deg) rotateX(360deg)',
+                        }
+                      },
+                      transition: 'all 0.3s ease',
+                    }}
+                  >
+                    <IconComponent 
+                      className="nav-icon"
+                      sx={{
+                        fontSize: '1.2rem',
+                        animation: `rotate3d${index} 4s infinite linear`,
+                        transformStyle: 'preserve-3d',
+                        transition: 'transform 0.6s ease',
+                        '@keyframes rotate3d0': {
+                          '0%': { transform: 'rotateY(0deg) rotateX(0deg)' },
+                          '100%': { transform: 'rotateY(360deg) rotateX(360deg)' },
+                        },
+                        '@keyframes rotate3d1': {
+                          '0%': { transform: 'rotateX(0deg) rotateZ(0deg)' },
+                          '100%': { transform: 'rotateX(360deg) rotateZ(360deg)' },
+                        },
+                        '@keyframes rotate3d2': {
+                          '0%': { transform: 'rotateY(0deg) rotateZ(0deg)' },
+                          '100%': { transform: 'rotateY(360deg) rotateZ(360deg)' },
+                        },
+                        '@keyframes rotate3d3': {
+                          '0%': { transform: 'rotateX(0deg) rotateY(0deg) rotateZ(0deg)' },
+                          '100%': { transform: 'rotateX(360deg) rotateY(360deg) rotateZ(360deg)' },
+                        },
+                        '@keyframes rotate3d4': {
+                          '0%': { transform: 'rotateZ(0deg) rotateY(0deg)' },
+                          '100%': { transform: 'rotateZ(360deg) rotateY(360deg)' },
+                        },
+                      }}
+                    />
+                    {item.label}
+                  </Button>
+                );
+              })}
             </Box>
           )}
 
@@ -200,6 +267,7 @@ const MenuBar = () => {
           {!isMobile && (
             <Button
               variant="contained"
+              href="/register"
               sx={{
                 px: 3,
                 py: 1,
@@ -212,7 +280,7 @@ const MenuBar = () => {
                 },
               }}
             >
-              Login
+              Register
             </Button>
           )}
 
