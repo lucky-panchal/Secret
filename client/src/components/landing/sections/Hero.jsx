@@ -1,11 +1,14 @@
 'use client';
+import { useState } from 'react';
 import { Box, Container, Typography, Button, Grid } from '@mui/material';
 import { motion } from 'framer-motion';
 import { PlayArrow, Rocket, Psychology, TrendingUp } from '@mui/icons-material';
 import { useTheme } from '@/contexts/ThemeContext';
+import VideoModal from '@/components/VideoModal';
 
 const Hero = () => {
   const { isDark } = useTheme();
+  const [videoModalOpen, setVideoModalOpen] = useState(false);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -120,6 +123,12 @@ const Hero = () => {
                         variant="contained"
                         size="large"
                         startIcon={<Rocket />}
+                        onClick={() => {
+                          const element = document.getElementById('contact');
+                          if (element) {
+                            element.scrollIntoView({ behavior: 'smooth' });
+                          }
+                        }}
                         sx={{
                           background: 'var(--gradient-primary)',
                           color: 'white',
@@ -146,6 +155,7 @@ const Hero = () => {
                         variant="outlined"
                         size="large"
                         startIcon={<PlayArrow />}
+                        onClick={() => setVideoModalOpen(true)}
                         sx={{
                           borderColor: 'var(--border)',
                           color: 'var(--text-primary)',
@@ -336,7 +346,7 @@ const Hero = () => {
                         }}
                       >
                         <textPath href="#outerCircle" startOffset="0%">
-                          ✨ LAUNCH YOUR CAREER LIKE ROCKET LAUNCH ✨ LAUNCH YOUR CAREER LIKE ROCKET LAUNCH ✨
+                          ✨ START YOUR JOURNEY TODAY WITH CAREER AI ✨ LAUNCH YOUR CAREER LIKE ROCKET LAUNCH ✨
                         </textPath>
                       </text>
                       <style>
@@ -422,6 +432,12 @@ const Hero = () => {
             </Grid>
           </Grid>
         </Container>
+        
+        {/* Video Modal */}
+        <VideoModal 
+          open={videoModalOpen} 
+          onClose={() => setVideoModalOpen(false)} 
+        />
       </Box>
     </div>
   );
