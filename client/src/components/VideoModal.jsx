@@ -196,7 +196,7 @@ const VideoModal = ({ open, onClose }) => {
                     borderRadius: '15px',
                   }}
                 >
-                  <source src="/videos/AI_Career_Foundation_Video_Generation.mp4" type="video/mp4" />
+                  <source src="/videos/career guidence.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               )}

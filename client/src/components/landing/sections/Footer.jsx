@@ -28,12 +28,13 @@ const Footer = () => {
   };
 
   return (
-    <div data-theme={isDark ? 'dark' : 'light'}>
+    <Box sx={{ background: 'transparent' }}>
       <Box
         id="contact"
         sx={{
           py: { xs: 8, md: 12 },
-          background: 'var(--gradient-primary)',
+          background: '#1e293b',
+          borderTop: '1px solid rgba(148, 163, 184, 0.2)',
           position: 'relative',
           overflow: 'hidden',
         }}
@@ -46,7 +47,8 @@ const Footer = () => {
             left: 0,
             right: 0,
             bottom: 0,
-            background: 'radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1) 0%, transparent 50%)',
+            background: 
+              'radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.05) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.05) 0%, transparent 50%)',
             zIndex: 0,
           }}
         />
@@ -63,10 +65,14 @@ const Footer = () => {
               <Typography
                 variant="h2"
                 sx={{
-                  color: 'white',
-                  fontWeight: 800,
+                  color: '#f8fafc',
+                  fontWeight: 700,
                   mb: { xs: 2, md: 3 },
-                  textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+                  letterSpacing: '-0.025em',
+                  background: 'linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
                 }}
               >
                 Stay Relevant. Stay Future-Proof.
@@ -76,12 +82,12 @@ const Footer = () => {
               <Typography
                 variant="h6"
                 sx={{
-                  color: 'rgba(255,255,255,0.9)',
+                  color: '#cbd5e1',
                   mb: { xs: 4, md: 6 },
                   maxWidth: '600px',
                   mx: 'auto',
                   lineHeight: 1.6,
-                  textShadow: '0 1px 2px rgba(0,0,0,0.2)',
+                  fontWeight: 400,
                 }}
               >
                 Join thousands of professionals who are already transforming their careers with AI-powered reskilling. The future of work starts today.
@@ -98,23 +104,21 @@ const Footer = () => {
                   size="large"
                   startIcon={<Rocket />}
                   sx={{
-                    background: 'rgba(255,255,255,0.15)',
-                    backdropFilter: 'blur(10px)',
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
-                    border: '2px solid rgba(255,255,255,0.3)',
+                    border: 'none',
                     px: { xs: 4, md: 6 },
                     py: { xs: 2, md: 2.5 },
                     fontSize: { xs: '1.1rem', md: '1.25rem' },
-                    fontWeight: 700,
+                    fontWeight: 600,
                     minHeight: { xs: 56, md: 64 },
                     borderRadius: 3,
                     textTransform: 'none',
-                    boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
-                    transition: 'all 0.3s ease-in-out',
+                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                     '&:hover': {
-                      background: 'rgba(255,255,255,0.25)',
-                      borderColor: 'rgba(255,255,255,0.5)',
-                      boxShadow: '0 12px 40px rgba(0,0,0,0.3)',
+                      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                      boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
                       transform: 'translateY(-2px)',
                     },
                   }}
@@ -128,8 +132,9 @@ const Footer = () => {
                 <Typography
                   variant="body2"
                   sx={{
-                    color: 'rgba(255,255,255,0.7)',
+                    color: '#94a3b8',
                     mb: 2,
+                    fontWeight: 400,
                   }}
                 >
                   © 2024 Future Work Reskilling Platform. Empowering careers worldwide.
@@ -150,12 +155,13 @@ const Footer = () => {
                       component="a"
                       href="#"
                       sx={{
-                        color: 'rgba(255,255,255,0.8)',
+                        color: '#cbd5e1',
                         textDecoration: 'none',
-                        transition: 'all 0.2s ease',
+                        fontWeight: 500,
+                        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                         '&:hover': {
-                          color: 'white',
-                          textDecoration: 'underline',
+                          color: '#6366f1',
+                          textDecoration: 'none',
                         },
                       }}
                     >
@@ -194,15 +200,15 @@ const Footer = () => {
                 width: { xs: 60, md: 80 },
                 height: { xs: 60, md: 80 },
                 borderRadius: '50%',
-                background: 'rgba(255,255,255,0.1)',
-                border: '1px solid rgba(255,255,255,0.2)',
-                backdropFilter: 'blur(10px)',
+                background: 'rgba(99, 102, 241, 0.1)',
+                border: '1px solid rgba(148, 163, 184, 0.2)',
+                backdropFilter: 'blur(20px)',
               }}
             />
           </motion.div>
         ))}
       </Box>
-    </div>
+    </Box>
   );
 };
 
