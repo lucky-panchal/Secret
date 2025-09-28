@@ -1,14 +1,11 @@
 'use client';
-import { useState } from 'react';
 import { Box, Container, Typography, Button, Grid } from '@mui/material';
 import { motion } from 'framer-motion';
 import { PlayArrow, Rocket, Psychology, TrendingUp } from '@mui/icons-material';
 import { useTheme } from '@/contexts/ThemeContext';
-import VideoModal from '@/components/VideoModal';
 
 const Hero = () => {
   const { isDark } = useTheme();
-  const [videoModalOpen, setVideoModalOpen] = useState(false);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -155,7 +152,7 @@ const Hero = () => {
                         variant="outlined"
                         size="large"
                         startIcon={<PlayArrow />}
-                        onClick={() => setVideoModalOpen(true)}
+                        onClick={() => window.location.href = '/demo'}
                         sx={{
                           borderColor: 'var(--border)',
                           color: 'var(--text-primary)',
@@ -171,7 +168,7 @@ const Hero = () => {
                           },
                         }}
                       >
-                        Watch Demo
+                        Demo
                       </Button>
                     </motion.div>
                   </Box>
@@ -433,11 +430,7 @@ const Hero = () => {
           </Grid>
         </Container>
         
-        {/* Video Modal */}
-        <VideoModal 
-          open={videoModalOpen} 
-          onClose={() => setVideoModalOpen(false)} 
-        />
+
       </Box>
     </div>
   );
