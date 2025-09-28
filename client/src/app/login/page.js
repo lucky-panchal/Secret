@@ -7,13 +7,20 @@ import { useTheme } from '@/contexts/ThemeContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { ArrowBack } from '@mui/icons-material';
+import { useEffect } from 'react';
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ email: '', password: '' });
+  const [isLoaded, setIsLoaded] = useState(false);
   const { isDark } = useTheme();
   const { login } = useAuth();
   const router = useRouter();
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
   const handleChange = (field) => (event) => {
     setFormData({ ...formData, [field]: event.target.value });
@@ -31,9 +38,45 @@ export default function LoginPage() {
     }
   };
 
+  if (!isLoaded) {
+    return (
+      <div style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'var(--background)',
+        color: 'var(--text-primary)'
+      }}>
+        Loading...
+      </div>
+    );
+  }
+
   return (
     <div data-theme={isDark ? 'dark' : 'light'}>
-      <Navigation />
+      <Button
+        startIcon={<ArrowBack />}
+        onClick={() => router.push('/')}
+        sx={{
+          position: 'fixed',
+          top: '20px',
+          left: '20px',
+          zIndex: 1000,
+          background: 'var(--surface)',
+          color: 'var(--text-primary)',
+          border: '1px solid var(--border)',
+          borderRadius: 2,
+          fontWeight: 600,
+          backdropFilter: 'blur(20px)',
+          '&:hover': {
+            background: 'var(--primary)',
+            color: 'white'
+          }
+        }}
+      >
+        Back to Home
+      </Button>
       <Box
         sx={{
           minHeight: '100vh',
@@ -191,20 +234,19 @@ export default function LoginPage() {
               <Box sx={{ textAlign: 'center' }}>
                 <Typography variant="body1" sx={{ color: 'var(--text-secondary)' }}>
                   Don't have an account?{' '}
-                  <Link href="/signup" style={{ textDecoration: 'none' }}>
-                    <Typography
-                      component="span"
-                      sx={{
-                        color: 'var(--primary)',
-                        fontWeight: 600,
-                        cursor: 'pointer',
-                        '&:hover': { color: 'var(--secondary)' },
-                        transition: 'color 0.2s ease',
-                      }}
-                    >
-                      Sign up here
-                    </Typography>
-                  </Link>
+                  <Typography
+                    component="span"
+                    onClick={() => router.push('/register')}
+                    sx={{
+                      color: 'var(--primary)',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      '&:hover': { color: 'var(--secondary)' },
+                      transition: 'color 0.2s ease',
+                    }}
+                  >
+                    Sign up here
+                  </Typography>
                 </Typography>
               </Box>
             </Box>

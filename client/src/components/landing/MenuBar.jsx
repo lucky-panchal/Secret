@@ -30,6 +30,8 @@ import {
   AutoAwesome,
 } from '@mui/icons-material';
 import { useTheme } from '@/contexts/ThemeContext';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const MenuBar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -39,6 +41,7 @@ const MenuBar = () => {
   const { isDark, toggleTheme } = useTheme();
   const theme = useMuiTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -112,7 +115,7 @@ const MenuBar = () => {
           <Button
             variant="contained"
             fullWidth
-            href="/register"
+            onClick={() => router.push('/register')}
             sx={{
               py: 1.5,
               borderRadius: 2,
@@ -499,7 +502,7 @@ const MenuBar = () => {
           {!isMobile && (
             <Button
               variant="contained"
-              href="/register"
+              onClick={() => router.push('/register')}
               startIcon={<AutoAwesome />}
               sx={{
                 px: 4,
