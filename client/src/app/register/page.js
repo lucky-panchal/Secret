@@ -55,7 +55,7 @@ export default function Register() {
         }
 
         body {
-          background: var(--bg-primary);
+          background: var(--background);
           display: flex;
           justify-content: center;
           align-items: center;
@@ -438,12 +438,7 @@ export default function Register() {
         <div className="form-container sign-up-container">
           <form>
             <h1>Create Account</h1>
-            <div className="social-container">
-              <a href="#" className="social">📧</a>
-              <a href="#" className="social">📱</a>
-              <a href="#" className="social">🔗</a>
-            </div>
-            <span style={{color: 'var(--text-muted)', margin: '16px 0'}}>or use your email for registration</span>
+
             <input type="text" placeholder="Name" />
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
@@ -455,12 +450,7 @@ export default function Register() {
         <div className="form-container sign-in-container">
           <form>
             <h1>Sign in</h1>
-            <div className="social-container">
-              <a href="#" className="social">📧</a>
-              <a href="#" className="social">📱</a>
-              <a href="#" className="social">🔗</a>
-            </div>
-            <span style={{color: 'var(--text-muted)', margin: '16px 0'}}>or use your account</span>
+
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
             <a href="#" style={{color: '#6366f1', textDecoration: 'none', margin: '16px 0', fontWeight: 500}}>Forgot your password?</a>

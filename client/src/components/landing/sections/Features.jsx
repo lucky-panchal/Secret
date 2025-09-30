@@ -56,7 +56,7 @@ const Features = () => {
         id="features"
         sx={{
           py: { xs: 6, md: 10 },
-          background: 'var(--surface)',
+          background: 'var(--background)',
           position: 'relative',
         }}
       >

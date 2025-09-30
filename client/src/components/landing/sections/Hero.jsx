@@ -53,6 +53,146 @@ const Hero = () => {
           pb: { xs: 4, md: 8 },
         }}
       >
+        {/* Elegant Geometric Background */}
+        <Box
+          sx={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(135deg, #030303 0%, #0a0a0f 25%, #1a1a1f 50%, #0a0a0f 75%, #030303 100%)',
+            overflow: 'hidden',
+          }}
+        >
+          <Box
+            sx={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(to bottom right, rgba(99, 102, 241, 0.05) 0%, transparent 50%, rgba(244, 63, 94, 0.05) 100%)',
+              filter: 'blur(48px)',
+            }}
+          />
+          
+          {/* Floating Geometric Shapes */}
+          <motion.div
+            initial={{ opacity: 0, y: -150, rotate: -3 }}
+            animate={{ opacity: 1, y: 0, rotate: 12 }}
+            transition={{ duration: 2.4, delay: 0.3, ease: [0.23, 0.86, 0.39, 0.96] }}
+            style={{
+              position: 'absolute',
+              left: '-10%',
+              top: '15%',
+              width: 600,
+              height: 140,
+            }}
+          >
+            <motion.div
+              animate={{ y: [0, 15, 0] }}
+              transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+              style={{
+                width: '100%',
+                height: '100%',
+                borderRadius: '50%',
+                background: 'linear-gradient(to right, rgba(99, 102, 241, 0.15), transparent)',
+                backdropFilter: 'blur(2px)',
+                border: '2px solid rgba(255, 255, 255, 0.15)',
+                boxShadow: '0 8px 32px 0 rgba(30, 64, 175, 0.1)',
+                position: 'relative',
+              }}
+            >
+              <Box
+                sx={{
+                  position: 'absolute',
+                  inset: 0,
+                  borderRadius: '50%',
+                  background: 'radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.2), transparent 70%)',
+                }}
+              />
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: -150, rotate: 0 }}
+            animate={{ opacity: 1, y: 0, rotate: -15 }}
+            transition={{ duration: 2.4, delay: 0.5, ease: [0.23, 0.86, 0.39, 0.96] }}
+            style={{
+              position: 'absolute',
+              right: '-5%',
+              top: '70%',
+              width: 500,
+              height: 120,
+            }}
+          >
+            <motion.div
+              animate={{ y: [0, 15, 0] }}
+              transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+              style={{
+                width: '100%',
+                height: '100%',
+                borderRadius: '50%',
+                background: 'linear-gradient(to right, rgba(244, 63, 94, 0.15), transparent)',
+                backdropFilter: 'blur(2px)',
+                border: '2px solid rgba(255, 255, 255, 0.15)',
+                boxShadow: '0 8px 32px 0 rgba(37, 99, 235, 0.1)',
+                position: 'relative',
+              }}
+            >
+              <Box
+                sx={{
+                  position: 'absolute',
+                  inset: 0,
+                  borderRadius: '50%',
+                  background: 'radial-gradient(circle at 50% 50%, rgba(244, 63, 94, 0.2), transparent 70%)',
+                }}
+              />
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: -150, rotate: 7 }}
+            animate={{ opacity: 1, y: 0, rotate: -8 }}
+            transition={{ duration: 2.4, delay: 0.4, ease: [0.23, 0.86, 0.39, 0.96] }}
+            style={{
+              position: 'absolute',
+              left: '5%',
+              bottom: '5%',
+              width: 300,
+              height: 80,
+            }}
+          >
+            <motion.div
+              animate={{ y: [0, 15, 0] }}
+              transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+              style={{
+                width: '100%',
+                height: '100%',
+                borderRadius: '50%',
+                background: 'linear-gradient(to right, rgba(139, 92, 246, 0.15), transparent)',
+                backdropFilter: 'blur(2px)',
+                border: '2px solid rgba(255, 255, 255, 0.15)',
+                boxShadow: '0 8px 32px 0 rgba(59, 130, 246, 0.1)',
+                position: 'relative',
+              }}
+            >
+              <Box
+                sx={{
+                  position: 'absolute',
+                  inset: 0,
+                  borderRadius: '50%',
+                  background: 'radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.2), transparent 70%)',
+                }}
+              />
+            </motion.div>
+          </motion.div>
+        </Box>
+
+        
+        <Box
+          sx={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(180deg, rgba(3, 3, 3, 0.8) 0%, transparent 50%, #030303 100%)',
+            pointerEvents: 'none',
+          }}
+        />
 
 
         <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1 }}>
@@ -120,12 +260,7 @@ const Hero = () => {
                         variant="contained"
                         size="large"
                         startIcon={<Rocket />}
-                        onClick={() => {
-                          const element = document.getElementById('contact');
-                          if (element) {
-                            element.scrollIntoView({ behavior: 'smooth' });
-                          }
-                        }}
+                        onClick={() => window.location.href = '/register'}
                         sx={{
                           background: 'var(--gradient-primary)',
                           color: 'white',
@@ -176,7 +311,7 @@ const Hero = () => {
               </motion.div>
             </Grid>
 
-            {/* Right Column - Illustration */}
+            {/* Right Column - Elegant Geometric Illustration */}
             <Grid item xs={12} md={6}>
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -192,177 +327,48 @@ const Hero = () => {
                     position: 'relative',
                   }}
                 >
-                  {/* Advanced 3D Sphere */}
-                  <Box
-                    sx={{
-                      width: { xs: 250, md: 400 },
-                      height: { xs: 250, md: 400 },
-                      borderRadius: '50%',
-                      background: 'conic-gradient(from 0deg, #1e3a8a, #1e40af, #1d4ed8, #0f172a, #1e3a8a)',
-                      position: 'relative',
-                      overflow: 'hidden',
-                      boxShadow: 'inset -40px -40px 80px rgba(0,0,0,0.6), inset 40px 40px 80px rgba(255,255,255,0.1), 0 20px 40px rgba(0,0,0,0.3)',
-
-                    }}
+                  {/* Central Elegant Shape */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.5, rotate: -30 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                    transition={{ duration: 2, delay: 0.8, ease: [0.23, 0.86, 0.39, 0.96] }}
+                    className="relative"
                   >
-                    {/* Stylized Moon */}
-                    <Box
-                      sx={{
-                        position: 'absolute',
-                        top: '15%',
-                        right: '15%',
-                        width: { xs: 60, md: 80 },
-                        height: { xs: 60, md: 80 },
-                        borderRadius: '50%',
-                        background: 'linear-gradient(135deg, #ffd700, #ffeb3b, #fff176)',
-                        boxShadow: '0 0 30px rgba(255, 215, 0, 0.6), inset -10px -10px 20px rgba(0,0,0,0.2)',
-                        animation: 'moonPulse 3s infinite ease-in-out',
-                        '&::before': {
-                          content: '""',
-                          position: 'absolute',
-                          top: '20%',
-                          left: '30%',
-                          width: '15px',
-                          height: '15px',
-                          borderRadius: '50%',
-                          background: 'rgba(0,0,0,0.1)',
-                        },
-                        '&::after': {
-                          content: '""',
-                          position: 'absolute',
-                          bottom: '30%',
-                          right: '25%',
-                          width: '10px',
-                          height: '10px',
-                          borderRadius: '50%',
-                          background: 'rgba(0,0,0,0.1)',
-                        },
-                        '@keyframes moonPulse': {
-                          '0%, 100%': { transform: 'scale(1) rotate(0deg)', boxShadow: '0 0 30px rgba(255, 215, 0, 0.6)' },
-                          '50%': { transform: 'scale(1.2) rotate(10deg)', boxShadow: '0 0 50px rgba(255, 215, 0, 1)' },
-                        },
+                    <motion.div
+                      animate={{ 
+                        y: [0, -20, 0],
+                        rotate: [0, 5, 0]
                       }}
-                    />
-                    
-                    {/* Large Rocket Launch */}
-                    <Box
-                      sx={{
-                        position: 'absolute',
-                        bottom: '5%',
-                        left: '15%',
-                        fontSize: { xs: '4rem', md: '6rem' },
-                        animation: 'realisticLaunch 6s infinite',
-                        '@keyframes realisticLaunch': {
-                          '0%': { 
-                            transform: 'translateY(0px) rotate(0deg) scale(1)',
-                            opacity: 1,
-                            filter: 'drop-shadow(0 0 0px orange)'
-                          },
-                          '10%': {
-                            transform: 'translateY(-20px) rotate(5deg) scale(1.1)',
-                            filter: 'drop-shadow(0 5px 15px orange)'
-                          },
-                          '30%': { 
-                            transform: 'translateY(-100px) translateX(30px) rotate(15deg) scale(1.2)',
-                            opacity: 1,
-                            filter: 'drop-shadow(0 10px 25px red)'
-                          },
-                          '60%': { 
-                            transform: 'translateY(-250px) translateX(80px) rotate(25deg) scale(0.8)',
-                            opacity: 0.8,
-                            filter: 'drop-shadow(0 15px 35px blue)'
-                          },
-                          '100%': { 
-                            transform: 'translateY(-400px) translateX(150px) rotate(35deg) scale(0.3)',
-                            opacity: 0
-                          },
-                        },
-                      }}
+                      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                      style={{ width: 300, height: 300 }}
+                      className="relative"
                     >
-                      🚀
-                    </Box>
-                    
-                    {/* Stylized Stars */}
-                    {[...Array(6)].map((_, i) => (
                       <Box
-                        key={i}
                         sx={{
                           position: 'absolute',
-                          left: `${25 + (i * 12)}%`,
-                          top: `${20 + (i * 10)}%`,
-                          width: { xs: 8, md: 12 },
-                          height: { xs: 8, md: 12 },
-                          background: 'linear-gradient(45deg, #ffffff, #e3f2fd, #bbdefb)',
-                          clipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)',
-                          animation: `starPop${i} ${2 + (i * 0.4)}s infinite ease-in-out`,
-                          filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.8))',
-                          [`@keyframes starPop${i}`]: {
-                            '0%, 100%': { 
-                              transform: 'scale(1) rotate(0deg)', 
-                              opacity: 0.6,
-                              filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.8))'
-                            },
-                            '50%': { 
-                              transform: 'scale(1.5) rotate(180deg)', 
-                              opacity: 1,
-                              filter: 'drop-shadow(0 0 15px rgba(255,255,255,1))'
-                            },
+                          inset: 0,
+                          borderRadius: '50%',
+                          background: 'linear-gradient(90deg, rgba(30, 64, 175, 0.12) 0%, rgba(37, 99, 235, 0.12) 50%, rgba(59, 130, 246, 0.12) 100%)',
+                          backdropFilter: 'blur(4px)',
+                          border: '2px solid rgba(30, 64, 175, 0.25)',
+                          boxShadow: '0 16px 64px 0 rgba(30, 64, 175, 0.08)',
+                          '&::after': {
+                            content: '""',
+                            position: 'absolute',
+                            inset: 0,
+                            borderRadius: '50%',
+                            background: 'radial-gradient(circle at 50% 50%, rgba(30, 64, 175, 0.15), transparent 70%)',
                           },
                         }}
                       />
-                    ))}
-
-                  </Box>
-
-                  {/* Circular Text Outside */}
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      top: '50%',
-                      left: '50%',
-                      transform: 'translate(-50%, -50%)',
-                      width: { xs: 350, md: 550 },
-                      height: { xs: 350, md: 550 },
-                      pointerEvents: 'none',
-                    }}
-                  >
-                    <svg width="100%" height="100%" viewBox="0 0 550 550" style={{ animation: 'svgRotate 12s infinite linear' }}>
-                      <defs>
-                        <path
-                          id="outerCircle"
-                          d="M 275,275 m -250,0 a 250,250 0 1,1 500,0 a 250,250 0 1,1 -500,0"
-                        />
-                      </defs>
-                      <text
-                        fontSize="24"
-                        fontFamily="'Roboto', 'Arial', sans-serif"
-                        fontWeight="600"
-                        fill={isDark ? '#00f5ff' : 'var(--primary)'}
-                        style={{
-                          animation: 'animeRotate 8s infinite linear',
-                        }}
-                      >
-                        <textPath href="#outerCircle" startOffset="0%">
-                          ✨ START YOUR JOURNEY TODAY WITH CAREER AI ✨ LAUNCH YOUR CAREER LIKE ROCKET LAUNCH ✨
-                        </textPath>
-                      </text>
-                      <style>
-                        {`
-                          @keyframes animeRotate {
-                            0% { transform-origin: 275px 275px; transform: rotate(0deg); }
-                            100% { transform-origin: 275px 275px; transform: rotate(360deg); }
-                          }
-
-                        `}
-                      </style>
-                    </svg>
-                  </Box>
+                    </motion.div>
+                  </motion.div>
 
                   {/* Floating Elements */}
                   {[
-                    { icon: Psychology, label: 'AI', position: { top: '20%', left: '10%' } },
-                    { icon: TrendingUp, label: 'BC', position: { top: '50%', right: '10%' } },
-                    { icon: Rocket, label: 'ML', position: { bottom: '20%', left: '20%' } },
+                    { icon: Psychology, label: 'AI', position: { top: '20%', left: '10%' }, color: '#1e40af' },
+                    { icon: TrendingUp, label: 'BC', position: { top: '50%', right: '10%' }, color: '#2563eb' },
+                    { icon: Rocket, label: 'ML', position: { bottom: '20%', left: '20%' }, color: '#3b82f6' },
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -386,29 +392,27 @@ const Hero = () => {
                           width: { xs: 70, md: 90 },
                           height: { xs: 70, md: 90 },
                           borderRadius: 3,
-                          background: 'rgba(255, 255, 255, 0.1)',
+                          background: 'rgba(30, 64, 175, 0.06)',
                           backdropFilter: 'blur(20px)',
-                          border: '1px solid rgba(255, 255, 255, 0.2)',
+                          border: '1px solid rgba(30, 64, 175, 0.15)',
                           display: 'flex',
                           flexDirection: 'column',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                          boxShadow: '0 8px 32px rgba(30, 64, 175, 0.08), inset 0 1px 0 rgba(30, 64, 175, 0.08)',
                           gap: 1,
                           '&:hover': {
-                            background: 'rgba(255, 255, 255, 0.15)',
+                            background: 'rgba(30, 64, 175, 0.1)',
                             transform: 'scale(1.05)',
-                            boxShadow: '0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
+                            boxShadow: '0 12px 40px rgba(30, 64, 175, 0.15), inset 0 1px 0 rgba(30, 64, 175, 0.15)',
                           },
                           transition: 'all 0.3s ease',
                         }}
                       >
                         <item.icon sx={{ 
                           fontSize: { xs: 24, md: 30 }, 
-                          color: isDark 
-                            ? (index === 0 ? '#00f5ff' : index === 1 ? '#ff6b35' : '#7c3aed')
-                            : (index === 0 ? '#0066cc' : index === 1 ? '#cc4400' : '#4c1d95'),
-                          filter: 'drop-shadow(0 0 8px currentColor)',
+                          color: item.color,
+                          filter: 'drop-shadow(0 0 6px currentColor)',
                         }} />
                         <Typography
                           variant="caption"
@@ -416,7 +420,7 @@ const Hero = () => {
                             color: '#ffffff', 
                             fontWeight: 700,
                             fontSize: { xs: '0.8rem', md: '0.9rem' },
-                            textShadow: '0 0 10px rgba(255,255,255,0.5)',
+                            textShadow: '0 0 8px rgba(255,255,255,0.4)',
                           }}
                         >
                           {item.label}

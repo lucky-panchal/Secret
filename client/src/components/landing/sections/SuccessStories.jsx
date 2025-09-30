@@ -182,7 +182,6 @@ const SuccessStories = () => {
     <Box
       sx={{
         background: 'var(--surface)',
-        border: '1px solid var(--border)',
         borderRadius: 2,
         p: { xs: 3, md: 4 },
         height: '100%',
@@ -228,7 +227,7 @@ const SuccessStories = () => {
         id="stories"
         sx={{
           py: { xs: 6, md: 10 },
-          background: 'var(--background)',
+          background: 'var(--surface)',
           position: 'relative',
         }}
       >

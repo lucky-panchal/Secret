@@ -71,25 +71,12 @@ const BusinessModel = () => {
         id="business"
         sx={{
           py: { xs: 6, md: 10 },
-          background: 'var(--surface)',
+          background: 'var(--background)',
           position: 'relative',
           overflow: 'hidden',
         }}
       >
-        {/* Background Gradient Divider */}
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: 2,
-            height: '100%',
-            background: 'var(--gradient-primary)',
-            opacity: 0.1,
-            zIndex: 0,
-          }}
-        />
+
 
         {/* Subtle Background Pattern */}
         <Box
@@ -218,7 +205,6 @@ const BusinessModel = () => {
                 <Box
                   sx={{
                     background: 'var(--background)',
-                    border: '1px solid var(--border)',
                     borderRadius: 3,
                     p: { xs: 4, md: 6 },
                     textAlign: 'center',
@@ -227,17 +213,7 @@ const BusinessModel = () => {
                     boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)',
                   }}
                 >
-                  {/* Background Accent */}
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      height: 4,
-                      background: 'var(--gradient-primary)',
-                    }}
-                  />
+
 
                   <School
                     sx={{

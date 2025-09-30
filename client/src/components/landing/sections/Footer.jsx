@@ -33,25 +33,142 @@ const Footer = () => {
         id="contact"
         sx={{
           py: { xs: 8, md: 12 },
-          background: '#1e293b',
-          borderTop: '1px solid rgba(148, 163, 184, 0.2)',
+          background: 'var(--background)',
+
           position: 'relative',
           overflow: 'hidden',
         }}
       >
-        {/* Background Pattern */}
+        {/* Elegant Geometric Background */}
         <Box
           sx={{
             position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 
-              'radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.05) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.05) 0%, transparent 50%)',
-            zIndex: 0,
+            inset: 0,
+            background: 'linear-gradient(135deg, #030303 0%, #0a0a0f 25%, #1a1a1f 50%, #0a0a0f 75%, #030303 100%)',
+            overflow: 'hidden',
           }}
-        />
+        >
+          <Box
+            sx={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(to bottom right, rgba(99, 102, 241, 0.05) 0%, transparent 50%, rgba(244, 63, 94, 0.05) 100%)',
+              filter: 'blur(48px)',
+            }}
+          />
+          
+          {/* Floating Geometric Shapes */}
+          <motion.div
+            initial={{ opacity: 0, y: -150, rotate: -3 }}
+            animate={{ opacity: 1, y: 0, rotate: 12 }}
+            transition={{ duration: 2.4, delay: 0.3, ease: [0.23, 0.86, 0.39, 0.96] }}
+            style={{
+              position: 'absolute',
+              left: '-10%',
+              top: '15%',
+              width: 400,
+              height: 100,
+            }}
+          >
+            <motion.div
+              animate={{ y: [0, 15, 0] }}
+              transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+              style={{
+                width: '100%',
+                height: '100%',
+                borderRadius: '50%',
+                background: 'linear-gradient(to right, rgba(99, 102, 241, 0.15), transparent)',
+                backdropFilter: 'blur(2px)',
+                border: '2px solid rgba(255, 255, 255, 0.15)',
+                boxShadow: '0 8px 32px 0 rgba(99, 102, 241, 0.1)',
+                position: 'relative',
+              }}
+            >
+              <Box
+                sx={{
+                  position: 'absolute',
+                  inset: 0,
+                  borderRadius: '50%',
+                  background: 'radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.2), transparent 70%)',
+                }}
+              />
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: -150, rotate: 0 }}
+            animate={{ opacity: 1, y: 0, rotate: -15 }}
+            transition={{ duration: 2.4, delay: 0.5, ease: [0.23, 0.86, 0.39, 0.96] }}
+            style={{
+              position: 'absolute',
+              right: '-5%',
+              top: '60%',
+              width: 350,
+              height: 90,
+            }}
+          >
+            <motion.div
+              animate={{ y: [0, 15, 0] }}
+              transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+              style={{
+                width: '100%',
+                height: '100%',
+                borderRadius: '50%',
+                background: 'linear-gradient(to right, rgba(244, 63, 94, 0.15), transparent)',
+                backdropFilter: 'blur(2px)',
+                border: '2px solid rgba(255, 255, 255, 0.15)',
+                boxShadow: '0 8px 32px 0 rgba(244, 63, 94, 0.1)',
+                position: 'relative',
+              }}
+            >
+              <Box
+                sx={{
+                  position: 'absolute',
+                  inset: 0,
+                  borderRadius: '50%',
+                  background: 'radial-gradient(circle at 50% 50%, rgba(244, 63, 94, 0.2), transparent 70%)',
+                }}
+              />
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: -150, rotate: 7 }}
+            animate={{ opacity: 1, y: 0, rotate: -8 }}
+            transition={{ duration: 2.4, delay: 0.4, ease: [0.23, 0.86, 0.39, 0.96] }}
+            style={{
+              position: 'absolute',
+              left: '5%',
+              bottom: '10%',
+              width: 250,
+              height: 60,
+            }}
+          >
+            <motion.div
+              animate={{ y: [0, 15, 0] }}
+              transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+              style={{
+                width: '100%',
+                height: '100%',
+                borderRadius: '50%',
+                background: 'linear-gradient(to right, rgba(139, 92, 246, 0.15), transparent)',
+                backdropFilter: 'blur(2px)',
+                border: '2px solid rgba(255, 255, 255, 0.15)',
+                boxShadow: '0 8px 32px 0 rgba(139, 92, 246, 0.1)',
+                position: 'relative',
+              }}
+            >
+              <Box
+                sx={{
+                  position: 'absolute',
+                  inset: 0,
+                  borderRadius: '50%',
+                  background: 'radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.2), transparent 70%)',
+                }}
+              />
+            </motion.div>
+          </motion.div>
+        </Box>
 
         <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
           <motion.div
