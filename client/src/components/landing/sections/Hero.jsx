@@ -46,7 +46,7 @@ const Hero = () => {
           minHeight: '100vh',
           display: 'flex',
           alignItems: 'center',
-          background: 'var(--background)',
+          background: 'linear-gradient(135deg, #FAFBFF 0%, #F0F8FF 25%, #E6F3FF 50%, #F5FAFF 75%, #FAFBFF 100%)',
           position: 'relative',
           overflow: 'hidden',
           pt: { xs: 8, md: 12 },
@@ -58,7 +58,7 @@ const Hero = () => {
           sx={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(135deg, #030303 0%, #0a0a0f 25%, #1a1a1f 50%, #0a0a0f 75%, #030303 100%)',
+            background: 'linear-gradient(135deg, #0A0A0F 0%, #1A1A2E 25%, #16213E 50%, #1A1A2E 75%, #0A0A0F 100%)',
             overflow: 'hidden',
           }}
         >
@@ -66,7 +66,7 @@ const Hero = () => {
             sx={{
               position: 'absolute',
               inset: 0,
-              background: 'linear-gradient(to bottom right, rgba(99, 102, 241, 0.05) 0%, transparent 50%, rgba(244, 63, 94, 0.05) 100%)',
+              background: 'linear-gradient(to bottom right, rgba(0, 245, 255, 0.08) 0%, transparent 50%, rgba(251, 191, 36, 0.08) 100%)',
               filter: 'blur(48px)',
             }}
           />
@@ -91,10 +91,10 @@ const Hero = () => {
                 width: '100%',
                 height: '100%',
                 borderRadius: '50%',
-                background: 'linear-gradient(to right, rgba(99, 102, 241, 0.15), transparent)',
+                background: 'linear-gradient(to right, rgba(0, 245, 255, 0.2), transparent)',
                 backdropFilter: 'blur(2px)',
-                border: '2px solid rgba(255, 255, 255, 0.15)',
-                boxShadow: '0 8px 32px 0 rgba(30, 64, 175, 0.1)',
+                border: '2px solid rgba(0, 245, 255, 0.3)',
+                boxShadow: '0 8px 32px 0 rgba(0, 245, 255, 0.2)',
                 position: 'relative',
               }}
             >
@@ -103,7 +103,7 @@ const Hero = () => {
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '50%',
-                  background: 'radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.2), transparent 70%)',
+                  background: 'radial-gradient(circle at 50% 50%, rgba(0, 245, 255, 0.3), transparent 70%)',
                 }}
               />
             </motion.div>
@@ -128,10 +128,10 @@ const Hero = () => {
                 width: '100%',
                 height: '100%',
                 borderRadius: '50%',
-                background: 'linear-gradient(to right, rgba(244, 63, 94, 0.15), transparent)',
+                background: 'linear-gradient(to right, rgba(168, 85, 247, 0.2), transparent)',
                 backdropFilter: 'blur(2px)',
-                border: '2px solid rgba(255, 255, 255, 0.15)',
-                boxShadow: '0 8px 32px 0 rgba(37, 99, 235, 0.1)',
+                border: '2px solid rgba(168, 85, 247, 0.3)',
+                boxShadow: '0 8px 32px 0 rgba(168, 85, 247, 0.2)',
                 position: 'relative',
               }}
             >
@@ -140,7 +140,7 @@ const Hero = () => {
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '50%',
-                  background: 'radial-gradient(circle at 50% 50%, rgba(244, 63, 94, 0.2), transparent 70%)',
+                  background: 'radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.3), transparent 70%)',
                 }}
               />
             </motion.div>
@@ -165,10 +165,10 @@ const Hero = () => {
                 width: '100%',
                 height: '100%',
                 borderRadius: '50%',
-                background: 'linear-gradient(to right, rgba(139, 92, 246, 0.15), transparent)',
+                background: 'linear-gradient(to right, rgba(251, 191, 36, 0.2), transparent)',
                 backdropFilter: 'blur(2px)',
-                border: '2px solid rgba(255, 255, 255, 0.15)',
-                boxShadow: '0 8px 32px 0 rgba(59, 130, 246, 0.1)',
+                border: '2px solid rgba(251, 191, 36, 0.3)',
+                boxShadow: '0 8px 32px 0 rgba(251, 191, 36, 0.2)',
                 position: 'relative',
               }}
             >
@@ -177,7 +177,7 @@ const Hero = () => {
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '50%',
-                  background: 'radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.2), transparent 70%)',
+                  background: 'radial-gradient(circle at 50% 50%, rgba(251, 191, 36, 0.3), transparent 70%)',
                 }}
               />
             </motion.div>
@@ -208,7 +208,7 @@ const Hero = () => {
                   <Typography
                     variant="h1"
                     sx={{
-                      color: 'var(--text-primary)',
+                      color: '#2D3748',
                       mb: { xs: 2, md: 3 },
                       fontWeight: 800,
                     }}
@@ -217,10 +217,11 @@ const Hero = () => {
                     <Box
                       component="span"
                       sx={{
-                        background: 'var(--gradient-primary)',
+                        background: 'linear-gradient(135deg, #0096FF 0%, #7B68EE 50%, #20B2AA 100%)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
                         backgroundClip: 'text',
+                        filter: 'drop-shadow(0 0 8px rgba(0, 150, 255, 0.3))',
                       }}
                     >
                       Career
@@ -232,7 +233,7 @@ const Hero = () => {
                   <Typography
                     variant="h6"
                     sx={{
-                      color: 'var(--text-secondary)',
+                      color: '#4A5568',
                       mb: { xs: 3, md: 4 },
                       maxWidth: '600px',
                       lineHeight: 1.6,
@@ -348,16 +349,16 @@ const Hero = () => {
                           position: 'absolute',
                           inset: 0,
                           borderRadius: '50%',
-                          background: 'linear-gradient(90deg, rgba(30, 64, 175, 0.12) 0%, rgba(37, 99, 235, 0.12) 50%, rgba(59, 130, 246, 0.12) 100%)',
+                          background: 'linear-gradient(90deg, rgba(0, 245, 255, 0.15) 0%, rgba(168, 85, 247, 0.15) 50%, rgba(251, 191, 36, 0.15) 100%)',
                           backdropFilter: 'blur(4px)',
-                          border: '2px solid rgba(30, 64, 175, 0.25)',
-                          boxShadow: '0 16px 64px 0 rgba(30, 64, 175, 0.08)',
+                          border: '2px solid rgba(0, 245, 255, 0.3)',
+                          boxShadow: '0 16px 64px 0 rgba(0, 245, 255, 0.2)',
                           '&::after': {
                             content: '""',
                             position: 'absolute',
                             inset: 0,
                             borderRadius: '50%',
-                            background: 'radial-gradient(circle at 50% 50%, rgba(30, 64, 175, 0.15), transparent 70%)',
+                            background: 'radial-gradient(circle at 50% 50%, rgba(0, 245, 255, 0.2), transparent 70%)',
                           },
                         }}
                       />
@@ -366,9 +367,9 @@ const Hero = () => {
 
                   {/* Floating Elements */}
                   {[
-                    { icon: Psychology, label: 'AI', position: { top: '20%', left: '10%' }, color: '#1e40af' },
-                    { icon: TrendingUp, label: 'BC', position: { top: '50%', right: '10%' }, color: '#2563eb' },
-                    { icon: Rocket, label: 'ML', position: { bottom: '20%', left: '20%' }, color: '#3b82f6' },
+                    { icon: Psychology, label: 'AI', position: { top: '20%', left: '10%' }, color: '#00F5FF' },
+                    { icon: TrendingUp, label: 'BC', position: { top: '50%', right: '10%' }, color: '#FBBF24' },
+                    { icon: Rocket, label: 'ML', position: { bottom: '20%', left: '20%' }, color: '#A855F7' },
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -392,19 +393,19 @@ const Hero = () => {
                           width: { xs: 70, md: 90 },
                           height: { xs: 70, md: 90 },
                           borderRadius: 3,
-                          background: 'rgba(30, 64, 175, 0.06)',
+                          background: 'rgba(0, 245, 255, 0.08)',
                           backdropFilter: 'blur(20px)',
-                          border: '1px solid rgba(30, 64, 175, 0.15)',
+                          border: '1px solid rgba(0, 245, 255, 0.2)',
                           display: 'flex',
                           flexDirection: 'column',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          boxShadow: '0 8px 32px rgba(30, 64, 175, 0.08), inset 0 1px 0 rgba(30, 64, 175, 0.08)',
+                          boxShadow: '0 8px 32px rgba(0, 245, 255, 0.15), inset 0 1px 0 rgba(0, 245, 255, 0.1)',
                           gap: 1,
                           '&:hover': {
-                            background: 'rgba(30, 64, 175, 0.1)',
+                            background: 'rgba(0, 245, 255, 0.12)',
                             transform: 'scale(1.05)',
-                            boxShadow: '0 12px 40px rgba(30, 64, 175, 0.15), inset 0 1px 0 rgba(30, 64, 175, 0.15)',
+                            boxShadow: '0 12px 40px rgba(0, 245, 255, 0.25), inset 0 1px 0 rgba(0, 245, 255, 0.2)',
                           },
                           transition: 'all 0.3s ease',
                         }}

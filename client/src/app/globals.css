@@ -1,40 +1,97 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&family=Fira+Code:wght@300;400;500&display=swap');
 
-/* CSS Variables - Light Mode (Default) */
+/* CSS Variables - Light Mode (Default) - Clean & Readable Theme */
 :root {
-  --primary: #1E3A8A;
-  --secondary: #2563EB;
-  --background: #F9FAFB;
-  --surface: #FFFFFF;
-  --text-primary: #111827;
-  --text-secondary: #6B7280;
-  --border: #E5E7EB;
-  --accent: #FBBF24;
-  --gradient-primary: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
-  --gradient-secondary: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
+  /* Primary Colors */
+  --primary: #00D4FF; /* Cyan - AI/Data Processing */
+  --secondary: #7C3AED; /* Purple - Machine Learning */
+  --tertiary: #F59E0B; /* Amber - Blockchain/Crypto */
+  
+  /* Background & Surface */
+  --background: #FFFFFF;
+  --surface: #FAFAFA;
+  --surface-elevated: #F5F5F5;
+  
+  /* Text Colors - High Contrast for Readability */
+  --text-primary: #1A1A1A;
+  --text-secondary: #4D4D4D;
+  --text-accent: #222222;
+  
+  /* Border & Dividers */
+  --border: #E0E0E0;
+  --border-light: #F0F0F0;
+  
+  /* AI/ML Specific Colors */
+  --ai-neural: #00D4FF;
+  --ml-gradient: #7C3AED;
+  --blockchain-gold: #F59E0B;
+  --quantum-purple: #8B5CF6;
+  --data-green: #10B981;
+  --tech-blue: #3B82F6;
+  
+  /* Menu & Navigation Colors */
+  --menu-text: #222222;
+  --footer-text: #333333;
+  --footer-bg: #F5F5F5;
+  
+  /* Advanced Gradients */
+  --gradient-primary: linear-gradient(135deg, #00D4FF 0%, #7C3AED 50%, #8B5CF6 100%);
+  --gradient-secondary: linear-gradient(135deg, #F59E0B 0%, #EF4444 50%, #EC4899 100%);
+  --gradient-ai: linear-gradient(135deg, #00D4FF 0%, #0EA5E9 100%);
+  --gradient-ml: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
+  --gradient-blockchain: linear-gradient(135deg, #F59E0B 0%, #F97316 100%);
+  --gradient-neural: linear-gradient(45deg, #00D4FF 0%, #7C3AED 25%, #8B5CF6 50%, #EC4899 75%, #F59E0B 100%);
+  
+  /* Status Colors */
   --success: #10B981;
   --error: #EF4444;
   --warning: #F59E0B;
-  --info: #3B82F6;
-  --code-bg: #F3F4F6;
+  --info: #00D4FF;
+  --code-bg: #F8F8F8;
 }
 
-/* Dark Mode Variables */
+/* Dark Mode Variables - Futuristic AI/ML & Blockchain Theme */
 [data-theme="dark"] {
-  --primary: #2563EB;
-  --secondary: #1D4ED8;
-  --background: #111827;
-  --surface: #1F2937;
-  --text-primary: #F9FAFB;
-  --text-secondary: #9CA3AF;
-  --border: #374151;
-  --accent: #FACC15;
-  --gradient-primary: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
-  --gradient-secondary: linear-gradient(135deg, #FACC15 0%, #FBBF24 100%);
+  /* AI/ML Primary Colors - Dark Mode */
+  --primary: #00F5FF; /* Bright Cyan - AI Glow */
+  --secondary: #A855F7; /* Bright Purple - ML */
+  --tertiary: #FBBF24; /* Gold - Blockchain */
+  
+  /* Dark Backgrounds */
+  --background: #0A0A0F;
+  --surface: #1A1A2E;
+  --surface-elevated: #16213E;
+  
+  /* Dark Text */
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-accent: #E2E8F0;
+  
+  /* Dark Borders */
+  --border: #334155;
+  --border-light: #1E293B;
+  
+  /* AI/ML Dark Colors */
+  --ai-neural: #00F5FF;
+  --ml-gradient: #A855F7;
+  --blockchain-gold: #FBBF24;
+  --quantum-purple: #C084FC;
+  --data-green: #34D399;
+  --tech-blue: #60A5FA;
+  
+  /* Dark Mode Gradients */
+  --gradient-primary: linear-gradient(135deg, #00F5FF 0%, #A855F7 50%, #C084FC 100%);
+  --gradient-secondary: linear-gradient(135deg, #FBBF24 0%, #F97316 50%, #EC4899 100%);
+  --gradient-ai: linear-gradient(135deg, #00F5FF 0%, #0EA5E9 100%);
+  --gradient-ml: linear-gradient(135deg, #A855F7 0%, #C084FC 100%);
+  --gradient-blockchain: linear-gradient(135deg, #FBBF24 0%, #F97316 100%);
+  --gradient-neural: linear-gradient(45deg, #00F5FF 0%, #A855F7 25%, #C084FC 50%, #EC4899 75%, #FBBF24 100%);
+  
+  /* Dark Status Colors */
   --success: #34D399;
   --error: #F87171;
   --warning: #FBBF24;
-  --info: #60A5FA;
+  --info: #00F5FF;
   --code-bg: #1E293B;
 }
 
