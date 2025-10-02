@@ -126,7 +126,7 @@ const MenuBar = () => {
               boxShadow: isDark ? '0 4px 20px rgba(0, 245, 255, 0.3)' : '0 4px 20px rgba(0, 212, 255, 0.3)',
             }}
           >
-            Get Started
+            Register
           </Button>
         </ListItem>
       </List>
@@ -353,7 +353,7 @@ const MenuBar = () => {
                     transition: 'all 0.3s ease',
                   }}
                 >
-                  Get Started
+                  Register
                 </Button>
               </motion.div>
             )}

@@ -23,7 +23,7 @@ export default function Register() {
   };
 
   const handleContinueToAssessment = () => {
-    router.push('/profile');
+    router.push('/assessment');
   };
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -31,10 +31,14 @@ export default function Register() {
   const handleSignUpSubmit = (e) => {
     e.preventDefault();
     const newErrors = {};
+    const existingUser = JSON.parse(localStorage.getItem('userData'));
 
     if (!signUpData.fullName) newErrors.fullName = 'Full name is required';
     if (!signUpData.email) newErrors.email = 'Email is required';
     else if (!validateEmail(signUpData.email)) newErrors.email = 'Invalid email format';
+    else if (existingUser && existingUser.email === signUpData.email) {
+      newErrors.email = 'Email already exists. Please use a different email address.';
+    }
     if (!signUpData.password) newErrors.password = 'Password is required';
     else if (signUpData.password.length < 6) newErrors.password = 'Password must be at least 6 characters';
     if (!signUpData.confirmPassword) newErrors.confirmPassword = 'Confirm password is required';
@@ -52,6 +56,11 @@ export default function Register() {
         setIsRightPanelActive(false);
         document.getElementById('container').classList.remove('right-panel-active');
       }, 2000);
+    } else {
+      setPopupType('error');
+      setPopupMessage('Please fix the errors and try again.');
+      setShowPopup(true);
+      setTimeout(() => setShowPopup(false), 3000);
     }
   };
 
@@ -64,23 +73,30 @@ export default function Register() {
     if (!signInData.password) newErrors.password = 'Password is required';
 
     if (!storedUser) {
-      newErrors.general = 'You must sign up first.';
-    } else if (storedUser.email !== signInData.email || storedUser.password !== signInData.password) {
-      newErrors.general = 'Invalid email or password.';
-    }
-
-    setErrors(newErrors);
-
-    if (Object.keys(newErrors).length === 0) {
-      localStorage.setItem('currentUser', JSON.stringify({ email: signInData.email, fullName: storedUser.fullName }));
-      setPopupType('signin-success');
-      setPopupMessage(`Welcome back, ${storedUser.fullName}!`);
+      setPopupType('error');
+      setPopupMessage('No account found. Please sign up first.');
       setShowPopup(true);
-      setTimeout(() => {
-        setShowPopup(false);
-        setShowSuccessOptions(true);
-      }, 2000);
+      setTimeout(() => setShowPopup(false), 3000);
+      return;
     }
+    
+    if (storedUser.email !== signInData.email || storedUser.password !== signInData.password) {
+      setPopupType('error');
+      setPopupMessage('Invalid email or password. Please try again.');
+      setShowPopup(true);
+      setTimeout(() => setShowPopup(false), 3000);
+      return;
+    }
+
+    // Successful login - show success options
+    localStorage.setItem('currentUser', JSON.stringify({ email: signInData.email, fullName: storedUser.fullName }));
+    setPopupType('signin-success');
+    setPopupMessage(`Welcome back, ${storedUser.fullName}!`);
+    setShowPopup(true);
+    setTimeout(() => {
+      setShowPopup(false);
+      setShowSuccessOptions(true);
+    }, 1000);
   };
 
   useEffect(() => {
@@ -807,7 +823,7 @@ export default function Register() {
         <div className="popup-overlay">
           <div className="popup">
             <div className="popup-content">
-              <h2>{popupType === 'success' ? '🎉 Success!' : '✨ Welcome!'}</h2>
+              <h2>{popupType === 'success' ? '🎉 Success!' : popupType === 'error' ? '❌ Error!' : '✨ Welcome!'}</h2>
               <p>{popupMessage}</p>
             </div>
           </div>

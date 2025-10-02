@@ -1,10 +1,12 @@
 'use client';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Box, Typography, Button } from '@mui/material';
 import { ArrowBack, ArrowForward, Home, Person, Assessment, School, Work, Security, CheckCircle } from '@mui/icons-material';
 
 const DemoPage = () => {
   const [currentPage, setCurrentPage] = useState(0);
+  const router = useRouter();
 
   const demoPages = [
     {
@@ -442,21 +444,25 @@ const DemoPage = () => {
               ))}
             </Box>
             <Box sx={{ display: 'flex', gap: 4, justifyContent: 'center', flexDirection: { xs: 'column', sm: 'row' } }}>
-              <Button variant="contained" sx={{ 
-                background: 'linear-gradient(45deg, #80D8FF, #B0B0B0)', 
-                color: '#121212', 
-                px: 8, 
-                py: 3,
-                fontSize: '1.3rem',
-                fontWeight: 700,
-                borderRadius: 3,
-                boxShadow: '0 8px 25px rgba(128, 216, 255, 0.3)',
-                '&:hover': { 
-                  background: 'linear-gradient(45deg, #B0B0B0, #80D8FF)',
-                  transform: 'translateY(-2px)',
-                  boxShadow: '0 12px 35px rgba(176, 176, 176, 0.4)'
-                }
-              }}>
+              <Button 
+                variant="contained" 
+                onClick={() => router.push('/assessment')}
+                sx={{ 
+                  background: 'linear-gradient(45deg, #80D8FF, #B0B0B0)', 
+                  color: '#121212', 
+                  px: 8, 
+                  py: 3,
+                  fontSize: '1.3rem',
+                  fontWeight: 700,
+                  borderRadius: 3,
+                  boxShadow: '0 8px 25px rgba(128, 216, 255, 0.3)',
+                  '&:hover': { 
+                    background: 'linear-gradient(45deg, #B0B0B0, #80D8FF)',
+                    transform: 'translateY(-2px)',
+                    boxShadow: '0 12px 35px rgba(176, 176, 176, 0.4)'
+                  }
+                }}
+              >
                 Start Free Assessment
               </Button>
               <Button variant="outlined" sx={{ 
