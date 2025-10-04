@@ -53,7 +53,7 @@ const CertificationPage = () => {
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent'
           }}>
-            NAVOTHHAN
+            KaushalX
           </Typography>
           <Typography variant="h6" sx={{ color: '#ffffff', fontWeight: 600, textShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>
             Step 3: Blockchain-Verified Credentials

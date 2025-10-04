@@ -20,7 +20,7 @@ const SuccessPage = () => {
       salaryIncrease: '+150%',
       skills: ['Python', 'TensorFlow', 'Machine Learning', 'Data Science'],
       color: '#00D4FF',
-      testimonial: "Navothhan transformed my career completely. The AI-powered learning path was exactly what I needed to transition from marketing to ML engineering."
+      testimonial: "KaushalX transformed my career completely. The AI-powered learning path was exactly what I needed to transition from marketing to ML engineering."
     },
     {
       id: 2,
@@ -44,7 +44,7 @@ const SuccessPage = () => {
       salaryIncrease: '+180%',
       skills: ['Solidity', 'Web3', 'Smart Contracts', 'DeFi'],
       color: '#FBBF24',
-      testimonial: "From teaching to blockchain development - Navothhan made the impossible possible with their structured learning approach."
+      testimonial: "From teaching to blockchain development - KaushalX made the impossible possible with their structured learning approach."
     }
   ];
 
@@ -65,7 +65,7 @@ const SuccessPage = () => {
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent'
           }}>
-            NAVOTHHAN
+            KaushalX
           </Typography>
           <Button
             startIcon={<Home />}
@@ -334,7 +334,7 @@ const SuccessPage = () => {
               maxWidth: '600px',
               mx: 'auto'
             }}>
-              Join thousands of professionals who have successfully transformed their careers with Navothhan's AI-powered reskilling platform.
+              Join thousands of professionals who have successfully transformed their careers with KaushalX's AI-powered reskilling platform.
             </Typography>
             <Button
               variant="contained"

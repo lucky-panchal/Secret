@@ -166,7 +166,7 @@ const MenuBar = () => {
                 letterSpacing: '-0.5px',
               }}
             >
-              CareerAI
+              KaushalX
             </Typography>
           </Box>
 
