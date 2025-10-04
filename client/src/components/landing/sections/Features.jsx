@@ -56,7 +56,7 @@ const Features = () => {
         id="features"
         sx={{
           py: { xs: 6, md: 10 },
-          background: 'var(--background)',
+          background: isDark ? 'var(--background)' : '#f8fafc',
           position: 'relative',
         }}
       >
@@ -86,7 +86,7 @@ const Features = () => {
               <Typography
                 variant="h2"
                 sx={{
-                  color: 'var(--text-primary)',
+                  color: isDark ? 'var(--text-primary)' : '#2d3748',
                   fontWeight: 700,
                   mb: { xs: 2, md: 3 },
                 }}
@@ -96,7 +96,7 @@ const Features = () => {
               <Typography
                 variant="h6"
                 sx={{
-                  color: 'var(--text-secondary)',
+                  color: isDark ? 'var(--text-secondary)' : '#4a5568',
                   maxWidth: '600px',
                   mx: 'auto',
                   lineHeight: 1.6,

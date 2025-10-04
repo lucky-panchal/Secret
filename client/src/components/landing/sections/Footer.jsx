@@ -33,8 +33,7 @@ const Footer = () => {
         id="contact"
         sx={{
           py: { xs: 8, md: 12 },
-          background: 'var(--background)',
-
+          background: isDark ? 'var(--background)' : '#f8fafc',
           position: 'relative',
           overflow: 'hidden',
         }}
@@ -44,7 +43,7 @@ const Footer = () => {
           sx={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(135deg, #030303 0%, #0a0a0f 25%, #1a1a1f 50%, #0a0a0f 75%, #030303 100%)',
+            background: isDark ? 'linear-gradient(135deg, #030303 0%, #0a0a0f 25%, #1a1a1f 50%, #0a0a0f 75%, #030303 100%)' : 'linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 25%, #94a3b8 50%, #cbd5e1 75%, #e2e8f0 100%)',
             overflow: 'hidden',
           }}
         >
@@ -52,7 +51,7 @@ const Footer = () => {
             sx={{
               position: 'absolute',
               inset: 0,
-              background: 'linear-gradient(to bottom right, rgba(99, 102, 241, 0.05) 0%, transparent 50%, rgba(244, 63, 94, 0.05) 100%)',
+              background: isDark ? 'linear-gradient(to bottom right, rgba(99, 102, 241, 0.05) 0%, transparent 50%, rgba(244, 63, 94, 0.05) 100%)' : 'linear-gradient(to bottom right, rgba(25, 118, 210, 0.03) 0%, transparent 50%, rgba(33, 150, 243, 0.03) 100%)',
               filter: 'blur(48px)',
             }}
           />
@@ -171,35 +170,25 @@ const Footer = () => {
         </Box>
 
         <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-          >
-            <Box sx={{ textAlign: 'center' }}>
-              {/* Main CTA Title */}
-              <Typography
-                variant="h2"
-                sx={{
-                  color: '#f8fafc',
-                  fontWeight: 700,
-                  mb: { xs: 2, md: 3 },
-                  letterSpacing: '-0.025em',
-                  background: 'linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
-                Stay Relevant. Stay Future-Proof.
-              </Typography>
+          <Box sx={{ textAlign: 'center' }}>
+            {/* Main CTA Title */}
+            <Typography
+              variant="h3"
+              sx={{
+                color: isDark ? '#f8fafc' : '#2d3748',
+                fontWeight: 700,
+                mb: { xs: 2, md: 3 },
+                letterSpacing: '-0.025em',
+              }}
+            >
+              Stay Relevant. Stay Future-Proof
+            </Typography>
 
               {/* Subtitle */}
               <Typography
                 variant="h6"
                 sx={{
-                  color: '#cbd5e1',
+                  color: isDark ? '#cbd5e1' : '#4a5568',
                   mb: { xs: 4, md: 6 },
                   maxWidth: '600px',
                   mx: 'auto',
@@ -211,11 +200,7 @@ const Footer = () => {
               </Typography>
 
               {/* CTA Button */}
-              <motion.div
-                variants={buttonVariants}
-                whileHover="hover"
-                whileTap="tap"
-              >
+              <Box>
                 <Button
                   variant="contained"
                   size="large"
@@ -242,14 +227,14 @@ const Footer = () => {
                 >
                   Join the Reskilling Revolution
                 </Button>
-              </motion.div>
+              </Box>
 
               {/* Footer Info */}
               <Box sx={{ mt: { xs: 6, md: 8 } }}>
                 <Typography
                   variant="body2"
                   sx={{
-                    color: '#94a3b8',
+                    color: isDark ? '#94a3b8' : '#6b7280',
                     mb: 2,
                     fontWeight: 400,
                   }}
@@ -272,12 +257,12 @@ const Footer = () => {
                       component="a"
                       href="#"
                       sx={{
-                        color: '#cbd5e1',
+                        color: isDark ? '#cbd5e1' : '#4a5568',
                         textDecoration: 'none',
                         fontWeight: 500,
                         transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                         '&:hover': {
-                          color: '#6366f1',
+                          color: isDark ? '#6366f1' : '#1976d2',
                           textDecoration: 'none',
                         },
                       }}
@@ -287,8 +272,7 @@ const Footer = () => {
                   ))}
                 </Box>
               </Box>
-            </Box>
-          </motion.div>
+          </Box>
         </Container>
 
         {/* Floating Elements */}
@@ -317,8 +301,8 @@ const Footer = () => {
                 width: { xs: 60, md: 80 },
                 height: { xs: 60, md: 80 },
                 borderRadius: '50%',
-                background: 'rgba(99, 102, 241, 0.1)',
-                border: '1px solid rgba(148, 163, 184, 0.2)',
+                background: isDark ? 'rgba(99, 102, 241, 0.1)' : 'rgba(25, 118, 210, 0.05)',
+                border: isDark ? '1px solid rgba(148, 163, 184, 0.2)' : '1px solid rgba(148, 163, 184, 0.1)',
                 backdropFilter: 'blur(20px)',
               }}
             />

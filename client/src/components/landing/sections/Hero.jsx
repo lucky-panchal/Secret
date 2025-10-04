@@ -49,7 +49,7 @@ const Hero = () => {
           background: 'linear-gradient(135deg, #FAFBFF 0%, #F0F8FF 25%, #E6F3FF 50%, #F5FAFF 75%, #FAFBFF 100%)',
           position: 'relative',
           overflow: 'hidden',
-          pt: { xs: 8, md: 12 },
+          pt: { xs: 10, md: 12 },
           pb: { xs: 4, md: 8 },
         }}
       >
@@ -58,7 +58,7 @@ const Hero = () => {
           sx={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(135deg, #0A0A0F 0%, #1A1A2E 25%, #16213E 50%, #1A1A2E 75%, #0A0A0F 100%)',
+            background: isDark ? 'linear-gradient(135deg, #0A0A0F 0%, #1A1A2E 25%, #16213E 50%, #1A1A2E 75%, #0A0A0F 100%)' : 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #cbd5e1 50%, #e2e8f0 75%, #f8fafc 100%)',
             overflow: 'hidden',
           }}
         >
@@ -66,7 +66,7 @@ const Hero = () => {
             sx={{
               position: 'absolute',
               inset: 0,
-              background: 'linear-gradient(to bottom right, rgba(0, 245, 255, 0.08) 0%, transparent 50%, rgba(251, 191, 36, 0.08) 100%)',
+              background: isDark ? 'linear-gradient(to bottom right, rgba(0, 245, 255, 0.08) 0%, transparent 50%, rgba(251, 191, 36, 0.08) 100%)' : 'linear-gradient(to bottom right, rgba(25, 118, 210, 0.05) 0%, transparent 50%, rgba(33, 150, 243, 0.05) 100%)',
               filter: 'blur(48px)',
             }}
           />
@@ -91,10 +91,10 @@ const Hero = () => {
                 width: '100%',
                 height: '100%',
                 borderRadius: '50%',
-                background: 'linear-gradient(to right, rgba(0, 245, 255, 0.2), transparent)',
+                background: isDark ? 'linear-gradient(to right, rgba(0, 245, 255, 0.2), transparent)' : 'linear-gradient(to right, rgba(25, 118, 210, 0.1), transparent)',
                 backdropFilter: 'blur(2px)',
-                border: '2px solid rgba(0, 245, 255, 0.3)',
-                boxShadow: '0 8px 32px 0 rgba(0, 245, 255, 0.2)',
+                border: isDark ? '2px solid rgba(0, 245, 255, 0.3)' : '2px solid rgba(25, 118, 210, 0.2)',
+                boxShadow: isDark ? '0 8px 32px 0 rgba(0, 245, 255, 0.2)' : '0 8px 32px 0 rgba(25, 118, 210, 0.1)',
                 position: 'relative',
               }}
             >
@@ -103,7 +103,7 @@ const Hero = () => {
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '50%',
-                  background: 'radial-gradient(circle at 50% 50%, rgba(0, 245, 255, 0.3), transparent 70%)',
+                  background: isDark ? 'radial-gradient(circle at 50% 50%, rgba(0, 245, 255, 0.3), transparent 70%)' : 'radial-gradient(circle at 50% 50%, rgba(25, 118, 210, 0.2), transparent 70%)',
                 }}
               />
             </motion.div>
@@ -128,10 +128,10 @@ const Hero = () => {
                 width: '100%',
                 height: '100%',
                 borderRadius: '50%',
-                background: 'linear-gradient(to right, rgba(168, 85, 247, 0.2), transparent)',
+                background: isDark ? 'linear-gradient(to right, rgba(168, 85, 247, 0.2), transparent)' : 'linear-gradient(to right, rgba(33, 150, 243, 0.1), transparent)',
                 backdropFilter: 'blur(2px)',
-                border: '2px solid rgba(168, 85, 247, 0.3)',
-                boxShadow: '0 8px 32px 0 rgba(168, 85, 247, 0.2)',
+                border: isDark ? '2px solid rgba(168, 85, 247, 0.3)' : '2px solid rgba(33, 150, 243, 0.2)',
+                boxShadow: isDark ? '0 8px 32px 0 rgba(168, 85, 247, 0.2)' : '0 8px 32px 0 rgba(33, 150, 243, 0.1)',
                 position: 'relative',
               }}
             >
@@ -140,7 +140,7 @@ const Hero = () => {
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '50%',
-                  background: 'radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.3), transparent 70%)',
+                  background: isDark ? 'radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.3), transparent 70%)' : 'radial-gradient(circle at 50% 50%, rgba(33, 150, 243, 0.2), transparent 70%)',
                 }}
               />
             </motion.div>
@@ -165,10 +165,10 @@ const Hero = () => {
                 width: '100%',
                 height: '100%',
                 borderRadius: '50%',
-                background: 'linear-gradient(to right, rgba(251, 191, 36, 0.2), transparent)',
+                background: isDark ? 'linear-gradient(to right, rgba(251, 191, 36, 0.2), transparent)' : 'linear-gradient(to right, rgba(3, 169, 244, 0.1), transparent)',
                 backdropFilter: 'blur(2px)',
-                border: '2px solid rgba(251, 191, 36, 0.3)',
-                boxShadow: '0 8px 32px 0 rgba(251, 191, 36, 0.2)',
+                border: isDark ? '2px solid rgba(251, 191, 36, 0.3)' : '2px solid rgba(3, 169, 244, 0.2)',
+                boxShadow: isDark ? '0 8px 32px 0 rgba(251, 191, 36, 0.2)' : '0 8px 32px 0 rgba(3, 169, 244, 0.1)',
                 position: 'relative',
               }}
             >
@@ -177,7 +177,7 @@ const Hero = () => {
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '50%',
-                  background: 'radial-gradient(circle at 50% 50%, rgba(251, 191, 36, 0.3), transparent 70%)',
+                  background: isDark ? 'radial-gradient(circle at 50% 50%, rgba(251, 191, 36, 0.3), transparent 70%)' : 'radial-gradient(circle at 50% 50%, rgba(3, 169, 244, 0.2), transparent 70%)',
                 }}
               />
             </motion.div>
@@ -189,74 +189,71 @@ const Hero = () => {
           sx={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(180deg, rgba(3, 3, 3, 0.8) 0%, transparent 50%, #030303 100%)',
+            background: isDark ? 'linear-gradient(180deg, rgba(3, 3, 3, 0.8) 0%, transparent 50%, #030303 100%)' : 'linear-gradient(180deg, rgba(248, 250, 252, 0.8) 0%, transparent 50%, rgba(248, 250, 252, 0.9) 100%)',
             pointerEvents: 'none',
           }}
         />
 
 
-        <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1 }}>
-          <Grid container spacing={{ xs: 4, md: 8 }} alignItems="center">
+        <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
+          <Grid container spacing={{ xs: 4, md: 6 }} alignItems="center" justifyContent="center">
             {/* Left Column - Content */}
-            <Grid item xs={12} md={6}>
-              <motion.div
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-              >
-                <motion.div variants={itemVariants}>
+            <Grid item xs={12} md={6} sx={{ textAlign: { xs: 'center', md: 'left' } }}>
+              <Box>
+                <Box>
                   <Typography
-                    variant="h1"
+                    variant="h6"
                     sx={{
-                      color: '#2D3748',
+                      color: isDark ? '#ffffff' : '#2D3748',
                       mb: { xs: 2, md: 3 },
                       fontWeight: 800,
+                      fontSize: { xs: '2.5rem', sm: '3rem', md: '3.5rem' },
+                      lineHeight: 1.2,
                     }}
                   >
                     Future-Proof Your{' '}
                     <Box
                       component="span"
                       sx={{
-                        background: 'linear-gradient(135deg, #0096FF 0%, #7B68EE 50%, #20B2AA 100%)',
+                        background: 'linear-gradient(135deg, #1976d2 0%, #2196f3 50%, #03a9f4 100%)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
                         backgroundClip: 'text',
-                        filter: 'drop-shadow(0 0 8px rgba(0, 150, 255, 0.3))',
+                        display: 'inline-block',
                       }}
                     >
                       Career
                     </Box>
                   </Typography>
-                </motion.div>
+                </Box>
 
-                <motion.div variants={itemVariants}>
+                <Box>
                   <Typography
                     variant="h6"
                     sx={{
-                      color: '#4A5568',
+                      color: isDark ? '#e2e8f0' : '#4A5568',
                       mb: { xs: 3, md: 4 },
-                      maxWidth: '600px',
+                      maxWidth: { xs: '100%', md: '500px' },
                       lineHeight: 1.6,
+                      fontSize: { xs: '1.1rem', md: '1.25rem' },
+                      mx: { xs: 'auto', md: 0 },
                     }}
                   >
                     Join the world's first AI-driven reskilling platform. Transform from vulnerable to future-proof with personalized learning paths, blockchain certifications, and guaranteed job placement.
                   </Typography>
-                </motion.div>
+                </Box>
 
-                <motion.div variants={itemVariants}>
+                <Box>
                   <Box
                     sx={{
                       display: 'flex',
                       gap: { xs: 2, md: 3 },
                       flexDirection: { xs: 'column', sm: 'row' },
-                      alignItems: { xs: 'stretch', sm: 'center' },
+                      alignItems: 'center',
+                      justifyContent: { xs: 'center', md: 'flex-start' },
                     }}
                   >
-                    <motion.div
-                      variants={buttonVariants}
-                      whileHover="hover"
-                      whileTap="tap"
-                    >
+                    <Box>
                       <Button
                         variant="contained"
                         size="large"
@@ -277,13 +274,9 @@ const Hero = () => {
                       >
                         Get Started
                       </Button>
-                    </motion.div>
+                    </Box>
 
-                    <motion.div
-                      variants={buttonVariants}
-                      whileHover="hover"
-                      whileTap="tap"
-                    >
+                    <Box>
                       <Button
                         variant="outlined"
                         size="large"
@@ -306,25 +299,22 @@ const Hero = () => {
                       >
                         Demo
                       </Button>
-                    </motion.div>
+                    </Box>
                   </Box>
-                </motion.div>
-              </motion.div>
+                </Box>
+              </Box>
             </Grid>
 
             {/* Right Column - Elegant Geometric Illustration */}
-            <Grid item xs={12} md={6}>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.5 }}
-              >
+            <Grid item xs={12} md={6} sx={{ display: 'flex', justifyContent: 'center' }}>
+              <Box>
                 <Box
                   sx={{
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    height: { xs: 300, md: 500 },
+                    height: { xs: 300, md: 450 },
+                    width: '100%',
                     position: 'relative',
                   }}
                 >
@@ -341,7 +331,7 @@ const Hero = () => {
                         rotate: [0, 5, 0]
                       }}
                       transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                      style={{ width: 300, height: 300 }}
+                      style={{ width: 280, height: 280 }}
                       className="relative"
                     >
                       <Box
@@ -349,16 +339,16 @@ const Hero = () => {
                           position: 'absolute',
                           inset: 0,
                           borderRadius: '50%',
-                          background: 'linear-gradient(90deg, rgba(0, 245, 255, 0.15) 0%, rgba(168, 85, 247, 0.15) 50%, rgba(251, 191, 36, 0.15) 100%)',
+                          background: isDark ? 'linear-gradient(90deg, rgba(0, 245, 255, 0.15) 0%, rgba(168, 85, 247, 0.15) 50%, rgba(251, 191, 36, 0.15) 100%)' : 'linear-gradient(90deg, rgba(25, 118, 210, 0.1) 0%, rgba(33, 150, 243, 0.1) 50%, rgba(3, 169, 244, 0.1) 100%)',
                           backdropFilter: 'blur(4px)',
-                          border: '2px solid rgba(0, 245, 255, 0.3)',
-                          boxShadow: '0 16px 64px 0 rgba(0, 245, 255, 0.2)',
+                          border: isDark ? '2px solid rgba(0, 245, 255, 0.3)' : '2px solid rgba(25, 118, 210, 0.2)',
+                          boxShadow: isDark ? '0 16px 64px 0 rgba(0, 245, 255, 0.2)' : '0 16px 64px 0 rgba(25, 118, 210, 0.1)',
                           '&::after': {
                             content: '""',
                             position: 'absolute',
                             inset: 0,
                             borderRadius: '50%',
-                            background: 'radial-gradient(circle at 50% 50%, rgba(0, 245, 255, 0.2), transparent 70%)',
+                            background: isDark ? 'radial-gradient(circle at 50% 50%, rgba(0, 245, 255, 0.2), transparent 70%)' : 'radial-gradient(circle at 50% 50%, rgba(25, 118, 210, 0.15), transparent 70%)',
                           },
                         }}
                       />
@@ -367,9 +357,9 @@ const Hero = () => {
 
                   {/* Floating Elements */}
                   {[
-                    { icon: Psychology, label: 'AI', position: { top: '20%', left: '10%' }, color: '#00F5FF' },
-                    { icon: TrendingUp, label: 'BC', position: { top: '50%', right: '10%' }, color: '#FBBF24' },
-                    { icon: Rocket, label: 'ML', position: { bottom: '20%', left: '20%' }, color: '#A855F7' },
+                    { icon: Psychology, label: 'AI', position: { top: '15%', left: '5%' }, color: '#1976d2' },
+                    { icon: TrendingUp, label: 'BC', position: { top: '45%', right: '5%' }, color: '#2196f3' },
+                    { icon: Rocket, label: 'ML', position: { bottom: '15%', left: '15%' }, color: '#03a9f4' },
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -390,38 +380,31 @@ const Hero = () => {
                     >
                       <Box
                         sx={{
-                          width: { xs: 70, md: 90 },
-                          height: { xs: 70, md: 90 },
+                          width: { xs: 70, md: 80 },
+                          height: { xs: 70, md: 80 },
                           borderRadius: 3,
-                          background: 'rgba(0, 245, 255, 0.08)',
-                          backdropFilter: 'blur(20px)',
-                          border: '1px solid rgba(0, 245, 255, 0.2)',
+                          background: isDark ? 'rgba(25, 118, 210, 0.1)' : 'rgba(255, 255, 255, 0.9)',
+                          backdropFilter: 'blur(10px)',
+                          border: isDark ? '1px solid rgba(25, 118, 210, 0.2)' : '1px solid rgba(25, 118, 210, 0.3)',
                           display: 'flex',
                           flexDirection: 'column',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          boxShadow: '0 8px 32px rgba(0, 245, 255, 0.15), inset 0 1px 0 rgba(0, 245, 255, 0.1)',
+                          boxShadow: isDark ? '0 4px 16px rgba(25, 118, 210, 0.15)' : '0 4px 16px rgba(0, 0, 0, 0.1)',
                           gap: 1,
-                          '&:hover': {
-                            background: 'rgba(0, 245, 255, 0.12)',
-                            transform: 'scale(1.05)',
-                            boxShadow: '0 12px 40px rgba(0, 245, 255, 0.25), inset 0 1px 0 rgba(0, 245, 255, 0.2)',
-                          },
                           transition: 'all 0.3s ease',
                         }}
                       >
                         <item.icon sx={{ 
-                          fontSize: { xs: 24, md: 30 }, 
+                          fontSize: { xs: 24, md: 28 }, 
                           color: item.color,
-                          filter: 'drop-shadow(0 0 6px currentColor)',
                         }} />
                         <Typography
                           variant="caption"
                           sx={{ 
-                            color: '#ffffff', 
-                            fontWeight: 700,
-                            fontSize: { xs: '0.8rem', md: '0.9rem' },
-                            textShadow: '0 0 8px rgba(255,255,255,0.4)',
+                            color: isDark ? item.color : '#1976d2', 
+                            fontWeight: 600,
+                            fontSize: { xs: '0.75rem', md: '0.85rem' },
                           }}
                         >
                           {item.label}
@@ -430,7 +413,7 @@ const Hero = () => {
                     </motion.div>
                   ))}
                 </Box>
-              </motion.div>
+              </Box>
             </Grid>
           </Grid>
         </Container>
