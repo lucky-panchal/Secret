@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { AppBar, Toolbar, Typography, Button, Drawer, List, ListItem, ListItemText, IconButton, Box } from '@mui/material';
-import { Menu, Close, School, Dashboard, Person } from '@mui/icons-material';
+import { Menu, Close, School, Dashboard, Person, Policy } from '@mui/icons-material';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useTheme } from '@/contexts/ThemeContext';
@@ -15,6 +15,7 @@ const Navigation = () => {
     { text: 'Dashboard', icon: <Dashboard />, href: '/dashboard' },
     { text: 'Courses', icon: <School />, href: '/courses' },
     { text: 'Profile', icon: <Person />, href: '/profile' },
+    { text: 'Privacy Policy', icon: <Policy />, href: '/privacy-policy' },
   ];
 
   return (
