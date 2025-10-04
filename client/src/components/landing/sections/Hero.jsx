@@ -3,9 +3,11 @@ import { Box, Container, Typography, Button, Grid } from '@mui/material';
 import { motion } from 'framer-motion';
 import { PlayArrow, Rocket, Psychology, TrendingUp } from '@mui/icons-material';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useRouter } from 'next/navigation';
 
 const Hero = () => {
   const { isDark } = useTheme();
+  const router = useRouter();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -258,7 +260,7 @@ const Hero = () => {
                         variant="contained"
                         size="large"
                         startIcon={<Rocket />}
-                        onClick={() => window.location.href = '/register'}
+                        onClick={() => router.push('/register')}
                         sx={{
                           background: 'var(--gradient-primary)',
                           color: 'white',
@@ -281,7 +283,7 @@ const Hero = () => {
                         variant="outlined"
                         size="large"
                         startIcon={<PlayArrow />}
-                        onClick={() => window.location.href = '/demo'}
+                        onClick={() => router.push('/demo')}
                         sx={{
                           borderColor: 'var(--border)',
                           color: 'var(--text-primary)',
