@@ -6,8 +6,8 @@ const AgentInteractiveEffects = () => {
     const style = document.createElement('style');
     style.textContent = `
       @keyframes agentGlow {
-        0%, 100% { box-shadow: 0 0 20px rgba(0, 188, 212, 0.1); }
-        50% { box-shadow: 0 0 40px rgba(0, 188, 212, 0.3); }
+        0%, 100% { box-shadow: 0 0 5px rgba(0, 188, 212, 0.05); }
+        50% { box-shadow: 0 0 10px rgba(0, 188, 212, 0.1); }
       }
       
       @keyframes agentPulse {
@@ -22,7 +22,7 @@ const AgentInteractiveEffects = () => {
       
       .agent-interactive:hover {
         animation: agentPulse 0.6s ease-in-out;
-        box-shadow: 0 0 30px rgba(0, 188, 212, 0.4) !important;
+        box-shadow: 0 0 10px rgba(0, 188, 212, 0.15) !important;
       }
       
       .MuiButton-root {
@@ -30,7 +30,7 @@ const AgentInteractiveEffects = () => {
       }
       
       .MuiButton-root:hover {
-        box-shadow: 0 8px 25px rgba(0, 188, 212, 0.2);
+        box-shadow: 0 4px 12px rgba(0, 188, 212, 0.1);
       }
       
       .MuiPaper-root {
@@ -38,7 +38,7 @@ const AgentInteractiveEffects = () => {
       }
       
       .MuiPaper-root:hover {
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), 0 0 20px rgba(0, 188, 212, 0.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 188, 212, 0.05);
       }
     `;
     document.head.appendChild(style);
