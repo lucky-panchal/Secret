@@ -304,8 +304,8 @@ const DemoPage = () => {
 
       case 'success':
         return (
-          <Box sx={{ height: '100%', py: 2 }}>
-            <Box sx={{ textAlign: 'center', mb: 4 }}>
+          <Box sx={{ height: 'calc(100vh - 100px)', py: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+            <Box sx={{ textAlign: 'center', mb: 2 }}>
               <Typography sx={{ 
                 color: '#FDFBD4 !important',
                 fontWeight: 700, 
@@ -321,7 +321,7 @@ const DemoPage = () => {
                 {page.content}
               </Typography>
             </Box>
-            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 3 }}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 2, flex: 1, alignItems: 'start' }}>
               {page.stories.map((story, index) => (
                 <Box key={index} sx={{ 
                   p: 3, 
@@ -362,12 +362,13 @@ const DemoPage = () => {
                         px: 1, 
                         py: 0.5, 
                         background: '#FDFBD4', 
-                        color: '#28282B', 
                         borderRadius: 1,
                         fontSize: '0.7rem',
                         fontWeight: 600
                       }}>
-                        {skill}
+                        <span style={{ color: '#000000', fontSize: '0.7rem', fontWeight: 600 }}>
+                          {skill}
+                        </span>
                       </Box>
                     ))}
                   </Box>
@@ -480,7 +481,6 @@ const DemoPage = () => {
         right: 0, 
         zIndex: 1000,
         background: '#28282B',
-        borderBottom: '1px solid #FDFBD4',
         px: { xs: 2, md: 4 },
         py: 2,
         height: '60px'
@@ -529,14 +529,14 @@ const DemoPage = () => {
       {/* Content */}
       <Box sx={{ 
         pt: '60px', 
-        pb: '60px', 
+        pb: '20px', 
         px: { xs: 2, md: 3 }, 
         height: '100vh', 
         overflow: 'hidden',
         display: 'flex',
         alignItems: 'center'
       }}>
-        <Box sx={{ maxWidth: '1400px', mx: 'auto', width: '100%', height: 'calc(100vh - 120px)' }}>
+        <Box sx={{ maxWidth: '1400px', mx: 'auto', width: '100%', height: 'calc(100vh - 80px)' }}>
           {renderPageContent(demoPages[currentPage])}
         </Box>
       </Box>
@@ -544,14 +544,14 @@ const DemoPage = () => {
       {/* Navigation */}
       <Box sx={{ 
         position: 'fixed', 
-        bottom: 0, 
+        bottom: '20px', 
         left: 0, 
         right: 0,
         background: '#28282B',
-        borderTop: '1px solid #FDFBD4',
         px: { xs: 2, md: 4 },
         py: 2,
-        height: '60px'
+        height: '60px',
+        zIndex: 1000
       }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1400px', mx: 'auto' }}>
           <Button
