@@ -164,8 +164,8 @@ export default function Register() {
   return (
     <div data-theme={isDark ? 'dark' : 'light'}>
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;600;700&display=swap');
 
         * {
           box-sizing: border-box;
@@ -184,7 +184,7 @@ export default function Register() {
           align-items: center;
           height: 100vh;
           margin: 0;
-          font-family: 'Space Grotesk', 'JetBrains Mono', monospace;
+          font-family: 'Inter', 'Roboto', 'Helvetica', sans-serif;
           overflow: hidden;
           position: relative;
         }
@@ -263,7 +263,7 @@ export default function Register() {
           border-radius: 8px;
           font-weight: 500;
           font-size: 12px;
-          font-family: 'JetBrains Mono', monospace;
+          font-family: 'Inter', 'Roboto', 'Helvetica', sans-serif;
           cursor: pointer;
           transition: all 0.3s ease;
           text-decoration: none !important;
@@ -386,7 +386,7 @@ export default function Register() {
 
 
         h1 {
-          font-family: 'Space Grotesk', sans-serif;
+          font-family: 'Merriweather', 'Lora', serif;
           font-weight: 600;
           margin: 0 0 24px;
           color: var(--text-primary);
@@ -404,7 +404,7 @@ export default function Register() {
           max-width: 280px;
           font-size: 13px;
           font-weight: 400;
-          font-family: 'JetBrains Mono', monospace;
+          font-family: 'Inter', 'Roboto', 'Helvetica', sans-serif;
           color: var(--text-primary);
           transition: all 0.3s ease;
         }
@@ -428,7 +428,7 @@ export default function Register() {
           color: #ffffff;
           font-size: 13px;
           font-weight: 600;
-          font-family: 'Space Grotesk', sans-serif;
+          font-family: 'Inter', 'Roboto', 'Helvetica', sans-serif;
           padding: 12px 32px;
           letter-spacing: 0.5px;
           transition: all 0.3s ease;
@@ -567,7 +567,7 @@ export default function Register() {
 
         .overlay h1 {
           color: #ffffff;
-          font-family: 'Space Grotesk', sans-serif;
+          font-family: 'Merriweather', 'Lora', serif;
           font-size: 2rem;
           font-weight: 700;
           margin-bottom: 16px;
@@ -583,7 +583,7 @@ export default function Register() {
           color: rgba(255, 255, 255, 0.9);
           text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
           max-width: 280px;
-          font-family: 'JetBrains Mono', monospace;
+          font-family: 'Inter', 'Roboto', 'Helvetica', sans-serif;
           text-align: center;
         }
 
@@ -595,7 +595,7 @@ export default function Register() {
           padding: 10px 20px;
           font-size: 12px;
           font-weight: 500;
-          font-family: 'Space Grotesk', sans-serif;
+          font-family: 'Inter', 'Roboto', 'Helvetica', sans-serif;
           cursor: pointer;
           transition: all 0.3s ease;
           display: flex;
@@ -717,7 +717,7 @@ export default function Register() {
 
         .popup h2 {
           margin: 0 0 16px;
-          font-family: 'Space Grotesk', sans-serif;
+          font-family: 'Merriweather', 'Lora', serif;
           font-size: 1.3rem;
           font-weight: 600;
           color: var(--text-secondary);
@@ -729,7 +729,7 @@ export default function Register() {
           font-weight: 400;
           line-height: 1.4;
           color: var(--text-muted);
-          font-family: 'JetBrains Mono', monospace;
+          font-family: 'Inter', 'Roboto', 'Helvetica', sans-serif;
         }
 
         .success-options {
@@ -760,7 +760,7 @@ export default function Register() {
 
         .success-card h2 {
           margin: 0 0 20px;
-          font-family: 'Space Grotesk', sans-serif;
+          font-family: 'Merriweather', 'Lora', serif;
           font-size: 1.5rem;
           font-weight: 600;
           color: var(--success-green);
@@ -777,7 +777,7 @@ export default function Register() {
           padding: 12px 24px;
           border: none;
           border-radius: 6px;
-          font-family: 'Space Grotesk', sans-serif;
+          font-family: 'Inter', 'Roboto', 'Helvetica', sans-serif;
           font-weight: 600;
           font-size: 13px;
           cursor: pointer;
