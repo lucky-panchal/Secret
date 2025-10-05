@@ -59,7 +59,7 @@ const PlacementPage = () => {
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent'
           }}>
-            NAVOTHHAN
+            KaushalX
           </Typography>
           <Typography variant="h6" sx={{ color: 'rgba(255,255,255,0.8)' }}>
             Step 4: Connect with Employers

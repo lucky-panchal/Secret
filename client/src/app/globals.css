@@ -201,12 +201,6 @@ section {
   padding: 1rem;
   margin: 1rem 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease-in-out;
-}
-
-.card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
 /* Buttons */
@@ -315,23 +309,7 @@ img {
   height: auto;
 }
 
-/* Form Elements */
-input, textarea, select {
-  font-family: inherit;
-  font-size: inherit;
-  padding: 0.5rem;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background-color: var(--surface);
-  color: var(--text-primary);
-  transition: all 0.3s ease-in-out;
-  min-height: 44px;
-}
 
-input:focus, textarea:focus, select:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-}
 
 /* Loading Animation */
 @keyframes spin {

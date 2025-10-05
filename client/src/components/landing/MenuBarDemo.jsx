@@ -21,7 +21,7 @@ const MenuBarDemo = () => {
             }}
           >
             <Typography variant="h2" gutterBottom>
-              Welcome to CareerAI
+              Welcome to KaushalX
             </Typography>
             <Typography variant="h6" color="text.secondary">
               Professional Landing Page Menu Bar Demo

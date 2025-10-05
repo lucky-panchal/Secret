@@ -2,7 +2,6 @@
 import { Box, Container, Paper, TextField, Button, Typography, InputAdornment, IconButton } from '@mui/material';
 import { useState } from 'react';
 import { Email, Lock, Visibility, VisibilityOff, Login as LoginIcon } from '@mui/icons-material';
-import Navigation from '@/components/ui/Navigation';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';

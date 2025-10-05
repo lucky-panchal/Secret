@@ -122,11 +122,6 @@ export const createMuiTheme = (isDark) => {
           root: {
             borderRadius: 8,
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-            transition: 'all 0.3s ease-in-out',
-            '&:hover': {
-              transform: 'translateY(-4px) scale(1.02)',
-              boxShadow: '0 8px 15px rgba(0, 0, 0, 0.15)',
-            },
           },
         },
       },

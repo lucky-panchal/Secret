@@ -88,7 +88,7 @@ const NavothhanLanding = () => {
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent'
             }}>
-              NAVOTHHAN
+              KaushalX
             </Typography>
             <Box sx={{ display: 'flex', gap: 2 }}>
               {steps.map((step, index) => (

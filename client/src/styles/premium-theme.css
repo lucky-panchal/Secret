@@ -78,14 +78,6 @@ p {
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.glass-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 
-    0 20px 60px rgba(0, 0, 0, 0.4),
-    0 0 40px rgba(102, 126, 234, 0.2);
 }
 
 /* Premium Buttons */
@@ -194,11 +186,6 @@ p {
 /* 3D Card Effects */
 .card-3d {
   perspective: 1000px;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.card-3d:hover {
-  transform: rotateY(5deg) rotateX(5deg) translateZ(20px);
 }
 
 /* Neon Glow Effects */

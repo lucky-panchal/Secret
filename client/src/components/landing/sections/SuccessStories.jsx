@@ -123,7 +123,7 @@ const SuccessStories = () => {
               top: 48,
               width: 2,
               height: 'calc(100% + 16px)',
-              background: 'var(--border)',
+              background: isDark ? 'var(--border)' : '#e2e8f0',
               zIndex: 0,
             }}
           />
@@ -135,7 +135,7 @@ const SuccessStories = () => {
             width: 48,
             height: 48,
             borderRadius: '50%',
-            background: step.status === 'completed' ? 'var(--success)' : 'var(--border)',
+            background: step.status === 'completed' ? (isDark ? 'var(--success)' : '#4caf50') : (isDark ? 'var(--border)' : '#e2e8f0'),
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -147,7 +147,7 @@ const SuccessStories = () => {
           <step.icon
             sx={{
               fontSize: 24,
-              color: step.status === 'completed' ? 'white' : 'var(--text-secondary)',
+              color: step.status === 'completed' ? 'white' : (isDark ? 'var(--text-secondary)' : '#6b7280'),
             }}
           />
         </Box>
@@ -157,7 +157,7 @@ const SuccessStories = () => {
           <Typography
             variant="h6"
             sx={{
-              color: 'var(--text-primary)',
+              color: isDark ? 'var(--text-primary)' : '#2d3748',
               fontWeight: 600,
               mb: 1,
             }}
@@ -167,7 +167,7 @@ const SuccessStories = () => {
           <Typography
             variant="body2"
             sx={{
-              color: 'var(--text-secondary)',
+              color: isDark ? 'var(--text-secondary)' : '#4a5568',
               lineHeight: 1.6,
             }}
           >
@@ -181,18 +181,19 @@ const SuccessStories = () => {
   const StoryCard = ({ story }) => (
     <Box
       sx={{
-        background: 'var(--surface)',
+        background: isDark ? 'var(--surface)' : '#f8fafc',
         borderRadius: 2,
         p: { xs: 3, md: 4 },
         height: '100%',
         boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+        border: isDark ? 'none' : '1px solid #e2e8f0',
       }}
     >
       <Box sx={{ mb: 4 }}>
         <Typography
           variant="h4"
           sx={{
-            color: 'var(--text-primary)',
+            color: isDark ? 'var(--text-primary)' : '#2d3748',
             fontWeight: 700,
             mb: 1,
           }}
@@ -202,7 +203,7 @@ const SuccessStories = () => {
         <Typography
           variant="h6"
           sx={{
-            color: 'var(--primary)',
+            color: isDark ? 'var(--primary)' : '#1976d2',
             fontWeight: 500,
           }}
         >
@@ -227,7 +228,7 @@ const SuccessStories = () => {
         id="stories"
         sx={{
           py: { xs: 6, md: 10 },
-          background: 'var(--surface)',
+          background: isDark ? 'var(--surface)' : '#ffffff',
           position: 'relative',
         }}
       >
@@ -247,17 +248,12 @@ const SuccessStories = () => {
 
         <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1 }}>
           {/* Section Title */}
-          <motion.div
-            variants={titleVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-          >
+          <Box>
             <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 8 } }}>
               <Typography
                 variant="h2"
                 sx={{
-                  color: 'var(--text-primary)',
+                  color: isDark ? 'var(--text-primary)' : '#2d3748',
                   fontWeight: 700,
                   mb: { xs: 2, md: 3 },
                 }}
@@ -267,7 +263,7 @@ const SuccessStories = () => {
               <Typography
                 variant="h6"
                 sx={{
-                  color: 'var(--text-secondary)',
+                  color: isDark ? 'var(--text-secondary)' : '#4a5568',
                   maxWidth: '600px',
                   mx: 'auto',
                   lineHeight: 1.6,
@@ -276,7 +272,7 @@ const SuccessStories = () => {
                 Real transformation stories from professionals who future-proofed their careers with our platform.
               </Typography>
             </Box>
-          </motion.div>
+          </Box>
 
           {/* Stories */}
           <Grid container spacing={4}>
