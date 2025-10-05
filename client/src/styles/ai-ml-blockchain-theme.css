@@ -87,10 +87,9 @@
 /* AI/ML Component Styling */
 .ai-card {
   background: var(--bg-ai-panel);
-  border: 2px solid rgba(0, 245, 255, 0.2);
   border-radius: 16px;
   backdrop-filter: blur(20px);
-  box-shadow: var(--neon-ai);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -109,8 +108,7 @@
 
 .ai-card:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 25px 50px rgba(0, 245, 255, 0.3);
-  border-color: rgba(0, 245, 255, 0.5);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
 }
 
 .ai-card:hover::before {
@@ -119,10 +117,9 @@
 
 .ml-card {
   background: var(--bg-ml-panel);
-  border: 2px solid rgba(168, 85, 247, 0.2);
   border-radius: 16px;
   backdrop-filter: blur(20px);
-  box-shadow: var(--neon-ml);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -141,8 +138,7 @@
 
 .ml-card:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 25px 50px rgba(168, 85, 247, 0.3);
-  border-color: rgba(168, 85, 247, 0.5);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
 }
 
 .ml-card:hover::before {
@@ -151,10 +147,9 @@
 
 .blockchain-card {
   background: var(--bg-blockchain-panel);
-  border: 2px solid rgba(251, 191, 36, 0.2);
   border-radius: 16px;
   backdrop-filter: blur(20px);
-  box-shadow: var(--neon-blockchain);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -173,8 +168,7 @@
 
 .blockchain-card:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 25px 50px rgba(251, 191, 36, 0.3);
-  border-color: rgba(251, 191, 36, 0.5);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
 }
 
 .blockchain-card:hover::before {
@@ -190,7 +184,7 @@
   padding: 12px 24px;
   font-weight: 600;
   text-transform: none;
-  box-shadow: var(--neon-ai);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -209,7 +203,7 @@
 
 .btn-ai:hover {
   transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 15px 35px rgba(0, 245, 255, 0.4);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
 }
 
 .btn-ai:hover::before {
@@ -224,7 +218,7 @@
   padding: 12px 24px;
   font-weight: 600;
   text-transform: none;
-  box-shadow: var(--neon-ml);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -243,7 +237,7 @@
 
 .btn-ml:hover {
   transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 15px 35px rgba(168, 85, 247, 0.4);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
 }
 
 .btn-ml:hover::before {
@@ -258,7 +252,7 @@
   padding: 12px 24px;
   font-weight: 600;
   text-transform: none;
-  box-shadow: var(--neon-blockchain);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -277,7 +271,7 @@
 
 .btn-blockchain:hover {
   transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 15px 35px rgba(251, 191, 36, 0.4);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
 }
 
 .btn-blockchain:hover::before {
@@ -302,32 +296,17 @@
 
 .text-ai-glow {
   color: var(--text-ai);
-  text-shadow: var(--neon-ai);
   transition: all 0.3s ease;
-}
-
-.text-ai-glow:hover {
-  text-shadow: 0 0 30px rgba(0, 245, 255, 0.8);
 }
 
 .text-ml-glow {
   color: var(--text-ml);
-  text-shadow: var(--neon-ml);
   transition: all 0.3s ease;
-}
-
-.text-ml-glow:hover {
-  text-shadow: 0 0 30px rgba(168, 85, 247, 0.8);
 }
 
 .text-blockchain-glow {
   color: var(--text-blockchain);
-  text-shadow: var(--neon-blockchain);
   transition: all 0.3s ease;
-}
-
-.text-blockchain-glow:hover {
-  text-shadow: 0 0 30px rgba(251, 191, 36, 0.8);
 }
 
 /* Matrix Rain Effect */
@@ -488,11 +467,10 @@
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .ai-card, .ml-card, .blockchain-card {
-    border-width: 3px;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
   }
   
   .text-ai-glow, .text-ml-glow, .text-blockchain-glow {
-    text-shadow: none;
     font-weight: 800;
   }
 }

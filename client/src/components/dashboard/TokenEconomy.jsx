@@ -4,8 +4,14 @@ import { Token, TrendingUp, History } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
 
-const TokenEconomy = () => {
+const TokenEconomy = ({ onNavigate }) => {
   const { isDark } = useTheme();
+
+  const handleEarnMoreTokens = () => {
+    if (onNavigate) {
+      onNavigate('tokens');
+    }
+  };
 
   const tokenStats = {
     total: 1250,
@@ -119,11 +125,15 @@ const TokenEconomy = () => {
             variant="contained"
             fullWidth
             startIcon={<TrendingUp />}
+            onClick={handleEarnMoreTokens}
             sx={{
               background: 'linear-gradient(135deg, #FBBF24 0%, #A855F7 100%)',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
               '&:hover': { 
                 background: 'linear-gradient(135deg, #FBBF24 0%, #A855F7 100%)',
-                boxShadow: '0 0 20px rgba(251, 191, 36, 0.4)'
+                boxShadow: '0 0 20px rgba(251, 191, 36, 0.4)',
+                transform: 'translateY(-1px)'
               },
               textTransform: 'none',
               mb: 3,

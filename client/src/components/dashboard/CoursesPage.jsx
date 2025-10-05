@@ -5,9 +5,21 @@ import { motion } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useState } from 'react';
 
-const CoursesPage = () => {
+const CoursesPage = ({ onNavigate }) => {
   const { isDark } = useTheme();
   const [activeFilter, setActiveFilter] = useState('All Courses');
+
+  const handleCourseAction = (courseId, action) => {
+    console.log(`${action} course ${courseId}`);
+    // Here you would handle course enrollment or continuation
+    alert(`${action} course ${courseId}!`);
+  };
+
+  const handleReplacementView = (replacement) => {
+    console.log(`Viewing replacement: ${replacement}`);
+    // Here you would navigate to the replacement course
+    alert(`Navigating to: ${replacement}`);
+  };
 
   const filters = ['All Courses', 'Trending Now', 'AI/ML', 'Blockchain', 'Transferable Skills', 'Outdated'];
   
@@ -431,8 +443,11 @@ const CoursesPage = () => {
                               variant="contained"
                               fullWidth
                               startIcon={course.enrolled ? <PlayArrow /> : <School />}
+                              onClick={() => handleCourseAction(course.id, course.enrolled ? 'Continue' : 'Enroll')}
                               sx={{
                                 background: 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)',
+                                cursor: 'pointer',
+                                transition: 'all 0.3s ease',
                                 '&:hover': {
                                   background: 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)',
                                   transform: 'scale(1.02)',
@@ -494,12 +509,16 @@ const CoursesPage = () => {
                         <Button
                           variant="outlined"
                           size="small"
+                          onClick={() => handleReplacementView(course.replacement)}
                           sx={{
                             borderColor: 'rgba(0, 245, 255, 0.3)',
                             color: '#00F5FF',
+                            cursor: 'pointer',
+                            transition: 'all 0.3s ease',
                             '&:hover': {
                               borderColor: '#00F5FF',
-                              background: 'rgba(0, 245, 255, 0.1)'
+                              background: 'rgba(0, 245, 255, 0.1)',
+                              transform: 'translateY(-1px)'
                             }
                           }}
                         >

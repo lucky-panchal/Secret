@@ -4,8 +4,27 @@ import { LocationOn, AttachMoney } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
 
-const JobMatches = () => {
+const JobMatches = ({ onNavigate }) => {
   const { isDark } = useTheme();
+
+  const handleViewAllJobs = () => {
+    if (onNavigate) {
+      onNavigate('jobs');
+    }
+  };
+
+  const handleApplyJob = (jobId) => {
+    console.log(`Applying to job ${jobId}`);
+    // Here you would typically handle job application logic
+    alert(`Application submitted for job ${jobId}!`);
+  };
+
+  const handleFilterClick = (filter) => {
+    console.log(`Filter clicked: ${filter}`);
+    if (onNavigate) {
+      onNavigate('jobs');
+    }
+  };
 
   const jobs = [
     {
@@ -62,10 +81,15 @@ const JobMatches = () => {
             <Button
               variant="text"
               size="small"
+              onClick={handleViewAllJobs}
               sx={{ 
                 color: '#00F5FF',
                 textTransform: 'none',
-                fontWeight: 600
+                fontWeight: 600,
+                cursor: 'pointer',
+                '&:hover': {
+                  bgcolor: 'rgba(0, 245, 255, 0.1)'
+                }
               }}
             >
               View All
@@ -166,11 +190,15 @@ const JobMatches = () => {
                     variant="contained"
                     size="small"
                     fullWidth
+                    onClick={() => handleApplyJob(job.id)}
                     sx={{
                       background: 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
                       '&:hover': { 
                         background: 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)',
-                        boxShadow: '0 0 20px rgba(0, 245, 255, 0.4)'
+                        boxShadow: '0 0 20px rgba(0, 245, 255, 0.4)',
+                        transform: 'translateY(-1px)'
                       },
                       textTransform: 'none',
                       fontWeight: 600
@@ -193,10 +221,13 @@ const JobMatches = () => {
                 size="small"
                 variant="outlined"
                 clickable
+                onClick={() => handleFilterClick(filter)}
                 sx={{
                   fontSize: '0.7rem',
                   borderColor: 'rgba(0, 245, 255, 0.3)',
                   color: '#94A3B8',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
                   '&:hover': {
                     bgcolor: 'rgba(0, 245, 255, 0.1)',
                     borderColor: '#00F5FF',
