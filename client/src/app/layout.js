@@ -6,8 +6,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { createMuiTheme } from '@/theme/muiTheme';
 import { useTheme } from '@/contexts/ThemeContext';
 import "./globals.css";
-import "../styles/professional-saas-theme.css";
-import "../styles/ai-ml-blockchain-theme.css";
 
 function MuiThemeWrapper({ children }) {
   const { isDark } = useTheme();
