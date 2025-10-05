@@ -38,11 +38,11 @@ const CareerRoadmap = () => {
   const getStepIcon = (status) => {
     switch (status) {
       case 'completed':
-        return <CheckCircle sx={{ color: '#4caf50', fontSize: 20 }} />;
+        return <CheckCircle sx={{ color: '#34D399', fontSize: 20 }} />;
       case 'active':
-        return <PlayArrow sx={{ color: '#1976d2', fontSize: 20 }} />;
+        return <PlayArrow sx={{ color: '#00F5FF', fontSize: 20 }} />;
       default:
-        return <RadioButtonUnchecked sx={{ color: isDark ? '#666666' : '#d1d5db', fontSize: 20 }} />;
+        return <RadioButtonUnchecked sx={{ color: '#64748B', fontSize: 20 }} />;
     }
   };
 
@@ -51,10 +51,11 @@ const CareerRoadmap = () => {
       <Card 
         elevation={0}
         sx={{ 
-          bgcolor: isDark ? '#1e1e1e' : '#ffffff',
-          border: `1px solid ${isDark ? '#333333' : '#e5e7eb'}`,
+          background: 'rgba(26, 26, 46, 0.8)',
+          backdropFilter: 'blur(20px)',
+          border: '1px solid rgba(168, 85, 247, 0.2)',
           borderRadius: 3,
-          boxShadow: isDark ? '0 4px 6px rgba(0,0,0,0.3)' : '0 4px 6px rgba(0,0,0,0.07)',
+          boxShadow: '0 0 30px rgba(168, 85, 247, 0.15), 0 0 60px rgba(0, 245, 255, 0.1)',
           minHeight: 450
         }}
       >
@@ -64,7 +65,7 @@ const CareerRoadmap = () => {
               variant="h6" 
               sx={{ 
                 fontWeight: 600,
-                color: isDark ? '#ffffff' : '#212121'
+                color: '#F8FAFC'
               }}
             >
               Personalized Career Roadmap
@@ -74,9 +75,10 @@ const CareerRoadmap = () => {
               label="68% Complete" 
               size="small"
               sx={{
-                bgcolor: isDark ? 'rgba(25, 118, 210, 0.2)' : 'rgba(25, 118, 210, 0.1)',
-                color: '#1976d2',
-                fontWeight: 600
+                background: 'rgba(168, 85, 247, 0.2)',
+                color: '#A855F7',
+                fontWeight: 600,
+                border: '1px solid rgba(168, 85, 247, 0.3)'
               }}
             />
           </Box>
@@ -91,7 +93,7 @@ const CareerRoadmap = () => {
                   gap: 2,
                   mb: index < roadmapSteps.length - 1 ? 3 : 0,
                   pb: index < roadmapSteps.length - 1 ? 2 : 0,
-                  borderBottom: index < roadmapSteps.length - 1 ? `1px solid ${isDark ? '#333333' : '#f3f4f6'}` : 'none'
+                  borderBottom: index < roadmapSteps.length - 1 ? '1px solid rgba(168, 85, 247, 0.2)' : 'none'
                 }}
               >
                 <Box sx={{ mt: 0.5, flexShrink: 0 }}>
@@ -103,7 +105,7 @@ const CareerRoadmap = () => {
                     variant="body1" 
                     sx={{ 
                       fontWeight: 600,
-                      color: isDark ? '#ffffff' : '#212121',
+                      color: '#F8FAFC',
                       mb: 0.5
                     }}
                   >
@@ -113,7 +115,7 @@ const CareerRoadmap = () => {
                   <Typography 
                     variant="body2" 
                     sx={{ 
-                      color: isDark ? '#b0b0b0' : '#6b7280',
+                      color: '#94A3B8',
                       mb: step.status === 'active' ? 1.5 : 0,
                       lineHeight: 1.4
                     }}
@@ -127,8 +129,11 @@ const CareerRoadmap = () => {
                       size="small"
                       startIcon={<PlayArrow />}
                       sx={{
-                        bgcolor: '#1976d2',
-                        '&:hover': { bgcolor: '#1565c0' },
+                        background: 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)',
+                        '&:hover': { 
+                          background: 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)',
+                          boxShadow: '0 0 20px rgba(0, 245, 255, 0.4)'
+                        },
                         textTransform: 'none',
                         fontWeight: 600
                       }}

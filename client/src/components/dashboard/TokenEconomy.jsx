@@ -24,10 +24,11 @@ const TokenEconomy = () => {
       <Card 
         elevation={0}
         sx={{ 
-          bgcolor: isDark ? '#1e1e1e' : '#ffffff',
-          border: `1px solid ${isDark ? '#333333' : '#e5e7eb'}`,
+          background: 'rgba(26, 26, 46, 0.8)',
+          backdropFilter: 'blur(20px)',
+          border: '1px solid rgba(251, 191, 36, 0.2)',
           borderRadius: 3,
-          boxShadow: isDark ? '0 4px 6px rgba(0,0,0,0.3)' : '0 4px 6px rgba(0,0,0,0.07)',
+          boxShadow: '0 0 30px rgba(251, 191, 36, 0.15), 0 0 60px rgba(168, 85, 247, 0.1)',
           height: '100%'
         }}
       >
@@ -37,13 +38,13 @@ const TokenEconomy = () => {
               variant="h6" 
               sx={{ 
                 fontWeight: 600,
-                color: isDark ? '#ffffff' : '#212121'
+                color: '#F8FAFC'
               }}
             >
               Reskilling Tokens & Rewards
             </Typography>
             
-            <Token sx={{ color: '#ff9800', fontSize: 28 }} />
+            <Token sx={{ color: '#FBBF24', fontSize: 28 }} />
           </Box>
 
           <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 3 }}>
@@ -52,7 +53,7 @@ const TokenEconomy = () => {
                 variant="h4" 
                 sx={{ 
                   fontWeight: 700,
-                  color: '#ff9800',
+                  color: '#FBBF24',
                   mb: 0.5
                 }}
               >
@@ -61,7 +62,7 @@ const TokenEconomy = () => {
               <Typography 
                 variant="caption" 
                 sx={{ 
-                  color: isDark ? '#b0b0b0' : '#6b7280',
+                  color: '#94A3B8',
                   fontWeight: 600
                 }}
               >
@@ -74,7 +75,7 @@ const TokenEconomy = () => {
                 variant="h4" 
                 sx={{ 
                   fontWeight: 700,
-                  color: '#4caf50',
+                  color: '#34D399',
                   mb: 0.5
                 }}
               >
@@ -83,7 +84,7 @@ const TokenEconomy = () => {
               <Typography 
                 variant="caption" 
                 sx={{ 
-                  color: isDark ? '#b0b0b0' : '#6b7280',
+                  color: '#94A3B8',
                   fontWeight: 600
                 }}
               >
@@ -96,7 +97,7 @@ const TokenEconomy = () => {
                 variant="h4" 
                 sx={{ 
                   fontWeight: 700,
-                  color: '#1976d2',
+                  color: '#00F5FF',
                   mb: 0.5
                 }}
               >
@@ -105,7 +106,7 @@ const TokenEconomy = () => {
               <Typography 
                 variant="caption" 
                 sx={{ 
-                  color: isDark ? '#b0b0b0' : '#6b7280',
+                  color: '#94A3B8',
                   fontWeight: 600
                 }}
               >
@@ -119,8 +120,11 @@ const TokenEconomy = () => {
             fullWidth
             startIcon={<TrendingUp />}
             sx={{
-              bgcolor: '#ff9800',
-              '&:hover': { bgcolor: '#f57c00' },
+              background: 'linear-gradient(135deg, #FBBF24 0%, #A855F7 100%)',
+              '&:hover': { 
+                background: 'linear-gradient(135deg, #FBBF24 0%, #A855F7 100%)',
+                boxShadow: '0 0 20px rgba(251, 191, 36, 0.4)'
+              },
               textTransform: 'none',
               mb: 3,
               fontWeight: 600
@@ -129,15 +133,15 @@ const TokenEconomy = () => {
             Earn More Tokens
           </Button>
 
-          <Divider sx={{ mb: 2, borderColor: isDark ? '#444444' : '#e5e7eb' }} />
+          <Divider sx={{ mb: 2, borderColor: 'rgba(251, 191, 36, 0.2)' }} />
 
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-            <History sx={{ fontSize: 20, color: isDark ? '#b0b0b0' : '#6b7280' }} />
+            <History sx={{ fontSize: 20, color: '#94A3B8' }} />
             <Typography 
               variant="body2" 
               sx={{ 
                 fontWeight: 600,
-                color: isDark ? '#ffffff' : '#212121'
+                color: '#F8FAFC'
               }}
             >
               Recent Activity
@@ -159,7 +163,7 @@ const TokenEconomy = () => {
                   <Typography 
                     variant="body2" 
                     sx={{ 
-                      color: isDark ? '#ffffff' : '#212121',
+                      color: '#F8FAFC',
                       fontWeight: 500,
                       mb: 0.5
                     }}
@@ -169,10 +173,10 @@ const TokenEconomy = () => {
                   <Typography 
                     variant="caption" 
                     sx={{ 
-                      color: isDark ? '#b0b0b0' : '#6b7280'
+                      color: '#94A3B8'
                     }}
                   >
-                    {new Date(activity.date).toLocaleDateString()}
+                    {activity.date}
                   </Typography>
                 </Box>
                 
@@ -180,9 +184,9 @@ const TokenEconomy = () => {
                   label={`+${activity.tokens}`}
                   size="small"
                   sx={{
-                    bgcolor: 'rgba(255, 152, 0, 0.1)',
-                    color: '#ff9800',
-                    border: '1px solid rgba(255, 152, 0, 0.3)',
+                    background: 'rgba(251, 191, 36, 0.2)',
+                    color: '#FBBF24',
+                    border: '1px solid rgba(251, 191, 36, 0.3)',
                     fontWeight: 600
                   }}
                 />

@@ -37,22 +37,22 @@ const NotificationsPanel = () => {
   const getNotificationIcon = (type) => {
     switch (type) {
       case 'trend':
-        return <TrendingUp sx={{ color: '#1976d2' }} />;
+        return <TrendingUp sx={{ color: '#00F5FF' }} />;
       case 'deadline':
-        return <Schedule sx={{ color: '#ff9800' }} />;
+        return <Schedule sx={{ color: '#FBBF24' }} />;
       default:
-        return <Notifications sx={{ color: '#4caf50' }} />;
+        return <Notifications sx={{ color: '#34D399' }} />;
     }
   };
 
   const getPriorityColor = (priority) => {
     switch (priority) {
       case 'high':
-        return '#f44336';
+        return '#EF4444';
       case 'medium':
-        return '#ff9800';
+        return '#FBBF24';
       default:
-        return '#4caf50';
+        return '#34D399';
     }
   };
 
@@ -61,10 +61,11 @@ const NotificationsPanel = () => {
       <Card 
         elevation={0}
         sx={{ 
-          bgcolor: '#ffffff',
-          border: '1px solid #e5e7eb',
+          background: 'rgba(26, 26, 46, 0.8)',
+          backdropFilter: 'blur(20px)',
+          border: '1px solid rgba(0, 245, 255, 0.2)',
           borderRadius: 3,
-          boxShadow: '0 4px 6px rgba(0,0,0,0.07)'
+          boxShadow: '0 0 30px rgba(0, 245, 255, 0.15), 0 0 60px rgba(168, 85, 247, 0.1)'
         }}
       >
         <CardContent sx={{ p: { xs: 3, md: 4 } }}>
@@ -73,7 +74,7 @@ const NotificationsPanel = () => {
               variant="h6" 
               sx={{ 
                 fontWeight: 600,
-                color: '#374151'
+                color: '#F8FAFC'
               }}
             >
               Notifications & Updates
@@ -83,9 +84,13 @@ const NotificationsPanel = () => {
               variant="text"
               size="small"
               sx={{ 
-                color: '#1976d2',
+                color: '#00F5FF',
                 textTransform: 'none',
-                fontWeight: 600
+                fontWeight: 600,
+                '&:hover': {
+                  bgcolor: 'rgba(0, 245, 255, 0.1)',
+                  boxShadow: '0 0 10px rgba(0, 245, 255, 0.2)'
+                }
               }}
             >
               View All
@@ -102,8 +107,9 @@ const NotificationsPanel = () => {
                     gap: 2,
                     p: 2.5,
                     borderRadius: 2,
-                    bgcolor: '#f8f9fa',
-                    border: '1px solid #e5e7eb'
+                    background: 'rgba(15, 15, 35, 0.6)',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(0, 245, 255, 0.2)'
                   }}
                 >
                   <Avatar 
@@ -122,7 +128,7 @@ const NotificationsPanel = () => {
                         variant="body2" 
                         sx={{ 
                           fontWeight: 600,
-                          color: '#374151'
+                          color: '#F8FAFC'
                         }}
                       >
                         {notification.title}
@@ -141,7 +147,7 @@ const NotificationsPanel = () => {
                     <Typography 
                       variant="body2" 
                       sx={{ 
-                        color: '#6b7280',
+                        color: '#94A3B8',
                         mb: 1,
                         lineHeight: 1.4
                       }}
@@ -152,7 +158,7 @@ const NotificationsPanel = () => {
                     <Typography 
                       variant="caption" 
                       sx={{ 
-                        color: '#9ca3af'
+                        color: '#64748B'
                       }}
                     >
                       {notification.time}

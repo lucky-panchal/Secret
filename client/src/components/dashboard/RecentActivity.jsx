@@ -14,7 +14,7 @@ const RecentActivity = () => {
       title: 'React Fundamentals',
       time: '2 hours ago',
       icon: CheckCircle,
-      color: '#4caf50'
+      color: '#34D399'
     },
     {
       id: 2,
@@ -22,7 +22,7 @@ const RecentActivity = () => {
       title: 'TypeScript Basics',
       time: '5 hours ago',
       icon: PlayArrow,
-      color: '#1976d2'
+      color: '#00F5FF'
     },
     {
       id: 3,
@@ -30,7 +30,7 @@ const RecentActivity = () => {
       title: 'JavaScript Advanced',
       time: '1 day ago',
       icon: Download,
-      color: '#ff9800'
+      color: '#FBBF24'
     },
     {
       id: 4,
@@ -38,7 +38,7 @@ const RecentActivity = () => {
       title: 'Frontend Developers',
       time: '2 days ago',
       icon: Group,
-      color: '#9c27b0'
+      color: '#A855F7'
     }
   ];
 
@@ -46,10 +46,11 @@ const RecentActivity = () => {
     <Card 
       elevation={0}
       sx={{ 
-        bgcolor: '#ffffff',
-        border: '1px solid #e5e7eb',
+        background: 'rgba(26, 26, 46, 0.8)',
+        backdropFilter: 'blur(20px)',
+        border: '1px solid rgba(251, 191, 36, 0.2)',
         borderRadius: 3,
-        boxShadow: '0 4px 6px rgba(0,0,0,0.07)'
+        boxShadow: '0 0 30px rgba(251, 191, 36, 0.15), 0 0 60px rgba(0, 245, 255, 0.1)'
       }}
     >
       <CardContent sx={{ p: { xs: 3, md: 4 } }}>
@@ -57,7 +58,7 @@ const RecentActivity = () => {
           variant="h6" 
           sx={{ 
             fontWeight: 600,
-            color: '#374151',
+            color: '#F8FAFC',
             mb: 3
           }}
         >
@@ -74,15 +75,18 @@ const RecentActivity = () => {
                 gap: 2,
                 p: 2,
                 borderRadius: 2,
-                bgcolor: '#f8f9fa',
-                border: '1px solid #e5e7eb'
+                background: 'rgba(15, 15, 35, 0.6)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(251, 191, 36, 0.2)'
               }}
             >
               <Avatar 
                 sx={{ 
                   width: 40, 
                   height: 40,
-                  bgcolor: `${activity.color}20`
+                  background: `radial-gradient(circle, ${activity.color}20 0%, ${activity.color}10 100%)`,
+                  border: `1px solid ${activity.color}30`,
+                  boxShadow: `0 0 10px ${activity.color}20`
                 }}
               >
                 <activity.icon sx={{ color: activity.color, fontSize: 20 }} />
@@ -92,7 +96,7 @@ const RecentActivity = () => {
                 <Typography 
                   variant="body2" 
                   sx={{ 
-                    color: '#374151',
+                    color: '#F8FAFC',
                     fontWeight: 600,
                     mb: 0.5
                   }}
@@ -102,7 +106,7 @@ const RecentActivity = () => {
                 <Typography 
                   variant="body2" 
                   sx={{ 
-                    color: '#6b7280'
+                    color: '#94A3B8'
                   }}
                 >
                   {activity.title}
@@ -112,7 +116,7 @@ const RecentActivity = () => {
               <Typography 
                 variant="caption" 
                 sx={{ 
-                  color: '#9ca3af'
+                  color: '#64748B'
                 }}
               >
                 {activity.time}

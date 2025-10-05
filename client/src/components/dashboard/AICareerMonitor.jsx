@@ -12,10 +12,11 @@ const AICareerMonitor = () => {
       <Card 
         elevation={0}
         sx={{ 
-          bgcolor: isDark ? '#1e1e1e' : '#ffffff',
-          border: `1px solid ${isDark ? '#333333' : '#e5e7eb'}`,
+          background: 'rgba(26, 26, 46, 0.8)',
+          backdropFilter: 'blur(20px)',
+          border: '1px solid rgba(0, 245, 255, 0.2)',
           borderRadius: 3,
-          boxShadow: isDark ? '0 4px 6px rgba(0,0,0,0.3)' : '0 4px 6px rgba(0,0,0,0.07)',
+          boxShadow: '0 0 30px rgba(0, 245, 255, 0.15), 0 0 60px rgba(168, 85, 247, 0.1)',
           height: '100%'
         }}
       >
@@ -25,7 +26,7 @@ const AICareerMonitor = () => {
               variant="h6" 
               sx={{ 
                 fontWeight: 600,
-                color: isDark ? '#ffffff' : '#212121'
+                color: '#F8FAFC'
               }}
             >
               AI Career Lifeline Monitor
@@ -33,7 +34,7 @@ const AICareerMonitor = () => {
             
             <Tooltip title="AI analyzes job market trends and automation risks">
               <IconButton size="small">
-                <Info sx={{ color: isDark ? '#b0b0b0' : '#6b7280' }} />
+                <Info sx={{ color: '#94A3B8' }} />
               </IconButton>
             </Tooltip>
           </Box>
@@ -48,7 +49,8 @@ const AICareerMonitor = () => {
                 width: 140,
                 height: 140,
                 borderRadius: '50%',
-                background: `conic-gradient(#4caf50 0deg ${85 * 3.6}deg, ${isDark ? '#333333' : '#f3f4f6'} ${85 * 3.6}deg 360deg)`,
+                background: `conic-gradient(#00F5FF 0deg ${85 * 3.6}deg, rgba(15, 15, 35, 0.6) ${85 * 3.6}deg 360deg)`,
+                boxShadow: '0 0 20px rgba(0, 245, 255, 0.3)',
                 mb: 2
               }}
             >
@@ -57,19 +59,20 @@ const AICareerMonitor = () => {
                   width: 110,
                   height: 110,
                   borderRadius: '50%',
-                  bgcolor: isDark ? '#1e1e1e' : '#ffffff',
+                  background: 'rgba(26, 26, 46, 0.9)',
+                  backdropFilter: 'blur(10px)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   flexDirection: 'column',
-                  boxShadow: isDark ? '0 2px 8px rgba(0,0,0,0.3)' : '0 2px 8px rgba(0,0,0,0.1)'
+                  boxShadow: '0 0 15px rgba(0, 245, 255, 0.2)'
                 }}
               >
                 <Typography 
                   variant="h3" 
                   sx={{ 
                     fontWeight: 700,
-                    color: '#4caf50'
+                    color: '#00F5FF'
                   }}
                 >
                   85%
@@ -77,7 +80,7 @@ const AICareerMonitor = () => {
                 <Typography 
                   variant="caption" 
                   sx={{ 
-                    color: isDark ? '#b0b0b0' : '#6b7280',
+                    color: '#94A3B8',
                     fontWeight: 600,
                     fontSize: '0.8rem'
                   }}
@@ -91,7 +94,7 @@ const AICareerMonitor = () => {
               variant="body1" 
               sx={{ 
                 fontWeight: 600,
-                color: isDark ? '#ffffff' : '#212121',
+                color: '#F8FAFC',
                 mb: 1
               }}
             >
@@ -101,7 +104,7 @@ const AICareerMonitor = () => {
             <Typography 
               variant="body2" 
               sx={{ 
-                color: isDark ? '#b0b0b0' : '#6b7280'
+                color: '#94A3B8'
               }}
             >
               Your role has low automation risk
@@ -110,20 +113,20 @@ const AICareerMonitor = () => {
 
           <Box 
             sx={{ 
-              bgcolor: isDark ? 'rgba(76, 175, 80, 0.1)' : 'rgba(76, 175, 80, 0.05)',
-              border: `1px solid ${isDark ? 'rgba(76, 175, 80, 0.3)' : 'rgba(76, 175, 80, 0.2)'}`,
+              background: 'rgba(0, 245, 255, 0.1)',
+              border: '1px solid rgba(0, 245, 255, 0.2)',
               borderRadius: 2,
               p: 2.5,
               mb: 2
             }}
           >
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-              <TrendingUp sx={{ color: '#4caf50', fontSize: 20 }} />
+              <TrendingUp sx={{ color: '#00F5FF', fontSize: 20 }} />
               <Typography 
                 variant="body2" 
                 sx={{ 
                   fontWeight: 600,
-                  color: '#4caf50'
+                  color: '#00F5FF'
                 }}
               >
                 Daily Update
@@ -133,7 +136,7 @@ const AICareerMonitor = () => {
             <Typography 
               variant="body2" 
               sx={{ 
-                color: isDark ? '#ffffff' : '#212121',
+                color: '#F8FAFC',
                 lineHeight: 1.5
               }}
             >
@@ -147,16 +150,19 @@ const AICareerMonitor = () => {
               label="Future-Proof Skills" 
               size="small"
               sx={{
-                bgcolor: isDark ? 'rgba(25, 118, 210, 0.2)' : 'rgba(25, 118, 210, 0.1)',
-                color: '#1976d2',
-                border: `1px solid ${isDark ? 'rgba(25, 118, 210, 0.3)' : 'rgba(25, 118, 210, 0.2)'}`
+                background: 'rgba(168, 85, 247, 0.2)',
+                color: '#A855F7',
+                border: '1px solid rgba(168, 85, 247, 0.3)'
               }}
             />
             <Chip 
               label="High Demand" 
               size="small"
-              color="success"
-              variant="outlined"
+              sx={{
+                background: 'rgba(52, 211, 153, 0.2)',
+                color: '#34D399',
+                border: '1px solid rgba(52, 211, 153, 0.3)'
+              }}
             />
           </Box>
         </CardContent>

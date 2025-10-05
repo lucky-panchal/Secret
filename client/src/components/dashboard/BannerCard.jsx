@@ -16,9 +16,8 @@ const BannerCard = () => {
       <Card
         elevation={0}
         sx={{
-          background: isDark 
-            ? 'linear-gradient(135deg, #705CF6 0%, #8B5CF6 100%)'
-            : 'linear-gradient(135deg, #705CF6 0%, #8B5CF6 100%)',
+          background: 'linear-gradient(135deg, #00F5FF 0%, #A855F7 50%, #FBBF24 100%)',
+          boxShadow: '0 0 40px rgba(0, 245, 255, 0.3), 0 0 80px rgba(168, 85, 247, 0.2)',
           borderRadius: 4,
           color: '#ffffff',
           position: 'relative',
@@ -48,6 +47,8 @@ const BannerCard = () => {
                   borderRadius: 2,
                   '&:hover': {
                     bgcolor: 'rgba(255,255,255,0.3)',
+                    transform: 'translateY(-2px)',
+                    boxShadow: '0 0 25px rgba(255,255,255,0.4)',
                   },
                 }}
               >

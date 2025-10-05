@@ -27,9 +27,10 @@ const QuickAccessPanel = ({ mobile = false }) => {
           left: 0, 
           right: 0, 
           zIndex: 1000,
-          bgcolor: isDark ? '#1a1a1a' : '#ffffff',
-          borderTop: `1px solid ${isDark ? '#333' : '#e5e7eb'}`,
-          boxShadow: isDark ? '0 -4px 20px rgba(0,0,0,0.3)' : '0 -4px 20px rgba(0,0,0,0.1)',
+          background: 'rgba(26, 26, 46, 0.95)',
+          backdropFilter: 'blur(20px)',
+          borderTop: '1px solid rgba(0, 245, 255, 0.2)',
+          boxShadow: '0 -4px 30px rgba(0, 245, 255, 0.2), 0 -8px 60px rgba(168, 85, 247, 0.1)',
           borderRadius: '24px 24px 0 0'
         }} 
         elevation={0}
@@ -42,9 +43,9 @@ const QuickAccessPanel = ({ mobile = false }) => {
             height: 80,
             borderRadius: '24px 24px 0 0',
             '& .MuiBottomNavigationAction-root': {
-              color: isDark ? '#b0b0b0' : '#6b7280',
+              color: '#94A3B8',
               '&.Mui-selected': {
-                color: '#705CF6'
+                color: '#00F5FF'
               },
               minWidth: 'auto',
               fontSize: '0.75rem',
@@ -70,10 +71,11 @@ const QuickAccessPanel = ({ mobile = false }) => {
       <Card 
         elevation={0}
         sx={{ 
-          bgcolor: isDark ? '#1e1e1e' : '#ffffff',
-          border: `1px solid ${isDark ? '#333' : '#e5e7eb'}`,
+          background: 'rgba(26, 26, 46, 0.8)',
+          backdropFilter: 'blur(20px)',
+          border: '1px solid rgba(0, 245, 255, 0.2)',
           borderRadius: 3,
-          boxShadow: isDark ? '0 4px 20px rgba(0,0,0,0.3)' : '0 4px 20px rgba(0,0,0,0.07)'
+          boxShadow: '0 0 30px rgba(0, 245, 255, 0.15), 0 0 60px rgba(168, 85, 247, 0.1)'
         }}
       >
         <CardContent sx={{ p: 3 }}>
@@ -81,7 +83,7 @@ const QuickAccessPanel = ({ mobile = false }) => {
             variant="h6" 
             sx={{ 
               fontWeight: 600,
-              color: isDark ? '#ffffff' : '#374151',
+              color: '#F8FAFC',
               mb: 3
             }}
           >
@@ -97,15 +99,16 @@ const QuickAccessPanel = ({ mobile = false }) => {
                 fullWidth
                 sx={{
                   justifyContent: 'flex-start',
-                  color: isDark ? '#ffffff' : '#374151',
+                  color: '#F8FAFC',
                   py: 1.5,
                   px: 2,
                   borderRadius: 2,
                   textTransform: 'none',
                   fontWeight: 500,
                   '&:hover': {
-                    bgcolor: isDark ? 'rgba(112, 92, 246, 0.1)' : 'rgba(112, 92, 246, 0.05)',
-                    color: '#705CF6'
+                    bgcolor: 'rgba(0, 245, 255, 0.1)',
+                    color: '#00F5FF',
+                    boxShadow: '0 0 15px rgba(0, 245, 255, 0.2)'
                   }
                 }}
               >
@@ -114,11 +117,11 @@ const QuickAccessPanel = ({ mobile = false }) => {
             ))}
           </Box>
 
-          <Box sx={{ mt: 4, pt: 3, borderTop: `1px solid ${isDark ? '#333' : '#e5e7eb'}` }}>
+          <Box sx={{ mt: 4, pt: 3, borderTop: '1px solid rgba(0, 245, 255, 0.2)' }}>
             <Typography 
               variant="body2" 
               sx={{ 
-                color: isDark ? '#b0b0b0' : '#6b7280',
+                color: '#94A3B8',
                 mb: 2,
                 fontWeight: 600
               }}
@@ -134,14 +137,14 @@ const QuickAccessPanel = ({ mobile = false }) => {
                   size="small"
                   sx={{
                     justifyContent: 'flex-start',
-                    color: isDark ? '#b0b0b0' : '#6b7280',
+                    color: '#94A3B8',
                     textTransform: 'none',
                     fontSize: '0.8rem',
                     py: 0.5,
                     px: 1,
                     borderRadius: 1.5,
                     '&:hover': {
-                      color: '#705CF6'
+                      color: '#00F5FF'
                     }
                   }}
                 >

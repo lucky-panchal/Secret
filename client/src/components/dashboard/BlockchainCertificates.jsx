@@ -27,10 +27,11 @@ const BlockchainCertificates = () => {
       <Card 
         elevation={0}
         sx={{ 
-          bgcolor: isDark ? '#1e1e1e' : '#ffffff',
-          border: `1px solid ${isDark ? '#333333' : '#e5e7eb'}`,
+          background: 'rgba(26, 26, 46, 0.8)',
+          backdropFilter: 'blur(20px)',
+          border: '1px solid rgba(251, 191, 36, 0.2)',
           borderRadius: 3,
-          boxShadow: isDark ? '0 4px 6px rgba(0,0,0,0.3)' : '0 4px 6px rgba(0,0,0,0.07)',
+          boxShadow: '0 0 30px rgba(251, 191, 36, 0.15), 0 0 60px rgba(168, 85, 247, 0.1)',
           height: '100%'
         }}
       >
@@ -39,7 +40,7 @@ const BlockchainCertificates = () => {
             variant="h6" 
             sx={{ 
               fontWeight: 600,
-              color: isDark ? '#ffffff' : '#212121',
+              color: '#F8FAFC',
               mb: 3
             }}
           >
@@ -51,21 +52,22 @@ const BlockchainCertificates = () => {
               <Box key={cert.id}>
                 <Box 
                   sx={{ 
-                    border: `1px solid ${isDark ? '#444444' : '#e5e7eb'}`,
+                    border: '1px solid rgba(251, 191, 36, 0.2)',
                     borderRadius: 2,
                     p: 2.5,
-                    bgcolor: isDark ? '#2a2a2a' : '#f8f9fa'
+                    background: 'rgba(15, 15, 35, 0.6)',
+                    backdropFilter: 'blur(10px)'
                   }}
                 >
                   <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', mb: 2 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                      <VerifiedUser sx={{ color: '#4caf50', fontSize: 24 }} />
+                      <VerifiedUser sx={{ color: '#FBBF24', fontSize: 24 }} />
                       <Box>
                         <Typography 
                           variant="body1" 
                           sx={{ 
                             fontWeight: 600,
-                            color: isDark ? '#ffffff' : '#212121',
+                            color: '#F8FAFC',
                             mb: 0.5
                           }}
                         >
@@ -74,10 +76,10 @@ const BlockchainCertificates = () => {
                         <Typography 
                           variant="body2" 
                           sx={{ 
-                            color: isDark ? '#b0b0b0' : '#6b7280'
+                            color: '#94A3B8'
                           }}
                         >
-                          Issued: {new Date(cert.issueDate).toLocaleDateString()}
+                          Issued: {cert.issueDate}
                         </Typography>
                       </Box>
                     </Box>
@@ -86,9 +88,9 @@ const BlockchainCertificates = () => {
                       label="Verified on Blockchain" 
                       size="small"
                       sx={{
-                        bgcolor: 'rgba(76, 175, 80, 0.1)',
-                        color: '#4caf50',
-                        border: '1px solid rgba(76, 175, 80, 0.3)',
+                        background: 'rgba(251, 191, 36, 0.2)',
+                        color: '#FBBF24',
+                        border: '1px solid rgba(251, 191, 36, 0.3)',
                         fontWeight: 600
                       }}
                     />
@@ -100,11 +102,12 @@ const BlockchainCertificates = () => {
                       size="small"
                       startIcon={<Download />}
                       sx={{
-                        borderColor: isDark ? '#555555' : '#d1d5db',
-                        color: isDark ? '#ffffff' : '#374151',
+                        borderColor: 'rgba(251, 191, 36, 0.3)',
+                        color: '#F8FAFC',
                         '&:hover': {
-                          borderColor: '#1976d2',
-                          color: '#1976d2'
+                          borderColor: '#FBBF24',
+                          color: '#FBBF24',
+                          boxShadow: '0 0 15px rgba(251, 191, 36, 0.2)'
                         }
                       }}
                     >
@@ -116,11 +119,12 @@ const BlockchainCertificates = () => {
                       size="small"
                       startIcon={<Share />}
                       sx={{
-                        borderColor: isDark ? '#555555' : '#d1d5db',
-                        color: isDark ? '#ffffff' : '#374151',
+                        borderColor: 'rgba(168, 85, 247, 0.3)',
+                        color: '#F8FAFC',
                         '&:hover': {
-                          borderColor: '#1976d2',
-                          color: '#1976d2'
+                          borderColor: '#A855F7',
+                          color: '#A855F7',
+                          boxShadow: '0 0 15px rgba(168, 85, 247, 0.2)'
                         }
                       }}
                     >
