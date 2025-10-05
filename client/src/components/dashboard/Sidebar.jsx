@@ -1,6 +1,6 @@
 'use client';
 import { Box, List, ListItem, ListItemIcon, ListItemText, Avatar, Typography, Divider } from '@mui/material';
-import { Dashboard, Inbox, School, Assignment, Group, Settings, Logout, Person } from '@mui/icons-material';
+import { Dashboard, VerifiedUser, School, Assignment, Work, Settings, Logout, Person } from '@mui/icons-material';
 import { useTheme } from '@/contexts/ThemeContext';
 import { motion } from 'framer-motion';
 
@@ -9,10 +9,10 @@ const Sidebar = () => {
 
   const navigationItems = [
     { label: 'Dashboard', icon: Dashboard, active: true },
-    { label: 'Inbox', icon: Inbox },
     { label: 'Courses', icon: School },
     { label: 'Tasks', icon: Assignment },
-    { label: 'Groups', icon: Group },
+    { label: 'Certificates', icon: VerifiedUser },
+    { label: 'Jobs', icon: Work },
     { label: 'Settings', icon: Settings },
   ];
 
@@ -60,6 +60,10 @@ const Sidebar = () => {
                 color: item.active ? '#ffffff' : '#CBD5E1',
                 border: item.active ? '1px solid rgba(0, 245, 255, 0.3)' : '1px solid transparent',
                 boxShadow: item.active ? '0 0 20px rgba(0, 245, 255, 0.2)' : 'none',
+                outline: 'none',
+                '&:focus': {
+                  outline: 'none'
+                },
                 '&:hover': {
                   bgcolor: item.active ? 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)' : 'rgba(0, 245, 255, 0.1)',
                   border: '1px solid rgba(0, 245, 255, 0.3)',
