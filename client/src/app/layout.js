@@ -26,10 +26,10 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
         <style dangerouslySetInnerHTML={{
           __html: `
-            /* Critical CSS to prevent FOUC - AI/ML Theme */
+            /* Critical CSS to prevent FOUC - Custom Theme */
             :root {
-              --primary: #00D4FF;
-              --secondary: #7C3AED;
+              --primary: #778979;
+              --secondary: #a9916b;
               --background: #FAFBFF;
               --surface: #FFFFFF;
               --text-primary: #0F0F23;
@@ -37,8 +37,8 @@ export default function RootLayout({ children }) {
               --border: #E2E8F0;
             }
             [data-theme="dark"] {
-              --primary: #00F5FF;
-              --secondary: #A855F7;
+              --primary: #778979;
+              --secondary: #a9916b;
               --background: #0A0A0F;
               --surface: #1A1A2E;
               --text-primary: #F8FAFC;

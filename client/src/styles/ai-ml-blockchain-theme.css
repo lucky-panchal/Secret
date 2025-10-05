@@ -3,13 +3,13 @@
 /* AI/ML & Blockchain Color Palette */
 :root {
   /* Core AI/ML Colors */
-  --ai-cyan: #00F5FF;
-  --ai-cyan-light: #33F7FF;
-  --ai-cyan-dark: #00C4E6;
+  --ai-cyan: #778979;
+  --ai-cyan-light: #8a9b8c;
+  --ai-cyan-dark: #647766;
   
-  --ml-purple: #A855F7;
-  --ml-purple-light: #C084FC;
-  --ml-purple-dark: #9333EA;
+  --ml-purple: #a9916b;
+  --ml-purple-light: #bca378;
+  --ml-purple-dark: #967f5e;
   
   --blockchain-gold: #FBBF24;
   --blockchain-gold-light: #FCD34D;
@@ -21,17 +21,17 @@
   --tech-blue: #3B82F6;
   
   /* Advanced Gradients */
-  --gradient-ai-neural: linear-gradient(135deg, #00F5FF 0%, #A855F7 25%, #8B5CF6 50%, #EC4899 75%, #FBBF24 100%);
-  --gradient-ai-flow: linear-gradient(45deg, #00F5FF 0%, #00D4FF 50%, #0EA5E9 100%);
-  --gradient-ml-brain: linear-gradient(135deg, #A855F7 0%, #C084FC 50%, #8B5CF6 100%);
+  --gradient-ai-neural: linear-gradient(135deg, #778979 0%, #a9916b 25%, #8B5CF6 50%, #EC4899 75%, #FBBF24 100%);
+  --gradient-ai-flow: linear-gradient(45deg, #778979 0%, #8a9b8c 50%, #647766 100%);
+  --gradient-ml-brain: linear-gradient(135deg, #a9916b 0%, #bca378 50%, #967f5e 100%);
   --gradient-blockchain-chain: linear-gradient(135deg, #FBBF24 0%, #F59E0B 50%, #EF4444 100%);
   --gradient-quantum-field: linear-gradient(45deg, #8B5CF6 0%, #A855F7 50%, #C084FC 100%);
   --gradient-data-stream: linear-gradient(90deg, #10B981 0%, #34D399 50%, #6EE7B7 100%);
   
   /* Holographic Effects */
-  --hologram-primary: linear-gradient(45deg, #00F5FF, #A855F7, #FBBF24, #EC4899);
-  --hologram-secondary: linear-gradient(90deg, #00F5FF, #8B5CF6, #FBBF24);
-  --hologram-accent: linear-gradient(135deg, #A855F7, #00F5FF, #EC4899);
+  --hologram-primary: linear-gradient(45deg, #778979, #a9916b, #FBBF24, #EC4899);
+  --hologram-secondary: linear-gradient(90deg, #778979, #a9916b, #FBBF24);
+  --hologram-accent: linear-gradient(135deg, #a9916b, #778979, #EC4899);
   
   /* Neon Glow Effects */
   --neon-ai: 0 0 20px rgba(0, 245, 255, 0.6), 0 0 40px rgba(0, 245, 255, 0.4), 0 0 60px rgba(0, 245, 255, 0.2);
@@ -39,8 +39,8 @@
   --neon-blockchain: 0 0 20px rgba(251, 191, 36, 0.6), 0 0 40px rgba(251, 191, 36, 0.4), 0 0 60px rgba(251, 191, 36, 0.2);
   
   /* Matrix-style Background */
-  --matrix-bg: radial-gradient(circle at 20% 20%, rgba(0, 245, 255, 0.1) 0%, transparent 50%),
-               radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+  --matrix-bg: radial-gradient(circle at 20% 20%, rgba(119, 137, 121, 0.1) 0%, transparent 50%),
+               radial-gradient(circle at 80% 80%, rgba(169, 145, 107, 0.1) 0%, transparent 50%),
                radial-gradient(circle at 40% 60%, rgba(251, 191, 36, 0.08) 0%, transparent 50%);
 }
 

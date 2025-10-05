@@ -157,23 +157,19 @@ export default function Register() {
           overflow: hidden;
         }
 
-        /* AI/ML Blockchain Theme Variables */
+        /* Custom Theme Variables */
         :root {
-          /* Core AI/ML Colors */
-          --ai-cyan: #00D4FF;
-          --ml-purple: #A855F7;
-          --blockchain-gold: #FBBF24;
-          --quantum-violet: #8B5CF6;
-          --neural-pink: #EC4899;
-          --data-emerald: #10B981;
-          --tech-blue: #3B82F6;
+          /* Core Colors */
+          --primary-green: #F9EC7E;
+          --primary-brown: #E3CCB2;
+          --accent-color: #F9EC7E;
           
-          /* Simple Gradients */
-          --gradient-primary: linear-gradient(135deg, #00D4FF 0%, #A855F7 100%);
-          --gradient-secondary: linear-gradient(135deg, #A855F7 0%, #8B5CF6 100%);
+          /* Gradients */
+          --gradient-primary: linear-gradient(135deg, #F9EC7E 0%, #E3CCB2 100%) !important;
+          --gradient-secondary: linear-gradient(135deg, #E3CCB2 0%, #F9EC7E 100%) !important;
         }
 
-        /* Dark Mode AI/ML Theme */
+        /* Dark Mode Theme */
         [data-theme="dark"] {
           --bg-primary: #0f172a;
           --bg-secondary: #1e293b;
@@ -181,11 +177,11 @@ export default function Register() {
           --text-primary: #f8fafc;
           --text-secondary: #cbd5e1;
           --text-muted: #94a3b8;
-          --border: rgba(0, 212, 255, 0.3);
-          --border-light: rgba(0, 212, 255, 0.1);
+          --border: rgba(119, 137, 121, 0.3);
+          --border-light: rgba(119, 137, 121, 0.1);
         }
 
-        /* Light Mode AI/ML Theme */
+        /* Light Mode Theme */
         [data-theme="light"] {
           --bg-primary: #ffffff;
           --bg-secondary: #f8fafc;
@@ -193,8 +189,8 @@ export default function Register() {
           --text-primary: #0f172a;
           --text-secondary: #334155;
           --text-muted: #64748b;
-          --border: rgba(0, 153, 204, 0.3);
-          --border-light: rgba(0, 153, 204, 0.1);
+          --border: rgba(119, 137, 121, 0.3);
+          --border-light: rgba(119, 137, 121, 0.1);
         }
 
         body::before {
@@ -205,16 +201,16 @@ export default function Register() {
           width: 100%;
           height: 100%;
           background: 
-            radial-gradient(circle at 25% 25%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
-            radial-gradient(circle at 75% 75%, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
+            radial-gradient(circle at 25% 25%, rgba(119, 137, 121, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 75% 75%, rgba(169, 145, 107, 0.05) 0%, transparent 50%);
           pointer-events: none;
           z-index: -1;
         }
 
         [data-theme="light"] body::before {
           background: 
-            radial-gradient(circle at 25% 25%, rgba(0, 212, 255, 0.02) 0%, transparent 50%),
-            radial-gradient(circle at 75% 75%, rgba(168, 85, 247, 0.02) 0%, transparent 50%);
+            radial-gradient(circle at 25% 25%, rgba(119, 137, 121, 0.02) 0%, transparent 50%),
+            radial-gradient(circle at 75% 75%, rgba(169, 145, 107, 0.02) 0%, transparent 50%);
         }
 
         .back-button {
@@ -236,10 +232,10 @@ export default function Register() {
         }
 
         .back-button:hover {
-          background: rgba(0, 212, 255, 0.1);
-          border-color: var(--ai-cyan);
+          background: rgba(119, 137, 121, 0.1);
+          border-color: var(--primary-green);
           transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(0, 212, 255, 0.15);
+          box-shadow: 0 8px 25px rgba(119, 137, 121, 0.15);
         }
 
         [data-theme="light"] .back-button {
@@ -250,11 +246,11 @@ export default function Register() {
         .container {
           background: var(--bg-secondary);
           border: 1px solid var(--border);
-          border-radius: 20px;
+          border-radius: 0;
           box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-          width: 900px;
+          width: 1500px;
           max-width: 100%;
-          min-height: 600px;
+          min-height: 750px;
           position: relative;
           overflow: hidden;
         }
@@ -269,8 +265,8 @@ export default function Register() {
           position: absolute;
           top: 0;
           height: 100%;
-          transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
-          will-change: transform, opacity;
+          transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+          will-change: transform, opacity, border-radius, filter;
         }
 
         .sign-in-container {
@@ -287,13 +283,29 @@ export default function Register() {
         }
 
         .container.right-panel-active .sign-in-container {
-          transform: translateX(100%);
+          transform: translateX(100%) scale(0.3) rotateY(180deg);
+          border-radius: 50% 20% 80% 30%;
+          filter: blur(8px) hue-rotate(90deg);
+          opacity: 0;
         }
 
         .container.right-panel-active .sign-up-container {
-          transform: translateX(100%);
+          transform: translateX(100%) scale(1) rotateY(0deg);
+          border-radius: 0;
+          filter: blur(0px) hue-rotate(0deg);
           opacity: 1;
           z-index: 5;
+        }
+
+        .sign-in-container {
+          border-radius: 0;
+          filter: blur(0px) hue-rotate(0deg);
+        }
+
+        .sign-up-container {
+          border-radius: 50% 20% 80% 30%;
+          filter: blur(8px) hue-rotate(90deg);
+          transform: scale(0.3) rotateY(180deg);
         }
 
         form {
@@ -305,6 +317,8 @@ export default function Register() {
           align-items: center;
           height: 100%;
           text-align: center;
+          transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+          transform-style: preserve-3d;
         }
 
         [data-theme="light"] form {
@@ -322,7 +336,7 @@ export default function Register() {
         input {
           background: var(--bg-tertiary);
           border: 2px solid var(--border);
-          border-radius: 12px;
+          border-radius: 0;
           padding: 15px 20px;
           margin: 10px 0;
           width: 100%;
@@ -339,8 +353,8 @@ export default function Register() {
 
         input:focus {
           outline: none;
-          border-color: var(--ai-cyan);
-          box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1), 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+          border-color: var(--primary-green);
+          box-shadow: 0 0 0 3px rgba(119, 137, 121, 0.1), 0 4px 6px -1px rgba(0, 0, 0, 0.1);
           transform: translateY(-2px);
         }
 
@@ -349,7 +363,7 @@ export default function Register() {
         }
 
         button {
-          border-radius: 12px;
+          border-radius: 0;
           border: none;
           background: var(--gradient-primary);
           color: #fff;
@@ -376,9 +390,9 @@ export default function Register() {
         }
 
         button.ghost:hover {
-          background: rgba(0, 212, 255, 0.1);
-          border-color: var(--ai-cyan);
-          box-shadow: 0 8px 25px rgba(0, 212, 255, 0.15);
+          background: rgba(119, 137, 121, 0.1);
+          border-color: var(--primary-green);
+          box-shadow: 0 8px 25px rgba(119, 137, 121, 0.15);
         }
 
         [data-theme="light"] button.ghost {
@@ -403,7 +417,7 @@ export default function Register() {
         }
 
         .overlay {
-          background: var(--gradient-primary);
+          background: linear-gradient(135deg, #F9EC7E 0%, #E3CCB2 100%) !important;
           background-repeat: no-repeat;
           background-size: cover;
           background-position: 0 0;
@@ -502,11 +516,11 @@ export default function Register() {
         }
 
         .social-container a:hover {
-          background: rgba(0, 212, 255, 0.1);
-          border-color: var(--ai-cyan);
+          background: rgba(119, 137, 121, 0.1);
+          border-color: var(--primary-green);
           color: var(--text-primary);
           transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(0, 212, 255, 0.15);
+          box-shadow: 0 8px 25px rgba(119, 137, 121, 0.15);
         }
 
         [data-theme="light"] .social-container a {
@@ -514,7 +528,7 @@ export default function Register() {
           border: 1px solid var(--border);
         }
 
-        /* AI/ML Popup Styles */
+        /* Modern Popup Styles */
         .popup-overlay {
           position: fixed;
           top: 0;
@@ -530,30 +544,15 @@ export default function Register() {
         }
 
         .popup {
-          background: var(--gradient-primary);
-          border-radius: 20px;
-          padding: 40px;
+          background: var(--bg-secondary);
+          border: 2px solid var(--gradient-primary);
+          padding: 30px 40px;
           text-align: center;
-          color: white;
-          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-          border: 2px solid rgba(255, 255, 255, 0.2);
+          color: var(--text-primary);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
           position: relative;
-          overflow: hidden;
           min-width: 350px;
-          animation: popupSlideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .popup::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: 
-            radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-          pointer-events: none;
+          animation: popupSlideIn 0.3s ease-out;
         }
 
         .popup-content {
@@ -562,17 +561,17 @@ export default function Register() {
         }
 
         .popup h2 {
-          margin: 0 0 20px;
-          font-size: 1.8rem;
-          font-weight: 700;
-          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+          margin: 0 0 15px;
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: var(--primary-green);
         }
 
         .popup p {
           margin: 0;
-          font-size: 1.1rem;
-          opacity: 0.9;
-          line-height: 1.5;
+          font-size: 1rem;
+          line-height: 1.4;
+          color: var(--text-secondary);
         }
 
         .success-options {
@@ -590,30 +589,15 @@ export default function Register() {
         }
 
         .success-card {
-          background: var(--gradient-primary);
-          border-radius: 25px;
-          padding: 50px;
+          background: var(--bg-secondary);
+          border: 2px solid var(--gradient-primary);
+          padding: 40px;
           text-align: center;
-          color: white;
-          box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-          border: 3px solid rgba(255, 255, 255, 0.2);
+          color: var(--text-primary);
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
           position: relative;
-          overflow: hidden;
           min-width: 400px;
-          animation: successSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .success-card::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: 
-            radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-          pointer-events: none;
+          animation: successSlideIn 0.4s ease-out;
         }
 
         .success-content {
@@ -622,11 +606,10 @@ export default function Register() {
         }
 
         .success-card h2 {
-          margin: 0 0 30px;
-          font-size: 2.2rem;
-          font-weight: 800;
-          text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
-          color: white;
+          margin: 0 0 20px;
+          font-size: 1.8rem;
+          font-weight: 600;
+          color: var(--primary-green);
         }
 
         .success-buttons {
@@ -661,13 +644,13 @@ export default function Register() {
         }
 
         .continue-btn {
-          background: rgba(255, 255, 255, 0.9);
-          color: var(--ai-cyan);
-          border: 2px solid rgba(255, 255, 255, 0.9);
+          background: var(--gradient-primary);
+          color: white;
+          border: 2px solid transparent;
         }
 
         .continue-btn:hover {
-          background: white;
+          background: var(--gradient-secondary);
           transform: translateY(-2px);
           box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
@@ -796,7 +779,7 @@ export default function Register() {
               onChange={(e) => setSignInData({...signInData, password: e.target.value})}
             />
             {errors.password && <div style={{color: '#ef4444', fontSize: '12px', marginTop: '-8px'}}>{errors.password}</div>}
-            <a href="#" style={{color: 'var(--ai-cyan)', textDecoration: 'none', margin: '16px 0', fontWeight: 500}}>Forgot your password?</a>
+            <a href="#" style={{color: 'var(--primary-green)', textDecoration: 'none', margin: '16px 0', fontWeight: 500}}>Forgot your password?</a>
             <button type="submit" onClick={handleSignInSubmit}>Sign In</button>
           </form>
         </div>
@@ -823,7 +806,7 @@ export default function Register() {
         <div className="popup-overlay">
           <div className="popup">
             <div className="popup-content">
-              <h2>{popupType === 'success' ? '🎉 Success!' : popupType === 'error' ? '❌ Error!' : '✨ Welcome!'}</h2>
+              <h2>{popupType === 'success' ? 'Success' : popupType === 'error' ? 'Error' : 'Welcome'}</h2>
               <p>{popupMessage}</p>
             </div>
           </div>
@@ -835,7 +818,7 @@ export default function Register() {
         <div className="success-options">
           <div className="success-card">
             <div className="success-content">
-              <h2>🚀 Login Successful!</h2>
+              <h2>Login Successful</h2>
               <p>Choose your next action:</p>
               <div className="success-buttons">
                 <button className="success-btn logout-btn" onClick={handleLogout}>
