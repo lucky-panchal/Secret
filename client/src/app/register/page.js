@@ -579,11 +579,12 @@ export default function Register() {
           font-size: 14px;
           font-weight: 400;
           line-height: 1.5;
-          margin: 16px 0 20px;
+          margin: 16px auto 20px;
           color: rgba(255, 255, 255, 0.9);
           text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-          max-width: 240px;
+          max-width: 280px;
           font-family: 'JetBrains Mono', monospace;
+          text-align: center;
         }
 
         .google-btn {
@@ -941,7 +942,7 @@ export default function Register() {
         {/* Sign Up Form */}
         <div className="form-container sign-up-container">
           <form onSubmit={handleSignUpSubmit}>
-            <h1>Neural Registration</h1>
+            <h1>Start Your Reskilling Journey</h1>
 
             {errors.general && <div style={{color: '#ef4444', marginBottom: '10px', fontSize: '14px'}}>{errors.general}</div>}
             <input 
@@ -979,7 +980,7 @@ export default function Register() {
         {/* Sign In Form */}
         <div className="form-container sign-in-container">
           <form onSubmit={handleSignInSubmit}>
-            <h1>AI Access Portal</h1>
+            <h1>Welcome Back</h1>
 
             {errors.general && <div style={{color: '#ef4444', marginBottom: '10px', fontSize: '14px'}}>{errors.general}</div>}
             <input 
@@ -1006,8 +1007,8 @@ export default function Register() {
           <div className="overlay">
             <div className="overlay-panel overlay-left">
               <div>
-                <h1>Neural Network</h1>
-                <p>Reconnect to your AI learning ecosystem</p>
+                <h1>Welcome Back!</h1>
+                <p>Continue your career transformation journey with AI-powered learning</p>
                 <button 
                   className="google-btn"
                   onClick={() => console.log('Google Sign In')}
@@ -1031,8 +1032,8 @@ export default function Register() {
             </div>
             <div className="overlay-panel overlay-right">
               <div>
-                <h1>Join the Matrix</h1>
-                <p>Initialize your blockchain-powered learning journey</p>
+                <h1>Future-Proof Your Career</h1>
+                <p>Join the world's first AI-driven reskilling platform with blockchain certifications</p>
                 <button 
                   className="google-btn"
                   onClick={() => console.log('Google Sign Up')}
