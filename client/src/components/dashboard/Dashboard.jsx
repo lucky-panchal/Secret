@@ -21,6 +21,7 @@ import QuickAccessPanel from './QuickAccessPanel';
 import QuickStats from './QuickStats';
 import RecentActivity from './RecentActivity';
 import ComponentLoader from './ComponentLoader';
+import CoursesPage from './CoursesPage';
 import { useTheme } from '@/contexts/ThemeContext';
 
 const Dashboard = () => {
@@ -31,6 +32,7 @@ const Dashboard = () => {
   const isDesktop = useMediaQuery(muiTheme.breakpoints.up('lg'));
   const [mobileOpen, setMobileOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState('dashboard');
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
@@ -74,7 +76,7 @@ const Dashboard = () => {
       }
     }}>
       {/* Left Sidebar - Desktop & Tablet */}
-      {isDesktop && <Sidebar />}
+      {isDesktop && <Sidebar onNavigate={setCurrentPage} currentPage={currentPage} />}
       
       {/* Mobile Drawer */}
       <Drawer
@@ -91,7 +93,7 @@ const Dashboard = () => {
           },
         }}
       >
-        <Sidebar />
+        <Sidebar onNavigate={setCurrentPage} currentPage={currentPage} />
       </Drawer>
 
       {/* Main Content Area */}
@@ -134,130 +136,134 @@ const Dashboard = () => {
         {/* Dashboard Content */}
         <Box sx={{ 
           flexGrow: 1,
-          p: currentSpacing.container,
+          p: currentPage === 'courses' ? 0 : currentSpacing.container,
           pt: { xs: 1, md: 1.5 },
           pb: isMobile ? 12 : currentSpacing.container,
           overflow: 'auto',
           maxHeight: 'calc(100vh - 80px)'
         }}>
-          <Grid container spacing={3}>
-            {/* Main Content Column */}
-            <Grid item xs={12} xl={8}>
-              <Grid container spacing={3}>
-                {/* Banner */}
-                <Grid item xs={12}>
-                  <ComponentLoader loading={loading}>
-                    <BannerCard />
-                  </ComponentLoader>
-                </Grid>
+          {currentPage === 'courses' ? (
+            <CoursesPage />
+          ) : (
+            <Grid container spacing={3}>
+              {/* Main Content Column */}
+              <Grid item xs={12} xl={8}>
+                <Grid container spacing={3}>
+                  {/* Banner */}
+                  <Grid item xs={12}>
+                    <ComponentLoader loading={loading}>
+                      <BannerCard />
+                    </ComponentLoader>
+                  </Grid>
 
-                {/* AI Career Monitor & Career Roadmap */}
-                <Grid item xs={12} md={6}>
-                  <ComponentLoader loading={loading}>
-                    <AICareerMonitor />
-                  </ComponentLoader>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <ComponentLoader loading={loading}>
-                    <CareerRoadmap />
-                  </ComponentLoader>
-                </Grid>
+                  {/* AI Career Monitor & Career Roadmap */}
+                  <Grid item xs={12} md={6}>
+                    <ComponentLoader loading={loading}>
+                      <AICareerMonitor />
+                    </ComponentLoader>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <ComponentLoader loading={loading}>
+                      <CareerRoadmap />
+                    </ComponentLoader>
+                  </Grid>
 
-                {/* Active Courses */}
-                <Grid item xs={12}>
-                  <ComponentLoader loading={loading}>
-                    <ActiveCourses />
-                  </ComponentLoader>
-                </Grid>
+                  {/* Active Courses */}
+                  <Grid item xs={12}>
+                    <ComponentLoader loading={loading}>
+                      <ActiveCourses />
+                    </ComponentLoader>
+                  </Grid>
 
-                {/* Certificates & Job Matches */}
-                <Grid item xs={12} md={6}>
-                  <ComponentLoader loading={loading}>
-                    <BlockchainCertificates />
-                  </ComponentLoader>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <ComponentLoader loading={loading}>
-                    <JobMatches />
-                  </ComponentLoader>
-                </Grid>
+                  {/* Certificates & Job Matches */}
+                  <Grid item xs={12} md={6}>
+                    <ComponentLoader loading={loading}>
+                      <BlockchainCertificates />
+                    </ComponentLoader>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <ComponentLoader loading={loading}>
+                      <JobMatches />
+                    </ComponentLoader>
+                  </Grid>
 
-                {/* Token Economy & Mentorship */}
-                <Grid item xs={12} md={6}>
-                  <ComponentLoader loading={loading}>
-                    <TokenEconomy />
-                  </ComponentLoader>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <ComponentLoader loading={loading}>
-                    <MentorshipHub />
-                  </ComponentLoader>
-                </Grid>
+                  {/* Token Economy & Mentorship */}
+                  <Grid item xs={12} md={6}>
+                    <ComponentLoader loading={loading}>
+                      <TokenEconomy />
+                    </ComponentLoader>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <ComponentLoader loading={loading}>
+                      <MentorshipHub />
+                    </ComponentLoader>
+                  </Grid>
 
-                {/* Progress Tracker */}
-                <Grid item xs={12}>
-                  <ComponentLoader loading={loading}>
-                    <ProgressTracker />
-                  </ComponentLoader>
-                </Grid>
+                  {/* Progress Tracker */}
+                  <Grid item xs={12}>
+                    <ComponentLoader loading={loading}>
+                      <ProgressTracker />
+                    </ComponentLoader>
+                  </Grid>
 
-                {/* Mobile Components */}
-                {isMobile && (
-                  <>
-                    <Grid item xs={12}>
-                      <ComponentLoader loading={loading}>
-                        <UserStatsCard />
-                      </ComponentLoader>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <ComponentLoader loading={loading}>
-                        <NotificationsPanel />
-                      </ComponentLoader>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <ComponentLoader loading={loading}>
-                        <RecentActivity />
-                      </ComponentLoader>
-                    </Grid>
-                  </>
-                )}
+                  {/* Mobile Components */}
+                  {isMobile && (
+                    <>
+                      <Grid item xs={12}>
+                        <ComponentLoader loading={loading}>
+                          <UserStatsCard />
+                        </ComponentLoader>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <ComponentLoader loading={loading}>
+                          <NotificationsPanel />
+                        </ComponentLoader>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <ComponentLoader loading={loading}>
+                          <RecentActivity />
+                        </ComponentLoader>
+                      </Grid>
+                    </>
+                  )}
+                </Grid>
               </Grid>
+
+              {/* Right Sidebar - Desktop Only */}
+              {!isMobile && (
+                <Grid item xl={4}>
+                  <Box sx={{ 
+                    position: 'sticky', 
+                    top: 100,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 3
+                  }}>
+                    <ComponentLoader loading={loading}>
+                      <UserStatsCard />
+                    </ComponentLoader>
+                    <ComponentLoader loading={loading}>
+                      <MentorCard />
+                    </ComponentLoader>
+                    <ComponentLoader loading={loading}>
+                      <QuickStats />
+                    </ComponentLoader>
+                    <ComponentLoader loading={loading}>
+                      <NotificationsPanel />
+                    </ComponentLoader>
+                    <ComponentLoader loading={loading}>
+                      <RecentActivity />
+                    </ComponentLoader>
+                  </Box>
+                </Grid>
+              )}
             </Grid>
-
-            {/* Right Sidebar - Desktop Only */}
-            {!isMobile && (
-              <Grid item xl={4}>
-                <Box sx={{ 
-                  position: 'sticky', 
-                  top: 100,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 3
-                }}>
-                  <ComponentLoader loading={loading}>
-                    <UserStatsCard />
-                  </ComponentLoader>
-                  <ComponentLoader loading={loading}>
-                    <MentorCard />
-                  </ComponentLoader>
-                  <ComponentLoader loading={loading}>
-                    <QuickStats />
-                  </ComponentLoader>
-                  <ComponentLoader loading={loading}>
-                    <NotificationsPanel />
-                  </ComponentLoader>
-                  <ComponentLoader loading={loading}>
-                    <RecentActivity />
-                  </ComponentLoader>
-                </Box>
-              </Grid>
-            )}
-          </Grid>
+          )}
         </Box>
       </Box>
 
       {/* Mobile Bottom Navigation */}
-      {isMobile && <QuickAccessPanel mobile />}
+      {isMobile && <QuickAccessPanel mobile onNavigate={setCurrentPage} currentPage={currentPage} />}
     </Box>
   );
 };

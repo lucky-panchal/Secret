@@ -5,17 +5,16 @@ import { motion } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useState } from 'react';
 
-const QuickAccessPanel = ({ mobile = false }) => {
+const QuickAccessPanel = ({ mobile = false, onNavigate, currentPage }) => {
   const { isDark } = useTheme();
   const [value, setValue] = useState(0);
 
   const navigationItems = [
-    { label: 'Dashboard', icon: Dashboard },
-    { label: 'Courses', icon: School },
-    { label: 'Certificates', icon: VerifiedUser },
-    { label: 'Jobs', icon: Work },
-    { label: 'Tokens', icon: Token },
-    { label: 'Settings', icon: Settings }
+    { label: 'Dashboard', icon: Dashboard, page: 'dashboard' },
+    { label: 'Courses', icon: School, page: 'courses' },
+    { label: 'Certificates', icon: VerifiedUser, page: 'certificates' },
+    { label: 'Jobs', icon: Work, page: 'jobs' },
+    { label: 'Tokens', icon: Token, page: 'tokens' }
   ];
 
   if (mobile) {
@@ -36,8 +35,13 @@ const QuickAccessPanel = ({ mobile = false }) => {
         elevation={0}
       >
         <BottomNavigation
-          value={value}
-          onChange={(event, newValue) => setValue(newValue)}
+          value={navigationItems.findIndex(item => item.page === currentPage)}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+            if (onNavigate && navigationItems[newValue]) {
+              onNavigate(navigationItems[newValue].page);
+            }
+          }}
           sx={{
             bgcolor: 'transparent',
             height: 80,
@@ -54,7 +58,7 @@ const QuickAccessPanel = ({ mobile = false }) => {
             }
           }}
         >
-          {navigationItems.slice(0, 5).map((item, index) => (
+          {navigationItems.map((item, index) => (
             <BottomNavigationAction
               key={index}
               label={item.label}
@@ -97,14 +101,16 @@ const QuickAccessPanel = ({ mobile = false }) => {
                 variant="text"
                 startIcon={<item.icon />}
                 fullWidth
+                onClick={() => onNavigate && onNavigate(item.page)}
                 sx={{
                   justifyContent: 'flex-start',
-                  color: '#F8FAFC',
+                  color: currentPage === item.page ? '#00F5FF' : '#F8FAFC',
                   py: 1.5,
                   px: 2,
                   borderRadius: 2,
                   textTransform: 'none',
                   fontWeight: 500,
+                  bgcolor: currentPage === item.page ? 'rgba(0, 245, 255, 0.1)' : 'transparent',
                   '&:hover': {
                     bgcolor: 'rgba(0, 245, 255, 0.1)',
                     color: '#00F5FF',

@@ -4,16 +4,16 @@ import { Dashboard, VerifiedUser, School, Assignment, Work, Settings, Logout, Pe
 import { useTheme } from '@/contexts/ThemeContext';
 import { motion } from 'framer-motion';
 
-const Sidebar = () => {
+const Sidebar = ({ onNavigate, currentPage }) => {
   const { isDark } = useTheme();
 
   const navigationItems = [
-    { label: 'Dashboard', icon: Dashboard, active: true },
-    { label: 'Courses', icon: School },
-    { label: 'Tasks', icon: Assignment },
-    { label: 'Certificates', icon: VerifiedUser },
-    { label: 'Jobs', icon: Work },
-    { label: 'Settings', icon: Settings },
+    { label: 'Dashboard', icon: Dashboard, page: 'dashboard' },
+    { label: 'Courses', icon: School, page: 'courses' },
+    { label: 'Tasks', icon: Assignment, page: 'tasks' },
+    { label: 'Certificates', icon: VerifiedUser, page: 'certificates' },
+    { label: 'Jobs', icon: Work, page: 'jobs' },
+    { label: 'Settings', icon: Settings, page: 'settings' },
   ];
 
   const mentors = [
@@ -51,21 +51,23 @@ const Sidebar = () => {
         {navigationItems.map((item, index) => (
           <motion.div key={index} whileHover={{ x: 4 }} whileTap={{ scale: 0.98 }}>
             <ListItem
+              onClick={() => onNavigate && onNavigate(item.page)}
               sx={{
                 borderRadius: 2,
                 mb: 0.5,
                 py: 1,
                 px: 1.5,
-                bgcolor: item.active ? 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)' : 'transparent',
-                color: item.active ? '#ffffff' : '#CBD5E1',
-                border: item.active ? '1px solid rgba(0, 245, 255, 0.3)' : '1px solid transparent',
-                boxShadow: item.active ? '0 0 20px rgba(0, 245, 255, 0.2)' : 'none',
+                bgcolor: currentPage === item.page ? 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)' : 'transparent',
+                color: currentPage === item.page ? '#ffffff' : '#CBD5E1',
+                border: currentPage === item.page ? '1px solid rgba(0, 245, 255, 0.3)' : '1px solid transparent',
+                boxShadow: currentPage === item.page ? '0 0 20px rgba(0, 245, 255, 0.2)' : 'none',
                 outline: 'none',
+                cursor: 'pointer',
                 '&:focus': {
                   outline: 'none'
                 },
                 '&:hover': {
-                  bgcolor: item.active ? 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)' : 'rgba(0, 245, 255, 0.1)',
+                  bgcolor: currentPage === item.page ? 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)' : 'rgba(0, 245, 255, 0.1)',
                   border: '1px solid rgba(0, 245, 255, 0.3)',
                   boxShadow: '0 0 15px rgba(0, 245, 255, 0.15)',
                   color: '#ffffff'
