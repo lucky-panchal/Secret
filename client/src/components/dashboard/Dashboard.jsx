@@ -22,6 +22,14 @@ import QuickStats from './QuickStats';
 import RecentActivity from './RecentActivity';
 import ComponentLoader from './ComponentLoader';
 import CoursesPage from './CoursesPage';
+import TasksPage from './TasksPage';
+import CertificatesPage from './CertificatesPage';
+import JobsPage from './JobsPage';
+import SettingsPage from './SettingsPage';
+import TokensPage from './TokensPage';
+import NotificationModal from './NotificationModal';
+import MessageModal from './MessageModal';
+import ProfileModal from './ProfileModal';
 import { useTheme } from '@/contexts/ThemeContext';
 
 const Dashboard = () => {
@@ -33,11 +41,47 @@ const Dashboard = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState('dashboard');
+  const [refreshKey, setRefreshKey] = useState(0);
+  const [notificationModalOpen, setNotificationModalOpen] = useState(false);
+  const [messageModalOpen, setMessageModalOpen] = useState(false);
+  const [profileModalOpen, setProfileModalOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
+
+  // Enhanced navigation handler with page transitions
+  const handlePageNavigation = (page) => {
+    if (page !== currentPage) {
+      setLoading(true);
+      setCurrentPage(page);
+      setMobileOpen(false); // Close mobile drawer on navigation
+      
+      // Simulate loading for smooth transitions
+      setTimeout(() => setLoading(false), 800);
+    }
+  };
+
+  // Refresh dashboard data
+  const handleRefresh = () => {
+    setLoading(true);
+    setRefreshKey(prev => prev + 1);
+    setTimeout(() => setLoading(false), 1000);
+  };
+
+  // Modal handlers
+  const handleNotificationClick = () => {
+    setNotificationModalOpen(true);
+  };
+
+  const handleMessageClick = () => {
+    setMessageModalOpen(true);
+  };
+
+  const handleProfileClick = () => {
+    setProfileModalOpen(true);
+  };
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -76,7 +120,7 @@ const Dashboard = () => {
       }
     }}>
       {/* Left Sidebar - Desktop & Tablet */}
-      {isDesktop && <Sidebar onNavigate={setCurrentPage} currentPage={currentPage} />}
+      {isDesktop && <Sidebar onNavigate={handlePageNavigation} currentPage={currentPage} />}
       
       {/* Mobile Drawer */}
       <Drawer
@@ -89,11 +133,13 @@ const Dashboard = () => {
           '& .MuiDrawer-paper': { 
             boxSizing: 'border-box', 
             width: 280,
-            bgcolor: '#ffffff'
+            bgcolor: 'rgba(26, 26, 46, 0.95)',
+            backdropFilter: 'blur(20px)',
+            border: 'none'
           },
         }}
       >
-        <Sidebar onNavigate={setCurrentPage} currentPage={currentPage} />
+        <Sidebar onNavigate={handlePageNavigation} currentPage={currentPage} />
       </Drawer>
 
       {/* Main Content Area */}
@@ -130,7 +176,14 @@ const Dashboard = () => {
               <Menu sx={{ color: isDark ? '#ffffff' : '#374151' }} />
             </IconButton>
           )}
-          <TopNavbar />
+          <TopNavbar 
+            onRefresh={handleRefresh} 
+            currentPage={currentPage}
+            onNotificationClick={handleNotificationClick}
+            onMessageClick={handleMessageClick}
+            onProfileClick={handleProfileClick}
+            onNavigate={handlePageNavigation}
+          />
         </Box>
 
         {/* Dashboard Content */}
@@ -143,66 +196,76 @@ const Dashboard = () => {
           maxHeight: 'calc(100vh - 80px)'
         }}>
           {currentPage === 'courses' ? (
-            <CoursesPage />
+            <CoursesPage key={refreshKey} onNavigate={handlePageNavigation} />
+          ) : currentPage === 'tasks' ? (
+            <TasksPage key={refreshKey} onNavigate={handlePageNavigation} />
+          ) : currentPage === 'certificates' ? (
+            <CertificatesPage key={refreshKey} onNavigate={handlePageNavigation} />
+          ) : currentPage === 'jobs' ? (
+            <JobsPage key={refreshKey} onNavigate={handlePageNavigation} />
+          ) : currentPage === 'settings' ? (
+            <SettingsPage key={refreshKey} onNavigate={handlePageNavigation} />
+          ) : currentPage === 'tokens' ? (
+            <TokensPage key={refreshKey} onNavigate={handlePageNavigation} />
           ) : (
-            <Grid container spacing={3}>
+            <Grid container spacing={3} key={refreshKey}>
               {/* Main Content Column */}
               <Grid item xs={12} xl={8}>
                 <Grid container spacing={3}>
                   {/* Banner */}
                   <Grid item xs={12}>
                     <ComponentLoader loading={loading}>
-                      <BannerCard />
+                      <BannerCard onNavigate={handlePageNavigation} />
                     </ComponentLoader>
                   </Grid>
 
                   {/* AI Career Monitor & Career Roadmap */}
                   <Grid item xs={12} md={6}>
                     <ComponentLoader loading={loading}>
-                      <AICareerMonitor />
+                      <AICareerMonitor onNavigate={handlePageNavigation} />
                     </ComponentLoader>
                   </Grid>
                   <Grid item xs={12} md={6}>
                     <ComponentLoader loading={loading}>
-                      <CareerRoadmap />
+                      <CareerRoadmap onNavigate={handlePageNavigation} />
                     </ComponentLoader>
                   </Grid>
 
                   {/* Active Courses */}
                   <Grid item xs={12}>
                     <ComponentLoader loading={loading}>
-                      <ActiveCourses />
+                      <ActiveCourses onNavigate={handlePageNavigation} />
                     </ComponentLoader>
                   </Grid>
 
                   {/* Certificates & Job Matches */}
                   <Grid item xs={12} md={6}>
                     <ComponentLoader loading={loading}>
-                      <BlockchainCertificates />
+                      <BlockchainCertificates onNavigate={handlePageNavigation} />
                     </ComponentLoader>
                   </Grid>
                   <Grid item xs={12} md={6}>
                     <ComponentLoader loading={loading}>
-                      <JobMatches />
+                      <JobMatches onNavigate={handlePageNavigation} />
                     </ComponentLoader>
                   </Grid>
 
                   {/* Token Economy & Mentorship */}
                   <Grid item xs={12} md={6}>
                     <ComponentLoader loading={loading}>
-                      <TokenEconomy />
+                      <TokenEconomy onNavigate={handlePageNavigation} />
                     </ComponentLoader>
                   </Grid>
                   <Grid item xs={12} md={6}>
                     <ComponentLoader loading={loading}>
-                      <MentorshipHub />
+                      <MentorshipHub onNavigate={handlePageNavigation} />
                     </ComponentLoader>
                   </Grid>
 
                   {/* Progress Tracker */}
                   <Grid item xs={12}>
                     <ComponentLoader loading={loading}>
-                      <ProgressTracker />
+                      <ProgressTracker onNavigate={handlePageNavigation} />
                     </ComponentLoader>
                   </Grid>
 
@@ -211,17 +274,17 @@ const Dashboard = () => {
                     <>
                       <Grid item xs={12}>
                         <ComponentLoader loading={loading}>
-                          <UserStatsCard />
+                          <UserStatsCard onNavigate={handlePageNavigation} />
                         </ComponentLoader>
                       </Grid>
                       <Grid item xs={12}>
                         <ComponentLoader loading={loading}>
-                          <NotificationsPanel />
+                          <NotificationsPanel onNavigate={handlePageNavigation} />
                         </ComponentLoader>
                       </Grid>
                       <Grid item xs={12}>
                         <ComponentLoader loading={loading}>
-                          <RecentActivity />
+                          <RecentActivity onNavigate={handlePageNavigation} />
                         </ComponentLoader>
                       </Grid>
                     </>
@@ -240,19 +303,19 @@ const Dashboard = () => {
                     gap: 3
                   }}>
                     <ComponentLoader loading={loading}>
-                      <UserStatsCard />
+                      <UserStatsCard onNavigate={handlePageNavigation} />
                     </ComponentLoader>
                     <ComponentLoader loading={loading}>
-                      <MentorCard />
+                      <MentorCard onNavigate={handlePageNavigation} />
                     </ComponentLoader>
                     <ComponentLoader loading={loading}>
-                      <QuickStats />
+                      <QuickStats onNavigate={handlePageNavigation} />
                     </ComponentLoader>
                     <ComponentLoader loading={loading}>
-                      <NotificationsPanel />
+                      <NotificationsPanel onNavigate={handlePageNavigation} />
                     </ComponentLoader>
                     <ComponentLoader loading={loading}>
-                      <RecentActivity />
+                      <RecentActivity onNavigate={handlePageNavigation} />
                     </ComponentLoader>
                   </Box>
                 </Grid>
@@ -263,7 +326,22 @@ const Dashboard = () => {
       </Box>
 
       {/* Mobile Bottom Navigation */}
-      {isMobile && <QuickAccessPanel mobile onNavigate={setCurrentPage} currentPage={currentPage} />}
+      {isMobile && <QuickAccessPanel mobile onNavigate={handlePageNavigation} currentPage={currentPage} />}
+      
+      {/* Modals */}
+      <NotificationModal 
+        open={notificationModalOpen} 
+        onClose={() => setNotificationModalOpen(false)} 
+      />
+      <MessageModal 
+        open={messageModalOpen} 
+        onClose={() => setMessageModalOpen(false)} 
+      />
+      <ProfileModal 
+        open={profileModalOpen} 
+        onClose={() => setProfileModalOpen(false)}
+        onNavigate={handlePageNavigation}
+      />
     </Box>
   );
 };

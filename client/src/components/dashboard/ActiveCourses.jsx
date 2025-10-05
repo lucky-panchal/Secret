@@ -4,8 +4,22 @@ import { PlayArrow, Schedule } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
 
-const ActiveCourses = () => {
+const ActiveCourses = ({ onNavigate }) => {
   const { isDark } = useTheme();
+
+  const handleViewAllCourses = () => {
+    if (onNavigate) {
+      onNavigate('courses');
+    }
+  };
+
+  const handleCourseAction = (courseId, action) => {
+    console.log(`${action} course ${courseId}`);
+    // Here you would typically update course progress or navigate to course detail
+    if (onNavigate) {
+      onNavigate('courses');
+    }
+  };
 
   const courses = [
     {
@@ -82,10 +96,15 @@ const ActiveCourses = () => {
             <Button
               variant="text"
               size="small"
+              onClick={handleViewAllCourses}
               sx={{ 
                 color: '#FBBF24',
                 textTransform: 'none',
-                fontWeight: 600
+                fontWeight: 600,
+                cursor: 'pointer',
+                '&:hover': {
+                  bgcolor: 'rgba(251, 191, 36, 0.1)'
+                }
               }}
             >
               View All
@@ -210,11 +229,15 @@ const ActiveCourses = () => {
                         size="small"
                         fullWidth
                         startIcon={<PlayArrow />}
+                        onClick={() => handleCourseAction(course.id, course.status)}
                         sx={{
                           background: 'linear-gradient(135deg, #FBBF24 0%, #A855F7 100%)',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease',
                           '&:hover': { 
                             background: 'linear-gradient(135deg, #FBBF24 0%, #A855F7 100%)',
-                            boxShadow: '0 0 20px rgba(251, 191, 36, 0.4)'
+                            boxShadow: '0 0 20px rgba(251, 191, 36, 0.4)',
+                            transform: 'translateY(-1px)'
                           },
                           textTransform: 'none',
                           fontWeight: 600

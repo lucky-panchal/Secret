@@ -2,9 +2,32 @@
 import { Box, TextField, IconButton, Avatar, Badge, InputAdornment } from '@mui/material';
 import { Search, Notifications, Message, Settings } from '@mui/icons-material';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useState } from 'react';
 
-const TopNavbar = () => {
+const TopNavbar = ({ onRefresh, currentPage, onNotificationClick, onMessageClick, onProfileClick, onNavigate }) => {
   const { isDark } = useTheme();
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearch = (event) => {
+    if (event.key === 'Enter' && searchQuery.trim()) {
+      console.log('Searching for:', searchQuery);
+      // Navigate to courses page with search filter
+      if (onNavigate) {
+        onNavigate('courses');
+      }
+      alert(`Searching for: "${searchQuery}"`);
+    }
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSettingsClick = () => {
+    if (onNavigate) {
+      onNavigate('settings');
+    }
+  };
 
   return (
     <Box
@@ -12,7 +35,7 @@ const TopNavbar = () => {
         height: 80,
         background: 'rgba(26, 26, 46, 0.9)',
         backdropFilter: 'blur(20px)',
-        borderBottom: '1px solid rgba(0, 245, 255, 0.2)',
+        borderBottom: '1px solid rgba(148, 163, 184, 0.1)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -20,7 +43,7 @@ const TopNavbar = () => {
         position: 'sticky',
         top: 0,
         zIndex: 100,
-        boxShadow: '0 4px 20px rgba(0, 245, 255, 0.1), 0 0 40px rgba(168, 85, 247, 0.05)',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
       }}
     >
       {/* Search Bar */}
@@ -28,6 +51,9 @@ const TopNavbar = () => {
         placeholder="Search your course..."
         variant="outlined"
         size="small"
+        value={searchQuery}
+        onChange={handleSearchChange}
+        onKeyPress={handleSearch}
         sx={{
           width: { xs: '100%', sm: 320, md: 420 },
           maxWidth: { xs: 'calc(100% - 120px)', sm: 420 },
@@ -42,15 +68,15 @@ const TopNavbar = () => {
             boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
             transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
             '& fieldset': { 
-              border: '1px solid rgba(0, 245, 255, 0.2)',
+              border: '1px solid rgba(148, 163, 184, 0.2)',
               borderRadius: 3
             },
             '&:hover': {
               background: 'rgba(26, 26, 46, 0.8)',
-              borderColor: 'rgba(0, 245, 255, 0.4)',
-              boxShadow: '0 0 15px rgba(0, 245, 255, 0.1)',
+              borderColor: 'rgba(148, 163, 184, 0.4)',
+              boxShadow: '0 0 15px rgba(148, 163, 184, 0.1)',
               '& fieldset': { 
-                borderColor: 'rgba(0, 245, 255, 0.4)'
+                borderColor: 'rgba(148, 163, 184, 0.4)'
               }
             },
             '&.Mui-focused': {
@@ -87,50 +113,69 @@ const TopNavbar = () => {
 
       {/* Right Icons */}
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <IconButton sx={{ 
-          color: '#F8FAFC',
-          '&:hover': {
-            bgcolor: 'rgba(0, 245, 255, 0.1)',
-            boxShadow: '0 0 15px rgba(0, 245, 255, 0.2)'
-          }
-        }}>
+        <IconButton 
+          onClick={onNotificationClick}
+          sx={{ 
+            color: '#F8FAFC',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease',
+            '&:hover': {
+              bgcolor: 'rgba(0, 245, 255, 0.1)',
+              boxShadow: '0 0 15px rgba(0, 245, 255, 0.2)',
+              transform: 'scale(1.05)'
+            }
+          }}>
           <Badge badgeContent={3} color="error">
             <Notifications />
           </Badge>
         </IconButton>
         
-        <IconButton sx={{ 
-          color: '#F8FAFC',
-          '&:hover': {
-            bgcolor: 'rgba(168, 85, 247, 0.1)',
-            boxShadow: '0 0 15px rgba(168, 85, 247, 0.2)'
-          }
-        }}>
+        <IconButton 
+          onClick={onMessageClick}
+          sx={{ 
+            color: '#F8FAFC',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease',
+            '&:hover': {
+              bgcolor: 'rgba(168, 85, 247, 0.1)',
+              boxShadow: '0 0 15px rgba(168, 85, 247, 0.2)',
+              transform: 'scale(1.05)'
+            }
+          }}>
           <Badge badgeContent={2} color="primary">
             <Message />
           </Badge>
         </IconButton>
         
-        <IconButton sx={{ 
-          color: '#F8FAFC',
-          '&:hover': {
-            bgcolor: 'rgba(251, 191, 36, 0.1)',
-            boxShadow: '0 0 15px rgba(251, 191, 36, 0.2)'
-          }
-        }}>
+        <IconButton 
+          onClick={handleSettingsClick}
+          sx={{ 
+            color: '#F8FAFC',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease',
+            '&:hover': {
+              bgcolor: 'rgba(251, 191, 36, 0.1)',
+              boxShadow: '0 0 15px rgba(251, 191, 36, 0.2)',
+              transform: 'scale(1.05)'
+            }
+          }}>
           <Settings />
         </IconButton>
         
-        <Avatar sx={{ 
-          background: 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)', 
-          ml: 1,
-          border: '2px solid rgba(0, 245, 255, 0.3)',
-          boxShadow: '0 0 20px rgba(0, 245, 255, 0.3)',
-          '&:hover': {
-            transform: 'scale(1.05)',
-            boxShadow: '0 0 25px rgba(0, 245, 255, 0.4)'
-          }
-        }}>A</Avatar>
+        <Avatar 
+          onClick={onProfileClick}
+          sx={{ 
+            background: 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)', 
+            ml: 1,
+            border: '2px solid rgba(148, 163, 184, 0.2)',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease',
+            '&:hover': {
+              transform: 'scale(1.05)',
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)'
+            }
+          }}>A</Avatar>
       </Box>
     </Box>
   );
