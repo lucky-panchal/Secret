@@ -41,7 +41,7 @@ const Sidebar = () => {
       {/* Logo */}
       <Box sx={{ mb: 2.5 }}>
         <Typography variant="h6" sx={{ fontWeight: 700, color: '#705CF6', fontSize: '1.125rem' }}>
-          ReskillPro
+          KaushalX
         </Typography>
       </Box>
 
@@ -95,7 +95,7 @@ const Sidebar = () => {
           <Avatar sx={{ bgcolor: '#705CF6' }}>A</Avatar>
           <Box>
             <Typography variant="subtitle2" sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#374151' }}>
-              Anmol Singh
+              Anmol Sinha
             </Typography>
             <Typography variant="caption" sx={{ color: isDark ? '#b0b0b0' : '#6b7280' }}>
               Premium Member
