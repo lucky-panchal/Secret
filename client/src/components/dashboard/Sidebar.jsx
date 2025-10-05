@@ -1,6 +1,6 @@
 'use client';
 import { Box, List, ListItem, ListItemIcon, ListItemText, Avatar, Typography, Divider } from '@mui/material';
-import { Dashboard, VerifiedUser, School, Assignment, Work, Settings, Logout, Person } from '@mui/icons-material';
+import { Dashboard, VerifiedUser, School, Assignment, Work, Settings, Logout, Person, Token } from '@mui/icons-material';
 import { useTheme } from '@/contexts/ThemeContext';
 import { motion } from 'framer-motion';
 
@@ -13,6 +13,7 @@ const Sidebar = ({ onNavigate, currentPage }) => {
     { label: 'Tasks', icon: Assignment, page: 'tasks' },
     { label: 'Certificates', icon: VerifiedUser, page: 'certificates' },
     { label: 'Jobs', icon: Work, page: 'jobs' },
+    { label: 'Tokens', icon: Token, page: 'tokens' },
     { label: 'Settings', icon: Settings, page: 'settings' },
   ];
 
@@ -140,7 +141,22 @@ const Sidebar = ({ onNavigate, currentPage }) => {
         </Box>
 
         {/* Logout */}
-        <ListItem sx={{ mt: 2, borderRadius: 2, color: isDark ? '#ffffff' : '#374151', '&:hover': { bgcolor: isDark ? 'rgba(239, 68, 68, 0.1)' : 'rgba(239, 68, 68, 0.05)' } }}>
+        <ListItem 
+          onClick={() => {
+            if (confirm('Are you sure you want to logout?')) {
+              console.log('User logged out');
+              alert('Logged out successfully!');
+              // Here you would typically redirect to login page
+            }
+          }}
+          sx={{ 
+            mt: 2, 
+            borderRadius: 2, 
+            color: isDark ? '#ffffff' : '#374151', 
+            cursor: 'pointer',
+            '&:hover': { bgcolor: isDark ? 'rgba(239, 68, 68, 0.1)' : 'rgba(239, 68, 68, 0.05)' } 
+          }}
+        >
           <ListItemIcon sx={{ color: '#ef4444', minWidth: 40 }}>
             <Logout />
           </ListItemIcon>

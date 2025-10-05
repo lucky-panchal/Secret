@@ -4,20 +4,34 @@ import { TrendingUp, Info, Security } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
 
-const AICareerMonitor = () => {
+const AICareerMonitor = ({ onNavigate }) => {
   const { isDark } = useTheme();
+
+  const handleViewDetails = () => {
+    if (onNavigate) {
+      onNavigate('career-analysis');
+    }
+  };
 
   return (
     <Box>
       <Card 
         elevation={0}
+        onClick={handleViewDetails}
         sx={{ 
           background: 'rgba(26, 26, 46, 0.8)',
           backdropFilter: 'blur(20px)',
           border: '1px solid rgba(0, 245, 255, 0.2)',
           borderRadius: 3,
           boxShadow: '0 0 30px rgba(0, 245, 255, 0.15), 0 0 60px rgba(168, 85, 247, 0.1)',
-          height: '100%'
+          height: '100%',
+          cursor: 'pointer',
+          transition: 'all 0.3s ease',
+          '&:hover': {
+            transform: 'translateY(-2px)',
+            boxShadow: '0 0 40px rgba(0, 245, 255, 0.25), 0 0 80px rgba(168, 85, 247, 0.15)',
+            border: '1px solid rgba(0, 245, 255, 0.4)'
+          }
         }}
       >
         <CardContent sx={{ p: { xs: 3, md: 4 } }}>
