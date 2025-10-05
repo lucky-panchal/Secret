@@ -1,6 +1,6 @@
 'use client';
-import { Box, Grid, Card, CardContent, Typography, Chip, Button, LinearProgress, Checkbox, Avatar } from '@mui/material';
-import { Assignment, CheckCircle, Schedule, Flag, Person } from '@mui/icons-material';
+import { Box, Grid, Card, CardContent, Typography, Chip, Button, LinearProgress, Checkbox, Avatar, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Select, MenuItem, FormControl, InputLabel, IconButton } from '@mui/material';
+import { Assignment, CheckCircle, Schedule, Flag, Person, Add, Edit, Delete, Close } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useState } from 'react';
@@ -8,6 +8,7 @@ import { useState } from 'react';
 const TasksPage = ({ onNavigate }) => {
   const { isDark } = useTheme();
   const [tasks, setTasks] = useState([
+    // Initial tasks data
     {
       id: 1,
       title: 'Complete React Advanced Patterns Module',
@@ -54,10 +55,89 @@ const TasksPage = ({ onNavigate }) => {
     }
   ]);
 
+  // Modal and form states
+  const [openDialog, setOpenDialog] = useState(false);
+  const [editingTask, setEditingTask] = useState(null);
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    priority: 'Medium',
+    dueDate: '',
+    category: 'Learning',
+    assignedBy: 'Self'
+  });
+
   const handleTaskToggle = (taskId) => {
     setTasks(tasks.map(task => 
       task.id === taskId ? { ...task, completed: !task.completed, progress: task.completed ? 75 : 100 } : task
     ));
+  };
+
+  // CRUD Functions
+  const handleOpenDialog = (task = null) => {
+    if (task) {
+      setEditingTask(task);
+      setFormData({
+        title: task.title,
+        description: task.description,
+        priority: task.priority,
+        dueDate: task.dueDate,
+        category: task.category,
+        assignedBy: task.assignedBy
+      });
+    } else {
+      setEditingTask(null);
+      setFormData({
+        title: '',
+        description: '',
+        priority: 'Medium',
+        dueDate: '',
+        category: 'Learning',
+        assignedBy: 'Self'
+      });
+    }
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+    setEditingTask(null);
+  };
+
+  const handleInputChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleSaveTask = () => {
+    if (!formData.title.trim()) {
+      alert('Task title is required!');
+      return;
+    }
+
+    if (editingTask) {
+      // Update existing task
+      setTasks(tasks.map(task => 
+        task.id === editingTask.id 
+          ? { ...task, ...formData }
+          : task
+      ));
+    } else {
+      // Add new task
+      const newTask = {
+        id: Math.max(...tasks.map(t => t.id)) + 1,
+        ...formData,
+        progress: 0,
+        completed: false
+      };
+      setTasks([...tasks, newTask]);
+    }
+    handleCloseDialog();
+  };
+
+  const handleDeleteTask = (taskId) => {
+    if (confirm('Are you sure you want to delete this task?')) {
+      setTasks(tasks.filter(task => task.id !== taskId));
+    }
   };
 
   const getPriorityColor = (priority) => {
@@ -166,6 +246,32 @@ const TasksPage = ({ onNavigate }) => {
                             </Box>
                           )}
                         </Box>
+                        
+                        {/* Action Buttons */}
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                          <IconButton 
+                            size="small" 
+                            onClick={() => handleOpenDialog(task)}
+                            sx={{ 
+                              color: '#00F5FF', 
+                              bgcolor: 'rgba(0, 245, 255, 0.1)',
+                              '&:hover': { bgcolor: 'rgba(0, 245, 255, 0.2)' }
+                            }}
+                          >
+                            <Edit fontSize="small" />
+                          </IconButton>
+                          <IconButton 
+                            size="small" 
+                            onClick={() => handleDeleteTask(task.id)}
+                            sx={{ 
+                              color: '#EF4444', 
+                              bgcolor: 'rgba(239, 68, 68, 0.1)',
+                              '&:hover': { bgcolor: 'rgba(239, 68, 68, 0.2)' }
+                            }}
+                          >
+                            <Delete fontSize="small" />
+                          </IconButton>
+                        </Box>
                       </Box>
                     </CardContent>
                   </Card>
@@ -213,7 +319,22 @@ const TasksPage = ({ onNavigate }) => {
                     Quick Actions
                   </Typography>
                   <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                    <Button variant="contained" fullWidth startIcon={<Assignment />} sx={{ background: 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)', textTransform: 'none', fontWeight: 600 }}>
+                    <Button 
+                      variant="contained" 
+                      fullWidth 
+                      startIcon={<Add />} 
+                      onClick={() => handleOpenDialog()}
+                      sx={{ 
+                        background: 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)', 
+                        textTransform: 'none', 
+                        fontWeight: 600,
+                        cursor: 'pointer',
+                        '&:hover': {
+                          background: 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)',
+                          transform: 'scale(1.02)'
+                        }
+                      }}
+                    >
                       Create New Task
                     </Button>
                     <Button variant="outlined" fullWidth sx={{ borderColor: 'rgba(0, 245, 255, 0.3)', color: '#00F5FF', textTransform: 'none' }}>
@@ -229,6 +350,169 @@ const TasksPage = ({ onNavigate }) => {
           </Box>
         </Grid>
       </Grid>
+
+      {/* Task Dialog Modal */}
+      <Dialog 
+        open={openDialog} 
+        onClose={handleCloseDialog} 
+        maxWidth="sm" 
+        fullWidth
+        PaperProps={{
+          sx: {
+            background: 'rgba(26, 26, 46, 0.95)',
+            backdropFilter: 'blur(20px)',
+            border: '1px solid rgba(0, 245, 255, 0.2)',
+            borderRadius: 3
+          }
+        }}
+      >
+        <DialogTitle sx={{ 
+          color: '#F8FAFC', 
+          fontWeight: 600,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between'
+        }}>
+          {editingTask ? 'Edit Task' : 'Create New Task'}
+          <IconButton onClick={handleCloseDialog} sx={{ color: '#94A3B8' }}>
+            <Close />
+          </IconButton>
+        </DialogTitle>
+        
+        <DialogContent sx={{ pt: 2 }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+            <TextField
+              label="Task Title"
+              value={formData.title}
+              onChange={(e) => handleInputChange('title', e.target.value)}
+              fullWidth
+              required
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  color: '#F8FAFC',
+                  '& fieldset': { borderColor: 'rgba(0, 245, 255, 0.3)' },
+                  '&:hover fieldset': { borderColor: 'rgba(0, 245, 255, 0.5)' },
+                  '&.Mui-focused fieldset': { borderColor: '#00F5FF' }
+                },
+                '& .MuiInputLabel-root': { color: '#94A3B8' }
+              }}
+            />
+            
+            <TextField
+              label="Description"
+              value={formData.description}
+              onChange={(e) => handleInputChange('description', e.target.value)}
+              fullWidth
+              multiline
+              rows={3}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  color: '#F8FAFC',
+                  '& fieldset': { borderColor: 'rgba(0, 245, 255, 0.3)' },
+                  '&:hover fieldset': { borderColor: 'rgba(0, 245, 255, 0.5)' },
+                  '&.Mui-focused fieldset': { borderColor: '#00F5FF' }
+                },
+                '& .MuiInputLabel-root': { color: '#94A3B8' }
+              }}
+            />
+            
+            <Box sx={{ display: 'flex', gap: 2 }}>
+              <FormControl fullWidth>
+                <InputLabel sx={{ color: '#94A3B8' }}>Priority</InputLabel>
+                <Select
+                  value={formData.priority}
+                  onChange={(e) => handleInputChange('priority', e.target.value)}
+                  label="Priority"
+                  sx={{
+                    color: '#F8FAFC',
+                    '& .MuiOutlinedInput-notchedOutline': { borderColor: 'rgba(0, 245, 255, 0.3)' },
+                    '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: 'rgba(0, 245, 255, 0.5)' },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: '#00F5FF' }
+                  }}
+                >
+                  <MenuItem value="High">High</MenuItem>
+                  <MenuItem value="Medium">Medium</MenuItem>
+                  <MenuItem value="Low">Low</MenuItem>
+                </Select>
+              </FormControl>
+              
+              <FormControl fullWidth>
+                <InputLabel sx={{ color: '#94A3B8' }}>Category</InputLabel>
+                <Select
+                  value={formData.category}
+                  onChange={(e) => handleInputChange('category', e.target.value)}
+                  label="Category"
+                  sx={{
+                    color: '#F8FAFC',
+                    '& .MuiOutlinedInput-notchedOutline': { borderColor: 'rgba(0, 245, 255, 0.3)' },
+                    '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: 'rgba(0, 245, 255, 0.5)' },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: '#00F5FF' }
+                  }}
+                >
+                  <MenuItem value="Learning">Learning</MenuItem>
+                  <MenuItem value="Assessment">Assessment</MenuItem>
+                  <MenuItem value="Career">Career</MenuItem>
+                  <MenuItem value="Community">Community</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+            
+            <TextField
+              label="Due Date"
+              type="date"
+              value={formData.dueDate}
+              onChange={(e) => handleInputChange('dueDate', e.target.value)}
+              fullWidth
+              InputLabelProps={{ shrink: true }}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  color: '#F8FAFC',
+                  '& fieldset': { borderColor: 'rgba(0, 245, 255, 0.3)' },
+                  '&:hover fieldset': { borderColor: 'rgba(0, 245, 255, 0.5)' },
+                  '&.Mui-focused fieldset': { borderColor: '#00F5FF' }
+                },
+                '& .MuiInputLabel-root': { color: '#94A3B8' }
+              }}
+            />
+            
+            <TextField
+              label="Assigned By"
+              value={formData.assignedBy}
+              onChange={(e) => handleInputChange('assignedBy', e.target.value)}
+              fullWidth
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  color: '#F8FAFC',
+                  '& fieldset': { borderColor: 'rgba(0, 245, 255, 0.3)' },
+                  '&:hover fieldset': { borderColor: 'rgba(0, 245, 255, 0.5)' },
+                  '&.Mui-focused fieldset': { borderColor: '#00F5FF' }
+                },
+                '& .MuiInputLabel-root': { color: '#94A3B8' }
+              }}
+            />
+          </Box>
+        </DialogContent>
+        
+        <DialogActions sx={{ p: 3, pt: 2 }}>
+          <Button 
+            onClick={handleCloseDialog} 
+            sx={{ color: '#94A3B8', textTransform: 'none' }}
+          >
+            Cancel
+          </Button>
+          <Button 
+            onClick={handleSaveTask} 
+            variant="contained"
+            sx={{ 
+              background: 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)',
+              textTransform: 'none',
+              fontWeight: 600
+            }}
+          >
+            {editingTask ? 'Update Task' : 'Create Task'}
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };

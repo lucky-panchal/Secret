@@ -32,8 +32,7 @@ import MessageModal from './MessageModal';
 import ProfileModal from './ProfileModal';
 import { useTheme } from '@/contexts/ThemeContext';
 
-const 
-  Dashboard = () => {
+const Dashboard = () => {
   const muiTheme = useMuiTheme();
   const { isDark } = useTheme();
   const isMobile = useMediaQuery(muiTheme.breakpoints.down('md'));
@@ -183,6 +182,7 @@ const
             onNotificationClick={handleNotificationClick}
             onMessageClick={handleMessageClick}
             onProfileClick={handleProfileClick}
+            onNavigate={handlePageNavigation}
           />
         </Box>
 

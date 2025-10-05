@@ -2,20 +2,31 @@
 import { Box, TextField, IconButton, Avatar, Badge, InputAdornment } from '@mui/material';
 import { Search, Notifications, Message, Settings } from '@mui/icons-material';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useState } from 'react';
 
-const TopNavbar = ({ onRefresh, currentPage, onNotificationClick, onMessageClick, onProfileClick }) => {
+const TopNavbar = ({ onRefresh, currentPage, onNotificationClick, onMessageClick, onProfileClick, onNavigate }) => {
   const { isDark } = useTheme();
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearch = (event) => {
-    if (event.key === 'Enter') {
-      console.log('Search:', event.target.value);
-      // Here you would implement search functionality
+    if (event.key === 'Enter' && searchQuery.trim()) {
+      console.log('Searching for:', searchQuery);
+      // Navigate to courses page with search filter
+      if (onNavigate) {
+        onNavigate('courses');
+      }
+      alert(`Searching for: "${searchQuery}"`);
     }
   };
 
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
   const handleSettingsClick = () => {
-    console.log('Settings clicked');
-    // Here you would navigate to settings
+    if (onNavigate) {
+      onNavigate('settings');
+    }
   };
 
   return (
@@ -40,6 +51,8 @@ const TopNavbar = ({ onRefresh, currentPage, onNotificationClick, onMessageClick
         placeholder="Search your course..."
         variant="outlined"
         size="small"
+        value={searchQuery}
+        onChange={handleSearchChange}
         onKeyPress={handleSearch}
         sx={{
           width: { xs: '100%', sm: 320, md: 420 },
