@@ -45,11 +45,11 @@ const ActiveCourses = () => {
   const getLevelColor = (level) => {
     switch (level) {
       case 'Beginner':
-        return '#4caf50';
+        return '#34D399';
       case 'Intermediate':
-        return '#ff9800';
+        return '#FBBF24';
       case 'Advanced':
-        return '#f44336';
+        return '#A855F7';
       default:
         return '#1976d2';
     }
@@ -60,10 +60,11 @@ const ActiveCourses = () => {
       <Card 
         elevation={0}
         sx={{ 
-          bgcolor: isDark ? '#1e1e1e' : '#ffffff',
-          border: `1px solid ${isDark ? '#333333' : '#e5e7eb'}`,
+          background: 'rgba(26, 26, 46, 0.8)',
+          backdropFilter: 'blur(20px)',
+          border: '1px solid rgba(251, 191, 36, 0.2)',
           borderRadius: 3,
-          boxShadow: isDark ? '0 4px 6px rgba(0,0,0,0.3)' : '0 4px 6px rgba(0,0,0,0.07)'
+          boxShadow: '0 0 30px rgba(251, 191, 36, 0.15), 0 0 60px rgba(168, 85, 247, 0.1)'
         }}
       >
         <CardContent sx={{ p: { xs: 3, md: 4 } }}>
@@ -72,7 +73,7 @@ const ActiveCourses = () => {
               variant="h6" 
               sx={{ 
                 fontWeight: 600,
-                color: isDark ? '#ffffff' : '#212121'
+                color: '#F8FAFC'
               }}
             >
               Active Learning Courses
@@ -82,7 +83,7 @@ const ActiveCourses = () => {
               variant="text"
               size="small"
               sx={{ 
-                color: '#1976d2',
+                color: '#FBBF24',
                 textTransform: 'none',
                 fontWeight: 600
               }}
@@ -98,15 +99,16 @@ const ActiveCourses = () => {
                   <Card 
                     elevation={0}
                     sx={{ 
-                      bgcolor: isDark ? '#2a2a2a' : '#f8f9fa',
-                      border: `1px solid ${isDark ? '#444444' : '#e5e7eb'}`,
+                      background: 'rgba(15, 15, 35, 0.6)',
+                      backdropFilter: 'blur(10px)',
+                      border: '1px solid rgba(251, 191, 36, 0.2)',
                       borderRadius: 2
                     }}
                   >
                     <Box 
                       sx={{ 
                         height: 100,
-                        bgcolor: isDark ? '#333333' : '#e5e7eb',
+                        background: 'linear-gradient(135deg, rgba(251, 191, 36, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -117,7 +119,7 @@ const ActiveCourses = () => {
                       <Typography 
                         variant="h6" 
                         sx={{ 
-                          color: isDark ? '#b0b0b0' : '#6b7280',
+                          color: '#F8FAFC',
                           textAlign: 'center',
                           px: 2,
                           fontWeight: 600
@@ -146,7 +148,7 @@ const ActiveCourses = () => {
                         variant="body1" 
                         sx={{ 
                           fontWeight: 600,
-                          color: isDark ? '#ffffff' : '#212121',
+                          color: '#F8FAFC',
                           mb: 1,
                           fontSize: '0.9rem',
                           lineHeight: 1.3
@@ -156,10 +158,10 @@ const ActiveCourses = () => {
                       </Typography>
                       
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-                        <Schedule sx={{ fontSize: 16, color: isDark ? '#b0b0b0' : '#6b7280' }} />
+                        <Schedule sx={{ fontSize: 16, color: '#94A3B8' }} />
                         <Typography 
                           variant="caption" 
-                          sx={{ color: isDark ? '#b0b0b0' : '#6b7280' }}
+                          sx={{ color: '#94A3B8' }}
                         >
                           {course.duration}
                         </Typography>
@@ -170,7 +172,7 @@ const ActiveCourses = () => {
                           <Typography 
                             variant="caption" 
                             sx={{ 
-                              color: isDark ? '#b0b0b0' : '#6b7280',
+                              color: '#94A3B8',
                               fontWeight: 600
                             }}
                           >
@@ -179,7 +181,7 @@ const ActiveCourses = () => {
                           <Typography 
                             variant="caption" 
                             sx={{ 
-                              color: isDark ? '#b0b0b0' : '#6b7280',
+                              color: '#94A3B8',
                               fontWeight: 600
                             }}
                           >
@@ -193,10 +195,11 @@ const ActiveCourses = () => {
                           sx={{
                             height: 6,
                             borderRadius: 3,
-                            bgcolor: isDark ? '#444444' : '#f3f4f6',
+                            bgcolor: 'rgba(15, 15, 35, 0.6)',
                             '& .MuiLinearProgress-bar': {
-                              bgcolor: '#1976d2',
-                              borderRadius: 3
+                              background: 'linear-gradient(90deg, #FBBF24 0%, #A855F7 100%)',
+                              borderRadius: 3,
+                              boxShadow: '0 0 10px rgba(251, 191, 36, 0.5)'
                             }
                           }}
                         />
@@ -208,8 +211,11 @@ const ActiveCourses = () => {
                         fullWidth
                         startIcon={<PlayArrow />}
                         sx={{
-                          bgcolor: '#1976d2',
-                          '&:hover': { bgcolor: '#1565c0' },
+                          background: 'linear-gradient(135deg, #FBBF24 0%, #A855F7 100%)',
+                          '&:hover': { 
+                            background: 'linear-gradient(135deg, #FBBF24 0%, #A855F7 100%)',
+                            boxShadow: '0 0 20px rgba(251, 191, 36, 0.4)'
+                          },
                           textTransform: 'none',
                           fontWeight: 600
                         }}

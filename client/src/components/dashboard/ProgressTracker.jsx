@@ -13,28 +13,28 @@ const ProgressTracker = () => {
       value: 12,
       change: '+3',
       icon: School,
-      color: '#1976d2'
+      color: '#00F5FF'
     },
     {
       title: 'Certificates Earned',
       value: 5,
       change: '+2',
       icon: VerifiedUser,
-      color: '#4caf50'
+      color: '#34D399'
     },
     {
       title: 'Job Matches',
       value: 28,
       change: '+8',
       icon: Work,
-      color: '#ff9800'
+      color: '#FBBF24'
     },
     {
       title: 'Learning Hours',
       value: 156,
       change: '+24',
       icon: TrendingUp,
-      color: '#9c27b0'
+      color: '#A855F7'
     }
   ];
 
@@ -51,10 +51,11 @@ const ProgressTracker = () => {
       <Card 
         elevation={0}
         sx={{ 
-          bgcolor: isDark ? '#1e1e1e' : '#ffffff',
-          border: `1px solid ${isDark ? '#333333' : '#e5e7eb'}`,
+          background: 'rgba(26, 26, 46, 0.8)',
+          backdropFilter: 'blur(20px)',
+          border: '1px solid rgba(0, 245, 255, 0.2)',
           borderRadius: 3,
-          boxShadow: isDark ? '0 4px 6px rgba(0,0,0,0.3)' : '0 4px 6px rgba(0,0,0,0.07)'
+          boxShadow: '0 0 30px rgba(0, 245, 255, 0.15), 0 0 60px rgba(168, 85, 247, 0.1)'
         }}
       >
         <CardContent sx={{ p: { xs: 3, md: 4 } }}>
@@ -62,7 +63,7 @@ const ProgressTracker = () => {
             variant="h6" 
             sx={{ 
               fontWeight: 600,
-              color: isDark ? '#ffffff' : '#212121',
+              color: '#F8FAFC',
               mb: 3
             }}
           >
@@ -78,8 +79,9 @@ const ProgressTracker = () => {
                     sx={{ 
                       p: 2.5,
                       borderRadius: 2,
-                      bgcolor: isDark ? '#2a2a2a' : '#f8f9fa',
-                      border: `1px solid ${isDark ? '#444444' : '#e5e7eb'}`,
+                      background: 'rgba(15, 15, 35, 0.6)',
+                      backdropFilter: 'blur(10px)',
+                      border: '1px solid rgba(0, 245, 255, 0.2)',
                       textAlign: 'center'
                     }}
                   >
@@ -96,7 +98,7 @@ const ProgressTracker = () => {
                         variant="h4" 
                         sx={{ 
                           fontWeight: 700,
-                          color: isDark ? '#ffffff' : '#212121'
+                          color: '#F8FAFC'
                         }}
                       >
                         {kpi.value}
@@ -104,7 +106,7 @@ const ProgressTracker = () => {
                       <Typography 
                         variant="body2" 
                         sx={{ 
-                          color: '#4caf50',
+                          color: '#34D399',
                           fontWeight: 600,
                           ml: 0.5
                         }}
@@ -116,7 +118,7 @@ const ProgressTracker = () => {
                     <Typography 
                       variant="caption" 
                       sx={{ 
-                        color: isDark ? '#b0b0b0' : '#6b7280',
+                        color: '#94A3B8',
                         fontWeight: 600
                       }}
                     >
@@ -132,9 +134,10 @@ const ProgressTracker = () => {
           <Box 
             sx={{ 
               height: 200,
-              bgcolor: isDark ? '#2a2a2a' : '#f8f9fa',
+              background: 'rgba(15, 15, 35, 0.6)',
+              backdropFilter: 'blur(10px)',
               borderRadius: 2,
-              border: `1px solid ${isDark ? '#444444' : '#e5e7eb'}`,
+              border: '1px solid rgba(0, 245, 255, 0.2)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -149,16 +152,16 @@ const ProgressTracker = () => {
                     sx={{ 
                       width: 24,
                       height: `${data.employability}%`,
-                      bgcolor: '#1976d2',
+                      background: 'linear-gradient(180deg, #00F5FF 0%, #A855F7 100%)',
                       borderRadius: 1,
                       mb: 1,
-                      opacity: 0.8
+                      boxShadow: '0 0 10px rgba(0, 245, 255, 0.3)'
                     }}
                   />
                   <Typography 
                     variant="caption" 
                     sx={{ 
-                      color: isDark ? '#b0b0b0' : '#6b7280',
+                      color: '#94A3B8',
                       fontSize: '0.7rem',
                       fontWeight: 600
                     }}
@@ -179,7 +182,7 @@ const ProgressTracker = () => {
               <Typography 
                 variant="body2" 
                 sx={{ 
-                  color: isDark ? '#ffffff' : '#212121',
+                  color: '#F8FAFC',
                   fontWeight: 600
                 }}
               >
@@ -188,7 +191,7 @@ const ProgressTracker = () => {
               <Typography 
                 variant="caption" 
                 sx={{ 
-                  color: isDark ? '#b0b0b0' : '#6b7280'
+                  color: '#94A3B8'
                 }}
               >
                 Monthly progress tracking

@@ -16,21 +16,28 @@ const UserStatsCard = () => {
       <Card
         elevation={0}
         sx={{
-          bgcolor: isDark ? '#1e1e1e' : '#ffffff',
-          border: `1px solid ${isDark ? '#333' : '#e5e7eb'}`,
+          background: 'rgba(26, 26, 46, 0.8)',
+          backdropFilter: 'blur(20px)',
+          border: '1px solid rgba(0, 245, 255, 0.2)',
           borderRadius: 3,
-          boxShadow: isDark ? '0 4px 20px rgba(0,0,0,0.3)' : '0 4px 20px rgba(0,0,0,0.07)',
+          boxShadow: '0 0 30px rgba(0, 245, 255, 0.15), 0 0 60px rgba(168, 85, 247, 0.1)',
         }}
       >
         <CardContent sx={{ p: 3 }}>
           {/* Header */}
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
-            <Avatar sx={{ bgcolor: '#705CF6', width: 48, height: 48 }}>A</Avatar>
+            <Avatar sx={{ 
+              background: 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)', 
+              width: 48, 
+              height: 48,
+              border: '2px solid rgba(0, 245, 255, 0.3)',
+              boxShadow: '0 0 20px rgba(0, 245, 255, 0.3)'
+            }}>A</Avatar>
             <Box>
-              <Typography variant="h6" sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#374151' }}>
+              <Typography variant="h6" sx={{ fontWeight: 600, color: '#F8FAFC' }}>
                 Good Morning, Anmol!
               </Typography>
-              <Typography variant="body2" sx={{ color: isDark ? '#b0b0b0' : '#6b7280' }}>
+              <Typography variant="body2" sx={{ color: '#94A3B8' }}>
                 Ready to continue learning?
               </Typography>
             </Box>
@@ -39,10 +46,10 @@ const UserStatsCard = () => {
           {/* Progress */}
           <Box sx={{ mb: 3 }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-              <Typography variant="body2" sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#374151' }}>
+              <Typography variant="body2" sx={{ fontWeight: 600, color: '#F8FAFC' }}>
                 Course Progress
               </Typography>
-              <Typography variant="body2" sx={{ color: '#705CF6', fontWeight: 600 }}>
+              <Typography variant="body2" sx={{ color: '#00F5FF', fontWeight: 600 }}>
                 68%
               </Typography>
             </Box>
@@ -52,10 +59,11 @@ const UserStatsCard = () => {
               sx={{
                 height: 8,
                 borderRadius: 4,
-                bgcolor: isDark ? '#333' : '#f3f4f6',
+                bgcolor: 'rgba(15, 15, 35, 0.6)',
                 '& .MuiLinearProgress-bar': {
-                  bgcolor: '#705CF6',
+                  background: 'linear-gradient(90deg, #00F5FF 0%, #A855F7 100%)',
                   borderRadius: 4,
+                  boxShadow: '0 0 10px rgba(0, 245, 255, 0.5)',
                 },
               }}
             />
@@ -64,26 +72,26 @@ const UserStatsCard = () => {
           {/* Stats */}
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Box sx={{ textAlign: 'center' }}>
-              <Typography variant="h6" sx={{ fontWeight: 700, color: '#705CF6' }}>
+              <Typography variant="h6" sx={{ fontWeight: 700, color: '#00F5FF' }}>
                 12
               </Typography>
-              <Typography variant="caption" sx={{ color: isDark ? '#b0b0b0' : '#6b7280' }}>
+              <Typography variant="caption" sx={{ color: '#94A3B8' }}>
                 Courses
               </Typography>
             </Box>
             <Box sx={{ textAlign: 'center' }}>
-              <Typography variant="h6" sx={{ fontWeight: 700, color: '#10b981' }}>
+              <Typography variant="h6" sx={{ fontWeight: 700, color: '#34D399' }}>
                 8
               </Typography>
-              <Typography variant="caption" sx={{ color: isDark ? '#b0b0b0' : '#6b7280' }}>
+              <Typography variant="caption" sx={{ color: '#94A3B8' }}>
                 Completed
               </Typography>
             </Box>
             <Box sx={{ textAlign: 'center' }}>
-              <Typography variant="h6" sx={{ fontWeight: 700, color: '#f59e0b' }}>
+              <Typography variant="h6" sx={{ fontWeight: 700, color: '#FBBF24' }}>
                 4.8
               </Typography>
-              <Typography variant="caption" sx={{ color: isDark ? '#b0b0b0' : '#6b7280' }}>
+              <Typography variant="caption" sx={{ color: '#94A3B8' }}>
                 Rating
               </Typography>
             </Box>

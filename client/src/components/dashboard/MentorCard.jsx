@@ -35,10 +35,11 @@ const MentorCard = () => {
       <Card
         elevation={0}
         sx={{
-          bgcolor: '#ffffff',
-          border: '1px solid #e5e7eb',
+          background: 'rgba(26, 26, 46, 0.8)',
+          backdropFilter: 'blur(20px)',
+          border: '1px solid rgba(168, 85, 247, 0.2)',
           borderRadius: 3,
-          boxShadow: isDark ? '0 4px 20px rgba(0,0,0,0.3)' : '0 4px 20px rgba(0,0,0,0.07)',
+          boxShadow: '0 0 30px rgba(168, 85, 247, 0.15), 0 0 60px rgba(0, 245, 255, 0.1)',
         }}
       >
         <CardContent sx={{ p: 3 }}>
@@ -46,7 +47,7 @@ const MentorCard = () => {
             variant="h6" 
             sx={{ 
               fontWeight: 600,
-              color: isDark ? '#ffffff' : '#374151',
+              color: '#F8FAFC',
               mb: 3
             }}
           >
@@ -63,12 +64,19 @@ const MentorCard = () => {
                   gap: 2,
                   p: 2,
                   borderRadius: 2,
-                  bgcolor: isDark ? '#2a2a2a' : '#f8f9fc',
-                  border: `1px solid ${isDark ? '#333' : '#e5e7eb'}`,
+                  background: 'rgba(15, 15, 35, 0.6)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(168, 85, 247, 0.2)',
                 }}
               >
                 <Box sx={{ position: 'relative' }}>
-                  <Avatar sx={{ bgcolor: '#705CF6', width: 40, height: 40 }}>
+                  <Avatar sx={{ 
+                    background: 'linear-gradient(135deg, #A855F7 0%, #FBBF24 100%)', 
+                    width: 40, 
+                    height: 40,
+                    border: '1px solid rgba(168, 85, 247, 0.3)',
+                    boxShadow: '0 0 15px rgba(168, 85, 247, 0.3)'
+                  }}>
                     {mentor.avatar}
                   </Avatar>
                   {mentor.online && (
@@ -81,7 +89,7 @@ const MentorCard = () => {
                         height: 12,
                         bgcolor: '#10b981',
                         borderRadius: '50%',
-                        border: `2px solid ${isDark ? '#1e1e1e' : '#ffffff'}`,
+                        border: '2px solid rgba(26, 26, 46, 0.8)',
                       }}
                     />
                   )}
@@ -92,7 +100,7 @@ const MentorCard = () => {
                     variant="subtitle2" 
                     sx={{ 
                       fontWeight: 600,
-                      color: isDark ? '#ffffff' : '#374151',
+                      color: '#F8FAFC',
                       mb: 0.5
                     }}
                   >
@@ -101,7 +109,7 @@ const MentorCard = () => {
                   <Typography 
                     variant="caption" 
                     sx={{ 
-                      color: isDark ? '#b0b0b0' : '#6b7280',
+                      color: '#94A3B8',
                       display: 'block',
                       mb: 1
                     }}
@@ -112,10 +120,11 @@ const MentorCard = () => {
                     label={mentor.expertise}
                     size="small"
                     sx={{
-                      bgcolor: isDark ? 'rgba(112, 92, 246, 0.1)' : 'rgba(112, 92, 246, 0.1)',
-                      color: '#705CF6',
+                      background: 'rgba(168, 85, 247, 0.2)',
+                      color: '#A855F7',
                       fontSize: '0.7rem',
                       height: 20,
+                      border: '1px solid rgba(168, 85, 247, 0.3)'
                     }}
                   />
                 </Box>
@@ -125,15 +134,16 @@ const MentorCard = () => {
                   variant="outlined"
                   startIcon={<Message />}
                   sx={{
-                    borderColor: '#705CF6',
-                    color: '#705CF6',
+                    borderColor: '#A855F7',
+                    color: '#A855F7',
                     minWidth: 'auto',
                     px: 1.5,
                     py: 0.5,
                     fontSize: '0.75rem',
                     '&:hover': {
-                      bgcolor: 'rgba(112, 92, 246, 0.1)',
-                      borderColor: '#705CF6',
+                      bgcolor: 'rgba(168, 85, 247, 0.1)',
+                      borderColor: '#A855F7',
+                      boxShadow: '0 0 10px rgba(168, 85, 247, 0.3)',
                     },
                   }}
                 >
@@ -149,13 +159,14 @@ const MentorCard = () => {
             startIcon={<PersonAdd />}
             sx={{
               mt: 2,
-              borderColor: isDark ? '#333' : '#e5e7eb',
-              color: isDark ? '#ffffff' : '#374151',
+              borderColor: 'rgba(168, 85, 247, 0.3)',
+              color: '#F8FAFC',
               borderRadius: 2,
               py: 1,
               '&:hover': {
-                borderColor: '#705CF6',
-                color: '#705CF6',
+                borderColor: '#A855F7',
+                color: '#A855F7',
+                boxShadow: '0 0 15px rgba(168, 85, 247, 0.2)',
               },
             }}
           >

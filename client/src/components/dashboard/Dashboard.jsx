@@ -1,7 +1,8 @@
 'use client';
 import { Box, Grid, useMediaQuery, useTheme as useMuiTheme, Drawer, IconButton } from '@mui/material';
 import { Menu } from '@mui/icons-material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import Sidebar from './Sidebar';
 import TopNavbar from './TopNavbar';
 import BannerCard from './BannerCard';
@@ -19,13 +20,22 @@ import NotificationsPanel from './NotificationsPanel';
 import QuickAccessPanel from './QuickAccessPanel';
 import QuickStats from './QuickStats';
 import RecentActivity from './RecentActivity';
+import ComponentLoader from './ComponentLoader';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const Dashboard = () => {
   const muiTheme = useMuiTheme();
+  const { isDark } = useTheme();
   const isMobile = useMediaQuery(muiTheme.breakpoints.down('md'));
   const isTablet = useMediaQuery(muiTheme.breakpoints.between('md', 'lg'));
   const isDesktop = useMediaQuery(muiTheme.breakpoints.up('lg'));
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -43,9 +53,25 @@ const Dashboard = () => {
   return (
     <Box sx={{ 
       minHeight: '100vh', 
-      bgcolor: '#f8fafc',
+      background: 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%)',
       display: 'flex',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      position: 'relative',
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        background: `
+          radial-gradient(circle at 20% 20%, rgba(0, 245, 255, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 40% 60%, rgba(251, 191, 36, 0.08) 0%, transparent 50%)
+        `,
+        pointerEvents: 'none',
+        zIndex: 0
+      }
     }}>
       {/* Left Sidebar - Desktop & Tablet */}
       {isDesktop && <Sidebar />}
@@ -75,7 +101,8 @@ const Dashboard = () => {
         display: 'flex',
         flexDirection: 'column',
         minHeight: '100vh',
-        position: 'relative'
+        position: 'relative',
+        zIndex: 1
       }}>
         {/* Top Navigation */}
         <Box sx={{ position: 'relative', zIndex: 100 }}>
@@ -119,54 +146,78 @@ const Dashboard = () => {
               <Grid container spacing={3}>
                 {/* Banner */}
                 <Grid item xs={12}>
-                  <BannerCard />
+                  <ComponentLoader loading={loading}>
+                    <BannerCard />
+                  </ComponentLoader>
                 </Grid>
 
                 {/* AI Career Monitor & Career Roadmap */}
                 <Grid item xs={12} md={6}>
-                  <AICareerMonitor />
+                  <ComponentLoader loading={loading}>
+                    <AICareerMonitor />
+                  </ComponentLoader>
                 </Grid>
                 <Grid item xs={12} md={6}>
-                  <CareerRoadmap />
+                  <ComponentLoader loading={loading}>
+                    <CareerRoadmap />
+                  </ComponentLoader>
                 </Grid>
 
                 {/* Active Courses */}
                 <Grid item xs={12}>
-                  <ActiveCourses />
+                  <ComponentLoader loading={loading}>
+                    <ActiveCourses />
+                  </ComponentLoader>
                 </Grid>
 
                 {/* Certificates & Job Matches */}
                 <Grid item xs={12} md={6}>
-                  <BlockchainCertificates />
+                  <ComponentLoader loading={loading}>
+                    <BlockchainCertificates />
+                  </ComponentLoader>
                 </Grid>
                 <Grid item xs={12} md={6}>
-                  <JobMatches />
+                  <ComponentLoader loading={loading}>
+                    <JobMatches />
+                  </ComponentLoader>
                 </Grid>
 
                 {/* Token Economy & Mentorship */}
                 <Grid item xs={12} md={6}>
-                  <TokenEconomy />
+                  <ComponentLoader loading={loading}>
+                    <TokenEconomy />
+                  </ComponentLoader>
                 </Grid>
                 <Grid item xs={12} md={6}>
-                  <MentorshipHub />
+                  <ComponentLoader loading={loading}>
+                    <MentorshipHub />
+                  </ComponentLoader>
                 </Grid>
 
                 {/* Progress Tracker */}
                 <Grid item xs={12}>
-                  <ProgressTracker />
+                  <ComponentLoader loading={loading}>
+                    <ProgressTracker />
+                  </ComponentLoader>
                 </Grid>
 
                 {/* Mobile Components */}
                 {isMobile && (
                   <>
                     <Grid item xs={12}>
-                      <UserStatsCard />
+                      <ComponentLoader loading={loading}>
+                        <UserStatsCard />
+                      </ComponentLoader>
                     </Grid>
                     <Grid item xs={12}>
-                      <NotificationsPanel />
+                      <ComponentLoader loading={loading}>
+                        <NotificationsPanel />
+                      </ComponentLoader>
                     </Grid>
                     <Grid item xs={12}>
-                      <RecentActivity />
+                      <ComponentLoader loading={loading}>
+                        <RecentActivity />
+                      </ComponentLoader>
                     </Grid>
                   </>
                 )}
@@ -183,11 +234,21 @@ const Dashboard = () => {
                   flexDirection: 'column',
                   gap: 3
                 }}>
-                  <UserStatsCard />
-                  <MentorCard />
-                  <QuickStats />
-                  <NotificationsPanel />
-                  <RecentActivity />
+                  <ComponentLoader loading={loading}>
+                    <UserStatsCard />
+                  </ComponentLoader>
+                  <ComponentLoader loading={loading}>
+                    <MentorCard />
+                  </ComponentLoader>
+                  <ComponentLoader loading={loading}>
+                    <QuickStats />
+                  </ComponentLoader>
+                  <ComponentLoader loading={loading}>
+                    <NotificationsPanel />
+                  </ComponentLoader>
+                  <ComponentLoader loading={loading}>
+                    <RecentActivity />
+                  </ComponentLoader>
                 </Box>
               </Grid>
             )}

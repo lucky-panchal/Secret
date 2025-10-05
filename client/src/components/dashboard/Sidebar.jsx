@@ -27,15 +27,16 @@ const Sidebar = () => {
       sx={{
         width: 260,
         height: '100vh',
-        bgcolor: '#ffffff',
-        borderRight: '1px solid #e5e7eb',
+        background: 'linear-gradient(180deg, rgba(26, 26, 46, 0.95) 0%, rgba(15, 15, 35, 0.98) 100%)',
+        backdropFilter: 'blur(20px)',
+        borderRight: '1px solid rgba(0, 245, 255, 0.2)',
         position: 'fixed',
         left: 0,
         top: 0,
         display: 'flex',
         flexDirection: 'column',
         p: 2,
-        boxShadow: '2px 0 10px rgba(0,0,0,0.05)',
+        boxShadow: '4px 0 20px rgba(0, 245, 255, 0.1), 0 0 40px rgba(168, 85, 247, 0.05)',
       }}
     >
       {/* Logo */}
@@ -55,10 +56,15 @@ const Sidebar = () => {
                 mb: 0.5,
                 py: 1,
                 px: 1.5,
-                bgcolor: item.active ? '#705CF6' : 'transparent',
-                color: item.active ? '#ffffff' : '#374151',
+                bgcolor: item.active ? 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)' : 'transparent',
+                color: item.active ? '#ffffff' : '#CBD5E1',
+                border: item.active ? '1px solid rgba(0, 245, 255, 0.3)' : '1px solid transparent',
+                boxShadow: item.active ? '0 0 20px rgba(0, 245, 255, 0.2)' : 'none',
                 '&:hover': {
-                  bgcolor: item.active ? '#705CF6' : 'rgba(112, 92, 246, 0.05)',
+                  bgcolor: item.active ? 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)' : 'rgba(0, 245, 255, 0.1)',
+                  border: '1px solid rgba(0, 245, 255, 0.3)',
+                  boxShadow: '0 0 15px rgba(0, 245, 255, 0.15)',
+                  color: '#ffffff'
                 },
               }}
             >
@@ -73,17 +79,24 @@ const Sidebar = () => {
 
       {/* User Profile */}
       <Box sx={{ mt: 'auto' }}>
-        <Divider sx={{ mb: 3, borderColor: isDark ? '#333' : '#e5e7eb' }} />
+        <Divider sx={{ mb: 2, borderColor: 'rgba(0, 245, 255, 0.2)', background: 'linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.3), transparent)' }} />
         
         {/* Mentors */}
-        <Typography variant="subtitle2" sx={{ mb: 2, color: isDark ? '#b0b0b0' : '#6b7280', fontWeight: 600 }}>
+        <Typography variant="caption" sx={{ mb: 1.5, color: '#94A3B8', fontWeight: 600, display: 'block' }}>
           Your Mentors
         </Typography>
-        <Box sx={{ display: 'flex', gap: 1, mb: 3 }}>
-          {mentors.map((mentor, index) => (
+        <Box sx={{ display: 'flex', gap: 0.5, mb: 2 }}>
+          {mentors.slice(0, 3).map((mentor, index) => (
             <Avatar
               key={index}
-              sx={{ width: 32, height: 32, bgcolor: '#705CF6' }}
+              sx={{ 
+                width: 28, 
+                height: 28, 
+                background: 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)',
+                fontSize: '0.75rem',
+                border: '1px solid rgba(0, 245, 255, 0.3)',
+                boxShadow: '0 0 10px rgba(0, 245, 255, 0.2)'
+              }}
             >
               {mentor.name.charAt(0)}
             </Avatar>
@@ -91,13 +104,30 @@ const Sidebar = () => {
         </Box>
 
         {/* User Info */}
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, p: 2, borderRadius: 2, bgcolor: isDark ? '#2a2a2a' : '#f8f9fc' }}>
-          <Avatar sx={{ bgcolor: '#705CF6' }}>A</Avatar>
+        <Box sx={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: 1.5, 
+          p: 1.5, 
+          borderRadius: 2, 
+          background: 'rgba(26, 26, 46, 0.6)',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(0, 245, 255, 0.2)',
+          boxShadow: '0 0 15px rgba(0, 245, 255, 0.1)'
+        }}>
+          <Avatar sx={{ 
+            background: 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)', 
+            width: 32, 
+            height: 32, 
+            fontSize: '0.875rem',
+            border: '1px solid rgba(0, 245, 255, 0.3)',
+            boxShadow: '0 0 10px rgba(0, 245, 255, 0.2)'
+          }}>A</Avatar>
           <Box>
             <Typography variant="subtitle2" sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#374151' }}>
               Anmol Sinha
             </Typography>
-            <Typography variant="caption" sx={{ color: isDark ? '#b0b0b0' : '#6b7280' }}>
+            <Typography variant="caption" sx={{ color: '#94A3B8', fontSize: '0.7rem' }}>
               Premium Member
             </Typography>
           </Box>

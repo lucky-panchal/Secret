@@ -31,10 +31,11 @@ const MentorshipHub = () => {
       <Card 
         elevation={0}
         sx={{ 
-          bgcolor: isDark ? '#1e1e1e' : '#ffffff',
-          border: `1px solid ${isDark ? '#333333' : '#e5e7eb'}`,
+          background: 'rgba(26, 26, 46, 0.8)',
+          backdropFilter: 'blur(20px)',
+          border: '1px solid rgba(168, 85, 247, 0.2)',
           borderRadius: 3,
-          boxShadow: isDark ? '0 4px 6px rgba(0,0,0,0.3)' : '0 4px 6px rgba(0,0,0,0.07)',
+          boxShadow: '0 0 30px rgba(168, 85, 247, 0.15), 0 0 60px rgba(0, 245, 255, 0.1)',
           height: '100%'
         }}
       >
@@ -43,7 +44,7 @@ const MentorshipHub = () => {
             variant="h6" 
             sx={{ 
               fontWeight: 600,
-              color: isDark ? '#ffffff' : '#212121',
+              color: '#F8FAFC',
               mb: 3
             }}
           >
@@ -55,10 +56,11 @@ const MentorshipHub = () => {
               <Box key={mentor.id}>
                 <Box 
                   sx={{ 
-                    border: `1px solid ${isDark ? '#444444' : '#e5e7eb'}`,
+                    border: '1px solid rgba(168, 85, 247, 0.2)',
                     borderRadius: 2,
                     p: 2.5,
-                    bgcolor: isDark ? '#2a2a2a' : '#f8f9fa'
+                    background: 'rgba(15, 15, 35, 0.6)',
+                    backdropFilter: 'blur(10px)'
                   }}
                 >
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
@@ -66,9 +68,11 @@ const MentorshipHub = () => {
                       sx={{ 
                         width: 50, 
                         height: 50,
-                        bgcolor: '#1976d2',
+                        background: 'linear-gradient(135deg, #A855F7 0%, #FBBF24 100%)',
                         fontSize: '1.2rem',
-                        fontWeight: 600
+                        fontWeight: 600,
+                        border: '1px solid rgba(168, 85, 247, 0.3)',
+                        boxShadow: '0 0 15px rgba(168, 85, 247, 0.3)'
                       }}
                     >
                       {mentor.name.split(' ').map(n => n[0]).join('')}
@@ -79,7 +83,7 @@ const MentorshipHub = () => {
                         variant="body1" 
                         sx={{ 
                           fontWeight: 600,
-                          color: isDark ? '#ffffff' : '#212121',
+                          color: '#F8FAFC',
                           mb: 0.5
                         }}
                       >
@@ -88,7 +92,7 @@ const MentorshipHub = () => {
                       <Typography 
                         variant="body2" 
                         sx={{ 
-                          color: isDark ? '#b0b0b0' : '#6b7280',
+                          color: '#94A3B8',
                           mb: 0.5
                         }}
                       >
@@ -104,7 +108,7 @@ const MentorshipHub = () => {
                         />
                         <Typography 
                           variant="caption" 
-                          sx={{ color: isDark ? '#b0b0b0' : '#6b7280' }}
+                          sx={{ color: '#94A3B8' }}
                         >
                           {mentor.rating}
                         </Typography>
@@ -120,8 +124,9 @@ const MentorshipHub = () => {
                         size="small"
                         sx={{
                           fontSize: '0.7rem',
-                          bgcolor: isDark ? 'rgba(25, 118, 210, 0.2)' : 'rgba(25, 118, 210, 0.1)',
-                          color: '#1976d2'
+                          background: 'rgba(168, 85, 247, 0.2)',
+                          color: '#A855F7',
+                          border: '1px solid rgba(168, 85, 247, 0.3)'
                         }}
                       />
                     ))}
@@ -134,12 +139,13 @@ const MentorshipHub = () => {
                       startIcon={<PersonAdd />}
                       sx={{
                         flex: 1,
-                        borderColor: isDark ? '#555555' : '#d1d5db',
-                        color: isDark ? '#ffffff' : '#374151',
+                        borderColor: 'rgba(168, 85, 247, 0.3)',
+                        color: '#F8FAFC',
                         fontSize: '0.75rem',
                         '&:hover': {
-                          borderColor: '#1976d2',
-                          color: '#1976d2'
+                          borderColor: '#A855F7',
+                          color: '#A855F7',
+                          boxShadow: '0 0 10px rgba(168, 85, 247, 0.3)'
                         }
                       }}
                     >
@@ -152,12 +158,13 @@ const MentorshipHub = () => {
                       startIcon={<Chat />}
                       sx={{
                         flex: 1,
-                        borderColor: isDark ? '#555555' : '#d1d5db',
-                        color: isDark ? '#ffffff' : '#374151',
+                        borderColor: 'rgba(0, 245, 255, 0.3)',
+                        color: '#F8FAFC',
                         fontSize: '0.75rem',
                         '&:hover': {
-                          borderColor: '#1976d2',
-                          color: '#1976d2'
+                          borderColor: '#00F5FF',
+                          color: '#00F5FF',
+                          boxShadow: '0 0 10px rgba(0, 245, 255, 0.3)'
                         }
                       }}
                     >
@@ -174,8 +181,11 @@ const MentorshipHub = () => {
             fullWidth
             startIcon={<Group />}
             sx={{
-              bgcolor: '#1976d2',
-              '&:hover': { bgcolor: '#1565c0' },
+              background: 'linear-gradient(135deg, #A855F7 0%, #00F5FF 100%)',
+              '&:hover': { 
+                background: 'linear-gradient(135deg, #A855F7 0%, #00F5FF 100%)',
+                boxShadow: '0 0 20px rgba(168, 85, 247, 0.4)'
+              },
               textTransform: 'none',
               fontWeight: 600
             }}
