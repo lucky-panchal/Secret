@@ -65,7 +65,7 @@ const ProfileModal = ({ open, onClose, onNavigate }) => {
           maxHeight: '85vh', 
           background: 'rgba(26, 26, 46, 0.95)', 
           backdropFilter: 'blur(20px)', 
-          border: '1px solid rgba(0, 245, 255, 0.2)', 
+          border: 'none', 
           borderRadius: 3,
           boxShadow: '0 0 40px rgba(0, 245, 255, 0.2)',
           overflow: 'auto'
@@ -259,7 +259,7 @@ const ProfileModal = ({ open, onClose, onNavigate }) => {
                   startIcon={<VerifiedUser />}
                   onClick={handleViewCertificates}
                   sx={{ 
-                    borderColor: 'rgba(0, 245, 255, 0.3)', 
+                    borderColor: 'transparent', 
                     color: '#00F5FF', 
                     textTransform: 'none' 
                   }}

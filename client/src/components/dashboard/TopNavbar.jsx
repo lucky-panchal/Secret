@@ -68,7 +68,7 @@ const TopNavbar = ({ onRefresh, currentPage, onNotificationClick, onMessageClick
             boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
             transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
             '& fieldset': { 
-              border: '1px solid rgba(148, 163, 184, 0.2)',
+              border: '1px solid rgba(148, 163, 184, 0.3) !important',
               borderRadius: 3
             },
             '&:hover': {
@@ -76,7 +76,7 @@ const TopNavbar = ({ onRefresh, currentPage, onNotificationClick, onMessageClick
               borderColor: 'rgba(148, 163, 184, 0.4)',
               boxShadow: '0 0 15px rgba(148, 163, 184, 0.1)',
               '& fieldset': { 
-                borderColor: 'rgba(148, 163, 184, 0.4)'
+                border: '1px solid rgba(148, 163, 184, 0.4) !important'
               }
             },
             '&.Mui-focused': {
@@ -84,8 +84,7 @@ const TopNavbar = ({ onRefresh, currentPage, onNotificationClick, onMessageClick
               borderColor: '#00F5FF',
               boxShadow: '0 0 0 3px rgba(0, 245, 255, 0.2), 0 0 20px rgba(0, 245, 255, 0.15)',
               '& fieldset': { 
-                borderColor: '#00F5FF',
-                borderWidth: '2px'
+                border: '2px solid #00F5FF !important'
               }
             },
             '& input': {

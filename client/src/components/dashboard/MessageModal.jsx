@@ -84,15 +84,23 @@ const MessageModal = ({ open, onClose }) => {
         <Card elevation={0} sx={{ 
           width: { xs: '90vw', sm: 700 }, 
           height: { xs: '80vh', sm: 600 },
-          background: 'rgba(26, 26, 46, 0.95)', 
-          backdropFilter: 'blur(20px)', 
-          borderRadius: 3,
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+          background: 'linear-gradient(135deg, rgba(26, 26, 46, 0.98) 0%, rgba(15, 15, 35, 0.95) 100%)', 
+          backdropFilter: 'blur(25px)', 
+          borderRadius: 2,
+          boxShadow: 'none',
           display: 'flex',
-          flexDirection: 'column'
+          flexDirection: 'column',
+          overflow: 'hidden'
         }}>
           {/* Header */}
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', p: 3, borderBottom: '1px solid rgba(148, 163, 184, 0.2)' }}>
+          <Box sx={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'space-between', 
+            p: 3, 
+            background: 'linear-gradient(90deg, rgba(0, 245, 255, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%)',
+            backdropFilter: 'blur(10px)'
+          }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <Message sx={{ color: '#A855F7' }} />
               <Typography variant="h6" sx={{ fontWeight: 600, color: '#F8FAFC' }}>
@@ -109,7 +117,7 @@ const MessageModal = ({ open, onClose }) => {
 
           <Box sx={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
             {/* Conversations List */}
-            <Box sx={{ width: { xs: '100%', sm: 280 }, borderRight: { sm: '1px solid rgba(148, 163, 184, 0.2)' }, display: selectedChat && { xs: 'none', sm: 'block' } }}>
+            <Box sx={{ width: { xs: '100%', sm: 280 }, borderRight: 'none', display: selectedChat && { xs: 'none', sm: 'block' } }}>
               <List sx={{ p: 0, height: '100%', overflow: 'auto' }}>
                 {conversations.map((conv, index) => (
                   <Box key={conv.id}>
@@ -124,23 +132,21 @@ const MessageModal = ({ open, onClose }) => {
                       onClick={() => setSelectedChat(conv)}
                     >
                       <ListItemAvatar>
-                        <Box sx={{ position: 'relative' }}>
-                          <Avatar sx={{ bgcolor: 'linear-gradient(135deg, #A855F7 0%, #00F5FF 100%)', color: '#ffffff', fontWeight: 600 }}>
-                            {conv.avatar}
-                          </Avatar>
+                        <Avatar sx={{ bgcolor: 'linear-gradient(135deg, #A855F7 0%, #00F5FF 100%)', color: '#ffffff', fontWeight: 600, position: 'relative' }}>
+                          {conv.avatar}
                           {conv.online && (
                             <Box sx={{ 
                               position: 'absolute', 
-                              bottom: 0, 
-                              right: 0, 
-                              width: 12, 
-                              height: 12, 
+                              top: 2, 
+                              right: 2, 
+                              width: 8, 
+                              height: 8, 
                               borderRadius: '50%', 
                               bgcolor: '#34D399',
-                              border: '2px solid rgba(26, 26, 46, 0.95)'
+                              border: '1px solid rgba(26, 26, 46, 0.95)'
                             }} />
                           )}
-                        </Box>
+                        </Avatar>
                       </ListItemAvatar>
                       <ListItemText
                         primary={
@@ -178,7 +184,14 @@ const MessageModal = ({ open, onClose }) => {
             {selectedChat ? (
               <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                 {/* Chat Header */}
-                <Box sx={{ p: 2, borderBottom: '1px solid rgba(148, 163, 184, 0.2)', display: 'flex', alignItems: 'center', gap: 2 }}>
+                <Box sx={{ 
+                  p: 2.5, 
+                  background: 'linear-gradient(90deg, rgba(0, 245, 255, 0.08) 0%, rgba(168, 85, 247, 0.08) 100%)',
+                  backdropFilter: 'blur(10px)',
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: 2 
+                }}>
                   <Button 
                     variant="text" 
                     sx={{ display: { sm: 'none' }, color: '#A855F7', minWidth: 'auto', p: 1 }}
@@ -186,8 +199,20 @@ const MessageModal = ({ open, onClose }) => {
                   >
                     ←
                   </Button>
-                  <Avatar sx={{ bgcolor: 'linear-gradient(135deg, #A855F7 0%, #00F5FF 100%)', color: '#ffffff', fontWeight: 600 }}>
+                  <Avatar sx={{ bgcolor: 'linear-gradient(135deg, #A855F7 0%, #00F5FF 100%)', color: '#ffffff', fontWeight: 600, position: 'relative' }}>
                     {selectedChat.avatar}
+                    {selectedChat.online && (
+                      <Box sx={{ 
+                        position: 'absolute', 
+                        top: 2, 
+                        right: 2, 
+                        width: 8, 
+                        height: 8, 
+                        borderRadius: '50%', 
+                        bgcolor: '#34D399',
+                        border: '1px solid rgba(26, 26, 46, 0.95)'
+                      }} />
+                    )}
                   </Avatar>
                   <Box>
                     <Typography variant="body1" sx={{ fontWeight: 600, color: '#F8FAFC' }}>
@@ -200,7 +225,15 @@ const MessageModal = ({ open, onClose }) => {
                 </Box>
 
                 {/* Messages */}
-                <Box sx={{ flex: 1, p: 2, overflow: 'auto', display: 'flex', flexDirection: 'column', gap: 1 }}>
+                <Box sx={{ 
+                  flex: 1, 
+                  p: 3, 
+                  overflow: 'auto', 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  gap: 2,
+                  background: 'linear-gradient(180deg, rgba(15, 15, 35, 0.3) 0%, rgba(26, 26, 46, 0.5) 100%)'
+                }}>
                   {selectedChat.messages.map((msg) => (
                     <Box 
                       key={msg.id} 
@@ -212,17 +245,50 @@ const MessageModal = ({ open, onClose }) => {
                     >
                       <Box sx={{ 
                         maxWidth: '70%',
-                        bgcolor: msg.isOwn ? 'linear-gradient(135deg, #A855F7 0%, #00F5FF 100%)' : 'rgba(15, 15, 35, 0.6)',
-                        color: '#ffffff',
-                        p: 1.5,
-                        borderRadius: 2,
-                        borderTopLeftRadius: msg.isOwn ? 2 : 0.5,
-                        borderTopRightRadius: msg.isOwn ? 0.5 : 2
+                        background: msg.isOwn 
+                          ? 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)' 
+                          : 'linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(51, 65, 85, 0.8) 100%)',
+                        '& .MuiTypography-root': {
+                          color: '#ffffff !important'
+                        },
+                        p: 2,
+                        borderRadius: msg.isOwn ? '12px 12px 4px 12px' : '12px 12px 12px 4px',
+                        boxShadow: 'none',
+                        position: 'relative',
+                        '&::before': msg.isOwn ? {
+                          content: '""',
+                          position: 'absolute',
+                          bottom: 0,
+                          right: -8,
+                          width: 0,
+                          height: 0,
+                          borderLeft: '8px solid #A855F7',
+                          borderTop: '8px solid transparent'
+                        } : {
+                          content: '""',
+                          position: 'absolute',
+                          bottom: 0,
+                          left: -8,
+                          width: 0,
+                          height: 0,
+                          borderRight: '8px solid rgba(51, 65, 85, 0.8)',
+                          borderTop: '8px solid transparent'
+                        }
                       }}>
-                        <Typography variant="body2" sx={{ mb: 0.5 }}>
+                        <Typography variant="body2" sx={{ 
+                          mb: 1, 
+                          fontSize: '0.95rem',
+                          lineHeight: 1.4,
+                          fontWeight: 400,
+                          color: '#ffffff !important'
+                        }}>
                           {msg.message}
                         </Typography>
-                        <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.7)' }}>
+                        <Typography variant="caption" sx={{ 
+                          color: 'rgba(255,255,255,0.8)', 
+                          fontSize: '0.75rem',
+                          fontWeight: 500
+                        }}>
                           {msg.time}
                         </Typography>
                       </Box>
@@ -231,7 +297,11 @@ const MessageModal = ({ open, onClose }) => {
                 </Box>
 
                 {/* Message Input */}
-                <Box sx={{ p: 2, borderTop: '1px solid rgba(148, 163, 184, 0.2)' }}>
+                <Box sx={{ 
+                  p: 2.5, 
+                  background: 'linear-gradient(90deg, rgba(0, 245, 255, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%)',
+                  backdropFilter: 'blur(10px)'
+                }}>
                   <Box sx={{ display: 'flex', gap: 1 }}>
                     <TextField
                       placeholder="Type your message..."
@@ -257,9 +327,17 @@ const MessageModal = ({ open, onClose }) => {
                       onClick={handleSendMessage}
                       disabled={!newMessage.trim()}
                       sx={{ 
-                        background: 'linear-gradient(135deg, #A855F7 0%, #00F5FF 100%)',
+                        background: 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)',
                         minWidth: 'auto',
-                        px: 2
+                        px: 3,
+                        py: 1.5,
+                        borderRadius: 3,
+                        boxShadow: 'none',
+                        '&:hover': {
+                          background: 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)',
+                          transform: 'translateY(-2px)',
+                          boxShadow: 'none'
+                        }
                       }}
                     >
                       <Send />

@@ -73,7 +73,7 @@ p {
 .glass-card {
   background: var(--glass-bg) !important;
   backdrop-filter: blur(20px) saturate(180%) !important;
-  border: 1px solid var(--glass-border) !important;
+  border: none !important;
   border-radius: 24px !important;
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.3),
@@ -124,13 +124,13 @@ p {
 .btn-secondary-premium {
   background: var(--glass-bg) !important;
   color: var(--text-primary) !important;
-  border: 2px solid var(--glass-border) !important;
+  border: none !important;
   backdrop-filter: blur(10px);
 }
 
 .btn-secondary-premium:hover {
   background: var(--gradient-accent) !important;
-  border-color: transparent !important;
+  border: none !important;
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 15px 40px rgba(79, 172, 254, 0.4);
 }
@@ -217,7 +217,7 @@ p {
 .form-premium input,
 .form-premium textarea {
   background: var(--glass-bg) !important;
-  border: 2px solid var(--glass-border) !important;
+  border: none !important;
   border-radius: 16px !important;
   padding: 16px 20px !important;
   color: var(--text-primary) !important;
@@ -228,7 +228,7 @@ p {
 
 .form-premium input:focus,
 .form-premium textarea:focus {
-  border-color: var(--accent-neon) !important;
+  border: none !important;
   box-shadow: 0 0 20px rgba(0, 245, 255, 0.3) !important;
   outline: none !important;
   transform: translateY(-2px);
@@ -238,7 +238,7 @@ p {
 nav {
   background: var(--glass-bg) !important;
   backdrop-filter: blur(20px) saturate(180%) !important;
-  border-bottom: 1px solid var(--glass-border) !important;
+  border: none !important;
 }
 
 /* Responsive Design */
