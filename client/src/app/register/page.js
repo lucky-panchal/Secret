@@ -256,8 +256,8 @@ export default function Register() {
           top: 20px;
           left: 20px;
           z-index: 9999;
-          background: rgba(0, 0, 0, 0.8);
-          color: #ffffff;
+          background: rgba(255, 255, 255, 0.9);
+          color: #000000;
           border: 1px solid rgba(255, 255, 255, 0.3);
           padding: 8px 16px;
           border-radius: 8px;
@@ -271,28 +271,29 @@ export default function Register() {
           align-items: center;
           gap: 6px;
           backdrop-filter: blur(10px);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .back-button:hover {
-          background: rgba(0, 245, 255, 0.9);
-          border-color: var(--ai-cyan);
+          background: rgba(30, 30, 30, 0.9);
+          color: #ffffff;
+          border-color: rgba(30, 30, 30, 0.8);
           transform: translateY(-2px);
-          box-shadow: 0 8px 20px rgba(0, 245, 255, 0.4);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
           text-decoration: none !important;
         }
 
         [data-theme="light"] .back-button {
-          background: rgba(255, 255, 255, 0.9);
-          color: var(--text-primary);
-          border: 1px solid rgba(0, 0, 0, 0.2);
+          background: rgba(30, 30, 30, 0.9);
+          color: #ffffff;
+          border: 1px solid rgba(30, 30, 30, 0.8);
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         [data-theme="light"] .back-button:hover {
-          background: rgba(0, 245, 255, 0.9);
-          color: #ffffff;
-          border-color: var(--ai-cyan);
+          background: rgba(255, 255, 255, 0.9);
+          color: #000000;
+          border-color: rgba(255, 255, 255, 0.8);
         }
 
         .container {
