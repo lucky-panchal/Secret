@@ -2,23 +2,23 @@
 
 /* AI/ML & Blockchain Color Palette */
 :root {
-  /* Core AI/ML Colors */
-  --ai-cyan: #778979;
-  --ai-cyan-light: #8a9b8c;
-  --ai-cyan-dark: #647766;
+  /* Core AI/ML Colors - Updated to Black & Silver */
+  --ai-cyan: #D0D0D0;
+  --ai-cyan-light: #EEEEEE;
+  --ai-cyan-dark: #B0B0B0;
   
-  --ml-purple: #a9916b;
-  --ml-purple-light: #bca378;
-  --ml-purple-dark: #967f5e;
+  --ml-purple: #C4C4C4;
+  --ml-purple-light: #D0D0D0;
+  --ml-purple-dark: #B0B0B0;
   
-  --blockchain-gold: #FBBF24;
-  --blockchain-gold-light: #FCD34D;
-  --blockchain-gold-dark: #F59E0B;
+  --blockchain-gold: #FFFFFF;
+  --blockchain-gold-light: #FFFFFF;
+  --blockchain-gold-dark: #D0D0D0;
   
-  --quantum-violet: #8B5CF6;
-  --neural-pink: #EC4899;
-  --data-emerald: #10B981;
-  --tech-blue: #3B82F6;
+  --quantum-violet: #B0B0B0;
+  --neural-pink: #C4C4C4;
+  --data-emerald: #D0D0D0;
+  --tech-blue: #EEEEEE;
   
   /* Advanced Gradients */
   --gradient-ai-neural: linear-gradient(135deg, #778979 0%, #a9916b 25%, #8B5CF6 50%, #EC4899 75%, #FBBF24 100%);
@@ -57,11 +57,11 @@
   --bg-blockchain-panel: linear-gradient(135deg, rgba(251, 191, 36, 0.05) 0%, rgba(26, 26, 46, 0.95) 100%);
   
   /* Text with AI/ML styling */
-  --text-ai: #00F5FF;
-  --text-ml: #C084FC;
-  --text-blockchain: #FBBF24;
-  --text-quantum: #8B5CF6;
-  --text-neural: #EC4899;
+  --text-ai: #D0D0D0;
+  --text-ml: #C4C4C4;
+  --text-blockchain: #FFFFFF;
+  --text-quantum: #B0B0B0;
+  --text-neural: #EEEEEE;
 }
 
 /* Light Mode AI/ML Theme */
@@ -77,11 +77,11 @@
   --bg-blockchain-panel: linear-gradient(135deg, rgba(245, 158, 11, 0.03) 0%, rgba(255, 255, 255, 0.95) 100%);
   
   /* Light mode text colors */
-  --text-ai: #0099CC;
-  --text-ml: #7C3AED;
-  --text-blockchain: #D97706;
-  --text-quantum: #7C2D12;
-  --text-neural: #BE185D;
+  --text-ai: #797979;
+  --text-ml: #646464;
+  --text-blockchain: #000000;
+  --text-quantum: #595959;
+  --text-neural: #4A4A4A;
 }
 
 /* AI/ML Component Styling */

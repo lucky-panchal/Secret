@@ -20,7 +20,7 @@ const Hero = () => {
         zIndex: 10
       }}>
         <div style={{ color: 'var(--white)', fontFamily: 'Jost', fontWeight: 600, fontSize: '1.2rem' }}>
-          Kaushal X
+          
         </div>
         <div style={{ 
           backgroundColor: 'var(--white)', 
