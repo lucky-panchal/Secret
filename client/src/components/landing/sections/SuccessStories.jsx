@@ -124,7 +124,7 @@ const SuccessStories = () => {
               top: 48,
               width: 2,
               height: 'calc(100% + 16px)',
-              background: isDark ? 'var(--border)' : '#e2e8f0',
+              background: 'var(--secondary-text)',
               zIndex: 0,
             }}
           />
@@ -135,8 +135,8 @@ const SuccessStories = () => {
           sx={{
             width: 48,
             height: 48,
-            borderRadius: '50%',
-            background: step.status === 'completed' ? (isDark ? 'var(--success)' : '#4caf50') : (isDark ? 'var(--border)' : '#e2e8f0'),
+            borderRadius: 0,
+            background: step.status === 'completed' ? 'var(--deep-black)' : 'var(--secondary-text)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -148,7 +148,7 @@ const SuccessStories = () => {
           <step.icon
             sx={{
               fontSize: 24,
-              color: step.status === 'completed' ? 'white' : (isDark ? 'var(--text-secondary)' : '#6b7280'),
+              color: step.status === 'completed' ? 'white' : 'var(--deep-black)',
             }}
           />
         </Box>
@@ -204,7 +204,7 @@ const SuccessStories = () => {
         <Typography
           variant="h6"
           sx={{
-            color: isDark ? 'var(--primary)' : '#1976d2',
+            color: 'var(--deep-black)',
             fontWeight: 500,
           }}
         >
@@ -254,7 +254,7 @@ const SuccessStories = () => {
               <Typography
                 variant="h2"
                 sx={{
-                  color: 'var(--primary-text)',
+                  color: 'var(--deep-black)',
                   fontWeight: 700,
                   mb: { xs: 2, md: 3 },
                 }}
@@ -264,7 +264,7 @@ const SuccessStories = () => {
               <Typography
                 variant="h6"
                 sx={{
-                  color: 'var(--secondary-text)',
+                  color: 'var(--deep-black)',
                   maxWidth: '600px',
                   mx: 'auto',
                   lineHeight: 1.6,

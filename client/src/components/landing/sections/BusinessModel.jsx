@@ -149,7 +149,7 @@ const BusinessModel = () => {
                             sx={{
                               width: 40,
                               height: 40,
-                              borderRadius: '50%',
+                              borderRadius: 0,
                               background: 'var(--gradient-primary)',
                               display: 'flex',
                               alignItems: 'center',
