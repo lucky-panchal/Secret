@@ -64,7 +64,7 @@ const Footer = () => {
                   fontSize: { xs: '1.1rem', md: '1.25rem' },
                   fontWeight: 600,
                   minHeight: { xs: 56, md: 64 },
-                  borderRadius: 3,
+                  borderRadius: 0,
                   textTransform: 'none',
                   fontFamily: 'Jost',
                 }}

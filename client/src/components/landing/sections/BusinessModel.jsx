@@ -206,8 +206,8 @@ const BusinessModel = () => {
               >
                 <Box
                   sx={{
-                    background: 'var(--charcoal)',
-                    borderRadius: 3,
+                    background: 'var(--primary-text)',
+                    borderRadius: 0,
                     p: { xs: 4, md: 6 },
                     textAlign: 'center',
                     position: 'relative',

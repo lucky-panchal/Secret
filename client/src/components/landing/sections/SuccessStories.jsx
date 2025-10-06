@@ -182,8 +182,8 @@ const SuccessStories = () => {
   const StoryCard = ({ story }) => (
     <Box
       sx={{
-        background: isDark ? 'var(--surface)' : '#f8fafc',
-        borderRadius: 2,
+        background: 'var(--primary-text)',
+        borderRadius: 0,
         p: { xs: 3, md: 4 },
         height: '100%',
         boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',

@@ -4,6 +4,9 @@
 :root {
   /* Primary Colors */
   --deep-black: #000000;
+  --charcoal: #1A1A1A;
+  --charcoal-alt: #1C1C1C;
+  --gunmetal: #4A4A4A;
   --primary-text: #D0D0D0;
   --secondary-text: #B0B0B0;
   --white: #FFFFFF;
@@ -77,7 +80,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1rem 2rem;
   font-family: 'Jost', sans-serif;
   font-weight: 500;
-  border-radius: 0.5rem;
+  border-radius: 0;
   cursor: pointer;
 }
 
@@ -88,7 +91,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1rem 2rem;
   font-family: 'Jost', sans-serif;
   font-weight: 500;
-  border-radius: 0.5rem;
+  border-radius: 0;
   cursor: pointer;
 }
 

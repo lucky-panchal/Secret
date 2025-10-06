@@ -44,15 +44,15 @@ const FeatureCard = ({ icon: Icon, title, description, delay = 0 }) => {
             sx={{
               height: '100%',
               minHeight: { xs: 280, md: 320 },
-              background: isDark ? 'var(--surface)' : '#ffffff',
-              border: isDark ? '1px solid var(--border)' : '1px solid #e2e8f0',
+              background: 'var(--charcoal)',
+              border: '1px solid var(--gunmetal)',
               borderRadius: 2,
               boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
               transition: 'all 0.3s ease-in-out',
               cursor: 'pointer',
               '&:hover': {
                 boxShadow: '0 12px 24px rgba(0, 0, 0, 0.15)',
-                borderColor: isDark ? 'var(--primary)' : '#1976d2',
+                borderColor: 'var(--primary-text)',
               },
             }}
           >
@@ -76,8 +76,8 @@ const FeatureCard = ({ icon: Icon, title, description, delay = 0 }) => {
                   sx={{
                     width: { xs: 60, md: 80 },
                     height: { xs: 60, md: 80 },
-                    borderRadius: '50%',
-                    background: isDark ? 'var(--gradient-primary)' : 'linear-gradient(135deg, #1976d2 0%, #2196f3 100%)',
+                    borderRadius: 0,
+                    background: 'var(--gunmetal)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -98,7 +98,7 @@ const FeatureCard = ({ icon: Icon, title, description, delay = 0 }) => {
               <Typography
                 variant="h6"
                 sx={{
-                  color: isDark ? 'var(--text-primary)' : '#2d3748',
+                  color: 'var(--primary-text)',
                   fontWeight: 600,
                   mb: { xs: 1.5, md: 2 },
                   textAlign: 'center',
@@ -111,7 +111,7 @@ const FeatureCard = ({ icon: Icon, title, description, delay = 0 }) => {
               <Typography
                 variant="body2"
                 sx={{
-                  color: isDark ? 'var(--text-secondary)' : '#4a5568',
+                  color: 'var(--secondary-text)',
                   lineHeight: 1.6,
                   textAlign: 'center',
                   maxWidth: '280px',
