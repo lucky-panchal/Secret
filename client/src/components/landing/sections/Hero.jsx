@@ -19,23 +19,40 @@ const Hero = () => {
         alignItems: 'center',
         zIndex: 10
       }}>
-        <div style={{ 
-          position: 'absolute',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          color: 'var(--primary-text)', 
-          fontFamily: 'Oswald', 
-          fontWeight: 700, 
-          fontSize: '2rem',
-          letterSpacing: '0.1em'
-        }}>
-          KaushalX
-        </div>
+
 
       </header>
 
       {/* Main Content */}
       <main className="landing-container">
+        <div style={{ 
+          color: 'var(--primary-text)', 
+          fontFamily: 'Oswald', 
+          fontWeight: 700, 
+          fontSize: '4rem',
+          letterSpacing: '0.1em',
+          marginBottom: '1.5rem',
+          cursor: 'pointer',
+          position: 'relative',
+          overflow: 'hidden'
+        }}
+        onMouseEnter={(e) => {
+          const shine = document.createElement('div');
+          shine.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            animation: shine 0.6s ease-out;
+            pointer-events: none;
+          `;
+          e.target.appendChild(shine);
+          setTimeout(() => shine.remove(), 600);
+        }}>
+          KaushalX
+        </div>
         <h1 className="landing-title" style={{ fontSize: '3rem' }}>
           Future-Proof Your <span style={{ color: 'var(--secondary-text)' }}>Career</span>
         </h1>
