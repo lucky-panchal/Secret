@@ -30,7 +30,7 @@ const Hero = () => {
           fontFamily: 'Oswald', 
           fontWeight: 700, 
           fontSize: '4rem',
-          letterSpacing: '0.1em',
+          letterSpacing: 'normal',
           marginBottom: '1rem', marginTop: '-2rem',
           cursor: 'pointer',
           position: 'relative',
@@ -83,37 +83,7 @@ const Hero = () => {
 
 
 
-      {/* Bottom Navigation */}
-      <nav style={{
-        position: 'absolute',
-        bottom: '2rem',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '2rem',
-        zIndex: 10
-      }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '2px',
-          width: '24px',
-          height: '24px'
-        }}>
-          {[...Array(9)].map((_, i) => (
-            <div key={i} style={{
-              backgroundColor: 'var(--secondary-text)',
-              width: '6px',
-              height: '6px',
-              borderRadius: '1px'
-            }}></div>
-          ))}
-        </div>
-        <a href="#" style={{ color: 'var(--secondary-text)', textDecoration: 'none', fontFamily: 'Jost', fontSize: '0.9rem' }}>Brand</a>
-        <a href="#" style={{ color: 'var(--secondary-text)', textDecoration: 'none', fontFamily: 'Jost', fontSize: '0.9rem' }}>Product</a>
-        <a href="#" style={{ color: 'var(--secondary-text)', textDecoration: 'none', fontFamily: 'Jost', fontSize: '0.9rem' }}>Partner</a>
-      </nav>
+
     </div>
   );
 };

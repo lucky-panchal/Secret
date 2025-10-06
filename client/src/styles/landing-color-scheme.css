@@ -10,6 +10,14 @@
 }
 
 /* Base Layout Classes */
+* {
+  font-family: 'Jost', sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Oswald', sans-serif !important;
+}
+
 .landing-container {
   background-color: var(--deep-black);
   color: var(--primary-text);
