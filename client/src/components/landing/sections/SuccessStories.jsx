@@ -3,6 +3,7 @@ import { Box, Container, Typography, Grid, useMediaQuery, useTheme as useMuiThem
 import { motion } from 'framer-motion';
 import { CheckCircle, TrendingUp, School, Work } from '@mui/icons-material';
 import { useTheme } from '@/contexts/ThemeContext';
+import '../../../styles/landing-color-scheme.css';
 
 const SuccessStories = () => {
   const { isDark } = useTheme();
@@ -228,7 +229,7 @@ const SuccessStories = () => {
         id="stories"
         sx={{
           py: { xs: 6, md: 10 },
-          background: isDark ? 'var(--surface)' : '#ffffff',
+          background: 'var(--deep-black)',
           position: 'relative',
         }}
       >
@@ -253,7 +254,7 @@ const SuccessStories = () => {
               <Typography
                 variant="h2"
                 sx={{
-                  color: isDark ? 'var(--text-primary)' : '#2d3748',
+                  color: 'var(--primary-text)',
                   fontWeight: 700,
                   mb: { xs: 2, md: 3 },
                 }}
@@ -263,7 +264,7 @@ const SuccessStories = () => {
               <Typography
                 variant="h6"
                 sx={{
-                  color: isDark ? 'var(--text-secondary)' : '#4a5568',
+                  color: 'var(--secondary-text)',
                   maxWidth: '600px',
                   mx: 'auto',
                   lineHeight: 1.6,

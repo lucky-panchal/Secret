@@ -4,6 +4,7 @@ import { Box, Container, Typography, Grid, List, ListItem, ListItemIcon, ListIte
 import { motion } from 'framer-motion';
 import { CheckCircle, School, Business, Security, TrendingUp } from '@mui/icons-material';
 import { useTheme } from '@/contexts/ThemeContext';
+import '../../../styles/landing-color-scheme.css';
 
 const BusinessModel = () => {
   const { isDark } = useTheme();
@@ -72,7 +73,7 @@ const BusinessModel = () => {
         id="business"
         sx={{
           py: { xs: 6, md: 10 },
-          background: 'var(--background)',
+          background: 'var(--deep-black)',
           position: 'relative',
           overflow: 'hidden',
         }}
@@ -205,7 +206,7 @@ const BusinessModel = () => {
               >
                 <Box
                   sx={{
-                    background: 'var(--background)',
+                    background: 'var(--charcoal)',
                     borderRadius: 3,
                     p: { xs: 4, md: 6 },
                     textAlign: 'center',

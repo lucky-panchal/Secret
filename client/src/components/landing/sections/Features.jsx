@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Psychology, Security, Work, School, AccountBalance } from '@mui/icons-material';
 import { useTheme } from '@/contexts/ThemeContext';
 import FeatureCard from '../ui/FeatureCard';
+import '../../../styles/landing-color-scheme.css';
 
 const Features = () => {
   const { isDark } = useTheme();
@@ -56,7 +57,7 @@ const Features = () => {
         id="features"
         sx={{
           py: { xs: 6, md: 10 },
-          background: isDark ? 'var(--background)' : '#f8fafc',
+          background: 'var(--deep-black)',
           position: 'relative',
         }}
       >
@@ -86,7 +87,7 @@ const Features = () => {
               <Typography
                 variant="h2"
                 sx={{
-                  color: isDark ? 'var(--text-primary)' : '#2d3748',
+                  color: 'var(--primary-text)',
                   fontWeight: 700,
                   mb: { xs: 2, md: 3 },
                 }}
@@ -96,7 +97,7 @@ const Features = () => {
               <Typography
                 variant="h6"
                 sx={{
-                  color: isDark ? 'var(--text-secondary)' : '#4a5568',
+                  color: 'var(--secondary-text)',
                   maxWidth: '600px',
                   mx: 'auto',
                   lineHeight: 1.6,
