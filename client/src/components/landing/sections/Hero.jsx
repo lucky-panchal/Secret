@@ -15,32 +15,29 @@ const Hero = () => {
         right: 0, 
         padding: '2rem 5vw', 
         display: 'flex', 
-        justifyContent: 'space-between', 
+        justifyContent: 'center', 
         alignItems: 'center',
         zIndex: 10
       }}>
-        <div style={{ color: 'var(--white)', fontFamily: 'Jost', fontWeight: 600, fontSize: '1.2rem' }}>
-          
-        </div>
         <div style={{ 
-          backgroundColor: 'var(--white)', 
-          color: 'var(--deep-black)', 
-          padding: '0.5rem 1rem', 
-          borderRadius: '2rem', 
-          fontSize: '0.8rem',
-          fontFamily: 'Jost',
-          fontWeight: 500,
-          textAlign: 'center'
+          position: 'absolute',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          color: 'var(--primary-text)', 
+          fontFamily: 'Oswald', 
+          fontWeight: 700, 
+          fontSize: '2rem',
+          letterSpacing: '0.1em'
         }}>
-          AI Platform #1
+          KaushalX
         </div>
+
       </header>
 
       {/* Main Content */}
       <main className="landing-container">
-        <h1 className="landing-title">
-          Future-Proof Your<br />
-          <span style={{ color: 'var(--secondary-text)' }}>Career</span>
+        <h1 className="landing-title" style={{ fontSize: '3rem' }}>
+          Future-Proof Your <span style={{ color: 'var(--secondary-text)' }}>Career</span>
         </h1>
         
         <h2 className="landing-subtitle">
@@ -67,25 +64,7 @@ const Hero = () => {
         </div>
       </main>
 
-      {/* Side Sticky Badge */}
-      <div style={{
-        position: 'fixed',
-        right: 0,
-        top: '50%',
-        transform: 'translateY(-50%)',
-        backgroundColor: 'var(--white)',
-        color: 'var(--deep-black)',
-        padding: '2rem 0.5rem',
-        writingMode: 'vertical-rl',
-        textOrientation: 'mixed',
-        fontSize: '0.9rem',
-        fontFamily: 'Jost',
-        fontWeight: 500,
-        borderRadius: '1rem 0 0 1rem',
-        zIndex: 10
-      }}>
-        AI Honors
-      </div>
+
 
       {/* Bottom Navigation */}
       <nav style={{
