@@ -1,0 +1,173 @@
+/* Landing Page Color Scheme */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Outfit:wght@300;400&family=Jost:wght@300;400;500&display=swap');
+
+:root {
+  /* Primary Colors */
+  --deep-black: #000000;
+  --primary-text: #D0D0D0;
+  --secondary-text: #B0B0B0;
+  --white: #FFFFFF;
+}
+
+/* Base Layout Classes */
+.landing-container {
+  background-color: var(--deep-black);
+  color: var(--primary-text);
+  min-height: 100vh;
+  font-family: 'Jost', sans-serif;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.landing-header {
+  background-color: var(--deep-black);
+  border-bottom: 1px solid var(--charcoal);
+}
+
+.landing-section {
+  background-color: var(--charcoal);
+}
+
+.landing-section-alt {
+  background-color: var(--charcoal-alt);
+}
+
+/* Typography */
+.landing-title {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 4rem;
+  line-height: 1.2;
+  color: var(--primary-text);
+  margin-bottom: 1.5rem;
+}
+
+.landing-subtitle {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: var(--secondary-text);
+  margin-bottom: 2rem;
+}
+
+.landing-text {
+  font-family: 'Jost', sans-serif;
+  color: var(--secondary-text);
+}
+
+/* Buttons */
+.landing-btn-primary {
+  background-color: var(--white);
+  color: var(--deep-black);
+  border: none;
+  padding: 1rem 2rem;
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.landing-btn-secondary {
+  background-color: transparent;
+  color: var(--white);
+  border: 1px solid var(--white);
+  padding: 1rem 2rem;
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.landing-cta-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Navigation */
+.landing-nav {
+  background-color: var(--deep-black);
+  border-bottom: 1px solid var(--charcoal);
+}
+
+.landing-nav-link {
+  color: var(--standard-silver);
+}
+
+.landing-nav-link:hover {
+  color: var(--light-silver);
+}
+
+/* Cards and Components */
+.landing-card {
+  background-color: var(--charcoal);
+  border: 1px solid var(--gunmetal);
+}
+
+.landing-card-alt {
+  background-color: var(--charcoal-alt);
+  border: 1px solid var(--gunmetal);
+}
+
+/* Borders and Separators */
+.landing-border {
+  border-color: var(--gunmetal);
+}
+
+.landing-separator {
+  background-color: var(--gunmetal);
+}
+
+/* Footer */
+.landing-footer {
+  background-color: var(--charcoal);
+  border-top: 1px solid var(--gunmetal);
+  color: var(--standard-silver);
+}
+
+/* Utility Classes */
+.bg-deep-black { background-color: var(--deep-black); }
+.bg-charcoal { background-color: var(--charcoal); }
+.bg-charcoal-alt { background-color: var(--charcoal-alt); }
+.bg-gunmetal { background-color: var(--gunmetal); }
+.bg-standard-silver { background-color: var(--standard-silver); }
+.bg-light-silver { background-color: var(--light-silver); }
+
+.text-deep-black { color: var(--deep-black); }
+.text-charcoal { color: var(--charcoal); }
+.text-gunmetal { color: var(--gunmetal); }
+.text-standard-silver { color: var(--standard-silver); }
+.text-light-silver { color: var(--light-silver); }
+
+.border-gunmetal { border-color: var(--gunmetal); }
+.border-standard-silver { border-color: var(--standard-silver); }
+.border-light-silver { border-color: var(--light-silver); }
+
+/* Layout Specific Styles */
+.writing-mode-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.landing-container {
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .landing-container h1 span {
+    font-size: 3rem;
+  }
+  
+  .landing-container .fixed {
+    display: none;
+  }
+}
