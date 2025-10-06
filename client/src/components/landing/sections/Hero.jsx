@@ -31,7 +31,7 @@ const Hero = () => {
           fontWeight: 700, 
           fontSize: '4rem',
           letterSpacing: '0.1em',
-          marginBottom: '1.5rem',
+          marginBottom: '1rem', marginTop: '-2rem',
           cursor: 'pointer',
           position: 'relative',
           overflow: 'hidden'
@@ -53,7 +53,7 @@ const Hero = () => {
         }}>
           KaushalX
         </div>
-        <h1 className="landing-title" style={{ fontSize: '3rem' }}>
+        <h1 className="landing-title" style={{ fontSize: '2.2rem' }}>
           Future-Proof Your <span style={{ color: 'var(--secondary-text)' }}>Career</span>
         </h1>
         
