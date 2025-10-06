@@ -122,6 +122,7 @@ export const createMuiTheme = (isDark) => {
           root: {
             borderRadius: 8,
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            border: 'none',
           },
         },
       },
@@ -130,6 +131,7 @@ export const createMuiTheme = (isDark) => {
           root: {
             borderRadius: 8,
             transition: 'all 0.3s ease-in-out',
+            border: 'none',
           },
         },
       },

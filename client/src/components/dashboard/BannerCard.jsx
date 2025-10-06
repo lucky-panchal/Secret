@@ -4,8 +4,14 @@ import { PlayArrow, TrendingUp } from '@mui/icons-material';
 import { useTheme } from '@/contexts/ThemeContext';
 import { motion } from 'framer-motion';
 
-const BannerCard = () => {
+const BannerCard = ({ onNavigate }) => {
   const { isDark } = useTheme();
+
+  const handleStartLearning = () => {
+    if (onNavigate) {
+      onNavigate('courses');
+    }
+  };
 
   return (
     <motion.div
@@ -36,6 +42,7 @@ const BannerCard = () => {
               <Button
                 variant="contained"
                 startIcon={<PlayArrow />}
+                onClick={handleStartLearning}
                 sx={{
                   bgcolor: 'rgba(255,255,255,0.2)',
                   backdropFilter: 'blur(10px)',
@@ -45,6 +52,8 @@ const BannerCard = () => {
                   px: 3,
                   py: 1.5,
                   borderRadius: 2,
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
                   '&:hover': {
                     bgcolor: 'rgba(255,255,255,0.3)',
                     transform: 'translateY(-2px)',

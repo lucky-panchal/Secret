@@ -191,14 +191,14 @@ p, span, div {
 .MuiPaper-root {
   background: var(--bg-card) !important;
   color: var(--text-primary) !important;
-  border: 1px solid var(--border-light) !important;
+  border: none !important;
   box-shadow: var(--shadow-lg) !important;
   backdrop-filter: blur(20px) !important;
 }
 
 .MuiCard-root {
   background: var(--bg-card) !important;
-  border: 1px solid var(--border-light) !important;
+  border: none !important;
   border-radius: 20px !important;
   box-shadow: var(--shadow-lg) !important;
   backdrop-filter: blur(20px) !important;
@@ -206,12 +206,12 @@ p, span, div {
 
 [data-theme="light"] .MuiPaper-root {
   background: rgba(255, 255, 255, 0.9) !important;
-  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  border: none !important;
 }
 
 [data-theme="light"] .MuiCard-root {
   background: rgba(255, 255, 255, 0.9) !important;
-  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  border: none !important;
 }
 
 /* Enhanced Buttons with Amazing Effects */
@@ -254,14 +254,14 @@ p, span, div {
 }
 
 .MuiButton-outlined {
-  border: 2px solid rgba(148, 163, 184, 0.2) !important;
+  border: none !important;
   color: var(--text-primary) !important;
   background: var(--bg-card) !important;
   backdrop-filter: blur(10px) !important;
 }
 
 .MuiButton-outlined:hover {
-  border-color: var(--primary) !important;
+  border: none !important;
   background: rgba(99, 102, 241, 0.1) !important;
   transform: translateY(-4px) scale(1.05) !important;
   box-shadow: 0 15px 35px rgba(99, 102, 241, 0.2) !important;
@@ -343,7 +343,7 @@ p, span, div {
 .MuiChip-root {
   background: rgba(99, 102, 241, 0.1) !important;
   color: var(--primary-light) !important;
-  border: 1px solid rgba(99, 102, 241, 0.2) !important;
+  border: none !important;
   font-weight: 500 !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   backdrop-filter: blur(10px) !important;
@@ -421,7 +421,7 @@ p, span, div {
 .glass-effect {
   background: rgba(30, 41, 59, 0.6) !important;
   backdrop-filter: blur(25px) saturate(180%) !important;
-  border: 1px solid rgba(148, 163, 184, 0.1) !important;
+  border: none !important;
   position: relative !important;
   overflow: hidden !important;
 }
@@ -439,7 +439,7 @@ p, span, div {
 
 .glass-effect:hover {
   background: rgba(30, 41, 59, 0.8) !important;
-  border-color: rgba(99, 102, 241, 0.3) !important;
+  border: none !important;
   transform: translateY(-2px) !important;
 }
 

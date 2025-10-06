@@ -63,7 +63,7 @@ const NotificationsPanel = () => {
         sx={{ 
           background: 'rgba(26, 26, 46, 0.8)',
           backdropFilter: 'blur(20px)',
-          border: '1px solid rgba(0, 245, 255, 0.2)',
+          border: 'none',
           borderRadius: 3,
           boxShadow: '0 0 30px rgba(0, 245, 255, 0.15), 0 0 60px rgba(168, 85, 247, 0.1)'
         }}
@@ -109,7 +109,7 @@ const NotificationsPanel = () => {
                     borderRadius: 2,
                     background: 'rgba(15, 15, 35, 0.6)',
                     backdropFilter: 'blur(10px)',
-                    border: '1px solid rgba(0, 245, 255, 0.2)'
+                    border: 'none'
                   }}
                 >
                   <Avatar 

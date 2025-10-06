@@ -141,6 +141,10 @@ const QuickAccessPanel = ({ mobile = false, onNavigate, currentPage }) => {
                   key={index}
                   variant="text"
                   size="small"
+                  onClick={() => {
+                    console.log(`Opening ${link}`);
+                    alert(`Opening ${link} - This would typically open a new page or modal.`);
+                  }}
                   sx={{
                     justifyContent: 'flex-start',
                     color: '#94A3B8',
@@ -149,6 +153,7 @@ const QuickAccessPanel = ({ mobile = false, onNavigate, currentPage }) => {
                     py: 0.5,
                     px: 1,
                     borderRadius: 1.5,
+                    cursor: 'pointer',
                     '&:hover': {
                       color: '#00F5FF'
                     }

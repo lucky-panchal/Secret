@@ -4,8 +4,20 @@ import { PlayArrow, CheckCircle, RadioButtonUnchecked } from '@mui/icons-materia
 import { motion } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
 
-const CareerRoadmap = () => {
+const CareerRoadmap = ({ onNavigate }) => {
   const { isDark } = useTheme();
+
+  const handleContinueLearning = () => {
+    if (onNavigate) {
+      onNavigate('courses');
+    }
+  };
+
+  const handleRoadmapClick = () => {
+    if (onNavigate) {
+      onNavigate('roadmap');
+    }
+  };
 
   const roadmapSteps = [
     {
@@ -50,13 +62,21 @@ const CareerRoadmap = () => {
     <Box>
       <Card 
         elevation={0}
+        onClick={handleRoadmapClick}
         sx={{ 
           background: 'rgba(26, 26, 46, 0.8)',
           backdropFilter: 'blur(20px)',
           border: '1px solid rgba(168, 85, 247, 0.2)',
           borderRadius: 3,
           boxShadow: '0 0 30px rgba(168, 85, 247, 0.15), 0 0 60px rgba(0, 245, 255, 0.1)',
-          minHeight: 450
+          minHeight: 450,
+          cursor: 'pointer',
+          transition: 'all 0.3s ease',
+          '&:hover': {
+            transform: 'translateY(-2px)',
+            boxShadow: '0 0 40px rgba(168, 85, 247, 0.25), 0 0 80px rgba(0, 245, 255, 0.15)',
+            border: '1px solid rgba(168, 85, 247, 0.4)'
+          }
         }}
       >
         <CardContent sx={{ p: { xs: 3, md: 4 } }}>
@@ -128,11 +148,18 @@ const CareerRoadmap = () => {
                       variant="contained"
                       size="small"
                       startIcon={<PlayArrow />}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleContinueLearning();
+                      }}
                       sx={{
                         background: 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
                         '&:hover': { 
                           background: 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)',
-                          boxShadow: '0 0 20px rgba(0, 245, 255, 0.4)'
+                          boxShadow: '0 0 20px rgba(0, 245, 255, 0.4)',
+                          transform: 'translateY(-1px)'
                         },
                         textTransform: 'none',
                         fontWeight: 600

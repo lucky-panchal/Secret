@@ -1,6 +1,6 @@
 'use client';
 import { Box, List, ListItem, ListItemIcon, ListItemText, Avatar, Typography, Divider } from '@mui/material';
-import { Dashboard, VerifiedUser, School, Assignment, Work, Settings, Logout, Person } from '@mui/icons-material';
+import { Dashboard, VerifiedUser, School, Assignment, Work, Settings, Logout, Person, Token } from '@mui/icons-material';
 import { useTheme } from '@/contexts/ThemeContext';
 import { motion } from 'framer-motion';
 
@@ -13,6 +13,7 @@ const Sidebar = ({ onNavigate, currentPage }) => {
     { label: 'Tasks', icon: Assignment, page: 'tasks' },
     { label: 'Certificates', icon: VerifiedUser, page: 'certificates' },
     { label: 'Jobs', icon: Work, page: 'jobs' },
+    { label: 'Tokens', icon: Token, page: 'tokens' },
     { label: 'Settings', icon: Settings, page: 'settings' },
   ];
 
@@ -29,7 +30,7 @@ const Sidebar = ({ onNavigate, currentPage }) => {
         height: '100vh',
         background: 'linear-gradient(180deg, rgba(26, 26, 46, 0.95) 0%, rgba(15, 15, 35, 0.98) 100%)',
         backdropFilter: 'blur(20px)',
-        borderRight: '1px solid rgba(0, 245, 255, 0.2)',
+        borderRight: 'none',
         position: 'fixed',
         left: 0,
         top: 0,
@@ -59,7 +60,7 @@ const Sidebar = ({ onNavigate, currentPage }) => {
                 px: 1.5,
                 bgcolor: currentPage === item.page ? 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)' : 'transparent',
                 color: currentPage === item.page ? '#ffffff' : '#CBD5E1',
-                border: currentPage === item.page ? '1px solid rgba(0, 245, 255, 0.3)' : '1px solid transparent',
+                border: 'none',
                 boxShadow: currentPage === item.page ? '0 0 20px rgba(0, 245, 255, 0.2)' : 'none',
                 outline: 'none',
                 cursor: 'pointer',
@@ -68,7 +69,7 @@ const Sidebar = ({ onNavigate, currentPage }) => {
                 },
                 '&:hover': {
                   bgcolor: currentPage === item.page ? 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)' : 'rgba(0, 245, 255, 0.1)',
-                  border: '1px solid rgba(0, 245, 255, 0.3)',
+                  border: 'none',
                   boxShadow: '0 0 15px rgba(0, 245, 255, 0.15)',
                   color: '#ffffff'
                 },
@@ -100,7 +101,7 @@ const Sidebar = ({ onNavigate, currentPage }) => {
                 height: 28, 
                 background: 'linear-gradient(135deg, #00F5FF 0%, #A855F7 100%)',
                 fontSize: '0.75rem',
-                border: '1px solid rgba(0, 245, 255, 0.3)',
+                border: 'none',
                 boxShadow: '0 0 10px rgba(0, 245, 255, 0.2)'
               }}
             >
@@ -118,7 +119,7 @@ const Sidebar = ({ onNavigate, currentPage }) => {
           borderRadius: 2, 
           background: 'rgba(26, 26, 46, 0.6)',
           backdropFilter: 'blur(10px)',
-          border: '1px solid rgba(0, 245, 255, 0.2)',
+          border: 'none',
           boxShadow: '0 0 15px rgba(0, 245, 255, 0.1)'
         }}>
           <Avatar sx={{ 
@@ -126,7 +127,7 @@ const Sidebar = ({ onNavigate, currentPage }) => {
             width: 32, 
             height: 32, 
             fontSize: '0.875rem',
-            border: '1px solid rgba(0, 245, 255, 0.3)',
+            border: 'none',
             boxShadow: '0 0 10px rgba(0, 245, 255, 0.2)'
           }}>A</Avatar>
           <Box>
@@ -140,7 +141,22 @@ const Sidebar = ({ onNavigate, currentPage }) => {
         </Box>
 
         {/* Logout */}
-        <ListItem sx={{ mt: 2, borderRadius: 2, color: isDark ? '#ffffff' : '#374151', '&:hover': { bgcolor: isDark ? 'rgba(239, 68, 68, 0.1)' : 'rgba(239, 68, 68, 0.05)' } }}>
+        <ListItem 
+          onClick={() => {
+            if (confirm('Are you sure you want to logout?')) {
+              console.log('User logged out');
+              alert('Logged out successfully!');
+              // Here you would typically redirect to login page
+            }
+          }}
+          sx={{ 
+            mt: 2, 
+            borderRadius: 2, 
+            color: isDark ? '#ffffff' : '#374151', 
+            cursor: 'pointer',
+            '&:hover': { bgcolor: isDark ? 'rgba(239, 68, 68, 0.1)' : 'rgba(239, 68, 68, 0.05)' } 
+          }}
+        >
           <ListItemIcon sx={{ color: '#ef4444', minWidth: 40 }}>
             <Logout />
           </ListItemIcon>
