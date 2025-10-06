@@ -46,7 +46,7 @@ const FeatureCard = ({ icon: Icon, title, description, delay = 0 }) => {
               minHeight: { xs: 280, md: 320 },
               background: 'var(--charcoal)',
               border: '1px solid var(--gunmetal)',
-              borderRadius: 2,
+              borderRadius: 0,
               boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
               transition: 'all 0.3s ease-in-out',
               cursor: 'pointer',

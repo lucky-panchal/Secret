@@ -73,128 +73,95 @@ const SuccessStories = () => {
     },
   ];
 
-  const titleVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94],
-      },
-    },
-  };
-
-  const stepVariants = {
-    hidden: { opacity: 0, x: -30 },
-    visible: (i) => ({
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.6,
-        delay: i * 0.2,
-        ease: [0.25, 0.46, 0.45, 0.94],
-      },
-    }),
-  };
-
   const TimelineStep = ({ step, index, isLast }) => (
-    <motion.div
-      custom={index}
-      variants={stepVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-50px' }}
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'flex-start',
+        gap: 3,
+        mb: isLast ? 0 : 4,
+        position: 'relative',
+      }}
     >
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'flex-start',
-          gap: 3,
-          mb: isLast ? 0 : 4,
-          position: 'relative',
-        }}
-      >
-        {/* Timeline Line */}
-        {!isLast && (
-          <Box
-            sx={{
-              position: 'absolute',
-              left: 24,
-              top: 48,
-              width: 2,
-              height: 'calc(100% + 16px)',
-              background: 'var(--secondary-text)',
-              zIndex: 0,
-            }}
-          />
-        )}
-
-        {/* Icon */}
+      {/* Timeline Line */}
+      {!isLast && (
         <Box
           sx={{
-            width: 48,
-            height: 48,
-            borderRadius: 0,
-            background: step.status === 'completed' ? 'var(--deep-black)' : 'var(--secondary-text)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            position: 'relative',
-            zIndex: 1,
-            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+            position: 'absolute',
+            left: 24,
+            top: 48,
+            width: 2,
+            height: 'calc(100% + 16px)',
+            background: 'var(--secondary-text)',
+            zIndex: 0,
+          }}
+        />
+      )}
+
+      {/* Icon */}
+      <Box
+        sx={{
+          width: 48,
+          height: 48,
+          borderRadius: 0,
+          background: step.status === 'completed' ? 'var(--gunmetal)' : 'var(--secondary-text)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'relative',
+          zIndex: 1,
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+        }}
+      >
+        <step.icon
+          sx={{
+            fontSize: 24,
+            color: 'white',
+          }}
+        />
+      </Box>
+
+      {/* Content */}
+      <Box sx={{ flex: 1, pt: 1 }}>
+        <Typography
+          variant="h6"
+          sx={{
+            color: 'var(--primary-text)',
+            fontWeight: 600,
+            mb: 1,
           }}
         >
-          <step.icon
-            sx={{
-              fontSize: 24,
-              color: step.status === 'completed' ? 'white' : 'var(--deep-black)',
-            }}
-          />
-        </Box>
-
-        {/* Content */}
-        <Box sx={{ flex: 1, pt: 1 }}>
-          <Typography
-            variant="h6"
-            sx={{
-              color: isDark ? 'var(--text-primary)' : '#2d3748',
-              fontWeight: 600,
-              mb: 1,
-            }}
-          >
-            {step.title}
-          </Typography>
-          <Typography
-            variant="body2"
-            sx={{
-              color: isDark ? 'var(--text-secondary)' : '#4a5568',
-              lineHeight: 1.6,
-            }}
-          >
-            {step.description}
-          </Typography>
-        </Box>
+          {step.title}
+        </Typography>
+        <Typography
+          variant="body2"
+          sx={{
+            color: 'var(--secondary-text)',
+            lineHeight: 1.6,
+          }}
+        >
+          {step.description}
+        </Typography>
       </Box>
-    </motion.div>
+    </Box>
   );
 
   const StoryCard = ({ story }) => (
     <Box
       sx={{
-        background: 'var(--primary-text)',
+        background: 'var(--charcoal)',
+        border: '1px solid var(--gunmetal)',
         borderRadius: 0,
         p: { xs: 3, md: 4 },
         height: '100%',
         boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-        border: isDark ? 'none' : '1px solid #e2e8f0',
       }}
     >
       <Box sx={{ mb: 4 }}>
         <Typography
           variant="h4"
           sx={{
-            color: isDark ? 'var(--text-primary)' : '#2d3748',
+            color: 'var(--primary-text)',
             fontWeight: 700,
             mb: 1,
           }}
@@ -204,7 +171,7 @@ const SuccessStories = () => {
         <Typography
           variant="h6"
           sx={{
-            color: 'var(--deep-black)',
+            color: 'var(--primary-text)',
             fontWeight: 500,
           }}
         >
@@ -233,49 +200,31 @@ const SuccessStories = () => {
           position: 'relative',
         }}
       >
-        {/* Background Gradient */}
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'var(--gradient-primary)',
-            opacity: 0.03,
-            zIndex: 0,
-          }}
-        />
-
         <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1 }}>
-          {/* Section Title */}
-          <Box>
-            <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 8 } }}>
-              <Typography
-                variant="h2"
-                sx={{
-                  color: 'var(--deep-black)',
-                  fontWeight: 700,
-                  mb: { xs: 2, md: 3 },
-                }}
-              >
-                From Vulnerable to Future-Proof
-              </Typography>
-              <Typography
-                variant="h6"
-                sx={{
-                  color: 'var(--deep-black)',
-                  maxWidth: '600px',
-                  mx: 'auto',
-                  lineHeight: 1.6,
-                }}
-              >
-                Real transformation stories from professionals who future-proofed their careers with our platform.
-              </Typography>
-            </Box>
+          <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 8 } }}>
+            <Typography
+              variant="h2"
+              sx={{
+                color: 'var(--primary-text)',
+                fontWeight: 700,
+                mb: { xs: 2, md: 3 },
+              }}
+            >
+              From Vulnerable to Future-Proof
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                color: 'var(--secondary-text)',
+                maxWidth: '600px',
+                mx: 'auto',
+                lineHeight: 1.6,
+              }}
+            >
+              Real transformation stories from professionals who future-proofed their careers with our platform.
+            </Typography>
           </Box>
 
-          {/* Stories */}
           <Grid container spacing={4}>
             {stories.map((story, index) => (
               <Grid item xs={12} md={6} key={index}>
