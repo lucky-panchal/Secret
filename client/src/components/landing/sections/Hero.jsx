@@ -53,11 +53,11 @@ const Hero = () => {
         }}>
           KaushalX
         </div>
-        <h1 className="landing-title" style={{ fontSize: '2.2rem' }}>
+        <h1 className="landing-title" style={{ fontSize: '2.2rem', opacity: 0.8 }}>
           Future-Proof Your <span style={{ color: 'var(--secondary-text)' }}>Career</span>
         </h1>
         
-        <h2 className="landing-subtitle">
+        <h2 className="landing-subtitle" style={{ opacity: 0.7 }}>
           Join the world's first AI-driven reskilling platform. Transform from vulnerable to future-proof with personalized learning paths, blockchain certifications, and guaranteed job placement.
         </h2>
         
