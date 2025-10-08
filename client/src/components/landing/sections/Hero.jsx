@@ -6,7 +6,7 @@ const Hero = () => {
   const router = useRouter();
 
   return (
-    <div style={{ backgroundColor: 'var(--deep-black)', minHeight: '100vh', position: 'relative' }}>
+    <div id="home" style={{ backgroundColor: 'var(--deep-black)', minHeight: '100vh', position: 'relative' }}>
       {/* Main Content - Split Layout */}
       <main style={{ display: 'flex', minHeight: '100vh', width: '100%' }}>
         {/* Left Side - Content */}
