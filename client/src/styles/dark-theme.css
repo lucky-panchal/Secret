@@ -1,0 +1,195 @@
+/* Global Dark Mode Theme */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+
+/* Base background and text */
+body, html {
+  background-color: #121212 !important;
+  color: #e0e0e0 !important;
+  font-family: 'Poppins', sans-serif !important;
+  margin: 0;
+  padding: 0;
+}
+
+/* Links and buttons */
+a, button {
+  color: #ff3c78 !important;
+  transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+}
+
+a:hover, button:hover {
+  color: #fff !important;
+  background-color: #ff3c78 !important;
+  box-shadow: 0 4px 15px rgba(255, 60, 120, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Headers */
+h1, h2, h3, h4, h5, h6 {
+  color: #fff !important;
+  font-weight: 700;
+}
+
+/* Sections background */
+section, header, footer, nav, .container, .card {
+  background-color: #1b1b1b !important;
+  box-shadow: 0 0 10px rgba(255, 60, 120, 0.2);
+  border-radius: 12px;
+  padding: 1rem;
+  border: none;
+}
+
+/* Buttons with rounded corners */
+button, .btn {
+  background-color: transparent;
+  border: none;
+  border-radius: 30px;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Primary buttons */
+.btn-primary, button[variant="contained"] {
+  background-color: #ff3c78 !important;
+  color: white !important;
+  border: none;
+}
+
+/* Inputs, forms, other focused elements */
+input, textarea, select {
+  background-color: #222 !important;
+  color: #ddd !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 12px 16px;
+  font-family: 'Poppins', sans-serif;
+}
+
+input:focus, textarea:focus, select:focus {
+  border: none !important;
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 60, 120, 0.3);
+}
+
+/* Navbar links and active states */
+nav a, nav button {
+  color: #ddd !important;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+nav a:hover, nav button:hover, nav .active {
+  background-color: #ff3c78 !important;
+  color: white !important;
+  transform: translateY(-2px);
+}
+
+/* Cards and panels */
+.card, .panel, .modal {
+  background-color: #1e1e1e !important;
+  border: none;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Text colors */
+p, span, div {
+  color: #e0e0e0;
+}
+
+.text-secondary {
+  color: #b0b0b0 !important;
+}
+
+.text-muted {
+  color: #888 !important;
+}
+
+/* Borders */
+.border, hr {
+  border: none !important;
+}
+
+/* Backgrounds */
+.bg-primary {
+  background-color: #ff3c78 !important;
+}
+
+.bg-secondary {
+  background-color: #2a2a2a !important;
+}
+
+.bg-dark {
+  background-color: #121212 !important;
+}
+
+/* Scrollbar for dark mode */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #121212;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ff3c78;
+  border-radius: 10px;
+  border: 2px solid #121212;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ff5c98;
+}
+
+/* Material UI overrides */
+.MuiPaper-root {
+  background-color: #1e1e1e !important;
+  color: #e0e0e0 !important;
+}
+
+.MuiButton-root {
+  color: #ff3c78 !important;
+}
+
+.MuiButton-contained {
+  background-color: #ff3c78 !important;
+  color: white !important;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root {
+  background-color: #222 !important;
+  color: #ddd !important;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+  border: none !important;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border: none !important;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border: none !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  section, header, footer, nav {
+    padding: 0.5rem;
+    margin: 0.5rem;
+  }
+  
+  button, .btn {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}

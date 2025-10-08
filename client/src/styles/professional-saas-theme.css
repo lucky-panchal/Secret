@@ -1,0 +1,677 @@
+/* Professional SaaS Material UI Theme */
+:root {
+  /* Dark Mode AI/ML Colors */
+  --bg-primary: #0A0A0F;
+  --bg-secondary: #1A1A2E;
+  --bg-tertiary: #16213E;
+  --bg-card: #1A1A2E;
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --text-disabled: #64748B;
+  --border: rgba(0, 245, 255, 0.2);
+  --border-light: rgba(0, 245, 255, 0.1);
+  --border-hover: rgba(0, 245, 255, 0.4);
+  --divider: rgba(148, 163, 184, 0.1);
+  --divider-glow: rgba(0, 245, 255, 0.3);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 245, 255, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 245, 255, 0.1), 0 2px 4px -1px rgba(168, 85, 247, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 245, 255, 0.1), 0 4px 6px -2px rgba(168, 85, 247, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 245, 255, 0.15), 0 10px 10px -5px rgba(168, 85, 247, 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 245, 255, 0.25);
+  --shadow-glow: 0 0 20px rgba(0, 245, 255, 0.4);
+  --shadow-glow-lg: 0 0 40px rgba(0, 245, 255, 0.5);
+}
+
+/* Light Mode AI/ML Theme */
+[data-theme="light"] {
+  --bg-primary: #FAFBFF;
+  --bg-secondary: #F8FAFF;
+  --bg-tertiary: #F1F5F9;
+  --bg-card: #FFFFFF;
+  --text-primary: #0F0F23;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
+  --text-disabled: #94A3B8;
+  --border: rgba(0, 212, 255, 0.2);
+  --border-light: rgba(0, 212, 255, 0.1);
+  --border-hover: rgba(0, 212, 255, 0.4);
+  --divider: rgba(15, 23, 42, 0.1);
+  --divider-glow: rgba(0, 212, 255, 0.3);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 212, 255, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 212, 255, 0.1), 0 2px 4px -1px rgba(124, 58, 237, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 212, 255, 0.1), 0 4px 6px -2px rgba(124, 58, 237, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 212, 255, 0.15), 0 10px 10px -5px rgba(124, 58, 237, 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 212, 255, 0.25);
+  --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.4);
+  --shadow-glow-lg: 0 0 40px rgba(0, 212, 255, 0.5);
+}
+
+/* Common Colors */
+:root, [data-theme="light"] {
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --gradient-success: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  --gradient-warning: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #6366f1 100%);
+  --gradient-card: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+  --gradient-border: linear-gradient(135deg, #667eea, #764ba2, #6366f1);
+  --primary: #6366f1;
+  --primary-light: #818cf8;
+  --primary-dark: #4f46e5;
+  --primary-glow: rgba(99, 102, 241, 0.3);
+  --secondary: #06b6d4;
+  --secondary-glow: rgba(6, 182, 212, 0.3);
+  --accent: #f59e0b;
+  --accent-glow: rgba(245, 158, 11, 0.3);
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --purple: #8b5cf6;
+  --purple-glow: rgba(139, 92, 246, 0.3);
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  background: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* 3D Agent Background Integration */
+main {
+  position: relative;
+  z-index: 1;
+}
+
+.MuiAppBar-root {
+  z-index: 1300 !important;
+}
+
+.MuiModal-root {
+  z-index: 1400 !important;
+}
+
+/* Enhanced Background Pattern */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 40% 60%, rgba(168, 85, 247, 0.06) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: -1;
+  animation: backgroundShift 20s ease-in-out infinite;
+}
+
+[data-theme="light"] body::before {
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 40% 60%, rgba(168, 85, 247, 0.02) 0%, transparent 40%);
+}
+
+@keyframes backgroundShift {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Floating particles */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, rgba(99, 102, 241, 0.3), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(6, 182, 212, 0.3), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(168, 85, 247, 0.3), transparent);
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  animation: particleFloat 30s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.4;
+}
+
+@keyframes particleFloat {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-200px); }
+}
+
+/* Enhanced Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary) !important;
+  font-weight: 700 !important;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  transition: all 0.3s ease;
+}
+
+h1:hover, h2:hover {
+  background: linear-gradient(135deg, #f8fafc 0%, #6366f1 50%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transform: translateY(-2px);
+}
+
+p, span, div {
+  color: var(--text-secondary) !important;
+  transition: color 0.3s ease;
+}
+
+/* Interactive text */
+.interactive-text {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.interactive-text:hover {
+  color: var(--primary) !important;
+  transform: translateX(4px);
+}
+
+/* Enhanced Material UI Component Overrides */
+.MuiPaper-root {
+  background: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border: none !important;
+  box-shadow: var(--shadow-lg) !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+.MuiCard-root {
+  background: var(--bg-card) !important;
+  border: none !important;
+  border-radius: 20px !important;
+  box-shadow: var(--shadow-lg) !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+[data-theme="light"] .MuiPaper-root {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: none !important;
+}
+
+[data-theme="light"] .MuiCard-root {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: none !important;
+}
+
+/* Enhanced Buttons with Amazing Effects */
+.MuiButton-root {
+  border-radius: 16px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  padding: 14px 28px !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.MuiButton-root::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.MuiButton-contained {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3) !important;
+  border: none !important;
+}
+
+.MuiButton-contained:hover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  transform: translateY(-4px) scale(1.05) !important;
+  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4) !important;
+}
+
+.MuiButton-contained:hover::before {
+  left: 100%;
+}
+
+.MuiButton-outlined {
+  border: none !important;
+  color: var(--text-primary) !important;
+  background: var(--bg-card) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.MuiButton-outlined:hover {
+  border: none !important;
+  background: rgba(99, 102, 241, 0.1) !important;
+  transform: translateY(-4px) scale(1.05) !important;
+  box-shadow: 0 15px 35px rgba(99, 102, 241, 0.2) !important;
+}
+
+.MuiButton-outlined:hover::before {
+  left: 100%;
+}
+
+/* Enhanced Text Fields */
+.MuiTextField-root .MuiOutlinedInput-root {
+  background-color: var(--bg-tertiary) !important;
+  border-radius: 16px !important;
+  color: var(--text-primary) !important;
+  backdrop-filter: blur(10px) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+[data-theme="light"] .MuiTextField-root .MuiOutlinedInput-root {
+  background-color: rgba(248, 250, 252, 0.8) !important;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+  border-color: var(--border) !important;
+  border-width: 2px !important;
+  transition: all 0.3s ease !important;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.1) !important;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: var(--border-hover) !important;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root.Mui-focused {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1), 0 8px 25px rgba(99, 102, 241, 0.15) !important;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--primary) !important;
+}
+
+.MuiInputLabel-root {
+  color: var(--text-muted) !important;
+}
+
+.MuiInputLabel-root.Mui-focused {
+  color: var(--primary) !important;
+}
+
+/* Enhanced AppBar/Navigation */
+.MuiAppBar-root {
+  background: var(--bg-primary) !important;
+  backdrop-filter: blur(25px) saturate(180%) !important;
+  border-bottom: 1px solid var(--border-light) !important;
+  box-shadow: var(--shadow-xl) !important;
+  transition: all 0.3s ease !important;
+}
+
+.MuiAppBar-root:hover {
+  background: var(--bg-secondary) !important;
+  box-shadow: var(--shadow-2xl) !important;
+}
+
+[data-theme="light"] .MuiAppBar-root {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.1) !important;
+}
+
+[data-theme="light"] .MuiAppBar-root:hover {
+  background: rgba(248, 250, 252, 0.95) !important;
+}
+
+/* Enhanced Chips */
+.MuiChip-root {
+  background: rgba(99, 102, 241, 0.1) !important;
+  color: var(--primary-light) !important;
+  border: none !important;
+  font-weight: 500 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.MuiChip-root:hover {
+  background: rgba(99, 102, 241, 0.2) !important;
+  transform: translateY(-2px) scale(1.05) !important;
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.2) !important;
+}
+
+/* Enhanced Icons */
+.MuiSvgIcon-root {
+  color: var(--text-secondary) !important;
+  transition: all 0.3s ease !important;
+}
+
+.MuiSvgIcon-root:hover {
+  color: var(--primary) !important;
+  transform: scale(1.1) rotate(5deg) !important;
+  filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.3)) !important;
+}
+
+/* Enhanced Hover Effects for Interactive Elements */
+.hover-lift {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative !important;
+}
+
+.hover-lift::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(6, 182, 212, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+}
+
+.hover-lift:hover::before {
+  opacity: 1;
+}
+
+/* Enhanced Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #6366f1 100%) !important;
+  background-size: 200% 200% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  animation: gradientShift 3s ease-in-out infinite !important;
+  transition: all 0.3s ease !important;
+}
+
+.gradient-text:hover {
+  background-size: 300% 300% !important;
+  animation-duration: 1s !important;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Enhanced Glass Effect */
+.glass-effect {
+  background: rgba(30, 41, 59, 0.6) !important;
+  backdrop-filter: blur(25px) saturate(180%) !important;
+  border: none !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.glass-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(255, 255, 255, 0.05) 100%);
+  pointer-events: none;
+}
+
+.glass-effect:hover {
+  background: rgba(30, 41, 59, 0.8) !important;
+  border: none !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Seamless Section Styling */
+section {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 120px 0 !important;
+  margin: 0 !important;
+}
+
+/* Container Styling */
+.MuiContainer-root {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 24px !important;
+}
+
+/* Remove all section dividers */
+.MuiDivider-root {
+  display: none !important;
+}
+
+/* Seamless transitions between sections */
+section + section {
+  margin-top: -40px !important;
+}
+
+/* Enhanced Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 5px;
+  border: 2px solid var(--bg-secondary);
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  transform: scale(1.1);
+}
+
+/* Enhanced Responsive Design */
+@media (max-width: 768px) {
+  .MuiButton-root {
+    padding: 12px 24px !important;
+    font-size: 14px !important;
+  }
+  
+  section {
+    padding: 80px 0 !important;
+  }
+  
+  .MuiContainer-root {
+    padding: 0 16px !important;
+  }
+  
+  /* Reduce animations on mobile for performance */
+  .professional-hover:hover {
+    transform: translateY(-2px) !important;
+  }
+  
+  .MuiCard-root:hover {
+    transform: translateY(-4px) !important;
+  }
+}
+
+/* Enhanced Animation Classes */
+.fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scale-in {
+  animation: scaleIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) rotate(-5deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-right {
+  animation: slideInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Amazing Professional Hover States */
+.professional-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.professional-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+  transition: left 0.6s ease;
+  z-index: 1;
+}
+
+.professional-hover:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+}
+
+.professional-hover:hover::before {
+  left: 100%;
+}
+
+/* Magnetic hover effect */
+.magnetic-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.magnetic-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(99, 102, 241, 0.15);
+}
+
+/* Glow effect on hover */
+.glow-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.glow-hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, #667eea, #764ba2, #6366f1);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.glow-hover:hover::after {
+  opacity: 1;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Pulse effect */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.pulse-hover:hover {
+  animation: pulse 1s ease-in-out;
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}

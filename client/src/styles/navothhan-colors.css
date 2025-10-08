@@ -1,0 +1,21 @@
+/* Navothhan Platform - Professional Light Text Colors */
+
+/* Replace all rgba text colors with professional light shades */
+.navothhan-text-primary { color: #f8fafc !important; }
+.navothhan-text-secondary { color: #f1f5f9 !important; }
+.navothhan-text-tertiary { color: #e2e8f0 !important; }
+.navothhan-text-muted { color: #cbd5e1 !important; }
+.navothhan-text-subtle { color: #94a3b8 !important; }
+
+/* Global text color overrides for Navothhan */
+.navothhan-page .MuiTypography-root {
+  color: #f1f5f9 !important;
+}
+
+.navothhan-page .MuiTypography-body2 {
+  color: #e2e8f0 !important;
+}
+
+.navothhan-page .MuiTypography-caption {
+  color: #cbd5e1 !important;
+}

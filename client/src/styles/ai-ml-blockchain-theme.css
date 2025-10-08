@@ -1,0 +1,496 @@
+/* Futuristic AI/ML & Blockchain Professional Theme */
+
+/* AI/ML & Blockchain Color Palette */
+:root {
+  /* Core AI/ML Colors - Updated to Black & Silver */
+  --ai-cyan: #D0D0D0;
+  --ai-cyan-light: #EEEEEE;
+  --ai-cyan-dark: #B0B0B0;
+  
+  --ml-purple: #C4C4C4;
+  --ml-purple-light: #D0D0D0;
+  --ml-purple-dark: #B0B0B0;
+  
+  --blockchain-gold: #FFFFFF;
+  --blockchain-gold-light: #FFFFFF;
+  --blockchain-gold-dark: #D0D0D0;
+  
+  --quantum-violet: #B0B0B0;
+  --neural-pink: #C4C4C4;
+  --data-emerald: #D0D0D0;
+  --tech-blue: #EEEEEE;
+  
+  /* Advanced Gradients */
+  --gradient-ai-neural: linear-gradient(135deg, #778979 0%, #a9916b 25%, #8B5CF6 50%, #EC4899 75%, #FBBF24 100%);
+  --gradient-ai-flow: linear-gradient(45deg, #778979 0%, #8a9b8c 50%, #647766 100%);
+  --gradient-ml-brain: linear-gradient(135deg, #a9916b 0%, #bca378 50%, #967f5e 100%);
+  --gradient-blockchain-chain: linear-gradient(135deg, #FBBF24 0%, #F59E0B 50%, #EF4444 100%);
+  --gradient-quantum-field: linear-gradient(45deg, #8B5CF6 0%, #A855F7 50%, #C084FC 100%);
+  --gradient-data-stream: linear-gradient(90deg, #10B981 0%, #34D399 50%, #6EE7B7 100%);
+  
+  /* Holographic Effects */
+  --hologram-primary: linear-gradient(45deg, #778979, #a9916b, #FBBF24, #EC4899);
+  --hologram-secondary: linear-gradient(90deg, #778979, #a9916b, #FBBF24);
+  --hologram-accent: linear-gradient(135deg, #a9916b, #778979, #EC4899);
+  
+  /* Neon Glow Effects */
+  --neon-ai: 0 0 20px rgba(0, 245, 255, 0.6), 0 0 40px rgba(0, 245, 255, 0.4), 0 0 60px rgba(0, 245, 255, 0.2);
+  --neon-ml: 0 0 20px rgba(168, 85, 247, 0.6), 0 0 40px rgba(168, 85, 247, 0.4), 0 0 60px rgba(168, 85, 247, 0.2);
+  --neon-blockchain: 0 0 20px rgba(251, 191, 36, 0.6), 0 0 40px rgba(251, 191, 36, 0.4), 0 0 60px rgba(251, 191, 36, 0.2);
+  
+  /* Matrix-style Background */
+  --matrix-bg: radial-gradient(circle at 20% 20%, rgba(119, 137, 121, 0.1) 0%, transparent 50%),
+               radial-gradient(circle at 80% 80%, rgba(169, 145, 107, 0.1) 0%, transparent 50%),
+               radial-gradient(circle at 40% 60%, rgba(251, 191, 36, 0.08) 0%, transparent 50%);
+}
+
+/* Dark Mode AI/ML Theme */
+[data-theme="dark"] {
+  --bg-primary: #0A0A0F;
+  --bg-secondary: #1A1A2E;
+  --bg-tertiary: #16213E;
+  --bg-quaternary: #0F1419;
+  
+  /* AI/ML Specific Backgrounds */
+  --bg-ai-panel: linear-gradient(135deg, rgba(0, 245, 255, 0.05) 0%, rgba(26, 26, 46, 0.95) 100%);
+  --bg-ml-panel: linear-gradient(135deg, rgba(168, 85, 247, 0.05) 0%, rgba(26, 26, 46, 0.95) 100%);
+  --bg-blockchain-panel: linear-gradient(135deg, rgba(251, 191, 36, 0.05) 0%, rgba(26, 26, 46, 0.95) 100%);
+  
+  /* Text with AI/ML styling */
+  --text-ai: #D0D0D0;
+  --text-ml: #C4C4C4;
+  --text-blockchain: #FFFFFF;
+  --text-quantum: #B0B0B0;
+  --text-neural: #EEEEEE;
+}
+
+/* Light Mode AI/ML Theme */
+[data-theme="light"] {
+  --bg-primary: #FAFBFF;
+  --bg-secondary: #F8FAFF;
+  --bg-tertiary: #F1F5F9;
+  --bg-quaternary: #FFFFFF;
+  
+  /* AI/ML Light Backgrounds */
+  --bg-ai-panel: linear-gradient(135deg, rgba(0, 212, 255, 0.03) 0%, rgba(255, 255, 255, 0.95) 100%);
+  --bg-ml-panel: linear-gradient(135deg, rgba(124, 58, 237, 0.03) 0%, rgba(255, 255, 255, 0.95) 100%);
+  --bg-blockchain-panel: linear-gradient(135deg, rgba(245, 158, 11, 0.03) 0%, rgba(255, 255, 255, 0.95) 100%);
+  
+  /* Light mode text colors */
+  --text-ai: #797979;
+  --text-ml: #646464;
+  --text-blockchain: #000000;
+  --text-quantum: #595959;
+  --text-neural: #4A4A4A;
+}
+
+/* AI/ML Component Styling */
+.ai-card {
+  background: var(--bg-ai-panel);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.ai-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+.ai-card:hover::before {
+  left: 100%;
+}
+
+.ml-card {
+  background: var(--bg-ml-panel);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.ml-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.ml-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+.ml-card:hover::before {
+  left: 100%;
+}
+
+.blockchain-card {
+  background: var(--bg-blockchain-panel);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.blockchain-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.blockchain-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+.blockchain-card:hover::before {
+  left: 100%;
+}
+
+/* AI/ML Button Styles */
+.btn-ai {
+  background: var(--gradient-ai-flow);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 600;
+  text-transform: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ai::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-ai:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.btn-ai:hover::before {
+  left: 100%;
+}
+
+.btn-ml {
+  background: var(--gradient-ml-brain);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 600;
+  text-transform: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ml::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-ml:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.btn-ml:hover::before {
+  left: 100%;
+}
+
+.btn-blockchain {
+  background: var(--gradient-blockchain-chain);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 600;
+  text-transform: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-blockchain::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-blockchain:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.btn-blockchain:hover::before {
+  left: 100%;
+}
+
+/* Holographic Text Effects */
+.text-hologram {
+  background: var(--hologram-primary);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: hologramShift 3s ease-in-out infinite;
+  font-weight: 700;
+}
+
+@keyframes hologramShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.text-ai-glow {
+  color: var(--text-ai);
+  transition: all 0.3s ease;
+}
+
+.text-ml-glow {
+  color: var(--text-ml);
+  transition: all 0.3s ease;
+}
+
+.text-blockchain-glow {
+  color: var(--text-blockchain);
+  transition: all 0.3s ease;
+}
+
+/* Matrix Rain Effect */
+.matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--matrix-bg);
+  pointer-events: none;
+  z-index: -1;
+  animation: matrixFlow 20s linear infinite;
+}
+
+@keyframes matrixFlow {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100px); }
+}
+
+/* Floating Particles */
+.particle-field {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--ai-cyan);
+  border-radius: 50%;
+  animation: particleFloat 15s linear infinite;
+  opacity: 0.6;
+}
+
+.particle:nth-child(2n) {
+  background: var(--ml-purple);
+  animation-delay: -5s;
+}
+
+.particle:nth-child(3n) {
+  background: var(--blockchain-gold);
+  animation-delay: -10s;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(100vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-100px) translateX(100px);
+    opacity: 0;
+  }
+}
+
+/* Neural Network Animation */
+.neural-network {
+  position: relative;
+  overflow: hidden;
+}
+
+.neural-network::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(0, 245, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(251, 191, 36, 0.05) 0%, transparent 50%);
+  animation: neuralPulse 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes neuralPulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Quantum Field Effect */
+.quantum-field {
+  position: relative;
+  background: var(--gradient-quantum-field);
+  background-size: 400% 400%;
+  animation: quantumShift 8s ease-in-out infinite;
+}
+
+@keyframes quantumShift {
+  0%, 100% { background-position: 0% 50%; }
+  25% { background-position: 100% 50%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+}
+
+/* Data Stream Animation */
+.data-stream {
+  position: relative;
+  overflow: hidden;
+}
+
+.data-stream::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.3), transparent);
+  animation: dataFlow 2s linear infinite;
+}
+
+@keyframes dataFlow {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .ai-card, .ml-card, .blockchain-card {
+    margin: 8px 0;
+    padding: 16px;
+  }
+  
+  .btn-ai, .btn-ml, .btn-blockchain {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  
+  .text-hologram {
+    font-size: 1.5rem;
+  }
+  
+  /* Reduce animations on mobile for performance */
+  .particle {
+    animation-duration: 20s;
+  }
+  
+  .neural-network::before {
+    animation-duration: 6s;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .ai-card, .ml-card, .blockchain-card {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+  }
+  
+  .text-ai-glow, .text-ml-glow, .text-blockchain-glow {
+    font-weight: 800;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .ai-card, .ml-card, .blockchain-card,
+  .btn-ai, .btn-ml, .btn-blockchain {
+    transition: none;
+    animation: none;
+  }
+  
+  .text-hologram {
+    animation: none;
+    background: var(--ai-cyan);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .particle, .neural-network::before, .quantum-field {
+    animation: none;
+  }
+}

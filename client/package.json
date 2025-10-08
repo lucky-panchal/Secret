@@ -1,0 +1,39 @@
+{
+  "name": "kaushalx-client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.1",
+    "@mui/material": "^5.15.1",
+    "@react-three/drei": "^9.0.0",
+    "@react-three/fiber": "^8.13.0",
+    "@tailwindcss/postcss": "^4.1.14",
+    "autoprefixer": "^10.4.21",
+    "clsx": "^2.1.1",
+    "framer-motion": "^10.16.16",
+    "lucide-react": "^0.545.0",
+<<<<<<< HEAD
+    "motion": "^12.23.22",
+=======
+>>>>>>> eee61bdba54f0e0ef6c7a7c2f8beda2b051d77a2
+    "next": "^14.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "swiper": "^11.2.10",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss": "^4.1.14",
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "14.0.4"
+  }
+}

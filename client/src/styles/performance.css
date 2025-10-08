@@ -1,0 +1,95 @@
+/* Performance optimizations for smooth animations */
+
+/* Hardware acceleration for all animated elements */
+.motion-element {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* Optimize 3D transforms */
+.preserve-3d {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* GPU acceleration for carousel */
+.carousel-container {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1200px;
+  perspective-origin: center center;
+}
+
+.carousel-item {
+  transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: visible;
+}
+
+/* Optimize text rendering */
+.optimized-text {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Contain layout shifts */
+.contain-layout {
+  contain: layout style paint;
+}
+
+/* Optimize images */
+.optimized-image {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Smooth hover transitions */
+.smooth-hover {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+/* Optimize backdrop filters */
+.backdrop-blur {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Performance-optimized gradients */
+.gradient-optimized {
+  background-attachment: fixed;
+  will-change: background-position;
+}
+
+/* Optimize box shadows */
+.shadow-optimized {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  will-change: box-shadow;
+}
+
+/* Smooth animations */
+.smooth-animation {
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Optimize transforms for mobile */
+@media (max-width: 768px) {
+  .mobile-optimized {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+}
