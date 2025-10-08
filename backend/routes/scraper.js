@@ -1,27 +1,53 @@
 const express = require('express');
 const router = express.Router();
 const scraper = require('../services/scraper');
-const simpleScraper = require('../services/simpleScraper');
+const dataManager = require('../services/dataManager');
 const { triggerScraping, triggerTrendAnalysis, triggerCleanup } = require('../services/scheduler');
 
-// POST /api/scrape/simple - Trigger simple real data scraping
-router.post('/simple', async (req, res) => {
+// POST /api/scrape/refresh - Trigger complete data refresh
+router.post('/refresh', async (req, res) => {
   try {
-    console.log('🔄 Simple scraping triggered via API');
+    console.log('🔄 Data refresh triggered via API');
     
-    const result = await simpleScraper.scrapeRealCourses();
+    const result = await dataManager.refreshCourseData();
     
-    res.json(result);
+    res.json({
+      success: true,
+      message: 'Data refresh completed successfully',
+      data: result
+    });
 
   } catch (error) {
-    console.error('Error in simple scraper:', error);
+    console.error('Error in data refresh:', error);
     res.status(500).json({
       success: false,
-      message: 'Failed to run simple scraper',
+      message: 'Failed to refresh data',
       error: error.message
     });
   }
 });
+
+// GET /api/scrape/data-stats - Get data freshness statistics
+router.get('/data-stats', async (req, res) => {
+  try {
+    const stats = await dataManager.getDataStats();
+    
+    res.json({
+      success: true,
+      data: stats
+    });
+
+  } catch (error) {
+    console.error('Error getting data stats:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to get data statistics',
+      error: error.message
+    });
+  }
+});
+
+
 
 // POST /api/scrape/run - Manually trigger scraping
 router.post('/run', async (req, res) => {

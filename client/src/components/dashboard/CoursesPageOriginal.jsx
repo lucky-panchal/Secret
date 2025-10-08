@@ -24,7 +24,7 @@ const CoursesPage = ({ onNavigate }) => {
       setError(null);
       
       const [coursesRes, trendingRes, outdatedRes, categoriesRes] = await Promise.all([
-        apiService.getCourses({ limit: 50 }),
+        apiService.getCourses(),
         apiService.getTrendingCourses(50),
         apiService.getOutdatedCourses(50),
         apiService.getCategories()
@@ -66,22 +66,19 @@ const CoursesPage = ({ onNavigate }) => {
   };
 
   const getFilteredCourses = () => {
-    // Filter out outdated courses from allCourses for non-outdated sections
-    const nonOutdatedCourses = allCourses.filter(course => course.trend !== 'Outdated');
-    
     switch (activeFilter) {
       case 'Trending Now':
-        return trendingCourses.length > 0 ? trendingCourses : nonOutdatedCourses.filter(course => course.trend === 'Trending');
+        return trendingCourses;
       case 'AI/ML':
-        return nonOutdatedCourses.filter(course => course.courseCategory === 'AI/ML');
+        return allCourses.filter(course => course.courseCategory === 'AI/ML');
       case 'Blockchain':
-        return nonOutdatedCourses.filter(course => course.courseCategory === 'Blockchain');
+        return allCourses.filter(course => course.courseCategory === 'Blockchain');
       case 'Web Development':
-        return nonOutdatedCourses.filter(course => course.courseCategory === 'Web Development');
+        return allCourses.filter(course => course.courseCategory === 'Web Development');
       case 'Outdated':
-        return outdatedCourses.length > 0 ? outdatedCourses : allCourses.filter(course => course.trend === 'Outdated');
+        return outdatedCourses;
       default:
-        return nonOutdatedCourses; // All Courses (excluding outdated)
+        return allCourses; // All Courses
     }
   };
 
@@ -394,9 +391,4 @@ const CoursesPage = ({ onNavigate }) => {
   );
 };
 
-// Temporarily using simple debug version
-import CoursesPageSimple from './CoursesPageSimple';
-export default CoursesPageSimple;
-
-// Original component
-// export default CoursesPage;
+export default CoursesPage;

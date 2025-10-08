@@ -50,8 +50,8 @@ class ApiService {
     return this.request(`/courses?${params}`);
   }
 
-  async getTrendingCourses(limit = 20, category = 'all') {
-    const params = new URLSearchParams({ limit, category });
+  async getTrendingCourses(limit = 20, category = 'all', refresh = false) {
+    const params = new URLSearchParams({ limit, category, refresh });
     return this.request(`/courses/trending?${params}`);
   }
 
@@ -67,6 +67,22 @@ class ApiService {
   async getCoursesByCategory(category, filters = {}) {
     const params = new URLSearchParams(filters);
     return this.request(`/courses/category/${category}?${params}`);
+  }
+
+  async refreshCourseData(category = null) {
+    return this.request('/courses/refresh', {
+      method: 'POST',
+      body: JSON.stringify({ category })
+    });
+  }
+
+  async getAIInsights(category = null) {
+    const params = category ? new URLSearchParams({ category }) : '';
+    return this.request(`/courses/ai-insights?${params}`);
+  }
+
+  async getDataFreshness() {
+    return this.request('/courses/data-freshness');
   }
 
   async getCategories() {
