@@ -22,6 +22,7 @@ const scraperRoutes = require('./routes/scraper');
 const healthRoutes = require('./routes/health');
 const aiSearchRoutes = require('./routes/ai-search');
 const aiStatusRoutes = require('./routes/ai-status');
+const authRoutes = require('./routes/auth');
 const { initializeScheduler } = require('./services/scheduler');
 const { setupWebSocket } = require('./services/websocket');
 const dataManager = require('./services/dataManager');
@@ -64,6 +65,7 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
+app.use('/api/auth', authRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/scrape', scraperRoutes);

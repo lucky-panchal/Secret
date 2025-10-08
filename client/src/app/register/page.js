@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { motion } from 'framer-motion';
 
 export default function Register() {
@@ -15,10 +16,11 @@ export default function Register() {
   const [popupMessage, setPopupMessage] = useState('');
   const [showSuccessOptions, setShowSuccessOptions] = useState(false);
   const { isDark } = useTheme();
+  const { signup, signin, logout: authLogout } = useAuth();
   const router = useRouter(); 
 
-  const handleLogout = () => {
-    localStorage.removeItem('currentUser');
+  const handleLogout = async () => {
+    await authLogout();
     setShowSuccessOptions(false);
     setSignInData({ email: '', password: '' });
   };
@@ -29,26 +31,15 @@ export default function Register() {
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  const handleSignUpSubmit = (e) => {
+  const handleSignUpSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
     
     const newErrors = {};
-    let existingUser = null;
     
-    try {
-      const userData = localStorage.getItem('userData');
-      existingUser = userData ? JSON.parse(userData) : null;
-    } catch (error) {
-      console.error('Error parsing localStorage data:', error);
-    }
-
     if (!signUpData.fullName) newErrors.fullName = 'Full name is required';
     if (!signUpData.email) newErrors.email = 'Email is required';
     else if (!validateEmail(signUpData.email)) newErrors.email = 'Invalid email format';
-    else if (existingUser && existingUser.email === signUpData.email) {
-      newErrors.email = 'Email already exists. Please use a different email address.';
-    }
     if (!signUpData.password) newErrors.password = 'Password is required';
     else if (signUpData.password.length < 6) newErrors.password = 'Password must be at least 6 characters';
     if (!signUpData.confirmPassword) newErrors.confirmPassword = 'Confirm password is required';
@@ -58,20 +49,25 @@ export default function Register() {
 
     if (Object.keys(newErrors).length === 0) {
       try {
-        localStorage.setItem('userData', JSON.stringify(signUpData));
-        setPopupType('success');
-        setPopupMessage('Account created successfully! You can now sign in.');
-        setShowPopup(true);
-        setTimeout(() => {
-          setShowPopup(false);
-          setIsRightPanelActive(false);
-          const container = document.getElementById('container');
-          if (container) {
-            container.classList.remove('right-panel-active');
-          }
-        }, 2000);
+        const result = await signup(signUpData);
+        
+        if (result.success) {
+          setPopupType('success');
+          setPopupMessage('Account created successfully! Redirecting to assessment...');
+          setShowPopup(true);
+          setSignUpData({ fullName: '', email: '', password: '', confirmPassword: '' });
+          setTimeout(() => {
+            setShowPopup(false);
+            router.push('/assessment');
+          }, 1500);
+        } else {
+          setPopupType('error');
+          setPopupMessage(result.message || 'Registration failed. Please try again.');
+          setShowPopup(true);
+          setTimeout(() => setShowPopup(false), 3000);
+        }
       } catch (error) {
-        console.error('Error saving to localStorage:', error);
+        console.error('Registration error:', error);
         setPopupType('error');
         setPopupMessage('Registration failed. Please try again.');
         setShowPopup(true);
@@ -85,55 +81,43 @@ export default function Register() {
     }
   };
 
-  const handleSignInSubmit = (e) => {
+  const handleSignInSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
     
     const newErrors = {};
-    let storedUser = null;
     
-    try {
-      const userData = localStorage.getItem('userData');
-      storedUser = userData ? JSON.parse(userData) : null;
-    } catch (error) {
-      console.error('Error parsing localStorage data:', error);
-    }
-
     if (!signInData.email) newErrors.email = 'Email is required';
     if (!signInData.password) newErrors.password = 'Password is required';
 
-    if (!storedUser) {
-      setPopupType('error');
-      setPopupMessage('No account found. Please sign up first.');
-      setShowPopup(true);
-      setTimeout(() => setShowPopup(false), 3000);
-      return;
-    }
-    
-    if (storedUser.email !== signInData.email || storedUser.password !== signInData.password) {
-      setPopupType('error');
-      setPopupMessage('Invalid email or password. Please try again.');
-      setShowPopup(true);
-      setTimeout(() => setShowPopup(false), 3000);
-      return;
-    }
+    setErrors(newErrors);
 
-    // Successful login - show success options
-    try {
-      localStorage.setItem('currentUser', JSON.stringify({ email: signInData.email, fullName: storedUser.fullName }));
-      setPopupType('signin-success');
-      setPopupMessage(`Welcome back, ${storedUser.fullName}!`);
-      setShowPopup(true);
-      setTimeout(() => {
-        setShowPopup(false);
-        setShowSuccessOptions(true);
-      }, 1000);
-    } catch (error) {
-      console.error('Error saving current user:', error);
-      setPopupType('error');
-      setPopupMessage('Login failed. Please try again.');
-      setShowPopup(true);
-      setTimeout(() => setShowPopup(false), 3000);
+    if (Object.keys(newErrors).length === 0) {
+      try {
+        const result = await signin(signInData);
+        
+        if (result.success) {
+          setPopupType('signin-success');
+          setPopupMessage(`Welcome back!`);
+          setShowPopup(true);
+          setSignInData({ email: '', password: '' });
+          setTimeout(() => {
+            setShowPopup(false);
+            setShowSuccessOptions(true);
+          }, 1000);
+        } else {
+          setPopupType('error');
+          setPopupMessage(result.message || 'Login failed. Please try again.');
+          setShowPopup(true);
+          setTimeout(() => setShowPopup(false), 3000);
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        setPopupType('error');
+        setPopupMessage('Login failed. Please try again.');
+        setShowPopup(true);
+        setTimeout(() => setShowPopup(false), 3000);
+      }
     }
   };
 
