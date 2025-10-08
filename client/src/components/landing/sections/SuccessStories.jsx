@@ -196,10 +196,61 @@ const SuccessStories = () => {
         id="stories"
         sx={{
           py: { xs: 6, md: 10 },
-          background: 'var(--deep-black)',
+          background: '#030303',
           position: 'relative',
+          overflow: 'hidden',
         }}
       >
+        {/* Floating shapes */}
+        <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, overflow: 'hidden' }}>
+          <motion.div
+            animate={{
+              y: [0, 12, 0],
+              rotate: [-15, -10, -15],
+            }}
+            transition={{
+              duration: 9,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{
+              position: 'absolute',
+              width: '600px',
+              height: '150px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, rgba(244, 63, 94, 0.3), transparent)',
+              filter: 'blur(1px)',
+              opacity: 0.6,
+              left: '-20%',
+              top: '10%',
+              transform: 'rotate(-15deg)',
+            }}
+          />
+          <motion.div
+            animate={{
+              y: [0, -8, 0],
+              rotate: [20, 25, 20],
+            }}
+            transition={{
+              duration: 7,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{
+              position: 'absolute',
+              width: '450px',
+              height: '110px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.3), transparent)',
+              filter: 'blur(1px)',
+              opacity: 0.6,
+              right: '-15%',
+              bottom: '20%',
+              transform: 'rotate(20deg)',
+            }}
+          />
+        </Box>
+        
         <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1 }}>
           <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 8 } }}>
             <Typography
