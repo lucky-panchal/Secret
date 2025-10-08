@@ -1,29 +1,61 @@
-const aiAnalyzer = require('../services/aiAnalyzer');
+const mongoose = require('mongoose');
+const aiCourseAnalyzer = require('../services/aiCourseAnalyzer');
+const dynamicDataManager = require('../services/dynamicDataManager');
+require('dotenv').config();
 
-// Test AI analyzer with sample course data
-const testCourse = {
-  courseTitle: 'Advanced Machine Learning with TensorFlow',
-  courseDescription: 'Learn deep learning, neural networks, and AI model deployment using TensorFlow and Python',
-  courseCategory: 'AI/ML',
-  courseProvider: 'Coursera',
-  starRating: 4.7
-};
+async function testAIFunctionality() {
+  try {
+    console.log('🧪 Testing AI functionality...');
+    
+    // Connect to database
+    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/kaushalx');
+    console.log('✅ Connected to MongoDB');
+    
+    // Test 1: Analyze a sample course
+    console.log('\n📊 Test 1: Course Analysis');
+    const sampleCourse = {
+      courseTitle: 'Machine Learning with Python',
+      courseDescription: 'Learn machine learning algorithms and implementation with Python',
+      courseCategory: 'AI/ML',
+      courseProvider: 'Coursera'
+    };
+    
+    const analysis = await aiCourseAnalyzer.analyzeCourseRelevance(sampleCourse);
+    console.log('Analysis result:', analysis);
+    
+    // Test 2: Get emerging skills
+    console.log('\n🚀 Test 2: Emerging Skills');
+    const emergingSkills = await aiCourseAnalyzer.getEmergingSkills();
+    console.log('Emerging skills:', emergingSkills.slice(0, 5));
+    
+    // Test 3: Job market trends
+    console.log('\n📈 Test 3: Job Market Trends');
+    const jobTrends = await aiCourseAnalyzer.analyzeJobMarketTrends('AI/ML');
+    console.log('Job market trends for AI/ML:', jobTrends);
+    
+    // Test 4: Category stats
+    console.log('\n📊 Test 4: Category Statistics');
+    const categoryStats = await dynamicDataManager.getCategoryStats();
+    console.log('Category statistics:', categoryStats);
+    
+    // Test 5: Data freshness
+    console.log('\n🕒 Test 5: Data Freshness');
+    const freshness = await dynamicDataManager.getDataFreshness();
+    console.log('Data freshness:', freshness);
+    
+    console.log('\n✅ All AI tests completed successfully!');
+    
+  } catch (error) {
+    console.error('❌ AI test failed:', error);
+  } finally {
+    await mongoose.disconnect();
+    console.log('👋 Disconnected from MongoDB');
+  }
+}
 
-console.log('🧠 Testing AI Analyzer...\n');
+// Run the test if this script is executed directly
+if (require.main === module) {
+  testAIFunctionality();
+}
 
-const analysis = aiAnalyzer.analyzeCourse(testCourse);
-
-console.log('📊 AI Analysis Results:');
-console.log('='.repeat(50));
-console.log(`Course: ${testCourse.courseTitle}`);
-console.log(`Trend: ${analysis.trend}`);
-console.log(`Demand: ${analysis.courseDemand}`);
-console.log(`Job Availability: ${analysis.jobAvailability}`);
-console.log(`Confidence Score: ${analysis.confidenceScore.toFixed(3)}`);
-console.log(`Trend Score: ${analysis.trendScore.toFixed(3)}`);
-console.log('\n🔍 AI Reasoning:');
-analysis.reasoning.forEach((reason, i) => {
-  console.log(`${i + 1}. ${reason}`);
-});
-
-console.log('\n✅ AI Model is working correctly!');
+module.exports = { testAIFunctionality };

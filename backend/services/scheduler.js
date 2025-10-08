@@ -1,5 +1,6 @@
 const cron = require('node-cron');
 const scraper = require('./scraper');
+const dataManager = require('./dataManager');
 const Course = require('../models/Course');
 const aiAnalyzer = require('./aiAnalyzer');
 const { broadcastUpdate } = require('./websocket');
@@ -18,26 +19,33 @@ class Scheduler {
 
     console.log('⏰ Initializing automated scheduler...');
 
-    // Main scraping job - every 6 hours
+    // Main data refresh job - every 6 hours
     const mainScrapeJob = cron.schedule('0 */6 * * *', async () => {
-      console.log('🕐 Running scheduled scraping job...');
+      console.log('🕐 Running scheduled data refresh job...');
       try {
-        await scraper.scrapeAllSources();
+        await dataManager.refreshCourseData();
       } catch (error) {
-        console.error('❌ Scheduled scraping failed:', error);
+        console.error('❌ Scheduled data refresh failed:', error);
+        // Fallback to simple scraper
+        try {
+          console.log('🔄 Trying fallback data refresh...');
+          await dataManager.ensureMinimumData();
+        } catch (fallbackError) {
+          console.error('❌ Fallback also failed:', fallbackError);
+        }
       }
     }, {
       scheduled: false,
       timezone: 'UTC'
     });
 
-    // Trend analysis job - every 2 hours
+    // AI analysis job - every 2 hours
     const trendAnalysisJob = cron.schedule('0 */2 * * *', async () => {
-      console.log('📊 Running trend analysis job...');
+      console.log('📊 Running AI analysis job...');
       try {
-        await this.runTrendAnalysis();
+        await dataManager.runAIAnalysis();
       } catch (error) {
-        console.error('❌ Trend analysis failed:', error);
+        console.error('❌ AI analysis failed:', error);
       }
     }, {
       scheduled: false,
@@ -320,13 +328,13 @@ class Scheduler {
 
   // Manual job triggers
   async triggerScraping() {
-    console.log('🔄 Manually triggering scraping job...');
-    return await scraper.scrapeAllSources();
+    console.log('🔄 Manually triggering data refresh...');
+    return await dataManager.refreshCourseData();
   }
 
   async triggerTrendAnalysis() {
-    console.log('🔄 Manually triggering trend analysis...');
-    return await this.runTrendAnalysis();
+    console.log('🔄 Manually triggering AI analysis...');
+    return await dataManager.runAIAnalysis();
   }
 
   async triggerCleanup() {

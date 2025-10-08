@@ -30,8 +30,8 @@ export const useCourses = (filters = {}) => {
   return useApi(() => apiService.getCourses(filters), [JSON.stringify(filters)]);
 };
 
-export const useTrendingCourses = (limit = 20, category = 'all') => {
-  return useApi(() => apiService.getTrendingCourses(limit, category), [limit, category]);
+export const useTrendingCourses = (limit = 20, category = 'all', refresh = false) => {
+  return useApi(() => apiService.getTrendingCourses(limit, category, refresh), [limit, category, refresh]);
 };
 
 export const useDashboardStats = () => {
@@ -44,4 +44,16 @@ export const useDashboardTrends = () => {
 
 export const useCategories = () => {
   return useApi(() => apiService.getCategories(), []);
+};
+
+export const useAIInsights = (category = null) => {
+  return useApi(() => apiService.getAIInsights(category), [category]);
+};
+
+export const useDataFreshness = () => {
+  return useApi(() => apiService.getDataFreshness(), []);
+};
+
+export const useCoursesByCategory = (category, filters = {}) => {
+  return useApi(() => apiService.getCoursesByCategory(category, filters), [category, JSON.stringify(filters)]);
 };
