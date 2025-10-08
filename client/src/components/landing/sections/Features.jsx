@@ -57,23 +57,60 @@ const Features = () => {
         id="features"
         sx={{
           py: { xs: 6, md: 10 },
-          background: 'var(--deep-black)',
+          background: '#030303',
           position: 'relative',
+          overflow: 'hidden',
         }}
       >
-        {/* Background Pattern */}
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'var(--gradient-secondary)',
-            opacity: 0.03,
-            zIndex: 0,
-          }}
-        />
+        {/* Floating shapes */}
+        <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, overflow: 'hidden' }}>
+          <motion.div
+            animate={{
+              y: [0, -10, 0],
+              rotate: [25, 30, 25],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{
+              position: 'absolute',
+              width: '500px',
+              height: '120px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.1))',
+              filter: 'blur(1px)',
+              opacity: 0.6,
+              right: '-10%',
+              top: '20%',
+              transform: 'rotate(25deg)',
+            }}
+          />
+          <motion.div
+            animate={{
+              y: [0, 15, 0],
+              rotate: [-20, -15, -20],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{
+              position: 'absolute',
+              width: '400px',
+              height: '100px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.05))',
+              filter: 'blur(1px)',
+              opacity: 0.6,
+              left: '-15%',
+              bottom: '30%',
+              transform: 'rotate(-20deg)',
+            }}
+          />
+        </Box>
 
         <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1 }}>
           {/* Section Title */}

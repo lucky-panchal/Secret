@@ -14,11 +14,61 @@ const Footer = () => {
         id="contact"
         sx={{
           py: { xs: 8, md: 12 },
-          background: 'var(--deep-black)',
+          background: '#030303',
           position: 'relative',
           overflow: 'hidden',
         }}
       >
+        {/* Floating shapes */}
+        <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, overflow: 'hidden' }}>
+          <motion.div
+            animate={{
+              y: [0, 8, 0],
+              rotate: [-10, -5, -10],
+            }}
+            transition={{
+              duration: 9.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{
+              position: 'absolute',
+              width: '500px',
+              height: '120px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.1))',
+              filter: 'blur(1px)',
+              opacity: 0.6,
+              left: '-20%',
+              top: '20%',
+              transform: 'rotate(-10deg)',
+            }}
+          />
+          <motion.div
+            animate={{
+              y: [0, -14, 0],
+              rotate: [15, 20, 15],
+            }}
+            transition={{
+              duration: 7.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{
+              position: 'absolute',
+              width: '450px',
+              height: '110px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.05))',
+              filter: 'blur(1px)',
+              opacity: 0.6,
+              right: '-10%',
+              bottom: '30%',
+              transform: 'rotate(15deg)',
+            }}
+          />
+        </Box>
+        
         <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
           {/* Split Layout */}
           <div style={{ display: 'flex', minHeight: '60vh', width: '100%' }}>
