@@ -97,7 +97,23 @@ const courseSchema = new mongoose.Schema({
     max: 1,
     default: 0.5
   },
+  aiThreatLevel: {
+    type: Number,
+    min: 0,
+    max: 1,
+    default: 0.1,
+    index: true
+  },
   sources: [sourceSchema],
+  searchQuery: {
+    type: String,
+    default: ''
+  },
+  discoveryMethod: {
+    type: String,
+    enum: ['web_search', 'api', 'manual'],
+    default: 'web_search'
+  },
   
   // Additional fields for trend analysis
   enrollmentCount: {
@@ -172,10 +188,17 @@ courseSchema.pre('save', function(next) {
     this.weeksSinceInDemand = Math.floor((Date.now() - this.trendStartDate.getTime()) / (1000 * 60 * 60 * 24 * 7));
   }
   
-  // Only auto-update status if trend is explicitly Outdated AND job availability is None
-  if (this.trend === 'Outdated' && this.jobAvailability === 'None') {
+  // Only auto-update status based on trend and job availability
+  // Trending and Stable courses should be active
+  if (this.trend === 'Trending' || this.trend === 'Stable') {
+    this.status = 'active';
+  }
+  // Only set outdated status if trend is Outdated AND job availability is None
+  else if (this.trend === 'Outdated' && this.jobAvailability === 'None') {
     this.status = 'outdated';
-  } else if (this.trend === 'Trending' || this.trend === 'Stable') {
+  }
+  // Outdated courses with job availability should remain active
+  else if (this.trend === 'Outdated' && this.jobAvailability !== 'None') {
     this.status = 'active';
   }
   
@@ -214,6 +237,25 @@ courseSchema.statics.getCoursesByCategory = function(category, limit = 10) {
     status: 'active'
   })
   .sort({ starRating: -1, confidenceScore: -1 })
+  .limit(limit);
+};
+
+courseSchema.statics.getAIThreatenedCourses = function(limit = 20) {
+  return this.find({
+    aiThreatLevel: { $gte: 0.7 },
+    status: 'active'
+  })
+  .sort({ aiThreatLevel: -1, lastUpdated: -1 })
+  .limit(limit);
+};
+
+courseSchema.statics.getEmergingCourses = function(limit = 20) {
+  return this.find({
+    trend: 'Trending',
+    courseDemand: 'High',
+    status: 'active'
+  })
+  .sort({ confidenceScore: -1, lastUpdated: -1 })
   .limit(limit);
 };
 

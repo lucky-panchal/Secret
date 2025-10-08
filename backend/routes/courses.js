@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Course = require('../models/Course');
+const aiCourseAnalyzer = require('../services/aiCourseAnalyzer');
+const dynamicDataManager = require('../services/dynamicDataManager');
 
 // GET /api/courses - Get all courses with advanced filtering
 router.get('/', async (req, res) => {
@@ -10,18 +12,22 @@ router.get('/', async (req, res) => {
       trend,
       demand,
       provider,
-      status = 'active',
+      status,
       minRating,
       maxRating,
       search,
       page = 1,
-      limit = 20,
+      limit = 50,
       sort = 'lastUpdated',
       order = 'desc'
     } = req.query;
 
-    // Build filter object
-    const filter = { status };
+    const filter = {};
+    
+    // Only filter by status if explicitly provided
+    if (status && status !== 'all') {
+      filter.status = status;
+    }
     
     if (category && category !== 'all') {
       filter.courseCategory = category;
@@ -30,6 +36,7 @@ router.get('/', async (req, res) => {
     if (trend && trend !== 'all') {
       filter.trend = trend;
     }
+    // Note: No default trend filter - let frontend handle filtering
     
     if (demand && demand !== 'all') {
       filter.courseDemand = demand;
@@ -52,11 +59,9 @@ router.get('/', async (req, res) => {
       ];
     }
 
-    // Build sort object
     const sortObj = {};
     sortObj[sort] = order === 'desc' ? -1 : 1;
 
-    // Execute query with pagination
     const skip = (parseInt(page) - 1) * parseInt(limit);
     
     const [courses, totalCount] = await Promise.all([
@@ -108,7 +113,11 @@ router.get('/', async (req, res) => {
 // GET /api/courses/trending - Get trending courses
 router.get('/trending', async (req, res) => {
   try {
-    const { limit = 20, category } = req.query;
+    const { limit = 20, category, refresh = false } = req.query;
+    
+    if (refresh === 'true') {
+      await dynamicDataManager.refreshCourseData();
+    }
     
     const filter = {
       trend: 'Trending',
@@ -120,7 +129,12 @@ router.get('/trending', async (req, res) => {
     }
 
     const trendingCourses = await Course.find(filter)
-      .sort({ confidenceScore: -1, starRating: -1, lastUpdated: -1 })
+      .sort({ 
+        confidenceScore: -1, 
+        courseDemand: -1,
+        starRating: -1, 
+        lastUpdated: -1 
+      })
       .limit(parseInt(limit))
       .lean();
 
@@ -129,7 +143,8 @@ router.get('/trending', async (req, res) => {
       data: {
         courses: trendingCourses,
         count: trendingCourses.length,
-        category: category || 'all'
+        category: category || 'all',
+        lastUpdated: trendingCourses[0]?.lastUpdated
       }
     });
 
@@ -149,12 +164,7 @@ router.get('/outdated', async (req, res) => {
     const { limit = 20, category } = req.query;
     
     const filter = {
-      $or: [
-        { trend: 'Outdated' },
-        { status: 'outdated' },
-        { jobAvailability: 'None' },
-        { courseDemand: 'Declining' }
-      ]
+      trend: 'Outdated'
     };
 
     if (category && category !== 'all') {
@@ -189,7 +199,6 @@ router.get('/outdated', async (req, res) => {
 router.get('/categories', async (req, res) => {
   try {
     const categories = await Course.aggregate([
-      { $match: { status: 'active' } },
       {
         $group: {
           _id: '$courseCategory',
@@ -226,7 +235,6 @@ router.get('/categories', async (req, res) => {
 router.get('/providers', async (req, res) => {
   try {
     const providers = await Course.aggregate([
-      { $match: { status: 'active' } },
       {
         $group: {
           _id: '$courseProvider',
@@ -255,7 +263,199 @@ router.get('/providers', async (req, res) => {
   }
 });
 
-// GET /api/courses/:id - Get single course by ID
+// POST /api/courses/refresh - Refresh course data with AI analysis
+router.post('/refresh', async (req, res) => {
+  try {
+    const { category } = req.body;
+    
+    let result;
+    if (category && category !== 'all') {
+      result = await dynamicDataManager.searchAndAddCourses(category, 20);
+    } else {
+      result = await dynamicDataManager.refreshCourseData();
+    }
+    
+    res.json({
+      success: true,
+      message: 'Course data refreshed successfully',
+      data: result
+    });
+    
+  } catch (error) {
+    console.error('Error refreshing course data:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to refresh course data',
+      error: error.message
+    });
+  }
+});
+
+// GET /api/courses/ai-insights - Get AI-powered insights
+router.get('/ai-insights', async (req, res) => {
+  try {
+    const { category } = req.query;
+    
+    const [emergingSkills, jobMarketTrends, categoryStats] = await Promise.all([
+      aiCourseAnalyzer.getEmergingSkills(),
+      category ? aiCourseAnalyzer.analyzeJobMarketTrends(category) : null,
+      dynamicDataManager.getCategoryStats()
+    ]);
+    
+    res.json({
+      success: true,
+      data: {
+        emergingSkills,
+        jobMarketTrends,
+        categoryStats,
+        generatedAt: new Date()
+      }
+    });
+    
+  } catch (error) {
+    console.error('Error getting AI insights:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to get AI insights',
+      error: error.message
+    });
+  }
+});
+
+// GET /api/courses/data-freshness - Get data freshness statistics
+router.get('/data-freshness', async (req, res) => {
+  try {
+    const freshness = await dynamicDataManager.getDataFreshness();
+    
+    res.json({
+      success: true,
+      data: freshness
+    });
+    
+  } catch (error) {
+    console.error('Error getting data freshness:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to get data freshness',
+      error: error.message
+    });
+  }
+});
+
+// GET /api/courses/all - Get all courses without pagination
+router.get('/all', async (req, res) => {
+  try {
+    const allCourses = await Course.find({}).sort({ lastUpdated: -1 }).lean();
+    
+    res.json({
+      success: true,
+      data: {
+        courses: allCourses,
+        count: allCourses.length
+      }
+    });
+    
+  } catch (error) {
+    console.error('Error fetching all courses:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch all courses',
+      error: error.message
+    });
+  }
+});
+
+// GET /api/courses/category/:category - Get courses by category
+router.get('/category/:category', async (req, res) => {
+  try {
+    const { category } = req.params;
+    const { limit = 20, trend, demand, sort = 'confidenceScore', order = 'desc', refresh = false } = req.query;
+
+    if (refresh === 'true') {
+      await dynamicDataManager.searchAndAddCourses(category, 10);
+    }
+
+    const filter = {
+      courseCategory: category,
+      status: 'active'
+    };
+
+    if (trend && trend !== 'all') {
+      filter.trend = trend;
+    }
+
+    if (demand && demand !== 'all') {
+      filter.courseDemand = demand;
+    }
+
+    const sortObj = {};
+    sortObj[sort] = order === 'desc' ? -1 : 1;
+    if (sort !== 'confidenceScore') {
+      sortObj.confidenceScore = -1;
+    }
+
+    const courses = await Course.find(filter)
+      .sort(sortObj)
+      .limit(parseInt(limit))
+      .lean();
+
+    const categoryStats = await dynamicDataManager.getCategoryStats();
+    const stats = categoryStats.find(s => s._id === category) || {
+      total: courses.length,
+      trending: 0,
+      outdated: 0,
+      avgRating: 0,
+      avgConfidence: 0
+    };
+
+    res.json({
+      success: true,
+      data: {
+        category,
+        courses,
+        stats,
+        lastUpdated: courses[0]?.lastUpdated
+      }
+    });
+
+  } catch (error) {
+    console.error('Error fetching courses by category:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch courses by category',
+      error: error.message
+    });
+  }
+});
+
+// POST /api/courses/:id/view - Track course view
+router.post('/:id/view', async (req, res) => {
+  try {
+    const course = await Course.findById(req.params.id);
+    
+    if (!course) {
+      return res.status(404).json({
+        success: false,
+        message: 'Course not found'
+      });
+    }
+    
+    res.json({
+      success: true,
+      message: 'View tracked successfully'
+    });
+
+  } catch (error) {
+    console.error('Error tracking course view:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to track view',
+      error: error.message
+    });
+  }
+});
+
+// GET /api/courses/:id - Get single course by ID (MUST BE LAST)
 router.get('/:id', async (req, res) => {
   try {
     const course = await Course.findById(req.params.id);
@@ -267,7 +467,6 @@ router.get('/:id', async (req, res) => {
       });
     }
 
-    // Get related courses in the same category
     const relatedCourses = await Course.find({
       courseCategory: course.courseCategory,
       _id: { $ne: course._id },
@@ -277,7 +476,6 @@ router.get('/:id', async (req, res) => {
     .limit(6)
     .select('courseTitle courseProvider starRating trend courseDemand courseUrl');
 
-    // Get similar trending courses
     const similarTrending = await Course.find({
       trend: 'Trending',
       courseCategory: course.courseCategory,
@@ -302,107 +500,6 @@ router.get('/:id', async (req, res) => {
     res.status(500).json({
       success: false,
       message: 'Failed to fetch course',
-      error: error.message
-    });
-  }
-});
-
-// POST /api/courses/:id/view - Track course view (for analytics)
-router.post('/:id/view', async (req, res) => {
-  try {
-    const course = await Course.findById(req.params.id);
-    
-    if (!course) {
-      return res.status(404).json({
-        success: false,
-        message: 'Course not found'
-      });
-    }
-
-    // Increment view count (you might want to add a views field to the schema)
-    // For now, we'll just return success
-    
-    res.json({
-      success: true,
-      message: 'View tracked successfully'
-    });
-
-  } catch (error) {
-    console.error('Error tracking course view:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Failed to track view',
-      error: error.message
-    });
-  }
-});
-
-// GET /api/courses/category/:category - Get courses by category
-router.get('/category/:category', async (req, res) => {
-  try {
-    const { category } = req.params;
-    const { limit = 20, trend, demand, sort = 'starRating', order = 'desc' } = req.query;
-
-    const filter = {
-      courseCategory: category,
-      status: 'active'
-    };
-
-    if (trend && trend !== 'all') {
-      filter.trend = trend;
-    }
-
-    if (demand && demand !== 'all') {
-      filter.courseDemand = demand;
-    }
-
-    const sortObj = {};
-    sortObj[sort] = order === 'desc' ? -1 : 1;
-
-    const courses = await Course.find(filter)
-      .sort(sortObj)
-      .limit(parseInt(limit))
-      .lean();
-
-    // Get category statistics
-    const categoryStats = await Course.aggregate([
-      { $match: { courseCategory: category, status: 'active' } },
-      {
-        $group: {
-          _id: null,
-          total: { $sum: 1 },
-          trending: {
-            $sum: { $cond: [{ $eq: ['$trend', 'Trending'] }, 1, 0] }
-          },
-          outdated: {
-            $sum: { $cond: [{ $eq: ['$trend', 'Outdated'] }, 1, 0] }
-          },
-          avgRating: { $avg: '$starRating' },
-          avgConfidence: { $avg: '$confidenceScore' }
-        }
-      }
-    ]);
-
-    res.json({
-      success: true,
-      data: {
-        category,
-        courses,
-        stats: categoryStats[0] || {
-          total: 0,
-          trending: 0,
-          outdated: 0,
-          avgRating: 0,
-          avgConfidence: 0
-        }
-      }
-    });
-
-  } catch (error) {
-    console.error('Error fetching courses by category:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Failed to fetch courses by category',
       error: error.message
     });
   }
