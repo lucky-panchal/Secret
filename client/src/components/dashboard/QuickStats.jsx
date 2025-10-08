@@ -1,16 +1,18 @@
 'use client';
-import { Card, CardContent, Box, Typography, Grid } from '@mui/material';
+import { Card, CardContent, Box, Typography, Grid, CircularProgress } from '@mui/material';
 import { TrendingUp, School, Work, EmojiEvents } from '@mui/icons-material';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useDashboardStats } from '@/hooks/useApi';
 
 const QuickStats = () => {
   const { isDark } = useTheme();
+  const { data: statsData, loading, error } = useDashboardStats();
 
   const stats = [
-    { title: 'Learning Streak', value: '12 days', icon: TrendingUp, color: '#00F5FF' },
-    { title: 'Courses Completed', value: '8', icon: School, color: '#34D399' },
-    { title: 'Job Applications', value: '15', icon: Work, color: '#FBBF24' },
-    { title: 'Achievements', value: '24', icon: EmojiEvents, color: '#A855F7' }
+    { title: 'Total Courses', value: statsData?.data?.overview?.total || '0', icon: School, color: '#00F5FF' },
+    { title: 'Active Courses', value: statsData?.data?.overview?.active || '0', icon: TrendingUp, color: '#34D399' },
+    { title: 'Trending', value: statsData?.data?.overview?.trending || '0', icon: Work, color: '#FBBF24' },
+    { title: 'Outdated', value: statsData?.data?.overview?.outdated || '0', icon: EmojiEvents, color: '#A855F7' }
   ];
 
   return (
@@ -33,9 +35,14 @@ const QuickStats = () => {
             mb: 3
           }}
         >
-          Quick Stats
+          Course Statistics
         </Typography>
 
+        {loading ? (
+          <Box sx={{ display: 'flex', justifyContent: 'center', py: 3 }}>
+            <CircularProgress sx={{ color: '#00F5FF' }} />
+          </Box>
+        ) : (
         <Grid container spacing={2}>
           {stats.map((stat, index) => (
             <Grid item xs={6} key={index}>
@@ -80,6 +87,7 @@ const QuickStats = () => {
             </Grid>
           ))}
         </Grid>
+        )}
       </CardContent>
     </Card>
   );

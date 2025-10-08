@@ -1,11 +1,13 @@
 'use client';
-import { Card, CardContent, Box, Typography, Grid, LinearProgress, Button, Chip } from '@mui/material';
+import { Card, CardContent, Box, Typography, Grid, LinearProgress, Button, Chip, CircularProgress } from '@mui/material';
 import { PlayArrow, Schedule } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useTrendingCourses } from '@/hooks/useApi';
 
 const ActiveCourses = ({ onNavigate }) => {
   const { isDark } = useTheme();
+  const { data: coursesData, loading, error } = useTrendingCourses(4);
 
   const handleViewAllCourses = () => {
     if (onNavigate) {
@@ -15,59 +17,12 @@ const ActiveCourses = ({ onNavigate }) => {
 
   const handleCourseAction = (courseId, action) => {
     console.log(`${action} course ${courseId}`);
-    // Here you would typically update course progress or navigate to course detail
     if (onNavigate) {
       onNavigate('courses');
     }
   };
 
-  const courses = [
-    {
-      id: 1,
-      title: 'Advanced React Patterns',
-      progress: 75,
-      level: 'Advanced',
-      duration: '4h 30m',
-      status: 'resume'
-    },
-    {
-      id: 2,
-      title: 'Node.js Backend Development',
-      progress: 45,
-      level: 'Intermediate',
-      duration: '6h 15m',
-      status: 'resume'
-    },
-    {
-      id: 3,
-      title: 'TypeScript Fundamentals',
-      progress: 0,
-      level: 'Beginner',
-      duration: '3h 45m',
-      status: 'start'
-    },
-    {
-      id: 4,
-      title: 'GraphQL & Apollo Client',
-      progress: 20,
-      level: 'Intermediate',
-      duration: '5h 20m',
-      status: 'resume'
-    }
-  ];
-
-  const getLevelColor = (level) => {
-    switch (level) {
-      case 'Beginner':
-        return '#34D399';
-      case 'Intermediate':
-        return '#FBBF24';
-      case 'Advanced':
-        return '#A855F7';
-      default:
-        return '#1976d2';
-    }
-  };
+  const courses = coursesData?.data?.courses || [];
 
   return (
     <Box>
@@ -90,7 +45,7 @@ const ActiveCourses = ({ onNavigate }) => {
                 color: '#F8FAFC'
               }}
             >
-              Active Learning Courses
+              Trending Courses
             </Typography>
             
             <Button
@@ -111,9 +66,14 @@ const ActiveCourses = ({ onNavigate }) => {
             </Button>
           </Box>
 
+          {loading ? (
+            <Box sx={{ display: 'flex', justifyContent: 'center', py: 4 }}>
+              <CircularProgress sx={{ color: '#FBBF24' }} />
+            </Box>
+          ) : (
           <Grid container spacing={2.5}>
-            {courses.map((course, index) => (
-              <Grid item xs={12} sm={6} lg={3} key={course.id}>
+            {courses.slice(0, 4).map((course, index) => (
+              <Grid item xs={12} sm={6} lg={3} key={course._id}>
                 <Box>
                   <Card 
                     elevation={0}
@@ -144,17 +104,17 @@ const ActiveCourses = ({ onNavigate }) => {
                           fontWeight: 600
                         }}
                       >
-                        {course.title.split(' ')[0]}
+                        {course.courseTitle?.split(' ')[0] || 'Course'}
                       </Typography>
                       
                       <Chip 
-                        label={course.level}
+                        label={course.trend || 'Active'}
                         size="small"
                         sx={{
                           position: 'absolute',
                           top: 8,
                           right: 8,
-                          bgcolor: getLevelColor(course.level),
+                          bgcolor: course.trend === 'Trending' ? '#34D399' : '#FBBF24',
                           color: 'white',
                           fontSize: '0.7rem',
                           fontWeight: 600
@@ -173,7 +133,7 @@ const ActiveCourses = ({ onNavigate }) => {
                           lineHeight: 1.3
                         }}
                       >
-                        {course.title}
+                        {course.courseTitle}
                       </Typography>
                       
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
@@ -182,7 +142,7 @@ const ActiveCourses = ({ onNavigate }) => {
                           variant="caption" 
                           sx={{ color: '#94A3B8' }}
                         >
-                          {course.duration}
+                          {course.courseProvider || 'Online'}
                         </Typography>
                       </Box>
                       
@@ -195,7 +155,7 @@ const ActiveCourses = ({ onNavigate }) => {
                               fontWeight: 600
                             }}
                           >
-                            Progress
+                            Rating
                           </Typography>
                           <Typography 
                             variant="caption" 
@@ -204,13 +164,13 @@ const ActiveCourses = ({ onNavigate }) => {
                               fontWeight: 600
                             }}
                           >
-                            {course.progress}%
+                            {course.starRating || 'N/A'} ⭐
                           </Typography>
                         </Box>
                         
                         <LinearProgress 
                           variant="determinate" 
-                          value={course.progress} 
+                          value={(course.starRating / 5) * 100 || 0} 
                           sx={{
                             height: 6,
                             borderRadius: 3,
@@ -229,7 +189,7 @@ const ActiveCourses = ({ onNavigate }) => {
                         size="small"
                         fullWidth
                         startIcon={<PlayArrow />}
-                        onClick={() => handleCourseAction(course.id, course.status)}
+                        onClick={() => handleCourseAction(course._id, 'view')}
                         sx={{
                           background: 'linear-gradient(135deg, #FBBF24 0%, #A855F7 100%)',
                           cursor: 'pointer',
@@ -243,7 +203,7 @@ const ActiveCourses = ({ onNavigate }) => {
                           fontWeight: 600
                         }}
                       >
-                        {course.status === 'start' ? 'Start' : 'Resume'}
+                        View Course
                       </Button>
                     </CardContent>
                   </Card>
@@ -251,6 +211,7 @@ const ActiveCourses = ({ onNavigate }) => {
               </Grid>
             ))}
           </Grid>
+          )}
         </CardContent>
       </Card>
     </Box>
