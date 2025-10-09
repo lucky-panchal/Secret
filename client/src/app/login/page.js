@@ -1,18 +1,18 @@
 'use client';
 import { Box, Container, Paper, TextField, Button, Typography, InputAdornment, IconButton } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Email, Lock, Visibility, VisibilityOff, Login as LoginIcon } from '@mui/icons-material';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { ArrowBack } from '@mui/icons-material';
-import { useEffect } from 'react';
+import SecureAuthModal from '@/components/auth/SecureAuthModal';
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showSecureAuth, setShowSecureAuth] = useState(false);
   const { isDark } = useTheme();
   const { login } = useAuth();
   const router = useRouter();
@@ -28,13 +28,18 @@ export default function LoginPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.email && formData.password) {
-      login({
-        email: formData.email,
-        name: formData.email.split('@')[0],
-        id: Date.now()
-      });
-      router.push('/dashboard');
+      setShowSecureAuth(true);
     }
+  };
+
+  const handleSecureAuthSuccess = (authData) => {
+    login({
+      email: formData.email,
+      name: formData.email.split('@')[0],
+      id: Date.now(),
+      secureAuth: authData
+    });
+    router.push('/dashboard');
   };
 
   if (!isLoaded) {
@@ -250,6 +255,14 @@ export default function LoginPage() {
               </Box>
             </Box>
           </Paper>
+
+          <SecureAuthModal
+            open={showSecureAuth}
+            onClose={() => setShowSecureAuth(false)}
+            onSuccess={handleSecureAuthSuccess}
+            userEmail={formData.email}
+            userId={formData.email}
+          />
         </Container>
       </Box>
     </div>

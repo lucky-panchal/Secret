@@ -290,6 +290,14 @@ function determineFailureReason(recaptchaResult, faceResult, aadhaarResult) {
   return reasons.join('; ');
 }
 
+module.exports = {
+  secureAuthMiddleware,
+  requireSecureAuth,
+  verifyRecaptcha,
+  verifyAadhaar,
+  verifyFace
+};
+
 /**
  * Optional: Middleware to check if user has completed secure auth
  * Use this on protected routes that require secure authentication

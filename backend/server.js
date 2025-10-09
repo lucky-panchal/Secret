@@ -104,6 +104,14 @@ server.listen(PORT, () => {
   console.log(`📊 Dashboard API: http://localhost:${PORT}/api/dashboard`);
   console.log(`🔍 Scraper API: http://localhost:${PORT}/api/scrape`);
   console.log(`🤖 AI Search API: http://localhost:${PORT}/api/ai-search`);
+  console.log(`🔐 Secure Auth API: http://localhost:${PORT}/api/auth`);
+  
+  if (process.env.AADHAAR_HACKATHON_MODE === 'true') {
+    console.log(`\n⚡ HACKATHON MODE ENABLED`);
+    console.log(`✅ Aadhaar verification: INSTANT (no API needed)`);
+    console.log(`✅ Any 12-digit number works`);
+    console.log(`✅ Perfect for demos\n`);
+  }
 });
 
 module.exports = app;
