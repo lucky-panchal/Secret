@@ -51,18 +51,6 @@ async function verifyRecaptcha(token) {
  */
 async function verifyAadhaar(aadhaarData) {
   try {
-    const apiKey = process.env.AADHAAR_API_KEY || process.env.AADHAAR_CLIENT_ID;
-    
-    if (!apiKey) {
-      console.warn('⚠️ AADHAAR_API_KEY not configured');
-      return { success: false, error: 'Aadhaar verification not configured' };
-    }
-
-    // UIDAI e-KYC Sandbox API endpoint
-    const sandboxUrl = process.env.AADHAAR_SANDBOX_URL || 'https://stage1.uidai.gov.in/onlineekyc';
-    
-    // In production, implement actual UIDAI e-KYC API call
-    // For now, validate format and return mock response for testing
     const aadhaarNumber = aadhaarData.aadhaarNumber;
     
     // Validate Aadhaar format (12 digits)
@@ -70,9 +58,28 @@ async function verifyAadhaar(aadhaarData) {
       return { success: false, error: 'Invalid Aadhaar format' };
     }
 
-    // Mock verification for sandbox/testing
-    // In production, replace with actual API call:
-    /*
+    // HACKATHON MODE: Instant verification without API
+    const hackathonMode = process.env.AADHAAR_HACKATHON_MODE === 'true';
+    
+    if (hackathonMode) {
+      // Instant verification for hackathon demo
+      return {
+        success: true,
+        verified: true,
+        lastFourDigits: aadhaarNumber.slice(-4),
+        name: aadhaarData.name || 'Demo User',
+        message: 'Aadhaar verified successfully (Hackathon Demo Mode)'
+      };
+    }
+
+    // Production mode with actual API (when API key is available)
+    const apiKey = process.env.AADHAAR_API_KEY;
+    if (!apiKey || apiKey === 'hackathon_demo_key') {
+      return { success: false, error: 'Aadhaar API not configured for production' };
+    }
+
+    // Actual API call for production
+    const sandboxUrl = process.env.AADHAAR_SANDBOX_URL;
     const response = await axios.post(sandboxUrl, {
       aadhaarNumber: aadhaarNumber,
       consent: aadhaarData.consent,
@@ -83,15 +90,13 @@ async function verifyAadhaar(aadhaarData) {
         'Content-Type': 'application/json'
       }
     });
-    */
 
-    // Sandbox mock response
     return {
       success: true,
       verified: true,
       lastFourDigits: aadhaarNumber.slice(-4),
-      name: aadhaarData.name || 'User',
-      message: 'Aadhaar verified successfully (sandbox mode)'
+      name: response.data.name || aadhaarData.name,
+      message: 'Aadhaar verified successfully'
     };
   } catch (error) {
     console.error('❌ Aadhaar verification error:', error.message);
