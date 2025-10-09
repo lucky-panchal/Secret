@@ -192,7 +192,7 @@ function HeroGeometric({
                             }}
                         >
                             <Circle style={{ width: '8px', height: '8px', fill: 'rgba(244, 63, 94, 0.8)' }} />
-                            <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', letterSpacing: '0.05em' }}>
+                            <span style={{ fontSize: '16px', color: 'rgba(255,255,255,0.6)', letterSpacing: '0.05em' }}>
                                 {badge}
                             </span>
                         </motion.div>
@@ -243,7 +243,7 @@ function HeroGeometric({
                             >
                                 <p style={{
                                     fontSize: showRobot ? 'clamp(0.9rem, 1.5vw, 1.1rem)' : 'clamp(1rem, 2vw, 1.25rem)',
-                                    color: 'rgba(255,255,255,0.4)',
+                                    color: 'rgba(255,255,255,0.7)',
                                     marginBottom: '32px',
                                     lineHeight: '1.6',
                                     fontWeight: '300',
