@@ -1,12 +1,16 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography, Button, ThemeProvider } from '@mui/material';
 import { ArrowBack, ArrowForward, Home, Person, Assessment, School, Work, Security, CheckCircle } from '@mui/icons-material';
+import { createMuiTheme } from '@/theme/muiTheme';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const DemoPage = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const router = useRouter();
+  const { isDark } = useTheme();
+  const theme = createMuiTheme(isDark);
 
   const demoPages = [
     {
@@ -165,7 +169,7 @@ const DemoPage = () => {
           <Box sx={{ display: 'flex', height: '100%', alignItems: 'center', gap: 4, flexDirection: { xs: 'column', md: 'row' } }}>
             <Box sx={{ flex: 1 }}>
               <Typography sx={{ 
-                color: '#FDFBD4 !important',
+                color: 'var(--text-primary)',
                 fontWeight: 800, 
                 mb: 1, 
                 fontSize: { xs: '1.8rem', md: '2.5rem' }, 
@@ -173,10 +177,10 @@ const DemoPage = () => {
               }}>
                 {page.title}
               </Typography>
-              <Typography sx={{ color: '#FDFBD4 !important', mb: 2, fontWeight: 400, fontSize: { xs: '1.2rem', md: '1.5rem' } }}>
+              <Typography sx={{ color: 'var(--text-secondary)', mb: 2, fontWeight: 400, fontSize: { xs: '1.2rem', md: '1.5rem' } }}>
                 {page.subtitle}
               </Typography>
-              <Typography sx={{ color: '#FDFBD4 !important', lineHeight: 1.4, mb: 3, fontSize: { xs: '0.9rem', md: '1rem' } }}>
+              <Typography sx={{ color: 'var(--text-primary)', lineHeight: 1.4, mb: 3, fontSize: { xs: '0.9rem', md: '1rem' } }}>
                 {page.content}
               </Typography>
               <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)' }, gap: 1.5 }}>
@@ -184,14 +188,14 @@ const DemoPage = () => {
                   <Box key={index} sx={{ 
                     textAlign: 'center', 
                     p: 1.5, 
-                    border: '1px solid #FDFBD4', 
+                    border: '1px solid var(--primary)', 
                     borderRadius: 2, 
-                    background: '#28282B'
+                    background: 'var(--surface)'
                   }}>
-                    <Typography sx={{ color: '#FDFBD4 !important', fontWeight: 700, mb: 0.5, fontSize: { xs: '1.2rem', md: '1.5rem' } }}>
+                    <Typography sx={{ color: 'var(--primary)', fontWeight: 700, mb: 0.5, fontSize: { xs: '1.2rem', md: '1.5rem' } }}>
                       {stat.number}
                     </Typography>
-                    <Typography sx={{ color: '#FDFBD4 !important', fontSize: { xs: '0.8rem', md: '0.9rem' } }}>
+                    <Typography sx={{ color: 'var(--text-secondary)', fontSize: { xs: '0.8rem', md: '0.9rem' } }}>
                       {stat.label}
                     </Typography>
                   </Box>
@@ -206,17 +210,17 @@ const DemoPage = () => {
           <Box sx={{ display: 'flex', height: '100%', alignItems: 'center', gap: 4, flexDirection: { xs: 'column', md: 'row' } }}>
             <Box sx={{ flex: 1 }}>
               <Typography sx={{ 
-                color: '#FDFBD4 !important',
+                color: 'var(--text-primary)',
                 fontWeight: 700, 
                 mb: 1, 
                 fontSize: { xs: '1.5rem', md: '2rem' }
               }}>
                 {page.title}
               </Typography>
-              <Typography sx={{ color: '#FDFBD4 !important', mb: 2, fontWeight: 400, fontSize: { xs: '1rem', md: '1.25rem' } }}>
+              <Typography sx={{ color: 'var(--text-secondary)', mb: 2, fontWeight: 400, fontSize: { xs: '1rem', md: '1.25rem' } }}>
                 {page.subtitle}
               </Typography>
-              <Typography sx={{ color: '#FDFBD4 !important', lineHeight: 1.4, mb: 3, fontSize: { xs: '0.9rem', md: '1rem' } }}>
+              <Typography sx={{ color: 'var(--text-primary)', lineHeight: 1.4, mb: 3, fontSize: { xs: '0.9rem', md: '1rem' } }}>
                 {page.content}
               </Typography>
             </Box>
@@ -227,7 +231,7 @@ const DemoPage = () => {
                 height="300"
                 style={{ 
                   borderRadius: '8px', 
-                  border: '1px solid #FDFBD4'
+                  border: '1px solid var(--primary)'
                 }}
               >
                 <source src={page.media} type="video/mp4" />
@@ -241,37 +245,37 @@ const DemoPage = () => {
           <Box sx={{ display: 'flex', height: '100%', alignItems: 'center', gap: 4, flexDirection: { xs: 'column', md: 'row' } }}>
             <Box sx={{ flex: 1 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, flexDirection: { xs: 'column', sm: 'row' }, textAlign: { xs: 'center', sm: 'left' } }}>
-                <page.icon sx={{ fontSize: 40, color: '#FDFBD4', mr: { xs: 0, sm: 2 }, mb: { xs: 1, sm: 0 } }} />
+                <page.icon sx={{ fontSize: 40, color: 'var(--primary)', mr: { xs: 0, sm: 2 }, mb: { xs: 1, sm: 0 } }} />
                 <Box>
                   <Typography sx={{ 
-                    color: '#FDFBD4 !important',
+                    color: 'var(--text-primary)',
                     fontWeight: 700, 
                     mb: 0.5, 
                     fontSize: { xs: '1.4rem', md: '1.8rem' }
                   }}>
                     {page.title}
                   </Typography>
-                  <Typography sx={{ color: '#FDFBD4 !important', fontWeight: 400, fontSize: { xs: '1rem', md: '1.2rem' } }}>
+                  <Typography sx={{ color: 'var(--text-secondary)', fontWeight: 400, fontSize: { xs: '1rem', md: '1.2rem' } }}>
                     {page.subtitle}
                   </Typography>
                 </Box>
               </Box>
-              <Typography sx={{ color: '#FDFBD4 !important', lineHeight: 1.4, mb: 3, fontSize: { xs: '0.9rem', md: '1rem' } }}>
+              <Typography sx={{ color: 'var(--text-primary)', lineHeight: 1.4, mb: 3, fontSize: { xs: '0.9rem', md: '1rem' } }}>
                 {page.content}
               </Typography>
               <Box sx={{ 
                 p: 2, 
-                border: '1px solid #FDFBD4', 
+                border: '1px solid var(--primary)', 
                 borderRadius: 2, 
-                background: '#28282B'
+                background: 'var(--surface)'
               }}>
-                <Typography sx={{ color: '#FDFBD4 !important', mb: 2, fontWeight: 600, fontSize: { xs: '0.9rem', md: '1rem' } }}>
+                <Typography sx={{ color: 'var(--text-primary)', mb: 2, fontWeight: 600, fontSize: { xs: '0.9rem', md: '1rem' } }}>
                   What Happens in This Step:
                 </Typography>
                 {page.details.map((detail, index) => (
                   <Box key={index} sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                    <CheckCircle sx={{ color: '#FDFBD4', mr: 1, fontSize: 16 }} />
-                    <Typography sx={{ color: '#FDFBD4 !important', fontSize: { xs: '0.8rem', md: '0.9rem' } }}>
+                    <CheckCircle sx={{ color: 'var(--primary)', mr: 1, fontSize: 16 }} />
+                    <Typography sx={{ color: 'var(--text-primary)', fontSize: { xs: '0.8rem', md: '0.9rem' } }}>
                       {detail}
                     </Typography>
                   </Box>
@@ -280,23 +284,52 @@ const DemoPage = () => {
             </Box>
             <Box sx={{ flex: 1 }}>
               <Box sx={{ 
-                height: 300,
-                border: '1px solid #FDFBD4',
+                height: 400,
+                border: '1px solid var(--primary)',
                 borderRadius: 2,
-                background: '#28282B',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
+                background: 'var(--surface)',
+                overflow: 'hidden',
+                position: 'relative'
               }}>
-                <Box sx={{ textAlign: 'center', p: 3 }}>
-                  <page.icon sx={{ fontSize: 80, color: '#FDFBD4', mb: 2, opacity: 0.5 }} />
-                  <Typography sx={{ color: '#FDFBD4 !important', mb: 1, fontSize: { xs: '1.2rem', md: '1.5rem' } }}>
-                    Interactive Demo
-                  </Typography>
-                  <Typography sx={{ color: '#FDFBD4 !important', fontSize: { xs: '0.8rem', md: '0.9rem' } }}>
-                    Experience this step in our live platform
-                  </Typography>
-                </Box>
+                {page.id >= 2 && page.id <= 6 ? (
+                  <>
+                    <img 
+                      src={`/images/Gemini_Generated_Image_${page.id === 2 ? 'c1qpec1qpec1qpec' : page.id === 3 ? 'nvubo2nvubo2nvub' : page.id === 4 ? 'ofat5xofat5xofat' : page.id === 5 ? 'q3yi0bq3yi0bq3yi' : 'tleu05tleu05tleu'}.png`}
+                      alt={`${page.title} Demo`}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        objectPosition: 'center'
+                      }}
+                    />
+                    <Box sx={{
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      background: 'linear-gradient(transparent, rgba(0,0,0,0.9))',
+                      p: 1.5,
+                      textAlign: 'center'
+                    }}>
+                      <Typography sx={{ color: '#FFFFFF', fontWeight: 600, fontSize: { xs: '0.8rem', md: '0.9rem' } }}>
+                        Step {page.id - 1} Preview
+                      </Typography>
+                    </Box>
+                  </>
+                ) : (
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+                    <Box sx={{ textAlign: 'center', p: 3 }}>
+                      <page.icon sx={{ fontSize: 80, color: 'var(--primary)', mb: 2, opacity: 0.5 }} />
+                      <Typography sx={{ color: 'var(--text-primary)', mb: 1, fontSize: { xs: '1.2rem', md: '1.5rem' } }}>
+                        Interactive Demo
+                      </Typography>
+                      <Typography sx={{ color: 'var(--text-secondary)', fontSize: { xs: '0.8rem', md: '0.9rem' } }}>
+                        Experience this step in our live platform
+                      </Typography>
+                    </Box>
+                  </Box>
+                )}
               </Box>
             </Box>
           </Box>
@@ -307,17 +340,17 @@ const DemoPage = () => {
           <Box sx={{ height: 'calc(100vh - 100px)', py: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
             <Box sx={{ textAlign: 'center', mb: 2 }}>
               <Typography sx={{ 
-                color: '#FDFBD4 !important',
+                color: 'var(--text-primary)',
                 fontWeight: 700, 
                 mb: 1, 
                 fontSize: { xs: '1.5rem', md: '2rem' }
               }}>
                 {page.title}
               </Typography>
-              <Typography sx={{ color: '#FDFBD4 !important', mb: 2, fontWeight: 400, fontSize: { xs: '1rem', md: '1.25rem' } }}>
+              <Typography sx={{ color: 'var(--text-secondary)', mb: 2, fontWeight: 400, fontSize: { xs: '1rem', md: '1.25rem' } }}>
                 {page.subtitle}
               </Typography>
-              <Typography sx={{ color: '#FDFBD4 !important', maxWidth: 600, mx: 'auto', fontSize: { xs: '0.9rem', md: '1rem' } }}>
+              <Typography sx={{ color: 'var(--text-primary)', maxWidth: 600, mx: 'auto', fontSize: { xs: '0.9rem', md: '1rem' } }}>
                 {page.content}
               </Typography>
             </Box>
@@ -325,35 +358,35 @@ const DemoPage = () => {
               {page.stories.map((story, index) => (
                 <Box key={index} sx={{ 
                   p: 3, 
-                  border: '1px solid #FDFBD4', 
+                  border: '1px solid var(--primary)', 
                   borderRadius: 2,
-                  background: '#28282B',
+                  background: 'var(--surface)',
                   textAlign: 'center'
                 }}>
-                  <Typography sx={{ color: '#FDFBD4 !important', mb: 1, fontWeight: 700, fontSize: { xs: '1.1rem', md: '1.3rem' } }}>
+                  <Typography sx={{ color: 'var(--text-primary)', mb: 1, fontWeight: 700, fontSize: { xs: '1.1rem', md: '1.3rem' } }}>
                     {story.name}
                   </Typography>
-                  <Typography sx={{ color: '#FDFBD4 !important', mb: 0.5, fontSize: { xs: '0.9rem', md: '1rem' } }}>
+                  <Typography sx={{ color: 'var(--text-secondary)', mb: 0.5, fontSize: { xs: '0.9rem', md: '1rem' } }}>
                     {story.before}
                   </Typography>
-                  <Typography sx={{ color: '#FDFBD4 !important', mb: 1 }}>
+                  <Typography sx={{ color: 'var(--text-primary)', mb: 1 }}>
                     ↓
                   </Typography>
-                  <Typography sx={{ color: '#FDFBD4 !important', mb: 2, fontSize: { xs: '0.9rem', md: '1rem' } }}>
+                  <Typography sx={{ color: 'var(--text-primary)', mb: 2, fontSize: { xs: '0.9rem', md: '1rem' } }}>
                     {story.after} at {story.company}
                   </Typography>
                   <Box sx={{ display: 'flex', justifyContent: 'space-around', mb: 2, flexDirection: { xs: 'column', sm: 'row' }, gap: { xs: 1, sm: 0 } }}>
                     <Box>
-                      <Typography sx={{ color: '#FDFBD4 !important', fontWeight: 700, fontSize: { xs: '1rem', md: '1.2rem' } }}>
+                      <Typography sx={{ color: 'var(--primary)', fontWeight: 700, fontSize: { xs: '1rem', md: '1.2rem' } }}>
                         {story.timeline}
                       </Typography>
-                      <Typography sx={{ color: '#FDFBD4 !important', fontSize: { xs: '0.7rem', md: '0.8rem' } }}>Timeline</Typography>
+                      <Typography sx={{ color: 'var(--text-secondary)', fontSize: { xs: '0.7rem', md: '0.8rem' } }}>Timeline</Typography>
                     </Box>
                     <Box>
-                      <Typography sx={{ color: '#FDFBD4 !important', fontWeight: 700, fontSize: { xs: '1rem', md: '1.2rem' } }}>
+                      <Typography sx={{ color: 'var(--primary)', fontWeight: 700, fontSize: { xs: '1rem', md: '1.2rem' } }}>
                         {story.salary}
                       </Typography>
-                      <Typography sx={{ color: '#FDFBD4 !important', fontSize: { xs: '0.7rem', md: '0.8rem' } }}>Salary Increase</Typography>
+                      <Typography sx={{ color: 'var(--text-secondary)', fontSize: { xs: '0.7rem', md: '0.8rem' } }}>Salary Increase</Typography>
                     </Box>
                   </Box>
                   <Box sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -361,12 +394,12 @@ const DemoPage = () => {
                       <Box key={skillIndex} sx={{ 
                         px: 1, 
                         py: 0.5, 
-                        background: '#FDFBD4', 
+                        background: 'var(--primary)', 
                         borderRadius: 1,
                         fontSize: '0.7rem',
                         fontWeight: 600
                       }}>
-                        <span style={{ color: '#000000', fontSize: '0.7rem', fontWeight: 600 }}>
+                        <span style={{ color: '#FFFFFF', fontSize: '0.7rem', fontWeight: 600 }}>
                           {skill}
                         </span>
                       </Box>
@@ -382,17 +415,17 @@ const DemoPage = () => {
         return (
           <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }}>
             <Typography sx={{ 
-              color: '#FDFBD4 !important',
+              color: 'var(--text-primary)',
               fontWeight: 800, 
               mb: 2, 
               fontSize: { xs: '1.8rem', md: '2.5rem' }
             }}>
               {page.title}
             </Typography>
-            <Typography sx={{ color: '#FDFBD4 !important', mb: 3, fontWeight: 400, fontSize: { xs: '1.2rem', md: '1.5rem' } }}>
+            <Typography sx={{ color: 'var(--text-secondary)', mb: 3, fontWeight: 400, fontSize: { xs: '1.2rem', md: '1.5rem' } }}>
               {page.subtitle}
             </Typography>
-            <Typography sx={{ color: '#FDFBD4 !important', lineHeight: 1.4, mb: 4, maxWidth: 600, mx: 'auto', fontSize: { xs: '0.9rem', md: '1rem' } }}>
+            <Typography sx={{ color: 'var(--text-primary)', lineHeight: 1.4, mb: 4, maxWidth: 600, mx: 'auto', fontSize: { xs: '0.9rem', md: '1rem' } }}>
               {page.content}
             </Typography>
             <Box sx={{ display: 'grid', gridTemplateColumns: { xs: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' }, gap: 1.5, mb: 4 }}>
@@ -401,7 +434,7 @@ const DemoPage = () => {
                   height: 120,
                   borderRadius: 2,
                   overflow: 'hidden',
-                  border: '1px solid #FDFBD4'
+                  border: '1px solid var(--primary)'
                 }}>
                   <img 
                     src={image} 
@@ -420,34 +453,34 @@ const DemoPage = () => {
                 variant="contained" 
                 onClick={() => router.push('/assessment')}
                 sx={{ 
-                  background: '#FDFBD4 !important', 
-                  color: '#28282B !important', 
+                  background: 'var(--primary) !important', 
+                  color: '#FFFFFF !important', 
                   px: 4, 
                   py: 1.5,
                   fontSize: '1rem',
                   fontWeight: 700,
                   borderRadius: 2,
                   '&:hover': {
-                    background: '#FDFBD4 !important',
-                    color: '#28282B !important'
+                    background: 'var(--secondary) !important',
+                    color: '#FFFFFF !important'
                   }
                 }}
               >
                 Start Free Assessment
               </Button>
               <Button sx={{ 
-                borderColor: '#FDFBD4 !important', 
-                color: '#FDFBD4 !important', 
+                borderColor: 'var(--primary) !important', 
+                color: 'var(--primary) !important', 
                 px: 4, 
                 py: 1.5,
                 fontSize: '1rem',
                 fontWeight: 700,
                 borderRadius: 2,
-                border: '1px solid #FDFBD4',
+                border: '1px solid var(--primary)',
                 background: 'transparent',
                 '&:hover': {
-                  borderColor: '#FDFBD4 !important',
-                  color: '#FDFBD4 !important',
+                  borderColor: 'var(--secondary) !important',
+                  color: 'var(--secondary) !important',
                   background: 'transparent'
                 }
               }}>
@@ -463,164 +496,165 @@ const DemoPage = () => {
   };
 
   return (
-    <Box sx={{ 
-      height: '100vh', 
-      background: '#28282B',
-      color: '#FDFBD4',
-      position: 'relative',
-      overflow: 'hidden',
-      '& *': {
-        color: '#FDFBD4 !important'
-      }
-    }}>
-      {/* Header */}
-      <Box sx={{ 
-        position: 'fixed', 
-        top: 0, 
-        left: 0, 
-        right: 0, 
-        zIndex: 1000,
-        background: '#28282B',
-        px: { xs: 2, md: 4 },
-        py: 2,
-        height: '60px'
-      }}>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1400px', mx: 'auto' }}>
-          <Button
-            startIcon={<Home sx={{ color: '#FDFBD4 !important' }} />}
-            onClick={goHome}
-            sx={{ 
-              color: '#FDFBD4 !important', 
-              fontSize: '0.9rem',
-              fontWeight: 600,
-              border: '1px solid #FDFBD4',
-              borderRadius: '6px',
-              px: 2,
-              py: 1,
-              '&:hover': {
-                color: '#FDFBD4 !important',
-                background: 'transparent'
-              }
-            }}
-          >
-            ← Back to Home
-          </Button>
-          <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-            {demoPages.map((_, index) => (
-              <Box
-                key={index}
-                sx={{
-                  width: index === currentPage ? 10 : 6,
-                  height: index === currentPage ? 10 : 6,
-                  borderRadius: '50%',
-                  background: '#FDFBD4',
-                  cursor: 'pointer'
+    <div data-theme={isDark ? 'dark' : 'light'}>
+      <ThemeProvider theme={theme}>
+        <Box sx={{ 
+          height: '100vh', 
+          background: 'var(--background)',
+          color: 'var(--text-primary)',
+          position: 'relative',
+          overflow: 'hidden'
+        }}>
+          {/* Header */}
+          <Box sx={{ 
+            position: 'fixed', 
+            top: 0, 
+            left: 0, 
+            right: 0, 
+            zIndex: 1000,
+            background: 'var(--background)',
+            px: { xs: 2, md: 4 },
+            py: 2,
+            height: '60px'
+          }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1400px', mx: 'auto' }}>
+              <Button
+                startIcon={<Home sx={{ color: 'var(--primary)' }} />}
+                onClick={goHome}
+                sx={{ 
+                  color: 'var(--primary)', 
+                  fontSize: '0.9rem',
+                  fontWeight: 600,
+                  border: '1px solid var(--primary)',
+                  borderRadius: '6px',
+                  px: 2,
+                  py: 1,
+                  '&:hover': {
+                    color: 'var(--secondary)',
+                    background: 'transparent'
+                  }
                 }}
-                onClick={() => setCurrentPage(index)}
-              />
-            ))}
-          </Box>
-          <Typography sx={{ color: '#FDFBD4 !important', fontWeight: 600, fontSize: '0.9rem' }}>
-            {currentPage + 1} of {demoPages.length}
-          </Typography>
-        </Box>
-      </Box>
-
-      {/* Content */}
-      <Box sx={{ 
-        pt: '60px', 
-        pb: '20px', 
-        px: { xs: 2, md: 3 }, 
-        height: '100vh', 
-        overflow: 'hidden',
-        display: 'flex',
-        alignItems: 'center'
-      }}>
-        <Box sx={{ maxWidth: '1400px', mx: 'auto', width: '100%', height: 'calc(100vh - 80px)' }}>
-          {renderPageContent(demoPages[currentPage])}
-        </Box>
-      </Box>
-
-      {/* Navigation */}
-      <Box sx={{ 
-        position: 'fixed', 
-        bottom: '20px', 
-        left: 0, 
-        right: 0,
-        background: '#28282B',
-        px: { xs: 2, md: 4 },
-        py: 2,
-        height: '60px',
-        zIndex: 1000
-      }}>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1400px', mx: 'auto' }}>
-          <Button
-            startIcon={<ArrowBack sx={{ color: '#FDFBD4 !important' }} />}
-            onClick={prevPage}
-            disabled={currentPage === 0}
-            sx={{ 
-              borderColor: '#FDFBD4 !important',
-              color: '#FDFBD4 !important',
-              px: 3,
-              py: 1,
-              fontSize: '0.9rem',
-              fontWeight: 600,
-              borderRadius: 2,
-              border: '1px solid #FDFBD4',
-              background: 'transparent',
-              '&:hover': {
-                borderColor: '#FDFBD4 !important',
-                color: '#FDFBD4 !important',
-                background: 'transparent'
-              },
-              '&:disabled': { 
-                opacity: 0.3, 
-                borderColor: '#FDFBD4 !important', 
-                color: '#FDFBD4 !important',
-                background: 'transparent'
-              }
-            }}
-          >
-            Previous
-          </Button>
-
-          <Box sx={{ textAlign: 'center', display: { xs: 'none', sm: 'block' } }}>
-            <Typography sx={{ color: '#FDFBD4 !important', fontWeight: 700, mb: 0.5, fontSize: '0.9rem' }}>
-              {demoPages[currentPage].title}
-            </Typography>
-            <Typography sx={{ color: '#FDFBD4 !important', fontSize: '0.8rem' }}>
-              {demoPages[currentPage].subtitle}
-            </Typography>
+              >
+                ← Back to Home
+              </Button>
+              <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+                {demoPages.map((_, index) => (
+                  <Box
+                    key={index}
+                    sx={{
+                      width: index === currentPage ? 10 : 6,
+                      height: index === currentPage ? 10 : 6,
+                      borderRadius: '50%',
+                      background: 'var(--primary)',
+                      cursor: 'pointer'
+                    }}
+                    onClick={() => setCurrentPage(index)}
+                  />
+                ))}
+              </Box>
+              <Typography sx={{ color: 'var(--text-primary)', fontWeight: 600, fontSize: '0.9rem' }}>
+                {currentPage + 1} of {demoPages.length}
+              </Typography>
+            </Box>
           </Box>
 
-          <Button
-            endIcon={<ArrowForward sx={{ color: '#28282B !important' }} />}
-            onClick={nextPage}
-            disabled={currentPage === demoPages.length - 1}
-            sx={{ 
-              background: '#FDFBD4 !important',
-              color: '#28282B !important',
-              px: 3,
-              py: 1,
-              fontSize: '0.9rem',
-              fontWeight: 700,
-              borderRadius: 2,
-              '&:hover': {
-                background: '#FDFBD4 !important',
-                color: '#28282B !important'
-              },
-              '&:disabled': { 
-                opacity: 0.3, 
-                background: '#FDFBD4 !important', 
-                color: '#28282B !important'
-              }
-            }}
-          >
-            {currentPage === demoPages.length - 1 ? '🚀 Get Started' : 'Next →'}
-          </Button>
+          {/* Content */}
+          <Box sx={{ 
+            pt: '60px', 
+            pb: '20px', 
+            px: { xs: 2, md: 3 }, 
+            height: '100vh', 
+            overflow: 'hidden',
+            display: 'flex',
+            alignItems: 'center'
+          }}>
+            <Box sx={{ maxWidth: '1400px', mx: 'auto', width: '100%', height: 'calc(100vh - 80px)' }}>
+              {renderPageContent(demoPages[currentPage])}
+            </Box>
+          </Box>
+
+          {/* Navigation */}
+          <Box sx={{ 
+            position: 'fixed', 
+            bottom: '20px', 
+            left: 0, 
+            right: 0,
+            background: 'var(--background)',
+            px: { xs: 2, md: 4 },
+            py: 2,
+            height: '60px',
+            zIndex: 1000
+          }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1400px', mx: 'auto' }}>
+              <Button
+                startIcon={<ArrowBack sx={{ color: 'var(--primary)' }} />}
+                onClick={prevPage}
+                disabled={currentPage === 0}
+                sx={{ 
+                  borderColor: 'var(--primary)',
+                  color: 'var(--primary)',
+                  px: 3,
+                  py: 1,
+                  fontSize: '0.9rem',
+                  fontWeight: 600,
+                  borderRadius: 2,
+                  border: '1px solid var(--primary)',
+                  background: 'transparent',
+                  '&:hover': {
+                    borderColor: 'var(--secondary)',
+                    color: 'var(--secondary)',
+                    background: 'transparent'
+                  },
+                  '&:disabled': { 
+                    opacity: 0.3, 
+                    borderColor: 'var(--primary)', 
+                    color: 'var(--primary)',
+                    background: 'transparent'
+                  }
+                }}
+              >
+                Previous
+              </Button>
+
+              <Box sx={{ textAlign: 'center', display: { xs: 'none', sm: 'block' } }}>
+                <Typography sx={{ color: 'var(--text-primary)', fontWeight: 700, mb: 0.5, fontSize: '0.9rem' }}>
+                  {demoPages[currentPage].title}
+                </Typography>
+                <Typography sx={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>
+                  {demoPages[currentPage].subtitle}
+                </Typography>
+              </Box>
+
+              <Button
+                endIcon={<ArrowForward sx={{ color: '#FFFFFF' }} />}
+                onClick={nextPage}
+                disabled={currentPage === demoPages.length - 1}
+                sx={{ 
+                  background: 'var(--primary)',
+                  color: '#FFFFFF',
+                  px: 3,
+                  py: 1,
+                  fontSize: '0.9rem',
+                  fontWeight: 700,
+                  borderRadius: 2,
+                  '&:hover': {
+                    background: 'var(--secondary)',
+                    color: '#FFFFFF'
+                  },
+                  '&:disabled': { 
+                    opacity: 0.3, 
+                    background: 'var(--primary)', 
+                    color: '#FFFFFF'
+                  }
+                }}
+              >
+                {currentPage === demoPages.length - 1 ? '🚀 Get Started' : 'Next →'}
+              </Button>
+            </Box>
+          </Box>
         </Box>
-      </Box>
-    </Box>
+      </ThemeProvider>
+    </div>
   );
 };
 
