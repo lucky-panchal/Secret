@@ -152,8 +152,8 @@ const MenuBar = () => {
           minHeight: { xs: 64, md: 72 },
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: 2
+          justifyContent: 'flex-start',
+          gap: 4
         }}>
           <Box
             sx={{
@@ -163,20 +163,45 @@ const MenuBar = () => {
             }}
             onClick={() => handleNavClick('home')}
           >
-            <Typography
-              variant="h5"
-              sx={{
-                fontWeight: 'bold',
-                background: 'linear-gradient(to bottom, white, rgba(255,255,255,0.8))',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                letterSpacing: '-0.025em',
-                fontSize: 'clamp(1.5rem, 3vw, 2rem)',
-              }}
-            >
-              KaushalX
-            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Typography
+                component="span"
+                sx={{
+                  fontFamily: '"Orbitron", "Exo 2", monospace',
+                  fontWeight: 900,
+                  fontSize: 'clamp(1.3rem, 2.5vw, 1.6rem)',
+                  color: isDark ? '#00F5FF' : '#00D4FF',
+                  textShadow: isDark ? '0 0 8px rgba(0,245,255,0.3)' : '0 0 6px rgba(0,212,255,0.2)',
+                }}
+              >
+                K
+              </Typography>
+              <Typography
+                component="span"
+                sx={{
+                  fontFamily: '"Spectral SC", serif',
+                  fontWeight: 600,
+                  fontSize: 'clamp(1rem, 2vw, 1.2rem)',
+                  color: isDark ? '#ffffff' : '#333333',
+                  letterSpacing: '0.1em',
+                  mx: 0.3,
+                }}
+              >
+                AUSHAL
+              </Typography>
+              <Typography
+                component="span"
+                sx={{
+                  fontFamily: '"Orbitron", "Exo 2", monospace',
+                  fontWeight: 900,
+                  fontSize: 'clamp(1.3rem, 2.5vw, 1.6rem)',
+                  color: isDark ? '#A855F7' : '#7C3AED',
+                  textShadow: isDark ? '0 0 8px rgba(168,85,247,0.3)' : '0 0 6px rgba(124,58,237,0.2)',
+                }}
+              >
+                X
+              </Typography>
+            </Box>
           </Box>
 
           {!isMobile && (
@@ -184,7 +209,8 @@ const MenuBar = () => {
               sx={{ 
                 display: 'flex', 
                 alignItems: 'center',
-                gap: 1,
+                gap: 3,
+                flex: 1,
               }}
             >
               {navigationItems.map((item) => (
@@ -193,15 +219,33 @@ const MenuBar = () => {
                   onClick={() => handleNavClick(item.href)}
                   sx={{
                     color: isDark ? '#ffffff' : '#333333',
+                    fontFamily: '"Inter", sans-serif',
                     fontWeight: 500,
                     px: 2,
                     py: 1,
                     textTransform: 'none',
                     borderRadius: 1.5,
                     minWidth: 'auto',
+                    position: 'relative',
+                    transition: 'all 0.3s ease',
                     '&:hover': {
-                      bgcolor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.04)',
+                      color: isDark ? '#00F5FF' : '#00D4FF',
+                      transform: 'translateY(-2px)',
+                      '&::after': {
+                        width: '100%',
+                      }
                     },
+                    '&::after': {
+                      content: '""',
+                      position: 'absolute',
+                      bottom: 0,
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      width: 0,
+                      height: '2px',
+                      background: isDark ? 'linear-gradient(90deg, #00F5FF, #A855F7)' : 'linear-gradient(90deg, #00D4FF, #7C3AED)',
+                      transition: 'width 0.3s ease',
+                    }
                   }}
                 >
                   {item.label}
@@ -210,7 +254,7 @@ const MenuBar = () => {
             </Box>
           )}
 
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginLeft: 'auto' }}>
             {!isMobile && (
               <Button
                 variant="contained"

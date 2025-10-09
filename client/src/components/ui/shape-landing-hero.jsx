@@ -210,13 +210,35 @@ function HeroGeometric({
                                 letterSpacing: '-0.025em',
                                 lineHeight: '1.1'
                             }}>
-                                <span style={{
-                                    background: 'linear-gradient(to bottom, white, rgba(255,255,255,0.8))',
-                                    WebkitBackgroundClip: 'text',
-                                    WebkitTextFillColor: 'transparent',
-                                    backgroundClip: 'text'
-                                }}>
-                                    {title1}
+                                <span style={{ display: 'flex', alignItems: 'center', justifyContent: showRobot ? 'flex-start' : 'center' }}>
+                                    <span style={{
+                                        fontFamily: '"Orbitron", "Exo 2", monospace',
+                                        fontWeight: 900,
+                                        fontSize: 'clamp(2rem, 4vw, 3rem)',
+                                        color: '#00F5FF',
+                                        textShadow: '0 0 8px rgba(0,245,255,0.3)',
+                                    }}>
+                                        K
+                                    </span>
+                                    <span style={{
+                                        fontFamily: '"Spectral SC", serif',
+                                        fontWeight: 600,
+                                        fontSize: 'clamp(1.5rem, 3vw, 2.2rem)',
+                                        color: 'white',
+                                        letterSpacing: '0.1em',
+                                        margin: '0 6px',
+                                    }}>
+                                        AUSHAL
+                                    </span>
+                                    <span style={{
+                                        fontFamily: '"Orbitron", "Exo 2", monospace',
+                                        fontWeight: 900,
+                                        fontSize: 'clamp(2rem, 4vw, 3rem)',
+                                        color: '#A855F7',
+                                        textShadow: '0 0 8px rgba(168,85,247,0.3)',
+                                    }}>
+                                        X
+                                    </span>
                                 </span>
                                 {title2 && (
                                     <>
