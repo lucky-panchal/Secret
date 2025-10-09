@@ -16,6 +16,7 @@
     "@react-three/drei": "^9.0.0",
     "@react-three/fiber": "^8.13.0",
     "@tailwindcss/postcss": "^4.1.14",
+    "@vladmandic/face-api": "^1.7.12",
     "autoprefixer": "^10.4.21",
     "framer-motion": "^10.16.16",
     "next": "^14.0.4",

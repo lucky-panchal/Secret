@@ -22,6 +22,7 @@ const scraperRoutes = require('./routes/scraper');
 const healthRoutes = require('./routes/health');
 const aiSearchRoutes = require('./routes/ai-search');
 const aiStatusRoutes = require('./routes/ai-status');
+const authRoutes = require('./routes/auth');
 const { initializeScheduler } = require('./services/scheduler');
 const { setupWebSocket } = require('./services/websocket');
 const dataManager = require('./services/dataManager');
@@ -70,6 +71,7 @@ app.use('/api/scrape', scraperRoutes);
 app.use('/api/health', healthRoutes);
 app.use('/api/ai-search', aiSearchRoutes);
 app.use('/api/ai-status', aiStatusRoutes);
+app.use('/api/auth', authRoutes);
 
 // WebSocket setup
 setupWebSocket(server);
