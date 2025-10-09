@@ -20,6 +20,7 @@ import {
   CameraAlt,
   Refresh
 } from '@mui/icons-material';
+import { useAuth } from '@/contexts/AuthContext';
 
 /**
  * SecureAuthModal Component
@@ -27,6 +28,7 @@ import {
  * for Indian users before accessing assessment/dashboard
  */
 export default function SecureAuthModal({ open, onClose, onSuccess, userEmail, userId }) {
+  const { updateUser } = useAuth();
   const [activeStep, setActiveStep] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -259,10 +261,14 @@ export default function SecureAuthModal({ open, onClose, onSuccess, userEmail, u
 
       setSuccess('Secure authentication completed successfully!');
       
+      // Update user with secure auth status
+      if (updateUser && data.data?.user) {
+        updateUser({ secureAuth: true, ...data.data.user });
+      }
+      
       // Call success callback after 1 second
       setTimeout(() => {
         onSuccess(data.data);
-        onClose();
       }, 1000);
     } catch (err) {
       setError(err.message);

@@ -101,6 +101,10 @@ export const AuthProvider = ({ children }) => {
     setError(null);
   };
 
+  const updateUser = (userData) => {
+    setUser(prev => ({ ...prev, ...userData }));
+  };
+
   const value = {
     user,
     loading,
@@ -109,6 +113,7 @@ export const AuthProvider = ({ children }) => {
     signin,
     logout,
     clearError,
+    updateUser,
     isAuthenticated: !!user
   };
 

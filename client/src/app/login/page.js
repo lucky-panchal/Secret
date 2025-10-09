@@ -14,7 +14,7 @@ export default function LoginPage() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [showSecureAuth, setShowSecureAuth] = useState(false);
   const { isDark } = useTheme();
-  const { login } = useAuth();
+  const { signin } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -32,12 +32,10 @@ export default function LoginPage() {
     }
   };
 
-  const handleSecureAuthSuccess = (authData) => {
-    login({
+  const handleSecureAuthSuccess = async (authData) => {
+    await signin({
       email: formData.email,
-      name: formData.email.split('@')[0],
-      id: Date.now(),
-      secureAuth: authData
+      password: formData.password
     });
     router.push('/dashboard');
   };

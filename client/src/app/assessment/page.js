@@ -45,9 +45,13 @@ const AssessmentPage = () => {
     }
   }, [isAuthenticated, user, isSecureAuthVerified, router]);
 
-  const handleSecureAuthSuccess = (authData) => {
+  const handleSecureAuthSuccess = async (authData) => {
     setIsSecureAuthVerified(true);
     setShowSecureAuth(false);
+    // Update user with secure auth status if needed
+    if (authData?.user) {
+      // User data is already updated via AuthContext
+    }
   };
 
   const steps = [
