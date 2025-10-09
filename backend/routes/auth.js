@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-<<<<<<< HEAD
 const { secureAuthMiddleware } = require('../middleware/secureAuth');
 const AuthLog = require('../models/AuthLog');
+const User = require('../models/User');
+const { generateToken, authenticateToken } = require('../middleware/auth');
 
 /**
  * POST /api/auth/verify-secure
@@ -153,9 +154,9 @@ router.post('/fallback-verification', async (req, res) => {
       success: false,
       message: 'Fallback verification failed',
       error: process.env.NODE_ENV === 'development' ? error.message : 'Internal error'
-=======
-const User = require('../models/User');
-const { generateToken, authenticateToken } = require('../middleware/auth');
+    });
+  }
+});
 
 // POST /api/auth/signup - Register new user
 router.post('/signup', async (req, res) => {
@@ -228,14 +229,10 @@ router.post('/signup', async (req, res) => {
     res.status(500).json({
       success: false,
       message: 'Registration failed. Please try again.'
->>>>>>> master
     });
   }
 });
 
-<<<<<<< HEAD
-module.exports = router;
-=======
 // POST /api/auth/signin - Login user
 router.post('/signin', async (req, res) => {
   try {
@@ -332,4 +329,3 @@ router.post('/logout', authenticateToken, async (req, res) => {
 });
 
 module.exports = router;
->>>>>>> master

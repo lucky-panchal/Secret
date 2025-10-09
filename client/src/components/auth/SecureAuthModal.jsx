@@ -229,7 +229,7 @@ export default function SecureAuthModal({ open, onClose, onSuccess, userEmail, u
       setLoading(true);
       setError('');
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/auth/verify-secure`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'}/auth/verify-secure`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -277,7 +277,7 @@ export default function SecureAuthModal({ open, onClose, onSuccess, userEmail, u
    */
   const handleFallback = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/auth/fallback-verification`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'}/auth/fallback-verification`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
