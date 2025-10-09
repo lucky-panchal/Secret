@@ -8,7 +8,7 @@ const path = require('path');
  */
 
 const MODELS_DIR = path.join(__dirname, 'client', 'public', 'models');
-const BASE_URL = 'https://raw.githubusercontent.com/vladmandic/face-api/master/model';
+const BASE_URL = 'https://raw.githubusercontent.com/justadudewhohacks/face-api.js/master/weights';
 
 const MODELS = [
   // Tiny Face Detector

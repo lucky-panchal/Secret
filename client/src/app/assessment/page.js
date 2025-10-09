@@ -3,8 +3,10 @@ import { useState, useEffect } from 'react';
 import { Box, Stepper, Step, StepLabel, Typography, IconButton, LinearProgress } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { ArrowBack, Psychology, Code, Favorite, School, Assessment } from '@mui/icons-material';
+import SecureAuthModal from '@/components/auth/SecureAuthModal';
 import WelcomeStep from '@/components/assessment/WelcomeStep';
 import SkillsStep from '@/components/assessment/SkillsStep';
 import InterestsStep from '@/components/assessment/InterestsStep';
@@ -19,8 +21,24 @@ const AssessmentPage = () => {
     education: '',
     experience: ''
   });
+  const [showSecureAuth, setShowSecureAuth] = useState(false);
+  const [isSecureAuthVerified, setIsSecureAuthVerified] = useState(false);
   const { isDark } = useTheme();
+  const { user, isAuthenticated } = useAuth();
   const router = useRouter();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push('/login');
+    } else if (!user?.secureAuth && !isSecureAuthVerified) {
+      setShowSecureAuth(true);
+    }
+  }, [isAuthenticated, user, isSecureAuthVerified, router]);
+
+  const handleSecureAuthSuccess = (authData) => {
+    setIsSecureAuthVerified(true);
+    setShowSecureAuth(false);
+  };
 
   const steps = [
     { label: 'Welcome', icon: Psychology },
@@ -324,6 +342,14 @@ const AssessmentPage = () => {
             </Box>
           </Box>
         </Box>
+
+        <SecureAuthModal
+          open={showSecureAuth}
+          onClose={() => router.push('/dashboard')}
+          onSuccess={handleSecureAuthSuccess}
+          userEmail={user?.email || ''}
+          userId={user?.id || user?.email || ''}
+        />
       </Box>
     </div>
   );

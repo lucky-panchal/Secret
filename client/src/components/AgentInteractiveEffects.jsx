@@ -1,54 +1,49 @@
 'use client';
-import { useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 const AgentInteractiveEffects = () => {
-  useEffect(() => {
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes agentGlow {
-        0%, 100% { box-shadow: 0 0 5px rgba(0, 188, 212, 0.05); }
-        50% { box-shadow: 0 0 10px rgba(0, 188, 212, 0.1); }
-      }
-      
-      @keyframes agentPulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.02); }
-      }
-      
-      .agent-interactive {
-        transition: all 0.3s ease;
-        animation: agentGlow 4s infinite ease-in-out;
-      }
-      
-      .agent-interactive:hover {
-        animation: agentPulse 0.6s ease-in-out;
-        box-shadow: 0 0 10px rgba(0, 188, 212, 0.15) !important;
-      }
-      
-      .MuiButton-root {
-        transition: all 0.3s ease;
-      }
-      
-      .MuiButton-root:hover {
-        box-shadow: 0 4px 12px rgba(0, 188, 212, 0.1);
-      }
-      
-      .MuiPaper-root {
-        transition: all 0.3s ease;
-      }
-      
-      .MuiPaper-root:hover {
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 188, 212, 0.05);
-      }
-    `;
-    document.head.appendChild(style);
-    
-    return () => {
-      document.head.removeChild(style);
-    };
-  }, []);
-
-  return null;
+  return (
+    <div className="fixed inset-0 pointer-events-none z-0">
+      <motion.div
+        className="absolute top-20 left-10 w-4 h-4 bg-cyan-400 rounded-full opacity-30"
+        animate={{
+          y: [0, -20, 0],
+          opacity: [0.3, 0.7, 0.3]
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      <motion.div
+        className="absolute top-40 right-20 w-6 h-6 bg-purple-400 rounded-full opacity-20"
+        animate={{
+          x: [0, 15, 0],
+          opacity: [0.2, 0.6, 0.2]
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1
+        }}
+      />
+      <motion.div
+        className="absolute bottom-32 left-1/4 w-3 h-3 bg-yellow-400 rounded-full opacity-25"
+        animate={{
+          scale: [1, 1.5, 1],
+          opacity: [0.25, 0.5, 0.25]
+        }}
+        transition={{
+          duration: 2.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 0.5
+        }}
+      />
+    </div>
+  );
 };
 
 export default AgentInteractiveEffects;

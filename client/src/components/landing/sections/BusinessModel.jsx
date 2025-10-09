@@ -4,6 +4,7 @@ import { Box, Container, Typography, Grid, List, ListItem, ListItemIcon, ListIte
 import { motion } from 'framer-motion';
 import { CheckCircle, School, Business, Security, TrendingUp } from '@mui/icons-material';
 import { useTheme } from '@/contexts/ThemeContext';
+import '../../../styles/landing-color-scheme.css';
 
 const BusinessModel = () => {
   const { isDark } = useTheme();
@@ -72,27 +73,65 @@ const BusinessModel = () => {
         id="business"
         sx={{
           py: { xs: 6, md: 10 },
-          background: 'var(--background)',
+          background: '#030303',
           position: 'relative',
           overflow: 'hidden',
         }}
       >
 
 
-        {/* Subtle Background Pattern */}
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'var(--gradient-secondary)',
-            opacity: 0.02,
-            zIndex: 0,
-          }}
-        />
 
+
+        {/* Floating shapes */}
+        <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, overflow: 'hidden' }}>
+          <motion.div
+            animate={{
+              y: [0, -12, 0],
+              rotate: [30, 35, 30],
+            }}
+            transition={{
+              duration: 11,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{
+              position: 'absolute',
+              width: '550px',
+              height: '130px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.1))',
+              filter: 'blur(1px)',
+              opacity: 0.6,
+              right: '-10%',
+              top: '15%',
+              transform: 'rotate(30deg)',
+            }}
+          />
+          <motion.div
+            animate={{
+              y: [0, 10, 0],
+              rotate: [-25, -20, -25],
+            }}
+            transition={{
+              duration: 8.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{
+              position: 'absolute',
+              width: '400px',
+              height: '100px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.05))',
+              filter: 'blur(1px)',
+              opacity: 0.6,
+              left: '-15%',
+              bottom: '25%',
+              transform: 'rotate(-25deg)',
+            }}
+          />
+        </Box>
+        
         <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1 }}>
           <Grid container spacing={{ xs: 4, md: 8 }} alignItems="center">
             {/* Left Column - Business Model */}
@@ -148,7 +187,7 @@ const BusinessModel = () => {
                             sx={{
                               width: 40,
                               height: 40,
-                              borderRadius: '50%',
+                              borderRadius: 0,
                               background: 'var(--gradient-primary)',
                               display: 'flex',
                               alignItems: 'center',
@@ -205,8 +244,9 @@ const BusinessModel = () => {
               >
                 <Box
                   sx={{
-                    background: 'var(--background)',
-                    borderRadius: 3,
+                    background: 'var(--charcoal)',
+                    border: '1px solid var(--gunmetal)',
+                    borderRadius: 0,
                     p: { xs: 4, md: 6 },
                     textAlign: 'center',
                     position: 'relative',

@@ -27,6 +27,8 @@ const { initializeScheduler } = require('./services/scheduler');
 const { setupWebSocket } = require('./services/websocket');
 const dataManager = require('./services/dataManager');
 const dynamicDataManager = require('./services/dynamicDataManager');
+const webScraper = require('./services/webScraper');
+const { initializeCourses } = require('./scripts/initializeCourses');
 
 const app = express();
 const server = http.createServer(app);
@@ -37,7 +39,25 @@ connectDB().then(async () => {
   setTimeout(async () => {
     try {
       console.log('🔄 Initializing course data...');
+      
+      // Check if courses exist, if not initialize with sample data
+      const Course = require('./models/Course');
+      const courseCount = await Course.countDocuments();
+      
+      if (courseCount === 0) {
+        console.log('📚 No courses found, initializing with sample data...');
+        await initializeCourses();
+      } else {
+        console.log(`📊 Found ${courseCount} existing courses`);
+      }
+      
       await dataManager.initializeData();
+      
+      // Start periodic course discovery and updates
+      console.log('🔍 Starting course discovery and updates...');
+      webScraper.refreshAllCourses().catch(error => {
+        console.error('❌ Course discovery failed:', error);
+      });
       
       // Check if we need to refresh course analysis
       const freshness = await dynamicDataManager.getDataFreshness();
@@ -65,6 +85,7 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
+app.use('/api/auth', authRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/scrape', scraperRoutes);

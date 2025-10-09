@@ -75,11 +75,7 @@ export const performanceConfig = {
     perspective: 1000
   },
 
-  // Smooth scrolling
-  smoothScroll: {
-    behavior: 'smooth',
-    block: 'start'
-  }
+
 };
 
 // Viewport configuration for intersection observer

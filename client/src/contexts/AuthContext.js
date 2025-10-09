@@ -1,5 +1,6 @@
 'use client';
 import { createContext, useContext, useState, useEffect } from 'react';
+import apiService from '@/services/api';
 
 const AuthContext = createContext();
 
@@ -12,42 +13,103 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  // Check if user is authenticated on mount
   useEffect(() => {
-    // Check if user is logged in (from localStorage or session)
-    const savedAuth = localStorage.getItem('isAuthenticated');
-    const savedUser = localStorage.getItem('user');
-    
-    if (savedAuth === 'true' && savedUser) {
-      setIsAuthenticated(true);
-      setUser(JSON.parse(savedUser));
-    }
-    setLoading(false);
+    checkAuth();
   }, []);
 
-  const login = (userData) => {
-    setIsAuthenticated(true);
-    setUser(userData);
-    localStorage.setItem('isAuthenticated', 'true');
-    localStorage.setItem('user', JSON.stringify(userData));
+  const checkAuth = async () => {
+    try {
+      if (apiService.isAuthenticated()) {
+        const response = await apiService.getCurrentUser();
+        if (response.success) {
+          setUser(response.data.user);
+        } else {
+          apiService.setToken(null);
+        }
+      }
+    } catch (error) {
+      console.error('Auth check failed:', error);
+      apiService.setToken(null);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const logout = () => {
-    setIsAuthenticated(false);
-    setUser(null);
-    localStorage.removeItem('isAuthenticated');
-    localStorage.removeItem('user');
+  const signup = async (userData) => {
+    try {
+      setError(null);
+      setLoading(true);
+      
+      const response = await apiService.signup(userData);
+      
+      if (response.success) {
+        setUser(response.data.user);
+        return { success: true, message: response.message };
+      } else {
+        setError(response.message);
+        return { success: false, message: response.message };
+      }
+    } catch (error) {
+      const message = error.message || 'Registration failed';
+      setError(message);
+      return { success: false, message };
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const signin = async (credentials) => {
+    try {
+      setError(null);
+      setLoading(true);
+      
+      const response = await apiService.signin(credentials);
+      
+      if (response.success) {
+        setUser(response.data.user);
+        return { success: true, message: response.message };
+      } else {
+        setError(response.message);
+        return { success: false, message: response.message };
+      }
+    } catch (error) {
+      const message = error.message || 'Login failed';
+      setError(message);
+      return { success: false, message };
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const logout = async () => {
+    try {
+      await apiService.logout();
+    } catch (error) {
+      console.error('Logout error:', error);
+    } finally {
+      setUser(null);
+      setError(null);
+    }
+  };
+
+  const clearError = () => {
+    setError(null);
   };
 
   const value = {
-    isAuthenticated,
     user,
-    login,
+    loading,
+    error,
+    signup,
+    signin,
     logout,
-    loading
+    clearError,
+    isAuthenticated: !!user
   };
 
   return (

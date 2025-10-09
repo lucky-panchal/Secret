@@ -1,14 +1,10 @@
 'use client';
-import { useEffect } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { createMuiTheme } from '@/theme/muiTheme';
 import { useTheme } from '@/contexts/ThemeContext';
 
 import MenuBar from './MenuBar';
-import PremiumAnimations from '../PremiumAnimations';
-import Agent3D from '../Agent3D';
-import AgentInteractiveEffects from '../AgentInteractiveEffects';
 import HeroSection from './sections/Hero';
 import FeaturesSection from './sections/Features';
 import SuccessStoriesSection from './sections/SuccessStories';
@@ -19,21 +15,11 @@ const LandingPage = () => {
   const { isDark } = useTheme();
   const theme = createMuiTheme(isDark);
 
-  useEffect(() => {
-    document.documentElement.style.scrollBehavior = 'smooth';
-    return () => {
-      document.documentElement.style.scrollBehavior = 'auto';
-    };
-  }, []);
-
   return (
     <div data-theme={isDark ? 'dark' : 'light'}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Agent3D />
-        <AgentInteractiveEffects />
         <main>
-          <PremiumAnimations />
           <MenuBar />
           <HeroSection />
           <FeaturesSection />

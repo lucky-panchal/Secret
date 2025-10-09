@@ -23,6 +23,9 @@ class Scheduler {
     const mainScrapeJob = cron.schedule('0 */6 * * *', async () => {
       console.log('🕐 Running scheduled data refresh job...');
       try {
+        const webScraper = require('./webScraper');
+        await webScraper.refreshAllCourses();
+        await webScraper.updateCourseData();
         await dataManager.refreshCourseData();
       } catch (error) {
         console.error('❌ Scheduled data refresh failed:', error);
