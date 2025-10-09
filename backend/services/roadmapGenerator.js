@@ -165,7 +165,7 @@ class RoadmapGenerator {
           phase.skills.map(skill => skill.requiredSkill || skill.name || skill) : 
           phase.skills || [],
         courses: await this.findOptimalCourses(phase.skills),
-        projects: await this.generatePhaseProjects(phase, optimalPath.role, userProfile),
+        projects: await this.generatePhaseProjects(phase, optimalPath?.role || { title: 'Technology Professional' }, userProfile),
         assessments: this.generatePhaseAssessments(phase),
         learningResources: await this.generatePhaseLearningResources(phase),
         status: 'Not Started',

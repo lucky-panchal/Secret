@@ -30,7 +30,7 @@ router.post('/generate-profile', authenticateToken, async (req, res) => {
     const comprehensiveRoadmap = await roadmapGenerator.generateComprehensiveRoadmap(
       enhancedAnalysis, 
       { ...assessment, userId }
-    );
+    ) || {};
     
     // Create or update user profile
     let userProfile = await UserProfile.findOne({ userId });
@@ -50,7 +50,7 @@ router.post('/generate-profile', authenticateToken, async (req, res) => {
       userProfile.transferableSkills = enhancedAnalysis.transferableSkills || [];
       userProfile.automationRisk = enhancedAnalysis.automationRisk || 0.5;
       userProfile.careerViability = enhancedAnalysis.careerViability || 0.5;
-      userProfile.roadmap = comprehensiveRoadmap || {};
+      userProfile.roadmap = comprehensiveRoadmap;
       userProfile.lastAnalyzed = new Date();
       userProfile.confidenceScore = enhancedAnalysis.confidenceScore || 0.5;
       
@@ -74,7 +74,7 @@ router.post('/generate-profile', authenticateToken, async (req, res) => {
         transferableSkills: enhancedAnalysis.transferableSkills || [],
         automationRisk: enhancedAnalysis.automationRisk || 0.5,
         careerViability: enhancedAnalysis.careerViability || 0.5,
-        roadmap: comprehensiveRoadmap || {},
+        roadmap: comprehensiveRoadmap,
         confidenceScore: enhancedAnalysis.confidenceScore || 0.5,
         marketAlignment: enhancedAnalysis.marketAlignment || 0.5,
         transferabilityScore: enhancedAnalysis.confidenceScore || 0.5
@@ -108,7 +108,7 @@ router.post('/generate-profile', authenticateToken, async (req, res) => {
           skillGapsIdentified: enhancedAnalysis.skillGaps.length,
           transferableSkills: enhancedAnalysis.transferableSkills.length,
           automationRisk: enhancedAnalysis.automationRisk,
-          roadmapMilestones: comprehensiveRoadmap.milestones.length,
+          roadmapMilestones: comprehensiveRoadmap.milestones?.length || 0,
           confidenceScore: userProfile.confidenceScore,
           transferabilityScore: enhancedAnalysis.confidenceScore,
           marketAlignment: enhancedAnalysis.marketAlignment,
