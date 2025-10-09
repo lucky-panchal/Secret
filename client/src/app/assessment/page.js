@@ -23,9 +23,19 @@ const AssessmentPage = () => {
   });
   const [showSecureAuth, setShowSecureAuth] = useState(false);
   const [isSecureAuthVerified, setIsSecureAuthVerified] = useState(false);
+  const [particles, setParticles] = useState([]);
   const { isDark } = useTheme();
   const { user, isAuthenticated } = useAuth();
   const router = useRouter();
+
+  useEffect(() => {
+    setParticles([...Array(8)].map(() => ({
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      delay: Math.random() * 6,
+      duration: 4 + Math.random() * 4
+    })));
+  }, []);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -153,20 +163,22 @@ const AssessmentPage = () => {
       
       <Box className="assessment-container">
         {/* Floating Particles */}
-        <div className="floating-particles">
-          {[...Array(8)].map((_, i) => (
-            <div
-              key={i}
-              className="particle"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 6}s`,
-                animationDuration: `${4 + Math.random() * 4}s`
-              }}
-            />
-          ))}
-        </div>
+        {particles.length > 0 && (
+          <div className="floating-particles">
+            {particles.map((p, i) => (
+              <div
+                key={i}
+                className="particle"
+                style={{
+                  left: `${p.left}%`,
+                  top: `${p.top}%`,
+                  animationDelay: `${p.delay}s`,
+                  animationDuration: `${p.duration}s`
+                }}
+              />
+            ))}
+          </div>
+        )}
         
         {/* Header */}
         <Box sx={{ 
