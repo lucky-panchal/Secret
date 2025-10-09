@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { motion } from 'framer-motion';
+import SecureAuthModal from '@/components/auth/SecureAuthModal';
 
 export default function Register() {
   const [isRightPanelActive, setIsRightPanelActive] = useState(false);
@@ -15,6 +16,8 @@ export default function Register() {
   const [popupType, setPopupType] = useState('');
   const [popupMessage, setPopupMessage] = useState('');
   const [showSuccessOptions, setShowSuccessOptions] = useState(false);
+  const [showSecureAuth, setShowSecureAuth] = useState(false);
+  const [tempUserData, setTempUserData] = useState(null);
   const { isDark } = useTheme();
   const { signup, signin, logout: authLogout } = useAuth();
   const router = useRouter(); 
@@ -26,7 +29,21 @@ export default function Register() {
   };
 
   const handleContinueToAssessment = () => {
+    // Get current user data from auth context
+    const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
+    setTempUserData(currentUser);
+    setShowSecureAuth(true);
+  };
+
+  const handleSecureAuthSuccess = (authData) => {
+    console.log('Secure authentication successful:', authData);
+    setShowSecureAuth(false);
+    setShowSuccessOptions(false);
     router.push('/assessment');
+  };
+
+  const handleSecureAuthClose = () => {
+    setShowSecureAuth(false);
   };
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -53,12 +70,20 @@ export default function Register() {
         
         if (result.success) {
           setPopupType('success');
-          setPopupMessage('Account created successfully! Redirecting to assessment...');
+          setPopupMessage('Account created successfully! Please complete secure verification.');
           setShowPopup(true);
           setSignUpData({ fullName: '', email: '', password: '', confirmPassword: '' });
+          
+          // Set user data for secure auth
+          setTempUserData({
+            email: signUpData.email,
+            name: signUpData.fullName,
+            id: result.data?.user?.id || signUpData.email
+          });
+          
           setTimeout(() => {
             setShowPopup(false);
-            router.push('/assessment');
+            setShowSecureAuth(true);
           }, 1500);
         } else {
           setPopupType('error');
@@ -98,12 +123,20 @@ export default function Register() {
         
         if (result.success) {
           setPopupType('signin-success');
-          setPopupMessage(`Welcome back!`);
+          setPopupMessage(`Welcome back! Please complete secure verification.`);
           setShowPopup(true);
           setSignInData({ email: '', password: '' });
+          
+          // Set user data for secure auth
+          setTempUserData({
+            email: signInData.email,
+            name: result.data?.user?.fullName || signInData.email.split('@')[0],
+            id: result.data?.user?.id || signInData.email
+          });
+          
           setTimeout(() => {
             setShowPopup(false);
-            setShowSuccessOptions(true);
+            setShowSecureAuth(true);
           }, 1000);
         } else {
           setPopupType('error');
@@ -1074,6 +1107,15 @@ export default function Register() {
           </div>
         </div>
       )}
+
+      {/* Secure Authentication Modal */}
+      <SecureAuthModal
+        open={showSecureAuth}
+        onClose={handleSecureAuthClose}
+        onSuccess={handleSecureAuthSuccess}
+        userEmail={tempUserData?.email}
+        userId={tempUserData?.id || tempUserData?.email}
+      />
     </div>
   );
 }
