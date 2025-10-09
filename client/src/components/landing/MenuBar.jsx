@@ -52,7 +52,14 @@ const MenuBar = () => {
   const handleNavClick = (href) => {
     const element = document.getElementById(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
     setMobileOpen(false);
   };
@@ -159,9 +166,13 @@ const MenuBar = () => {
             <Typography
               variant="h5"
               sx={{
-                fontWeight: 700,
-                color: isDark ? '#ffffff' : '#1976d2',
-                letterSpacing: '-0.5px',
+                fontWeight: 'bold',
+                background: 'linear-gradient(to bottom, white, rgba(255,255,255,0.8))',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                letterSpacing: '-0.025em',
+                fontSize: 'clamp(1.5rem, 3vw, 2rem)',
               }}
             >
               KaushalX
@@ -221,6 +232,7 @@ const MenuBar = () => {
               </Button>
             )}
           </Box>
+
 
           {isMobile && (
             <IconButton

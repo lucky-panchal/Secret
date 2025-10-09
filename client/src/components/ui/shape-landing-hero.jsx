@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Circle } from "lucide-react";
+import { SplineScene } from "./splite";
 
 function ElegantShape({
     delay = 0,
@@ -73,6 +74,7 @@ function HeroGeometric({
     title2 = "Crafting Exceptional Websites",
     children,
     router,
+    showRobot = false,
 }) {
     const fadeUpVariants = {
         hidden: { opacity: 0, y: 30 },
@@ -158,124 +160,166 @@ function HeroGeometric({
             </div>
 
             {/* Content */}
-            <div style={{ position: 'relative', zIndex: 10, maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
-                <div style={{ maxWidth: '768px', margin: '0 auto', textAlign: 'center' }}>
-                    <motion.div
-                        custom={0}
-                        variants={fadeUpVariants}
-                        initial="hidden"
-                        animate="visible"
-                        style={{
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: '8px',
-                            padding: '4px 12px',
-                            borderRadius: '50px',
-                            backgroundColor: 'rgba(255,255,255,0.03)',
-                            border: '1px solid rgba(255,255,255,0.08)',
-                            marginBottom: '48px'
-                        }}
-                    >
-                        <Circle style={{ width: '8px', height: '8px', fill: 'rgba(244, 63, 94, 0.8)' }} />
-                        <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', letterSpacing: '0.05em' }}>
-                            {badge}
-                        </span>
-                    </motion.div>
-
-                    <motion.div
-                        custom={1}
-                        variants={fadeUpVariants}
-                        initial="hidden"
-                        animate="visible"
-                    >
-                        <h1 style={{
-                            fontSize: 'clamp(2.5rem, 8vw, 5rem)',
-                            fontWeight: 'bold',
-                            marginBottom: '32px',
-                            letterSpacing: '-0.025em',
-                            lineHeight: '1.1'
-                        }}>
-                            <span style={{
-                                background: 'linear-gradient(to bottom, white, rgba(255,255,255,0.8))',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                                backgroundClip: 'text'
-                            }}>
-                                {title1}
-                            </span>
-                            {title2 && (
-                                <>
-                                    <br />
-                                    <span style={{
-                                        background: 'linear-gradient(to right, rgb(165, 180, 252), rgba(255,255,255,0.9), rgb(252, 165, 165))',
-                                        WebkitBackgroundClip: 'text',
-                                        WebkitTextFillColor: 'transparent',
-                                        backgroundClip: 'text'
-                                    }}>
-                                        {title2}
-                                    </span>
-                                </>
-                            )}
-                        </h1>
-                    </motion.div>
-
-                    {!children && (
+            <div style={{ position: 'relative', zIndex: 10, maxWidth: '1200px', margin: '0 auto', padding: '0 24px', width: '100%' }}>
+                <div style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    minHeight: '80vh',
+                    gap: showRobot ? '48px' : '0'
+                }}>
+                    {/* Left Content */}
+                    <div style={{ 
+                        flex: showRobot ? '1' : 'none',
+                        maxWidth: showRobot ? 'none' : '768px', 
+                        margin: showRobot ? '0' : '0 auto', 
+                        textAlign: showRobot ? 'left' : 'center',
+                        width: showRobot ? '50%' : '100%'
+                    }}>
                         <motion.div
-                            custom={2}
+                            custom={0}
+                            variants={fadeUpVariants}
+                            initial="hidden"
+                            animate="visible"
+                            style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '8px',
+                                padding: '4px 12px',
+                                borderRadius: '50px',
+                                backgroundColor: 'rgba(255,255,255,0.03)',
+                                border: '1px solid rgba(255,255,255,0.08)',
+                                marginBottom: '48px'
+                            }}
+                        >
+                            <Circle style={{ width: '8px', height: '8px', fill: 'rgba(244, 63, 94, 0.8)' }} />
+                            <span style={{ fontSize: '16px', color: 'rgba(255,255,255,0.6)', letterSpacing: '0.05em' }}>
+                                {badge}
+                            </span>
+                        </motion.div>
+
+                        <motion.div
+                            custom={1}
                             variants={fadeUpVariants}
                             initial="hidden"
                             animate="visible"
                         >
-                            <p style={{
-                                fontSize: 'clamp(1rem, 2vw, 1.25rem)',
-                                color: 'rgba(255,255,255,0.4)',
+                            <h1 style={{
+                                fontSize: showRobot ? 'clamp(2rem, 6vw, 4rem)' : 'clamp(2.5rem, 8vw, 5rem)',
+                                fontWeight: 'bold',
                                 marginBottom: '32px',
-                                lineHeight: '1.6',
-                                fontWeight: '300',
-                                letterSpacing: '0.025em',
-                                maxWidth: '672px',
-                                margin: '0 auto 32px auto',
-                                padding: '0 16px'
+                                letterSpacing: '-0.025em',
+                                lineHeight: '1.1'
                             }}>
-                                Join the world's first AI-driven reskilling platform.<br/>
-                                Transform from vulnerable to future-proof with personalized learning paths,<br/>
-                                blockchain certifications, and guaranteed job placement.
-                            </p>
-                            
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', justifyContent: 'center', alignItems: 'center', marginTop: '32px' }}>
-                                <button 
-                                    onClick={() => router?.push('/register')}
-                                    style={{
-                                        padding: '12px 32px',
-                                        background: 'linear-gradient(to right, rgb(99, 102, 241), rgb(244, 63, 94))',
-                                        color: 'white',
-                                        fontWeight: '600',
-                                        borderRadius: '8px',
-                                        border: 'none',
-                                        cursor: 'pointer',
-                                        transition: 'all 0.3s ease',
-                                        fontSize: '16px'
-                                    }}
-                                >
-                                    Get Started
-                                </button>
-                                <button 
-                                    onClick={() => router?.push('/demo')}
-                                    style={{
-                                        padding: '12px 32px',
-                                        border: '1px solid rgba(255,255,255,0.2)',
-                                        color: 'white',
-                                        fontWeight: '600',
-                                        borderRadius: '8px',
-                                        backgroundColor: 'transparent',
-                                        cursor: 'pointer',
-                                        transition: 'all 0.3s ease',
-                                        fontSize: '16px'
-                                    }}
-                                >
-                                    Demo
-                                </button>
-                            </div>
+                                <span style={{
+                                    background: 'linear-gradient(to bottom, white, rgba(255,255,255,0.8))',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                    backgroundClip: 'text'
+                                }}>
+                                    {title1}
+                                </span>
+                                {title2 && (
+                                    <>
+                                        <br />
+                                        <span style={{
+                                            background: 'linear-gradient(to right, rgb(165, 180, 252), rgba(255,255,255,0.9), rgb(252, 165, 165))',
+                                            WebkitBackgroundClip: 'text',
+                                            WebkitTextFillColor: 'transparent',
+                                            backgroundClip: 'text'
+                                        }}>
+                                            {title2}
+                                        </span>
+                                    </>
+                                )}
+                            </h1>
+                        </motion.div>
+
+                        {!children && (
+                            <motion.div
+                                custom={2}
+                                variants={fadeUpVariants}
+                                initial="hidden"
+                                animate="visible"
+                            >
+                                <p style={{
+                                    fontSize: showRobot ? 'clamp(0.9rem, 1.5vw, 1.1rem)' : 'clamp(1rem, 2vw, 1.25rem)',
+                                    color: 'rgba(255,255,255,0.7)',
+                                    marginBottom: '32px',
+                                    lineHeight: '1.6',
+                                    fontWeight: '300',
+                                    letterSpacing: '0.025em',
+                                    maxWidth: showRobot ? 'none' : '672px',
+                                    margin: showRobot ? '0 0 32px 0' : '0 auto 32px auto',
+                                    padding: showRobot ? '0' : '0 16px'
+                                }}>
+                                    Join the world's first AI-driven reskilling platform.<br/>
+                                    Transform from vulnerable to future-proof with personalized learning paths,<br/>
+                                    blockchain certifications, and guaranteed job placement.
+                                </p>
+                                
+                                <div style={{ 
+                                    display: 'flex', 
+                                    flexDirection: showRobot ? 'row' : 'column', 
+                                    gap: '16px', 
+                                    justifyContent: showRobot ? 'flex-start' : 'center', 
+                                    alignItems: showRobot ? 'flex-start' : 'center', 
+                                    marginTop: '32px' 
+                                }}>
+                                    <button 
+                                        onClick={() => router?.push('/register')}
+                                        style={{
+                                            padding: '12px 32px',
+                                            background: 'linear-gradient(to right, rgb(99, 102, 241), rgb(244, 63, 94))',
+                                            color: 'white',
+                                            fontWeight: '600',
+                                            borderRadius: '8px',
+                                            border: 'none',
+                                            cursor: 'pointer',
+                                            transition: 'all 0.3s ease',
+                                            fontSize: '16px'
+                                        }}
+                                    >
+                                        Get Started
+                                    </button>
+                                    <button 
+                                        onClick={() => router?.push('/demo')}
+                                        style={{
+                                            padding: '12px 32px',
+                                            border: '1px solid rgba(255,255,255,0.2)',
+                                            color: 'white',
+                                            fontWeight: '600',
+                                            borderRadius: '8px',
+                                            backgroundColor: 'transparent',
+                                            cursor: 'pointer',
+                                            transition: 'all 0.3s ease',
+                                            fontSize: '16px'
+                                        }}
+                                    >
+                                        Demo
+                                    </button>
+                                </div>
+                            </motion.div>
+                        )}
+                    </div>
+                    
+                    {/* Right Content - 3D Robot */}
+                    {showRobot && (
+                        <motion.div
+                            custom={3}
+                            variants={fadeUpVariants}
+                            initial="hidden"
+                            animate="visible"
+                            style={{
+                                flex: '1',
+                                width: '50%',
+                                height: '500px',
+                                position: 'relative'
+                            }}
+                        >
+                            <SplineScene 
+                                scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                                className="w-full h-full"
+                            />
                         </motion.div>
                     )}
                 </div>

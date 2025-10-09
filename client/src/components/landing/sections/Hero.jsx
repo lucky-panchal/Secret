@@ -1,5 +1,6 @@
 'use client';
 import { HeroGeometric } from "../../ui/shape-landing-hero";
+import { SplineScene } from "../../ui/splite";
 import { useRouter } from 'next/navigation';
 
 function Hero() {
@@ -12,6 +13,7 @@ function Hero() {
                 title1="KaushalX"
                 title2="" 
                 router={router}
+                showRobot={true}
             />
         </div>
     );
