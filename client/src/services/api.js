@@ -138,6 +138,48 @@ class ApiService {
     return response;
   }
 
+  // Assessment API
+  async saveAssessment(assessmentData) {
+    return this.request('/assessment', {
+      method: 'POST',
+      body: JSON.stringify(assessmentData)
+    });
+  }
+
+  async getAssessment() {
+    return this.request('/assessment');
+  }
+
+  // AI Analysis API
+  async generateAIProfile() {
+    return this.request('/ai-analysis/generate-profile', {
+      method: 'POST'
+    });
+  }
+
+  async getAIProfile() {
+    return this.request('/ai-analysis/profile');
+  }
+
+  async updateProgress(milestoneId, progress, completedCourses = [], completedProjects = []) {
+    return this.request('/ai-analysis/update-progress', {
+      method: 'POST',
+      body: JSON.stringify({ milestoneId, progress, completedCourses, completedProjects })
+    });
+  }
+
+  async getDailyRiskUpdate() {
+    return this.request('/ai-analysis/daily-risk-update');
+  }
+
+  async getAIInsights() {
+    return this.request('/ai-analysis/insights');
+  }
+
+  async getDailyTips() {
+    return this.request('/ai-analysis/daily-tips');
+  }
+
   async signin(credentials) {
     const response = await this.request('/auth/signin', {
       method: 'POST',

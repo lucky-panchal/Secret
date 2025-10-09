@@ -127,11 +127,11 @@ class AIWebSearcher {
 
   async searchTrendingCourses() {
     const queries = [
-      'trending online courses 2024 machine learning AI',
-      'most popular programming courses 2024',
-      'high demand tech skills courses 2024',
+      'trending online courses 2025 machine learning AI',
+      'most popular programming courses 2025',
+      'high demand tech skills courses 2025',
       'emerging technology courses blockchain web3',
-      'data science courses in demand 2024'
+      'data science courses in demand 2025'
     ];
 
     const courses = [];
@@ -150,7 +150,7 @@ class AIWebSearcher {
 
   async searchAIThreatenedCourses() {
     const queries = [
-      'jobs threatened by AI automation 2024 courses',
+      'jobs threatened by AI automation 2025 courses',
       'careers being replaced by artificial intelligence',
       'manual tasks automated by AI training courses',
       'traditional jobs AI disruption retraining',
@@ -255,7 +255,7 @@ class AIWebSearcher {
     ).join('\n\n');
 
     const instruction = type === 'trending' 
-      ? 'Extract trending, high-demand online courses that are popular in 2024'
+      ? 'Extract trending, high-demand online courses that are popular in 2025'
       : 'Extract courses for jobs/skills being threatened by AI automation (70-80% threat level)';
 
     return `${instruction}

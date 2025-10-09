@@ -1,6 +1,6 @@
 'use client';
 import { Box, List, ListItem, ListItemIcon, ListItemText, Avatar, Typography, Divider } from '@mui/material';
-import { Dashboard, VerifiedUser, School, Assignment, Work, Settings, Logout, Person, Token } from '@mui/icons-material';
+import { Dashboard, VerifiedUser, School, Assignment, Work, Settings, Logout, Person, Token, Psychology, Timeline } from '@mui/icons-material';
 import { useTheme } from '@/contexts/ThemeContext';
 import { motion } from 'framer-motion';
 
@@ -9,6 +9,8 @@ const Sidebar = ({ onNavigate, currentPage }) => {
 
   const navigationItems = [
     { label: 'Dashboard', icon: Dashboard, page: 'dashboard' },
+    { label: 'AI Analysis', icon: Psychology, page: 'ai-analysis' },
+    { label: 'Career Roadmap', icon: Timeline, page: 'roadmap' },
     { label: 'Courses', icon: School, page: 'courses' },
     { label: 'Tasks', icon: Assignment, page: 'tasks' },
     { label: 'Certificates', icon: VerifiedUser, page: 'certificates' },

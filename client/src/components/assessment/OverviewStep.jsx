@@ -368,55 +368,7 @@ const OverviewStep = ({ data, onSubmit, onBack }) => {
           <Button
             variant="contained"
             endIcon={<Send />}
-            onClick={() => {
-              // Create stunning portal transition
-              const overlay = document.createElement('div');
-              overlay.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: radial-gradient(circle, #00D4FF 0%, #A855F7 50%, #0A0A0F 100%);
-                z-index: 99999;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                opacity: 0;
-                transition: opacity 0.5s ease;
-              `;
-              
-              overlay.innerHTML = `
-                <div style="
-                  width: 200px;
-                  height: 200px;
-                  border-radius: 50%;
-                  background: radial-gradient(circle, #00D4FF 0%, #A855F7 50%, transparent 70%);
-                  box-shadow: 0 0 100px #00D4FF, inset 0 0 50px #A855F7;
-                  animation: portalExpand 2s ease-in-out;
-                "></div>
-              `;
-              
-              const style = document.createElement('style');
-              style.textContent = `
-                @keyframes portalExpand {
-                  0% { transform: scale(0) rotate(0deg); opacity: 0; }
-                  50% { transform: scale(1) rotate(180deg); opacity: 1; }
-                  100% { transform: scale(20) rotate(360deg); opacity: 0; }
-                }
-              `;
-              document.head.appendChild(style);
-              
-              document.body.appendChild(overlay);
-              
-              requestAnimationFrame(() => {
-                overlay.style.opacity = '1';
-              });
-              
-              setTimeout(() => {
-                window.location.href = '/navothhan';
-              }, 2000);
-            }}
+            onClick={onSubmit}
             sx={{
               px: 8,
               py: 2,

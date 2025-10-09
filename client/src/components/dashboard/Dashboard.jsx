@@ -27,6 +27,8 @@ import CertificatesPage from './CertificatesPage';
 import JobsPage from './JobsPage';
 import SettingsPage from './SettingsPage';
 import TokensPage from './TokensPage';
+import PersonalizedRoadmap from './PersonalizedRoadmap';
+import AIAnalysisDashboard from './AIAnalysisDashboard';
 import NotificationModal from './NotificationModal';
 import MessageModal from './MessageModal';
 import ProfileModal from './ProfileModal';
@@ -207,6 +209,10 @@ const Dashboard = () => {
             <SettingsPage key={refreshKey} onNavigate={handlePageNavigation} />
           ) : currentPage === 'tokens' ? (
             <TokensPage key={refreshKey} onNavigate={handlePageNavigation} />
+          ) : currentPage === 'roadmap' ? (
+            <PersonalizedRoadmap key={refreshKey} onNavigate={handlePageNavigation} />
+          ) : currentPage === 'ai-analysis' ? (
+            <AIAnalysisDashboard key={refreshKey} onNavigate={handlePageNavigation} />
           ) : (
             <Grid container spacing={3} key={refreshKey}>
               {/* Main Content Column */}

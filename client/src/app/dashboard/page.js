@@ -12,6 +12,7 @@ export default function DashboardPage() {
   const theme = createMuiTheme(isDark);
 
   return (
+    <ProtectedRoute>
       <div data-theme={isDark ? 'dark' : 'light'}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
@@ -23,5 +24,6 @@ export default function DashboardPage() {
           </Box>
         </ThemeProvider>
       </div>
+    </ProtectedRoute>
   );
 }

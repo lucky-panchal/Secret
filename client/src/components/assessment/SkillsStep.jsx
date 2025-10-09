@@ -214,17 +214,31 @@ const SkillsStep = ({ data, onUpdate, onNext, onBack }) => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: categoryIndex * 0.1, duration: 0.5 }}
             >
-              <Paper sx={{
-                p: 3,
-                background: 'rgba(255, 255, 255, 0.02)',
-                backdropFilter: 'blur(10px)',
-                border: `1px solid ${category.color}30`,
-                borderRadius: 3,
+              <Box sx={{
+                p: 4,
+                background: 'rgba(255, 255, 255, 0.03)',
+                backdropFilter: 'blur(20px)',
+                border: `1px solid ${category.color}40`,
+                borderRadius: 4,
                 height: '100%',
-                transition: 'all 0.3s ease',
+                position: 'relative',
+                overflow: 'hidden',
+                transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                 '&:hover': {
-                  transform: 'translateY(-2px)',
-                  boxShadow: `0 8px 25px ${category.color}20`
+                  transform: 'translateY(-5px) scale(1.02)',
+                  boxShadow: `0 15px 40px ${category.color}30, 0 0 60px ${category.color}20`,
+                  border: `1px solid ${category.color}70`,
+                  background: 'rgba(255, 255, 255, 0.05)'
+                },
+                '&::before': {
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: '3px',
+                  background: `linear-gradient(90deg, ${category.color}, transparent)`,
+                  borderRadius: '4px 4px 0 0'
                 }
               }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
@@ -279,7 +293,7 @@ const SkillsStep = ({ data, onUpdate, onNext, onBack }) => {
                     );
                   })}
                 </Box>
-              </Paper>
+              </Box>
             </motion.div>
           </Grid>
         ))}

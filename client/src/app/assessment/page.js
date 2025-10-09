@@ -3,8 +3,11 @@ import { useState, useEffect } from 'react';
 import { Box, Stepper, Step, StepLabel, Typography, IconButton, LinearProgress } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { ArrowBack, Psychology, Code, Favorite, School, Assessment } from '@mui/icons-material';
+import ProtectedRoute from '@/components/ProtectedRoute';
+import CareerRebuildLoader from '@/components/CareerRebuildLoader';
 import WelcomeStep from '@/components/assessment/WelcomeStep';
 import SkillsStep from '@/components/assessment/SkillsStep';
 import InterestsStep from '@/components/assessment/InterestsStep';
@@ -20,6 +23,7 @@ const AssessmentPage = () => {
     experience: ''
   });
   const { isDark } = useTheme();
+  const { user } = useAuth();
   const router = useRouter();
 
   const steps = [
@@ -42,9 +46,38 @@ const AssessmentPage = () => {
     setAssessmentData(prev => ({ ...prev, ...stepData }));
   };
 
-  const handleSubmit = () => {
-    console.log('Assessment Data:', assessmentData);
-    router.push('/dashboard');
+  const [showLoader, setShowLoader] = useState(false);
+
+  const handleSubmit = async () => {
+    try {
+      setShowLoader(true);
+      
+      // Save assessment data to backend
+      const assessmentPayload = {
+        ...assessmentData,
+        userId: user?._id,
+        completedAt: new Date().toISOString()
+      };
+      
+      console.log('Assessment completed:', assessmentPayload);
+      
+      // Save to backend API and generate AI profile
+      const apiService = (await import('@/services/api')).default;
+      await apiService.saveAssessment(assessmentPayload);
+      
+      // Generate AI-powered profile analysis
+      await apiService.generateAIProfile();
+      
+      // Loader will handle the redirect after animation
+    } catch (error) {
+      console.error('Error saving assessment:', error);
+      // Still show loader and redirect even if save fails
+    }
+  };
+
+  const handleLoaderComplete = () => {
+    // Direct redirect without hiding loader first
+    router.replace('/dashboard');
   };
 
   const renderStep = () => {
@@ -66,8 +99,17 @@ const AssessmentPage = () => {
 
   const progress = ((activeStep + 1) / steps.length) * 100;
 
+  if (showLoader) {
+    return (
+      <ProtectedRoute>
+        <CareerRebuildLoader onComplete={handleLoaderComplete} />
+      </ProtectedRoute>
+    );
+  }
+
   return (
-    <div data-theme={isDark ? 'dark' : 'light'}>
+    <ProtectedRoute>
+      <div data-theme={isDark ? 'dark' : 'light'}>
       <style jsx global>{`
         body {
           margin: 0;
@@ -131,6 +173,39 @@ const AssessmentPage = () => {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
           50% { transform: translateY(-20px) rotate(180deg); }
         }
+        
+        @keyframes pulse {
+          0%, 100% { 
+            transform: scale(1); 
+            opacity: 0.7; 
+          }
+          50% { 
+            transform: scale(1.05); 
+            opacity: 0.3; 
+          }
+        }
+        
+        .assessment-container {
+          --primary: #00D4FF;
+          --secondary: #A855F7;
+          --accent: #FBBF24;
+          --success: #10B981;
+          --warning: #F59E0B;
+          --error: #EF4444;
+          --text-primary: #F8FAFC;
+          --text-secondary: #94A3B8;
+          --border: rgba(255, 255, 255, 0.1);
+          --gradient-primary: linear-gradient(135deg, #00D4FF 0%, #A855F7 100%);
+          --gradient-secondary: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
+          --background: #0F172A;
+        }
+        
+        [data-theme="light"] .assessment-container {
+          --text-primary: #1E293B;
+          --text-secondary: #64748B;
+          --border: rgba(0, 0, 0, 0.1);
+          --background: #F8FAFC;
+        }
       `}</style>
       
       <Box className="assessment-container">
@@ -150,15 +225,15 @@ const AssessmentPage = () => {
           ))}
         </div>
         
-        {/* Header */}
+        {/* Enhanced Header */}
         <Box sx={{ 
           position: 'relative',
           zIndex: 10,
-          background: 'rgba(255, 255, 255, 0.02)',
-          backdropFilter: 'blur(20px)',
-          borderBottom: '1px solid var(--border)',
-          py: 2,
-          px: 3
+          background: 'rgba(255, 255, 255, 0.03)',
+          backdropFilter: 'blur(30px)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+          py: { xs: 2, md: 3 },
+          px: { xs: 2, md: 4 }
         }}>
           <Box sx={{ 
             display: 'flex', 
@@ -167,46 +242,73 @@ const AssessmentPage = () => {
             maxWidth: '1400px',
             mx: 'auto'
           }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, md: 2 } }}>
               <IconButton 
                 onClick={() => router.push('/register')}
                 sx={{ 
                   color: 'var(--text-secondary)',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
                   '&:hover': { 
                     background: 'rgba(0, 212, 255, 0.1)',
-                    color: 'var(--primary)'
+                    color: '#00D4FF',
+                    borderColor: '#00D4FF',
+                    transform: 'translateY(-1px)'
                   }
                 }}
               >
                 <ArrowBack />
               </IconButton>
-              <Typography variant="h5" sx={{ 
-                color: 'var(--text-primary)', 
-                fontWeight: 700,
-                background: 'var(--gradient-primary)',
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
-              }}>
-                AI/ML Career Assessment
-              </Typography>
+              <Box>
+                <Typography variant="h5" sx={{ 
+                  color: 'var(--text-primary)', 
+                  fontWeight: 800,
+                  background: 'linear-gradient(135deg, #00D4FF 0%, #A855F7 100%)',
+                  backgroundClip: 'text',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  fontSize: { xs: '1.2rem', md: '1.5rem' }
+                }}>
+                  AI Career Assessment
+                </Typography>
+                <Typography variant="body2" sx={{ 
+                  color: 'var(--text-secondary)',
+                  fontSize: '0.85rem',
+                  display: { xs: 'none', sm: 'block' }
+                }}>
+                  Discover your AI/ML career potential
+                </Typography>
+              </Box>
             </Box>
             
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Typography variant="body2" sx={{ color: 'var(--text-secondary)' }}>
-                Step {activeStep + 1} of {steps.length}
-              </Typography>
-              <Box sx={{ width: 120 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, md: 3 } }}>
+              <Box sx={{ textAlign: 'right', display: { xs: 'none', sm: 'block' } }}>
+                <Typography variant="body2" sx={{ 
+                  color: 'var(--text-primary)', 
+                  fontWeight: 600,
+                  fontSize: '0.9rem'
+                }}>
+                  Step {activeStep + 1} of {steps.length}
+                </Typography>
+                <Typography variant="caption" sx={{ 
+                  color: 'var(--text-secondary)',
+                  fontSize: '0.75rem'
+                }}>
+                  {Math.round(progress)}% Complete
+                </Typography>
+              </Box>
+              <Box sx={{ width: { xs: 80, md: 140 } }}>
                 <LinearProgress 
                   variant="determinate" 
                   value={progress}
                   sx={{
-                    height: 6,
-                    borderRadius: 3,
-                    background: 'var(--border)',
+                    height: 8,
+                    borderRadius: 4,
+                    background: 'rgba(255, 255, 255, 0.1)',
                     '& .MuiLinearProgress-bar': {
-                      background: 'var(--gradient-primary)',
-                      borderRadius: 3
+                      background: 'linear-gradient(90deg, #00D4FF 0%, #A855F7 100%)',
+                      borderRadius: 4,
+                      boxShadow: '0 0 10px rgba(0, 212, 255, 0.5)'
                     }
                   }}
                 />
@@ -223,12 +325,13 @@ const AssessmentPage = () => {
           display: 'flex',
           flexDirection: 'column'
         }}>
-          {/* Enhanced Stepper */}
+          {/* Professional Stepper */}
           <Box sx={{ 
-            py: 4,
-            px: 3,
-            background: 'rgba(255, 255, 255, 0.01)',
-            backdropFilter: 'blur(10px)'
+            py: { xs: 3, md: 5 },
+            px: { xs: 2, md: 4 },
+            background: 'rgba(255, 255, 255, 0.02)',
+            backdropFilter: 'blur(20px)',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
           }}>
             <Box sx={{ maxWidth: '1200px', mx: 'auto' }}>
               <Stepper 
@@ -236,51 +339,70 @@ const AssessmentPage = () => {
                 alternativeLabel 
                 sx={{ 
                   '& .MuiStepConnector-line': {
-                    borderColor: 'var(--border)',
-                    borderTopWidth: 2
+                    borderColor: 'rgba(255, 255, 255, 0.1)',
+                    borderTopWidth: 3,
+                    borderRadius: 2
                   },
                   '& .MuiStepConnector-root.Mui-active .MuiStepConnector-line': {
-                    borderColor: 'var(--primary)'
+                    borderImage: 'linear-gradient(90deg, #00D4FF, #A855F7) 1',
+                    borderTopWidth: 3
                   },
                   '& .MuiStepConnector-root.Mui-completed .MuiStepConnector-line': {
-                    borderColor: 'var(--primary)'
+                    borderImage: 'linear-gradient(90deg, #00D4FF, #A855F7) 1',
+                    borderTopWidth: 3
                   }
                 }}
               >
                 {steps.map((step, index) => {
                   const StepIcon = step.icon;
+                  const isActive = index === activeStep;
+                  const isCompleted = index < activeStep;
+                  
                   return (
                     <Step key={step.label}>
                       <StepLabel
                         StepIconComponent={() => (
                           <Box sx={{
-                            width: 50,
-                            height: 50,
+                            width: { xs: 45, md: 60 },
+                            height: { xs: 45, md: 60 },
                             borderRadius: '50%',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            background: index <= activeStep ? 'var(--gradient-primary)' : 'var(--border)',
-                            color: index <= activeStep ? 'white' : 'var(--text-secondary)',
-                            transition: 'all 0.3s ease',
-                            boxShadow: index === activeStep ? '0 0 20px rgba(0, 212, 255, 0.4)' : 'none'
+                            background: isCompleted || isActive 
+                              ? 'linear-gradient(135deg, #00D4FF 0%, #A855F7 100%)' 
+                              : 'rgba(255, 255, 255, 0.1)',
+                            color: isCompleted || isActive ? 'white' : 'rgba(255, 255, 255, 0.4)',
+                            border: isActive ? '3px solid rgba(255, 255, 255, 0.3)' : '2px solid transparent',
+                            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                            boxShadow: isActive 
+                              ? '0 0 30px rgba(0, 212, 255, 0.6), 0 0 60px rgba(168, 85, 247, 0.3)' 
+                              : isCompleted 
+                              ? '0 8px 25px rgba(0, 212, 255, 0.3)'
+                              : 'none',
+                            transform: isActive ? 'scale(1.1)' : 'scale(1)',
+                            position: 'relative',
+                            '&::before': isActive ? {
+                              content: '""',
+                              position: 'absolute',
+                              width: '100%',
+                              height: '100%',
+                              borderRadius: '50%',
+                              border: '2px solid rgba(255, 255, 255, 0.2)',
+                              animation: 'pulse 2s ease-in-out infinite'
+                            } : {}
                           }}>
-                            <StepIcon sx={{ fontSize: 24 }} />
+                            <StepIcon sx={{ fontSize: { xs: 20, md: 28 } }} />
                           </Box>
                         )}
                         sx={{
                           '& .MuiStepLabel-label': {
-                            color: 'var(--text-secondary)',
-                            fontWeight: 500,
-                            mt: 1,
-                            '&.Mui-active': {
-                              color: 'var(--primary)',
-                              fontWeight: 600
-                            },
-                            '&.Mui-completed': {
-                              color: 'var(--primary)',
-                              fontWeight: 600
-                            }
+                            color: isCompleted || isActive ? '#00D4FF' : 'rgba(255, 255, 255, 0.6)',
+                            fontWeight: isCompleted || isActive ? 700 : 500,
+                            mt: 2,
+                            fontSize: { xs: '0.85rem', md: '1rem' },
+                            textShadow: isActive ? '0 0 10px rgba(0, 212, 255, 0.5)' : 'none',
+                            transition: 'all 0.3s ease'
                           }
                         }}
                       >
@@ -293,32 +415,42 @@ const AssessmentPage = () => {
             </Box>
           </Box>
           
-          {/* Step Content */}
+          {/* Enhanced Step Content */}
           <Box sx={{ 
             flex: 1,
             display: 'flex',
-            alignItems: 'center',
+            alignItems: 'flex-start',
             justifyContent: 'center',
-            px: 3,
-            py: 4
+            px: { xs: 2, md: 4 },
+            py: { xs: 3, md: 6 },
+            minHeight: 'calc(100vh - 300px)'
           }}>
             <Box sx={{ 
               width: '100%',
-              maxWidth: activeStep === 0 ? '900px' : '1200px',
+              maxWidth: activeStep === 0 ? '1000px' : '1300px',
               mx: 'auto'
             }}>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeStep}
-                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  initial={{ opacity: 0, y: 40, scale: 0.96 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -30, scale: 0.95 }}
+                  exit={{ opacity: 0, y: -40, scale: 0.96 }}
                   transition={{ 
-                    duration: 0.4, 
-                    ease: [0.4, 0, 0.2, 1]
+                    duration: 0.5, 
+                    ease: [0.25, 0.46, 0.45, 0.94]
                   }}
                 >
-                  {renderStep()}
+                  <Box sx={{
+                    background: 'rgba(255, 255, 255, 0.02)',
+                    backdropFilter: 'blur(20px)',
+                    borderRadius: 4,
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    overflow: 'hidden',
+                    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 212, 255, 0.1)'
+                  }}>
+                    {renderStep()}
+                  </Box>
                 </motion.div>
               </AnimatePresence>
             </Box>
@@ -326,6 +458,7 @@ const AssessmentPage = () => {
         </Box>
       </Box>
     </div>
+    </ProtectedRoute>
   );
 };
 

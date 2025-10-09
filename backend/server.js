@@ -23,11 +23,14 @@ const healthRoutes = require('./routes/health');
 const aiSearchRoutes = require('./routes/ai-search');
 const aiStatusRoutes = require('./routes/ai-status');
 const authRoutes = require('./routes/auth');
+const assessmentRoutes = require('./routes/assessment');
+const aiAnalysisRoutes = require('./routes/aiAnalysis');
 const { initializeScheduler } = require('./services/scheduler');
 const { setupWebSocket } = require('./services/websocket');
 const dataManager = require('./services/dataManager');
 const dynamicDataManager = require('./services/dynamicDataManager');
 const webScraper = require('./services/webScraper');
+const dataIngestionService = require('./services/dataIngestionService');
 const { initializeCourses } = require('./scripts/initializeCourses');
 
 const app = express();
@@ -86,6 +89,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/assessment', assessmentRoutes);
+app.use('/api/ai-analysis', aiAnalysisRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/scrape', scraperRoutes);
@@ -98,6 +103,9 @@ setupWebSocket(server);
 
 // Initialize scheduler for automated data management
 initializeScheduler();
+
+// Initialize daily data ingestion
+dataIngestionService.initializeDailyIngestion();
 
 // Error handling middleware
 app.use((err, req, res, next) => {

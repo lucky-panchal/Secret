@@ -5,6 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { createMuiTheme } from '@/theme/muiTheme';
 import { useTheme } from '@/contexts/ThemeContext';
+import LoadingProvider from '@/components/LoadingProvider';
 import "./globals.css";
 
 function MuiThemeWrapper({ children }) {
@@ -74,9 +75,11 @@ export default function RootLayout({ children }) {
         </div>
         <AuthProvider>
           <CustomThemeProvider>
-            <MuiThemeWrapper>
-              {children}
-            </MuiThemeWrapper>
+            <LoadingProvider>
+              <MuiThemeWrapper>
+                {children}
+              </MuiThemeWrapper>
+            </LoadingProvider>
           </CustomThemeProvider>
         </AuthProvider>
       </body>
