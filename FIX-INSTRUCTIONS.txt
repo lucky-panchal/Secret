@@ -1,0 +1,36 @@
+========================================
+QUICK FIX - Route Not Found Error
+========================================
+
+The code is correct, but the server needs to be restarted to load the changes.
+
+STEPS TO FIX:
+-------------
+
+1. Go to your backend terminal window
+
+2. Press Ctrl+C to stop the server
+
+3. Start the server again:
+   npm start
+
+4. Run the test again:
+   ./test-captcha.bat
+
+EXPECTED RESULT:
+----------------
+After restart, you should see authentication responses instead of "Route not found"
+
+WHY THIS HAPPENS:
+-----------------
+Node.js caches modules. When we added module.exports to secureAuth.js,
+the running server still has the old version in memory.
+
+ALTERNATIVE - Use nodemon:
+--------------------------
+To avoid manual restarts in future:
+1. Install: npm install -g nodemon
+2. Start with: nodemon server.js
+3. It will auto-restart on file changes
+
+========================================
