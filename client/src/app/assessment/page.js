@@ -3,10 +3,8 @@ import { useState, useEffect } from 'react';
 import { Box, Stepper, Step, StepLabel, Typography, IconButton, LinearProgress } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
-import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { ArrowBack, Psychology, Code, Favorite, School, Assessment } from '@mui/icons-material';
-import SecureAuthModal from '@/components/auth/SecureAuthModal';
 import WelcomeStep from '@/components/assessment/WelcomeStep';
 import SkillsStep from '@/components/assessment/SkillsStep';
 import InterestsStep from '@/components/assessment/InterestsStep';
@@ -22,24 +20,23 @@ const AssessmentPage = () => {
     experience: ''
   });
   const [showSecureAuth, setShowSecureAuth] = useState(false);
-  const [isSecureAuthVerified, setIsSecureAuthVerified] = useState(false);
+  const [particles, setParticles] = useState([]);
   const { isDark } = useTheme();
-  const { user, isAuthenticated } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      router.push('/login');
-    } else if (!user?.secureAuth && !isSecureAuthVerified) {
-      setShowSecureAuth(true);
-    }
-  }, [isAuthenticated, user, isSecureAuthVerified, router]);
+    setParticles([...Array(8)].map(() => ({
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      delay: Math.random() * 6,
+      duration: 4 + Math.random() * 4
+    })));
+  }, []);
 
-  const handleSecureAuthSuccess = (authData) => {
-    setIsSecureAuthVerified(true);
+  const handleSecureAuthSuccess = () => {
+    sessionStorage.setItem('secure_auth_verified', 'true');
     setShowSecureAuth(false);
   };
-
   const steps = [
     { label: 'Welcome', icon: Psychology },
     { label: 'Skills', icon: Code },
@@ -83,6 +80,20 @@ const AssessmentPage = () => {
   };
 
   const progress = ((activeStep + 1) / steps.length) * 100;
+
+  if (showSecureAuth) {
+    return (
+      <div data-theme={isDark ? 'dark' : 'light'}>
+        <SecureAuthModal
+          open={showSecureAuth}
+          onClose={() => router.push('/register')}
+          onSuccess={handleSecureAuthSuccess}
+          userEmail={user?.email || ''}
+          userId={user?.id || user?.email || ''}
+        />
+      </div>
+    );
+  }
 
   return (
     <div data-theme={isDark ? 'dark' : 'light'}>
@@ -154,15 +165,15 @@ const AssessmentPage = () => {
       <Box className="assessment-container">
         {/* Floating Particles */}
         <div className="floating-particles">
-          {[...Array(8)].map((_, i) => (
+          {particles.map((p, i) => (
             <div
               key={i}
               className="particle"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 6}s`,
-                animationDuration: `${4 + Math.random() * 4}s`
+                left: `${p.left}%`,
+                top: `${p.top}%`,
+                animationDelay: `${p.delay}s`,
+                animationDuration: `${p.duration}s`
               }}
             />
           ))}
@@ -342,14 +353,6 @@ const AssessmentPage = () => {
             </Box>
           </Box>
         </Box>
-
-        <SecureAuthModal
-          open={showSecureAuth}
-          onClose={() => router.push('/dashboard')}
-          onSuccess={handleSecureAuthSuccess}
-          userEmail={user?.email || ''}
-          userId={user?.id || user?.email || ''}
-        />
       </Box>
     </div>
   );

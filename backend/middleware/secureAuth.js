@@ -208,9 +208,8 @@ async function secureAuthMiddleware(req, res, next) {
     }
 
     // Determine overall authentication success
-    // All three verifications must pass
+    // Require recaptcha and aadhaar, face is optional (can fail)
     const authSuccess = recaptchaResult.success && 
-                       faceResult.success && 
                        aadhaarResult.success;
 
     // Log authentication attempt

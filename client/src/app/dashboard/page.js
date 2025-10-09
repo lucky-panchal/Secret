@@ -1,37 +1,35 @@
 'use client';
-import { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { createMuiTheme } from '@/theme/muiTheme';
 import { useTheme } from '@/contexts/ThemeContext';
-import { useAuth } from '@/contexts/AuthContext';
-import { useRouter } from 'next/navigation';
 import Dashboard from '@/components/dashboard/Dashboard';
-import SecureAuthModal from '@/components/auth/SecureAuthModal';
+<<<<<<< Updated upstream
 import ProtectedRoute from '@/components/ProtectedRoute';
 
 export default function DashboardPage() {
-  const [showSecureAuth, setShowSecureAuth] = useState(false);
-  const [isSecureAuthVerified, setIsSecureAuthVerified] = useState(false);
+=======
+
+import ProtectedRoute from '@/components/ProtectedRoute';
+
+export default function DashboardPage() {
+
+>>>>>>> Stashed changes
   const { isDark } = useTheme();
-  const { user, isAuthenticated } = useAuth();
-  const router = useRouter();
   const theme = createMuiTheme(isDark);
 
+<<<<<<< Updated upstream
+=======
   useEffect(() => {
     if (!isAuthenticated) {
       router.push('/login');
-    } else if (!user?.secureAuth && !isSecureAuthVerified) {
-      setShowSecureAuth(true);
     }
-  }, [isAuthenticated, user, isSecureAuthVerified, router]);
+  }, [isAuthenticated, router]);
 
-  const handleSecureAuthSuccess = (authData) => {
-    setIsSecureAuthVerified(true);
-    setShowSecureAuth(false);
-  };
 
+
+>>>>>>> Stashed changes
   return (
       <div data-theme={isDark ? 'dark' : 'light'}>
         <ThemeProvider theme={theme}>
@@ -42,14 +40,10 @@ export default function DashboardPage() {
           }}>
             <Dashboard />
           </Box>
-          
-          <SecureAuthModal
-            open={showSecureAuth}
-            onClose={() => router.push('/login')}
-            onSuccess={handleSecureAuthSuccess}
-            userEmail={user?.email || ''}
-            userId={user?.id || user?.email || ''}
-          />
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         </ThemeProvider>
       </div>
   );
