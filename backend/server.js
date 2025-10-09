@@ -92,7 +92,6 @@ app.use('/api/scrape', scraperRoutes);
 app.use('/api/health', healthRoutes);
 app.use('/api/ai-search', aiSearchRoutes);
 app.use('/api/ai-status', aiStatusRoutes);
-app.use('/api/auth', authRoutes);
 
 // WebSocket setup
 setupWebSocket(server);
