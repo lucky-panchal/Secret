@@ -1,18 +1,20 @@
 'use client';
 import { Box, Container, Paper, TextField, Button, Typography, InputAdornment, IconButton } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Email, Lock, Visibility, VisibilityOff, Login as LoginIcon } from '@mui/icons-material';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { ArrowBack } from '@mui/icons-material';
-import { useEffect } from 'react';
+import SecureAuthModal from '@/components/auth/SecureAuthModal';
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showSecureAuth, setShowSecureAuth] = useState(false);
+  const [tempUserData, setTempUserData] = useState(null);
+  
   const { isDark } = useTheme();
   const { login } = useAuth();
   const router = useRouter();
@@ -27,14 +29,32 @@ export default function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     if (formData.email && formData.password) {
-      login({
+      // Store user data temporarily
+      setTempUserData({
         email: formData.email,
         name: formData.email.split('@')[0],
         id: Date.now()
       });
-      router.push('/dashboard');
+      
+      // Show secure authentication modal
+      setShowSecureAuth(true);
     }
+  };
+
+  const handleSecureAuthSuccess = (authData) => {
+    console.log('Secure authentication successful:', authData);
+    
+    // Complete login with verified user data
+    login(tempUserData);
+    
+    // Redirect to dashboard
+    router.push('/dashboard');
+  };
+
+  const handleSecureAuthClose = () => {
+    setShowSecureAuth(false);
   };
 
   if (!isLoaded) {
@@ -252,6 +272,15 @@ export default function LoginPage() {
           </Paper>
         </Container>
       </Box>
+
+      {/* Secure Authentication Modal */}
+      <SecureAuthModal
+        open={showSecureAuth}
+        onClose={handleSecureAuthClose}
+        onSuccess={handleSecureAuthSuccess}
+        userEmail={tempUserData?.email}
+        userId={tempUserData?.id}
+      />
     </div>
   );
 }
